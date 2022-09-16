@@ -1,0 +1,262 @@
+{
+    "$fileVersion": 9,
+    "assets": [
+        {
+            "assetUUID": "7499b1c4-4dad-4385-93bc-4cf51cf51b83",
+            "bankId": 0,
+            "checksum": 2142379858,
+            "errors": 0,
+            "filter": "",
+            "itemType": "Source",
+            "name": "main.cpp"
+        },
+        {
+            "assetUUID": "634a0d75-1cf4-4684-b5f3-21d2e9bc36bb",
+            "bankId": 0,
+            "checksum": 415839713,
+            "errors": 0,
+            "filter": "",
+            "itemType": "Header",
+            "name": "pch.h"
+        },
+        {
+            "assetUUID": "57932f50-860a-4a11-bd27-74c2a446e453",
+            "bankId": 0,
+            "checksum": 960282857,
+            "errors": 0,
+            "filter": "",
+            "itemType": "Source",
+            "name": "Melody.cpp"
+        },
+        {
+            "assetUUID": "4790898e-4169-4676-8b00-23d011228d01",
+            "bankId": 0,
+            "checksum": 874313009,
+            "errors": 0,
+            "filter": "",
+            "itemType": "Header",
+            "name": "Melody.h"
+        },
+        {
+            "assetUUID": "b043a020-839f-4131-bfac-e770b6c6c6e5",
+            "bankId": 0,
+            "checksum": 2369830642,
+            "errors": 0,
+            "filter": "Wheel",
+            "itemType": "Source",
+            "name": "Wheel.cpp"
+        },
+        {
+            "assetUUID": "07c0d354-a9d3-411c-beef-d585e41d05d9",
+            "bankId": 0,
+            "checksum": 4076904240,
+            "errors": 0,
+            "filter": "Wheel",
+            "itemType": "Header",
+            "name": "Wheel.h"
+        },
+        {
+            "assetUUID": "f9a47200-ad1d-42db-9f73-2b729d2484eb",
+            "bankId": 0,
+            "checksum": 3274779873,
+            "errors": 0,
+            "filter": "Wheel",
+            "itemType": "Header",
+            "name": "WheelInit.h"
+        },
+        {
+            "assetUUID": "94044fef-15a2-47e6-8997-586112f614bb",
+            "bankId": 0,
+            "checksum": 944852062,
+            "errors": 0,
+            "filter": "Wheel",
+            "itemType": "Source",
+            "name": "WeightTable.cpp"
+        },
+        {
+            "assetUUID": "0f150434-d487-4963-b703-1e7648f23a9a",
+            "bankId": 0,
+            "checksum": 2944436494,
+            "errors": 0,
+            "filter": "Wheel",
+            "itemType": "Header",
+            "name": "WeightTable.h"
+        },
+        {
+            "assetUUID": "3119f217-2488-4d66-b6f0-6358e66dc57f",
+            "bankId": 0,
+            "checksum": 3641883551,
+            "errors": 0,
+            "filter": "Scenes",
+            "itemType": "Source",
+            "name": "Intro.cpp"
+        },
+        {
+            "assetUUID": "c10e61a0-b2c7-4246-b158-742f90b80196",
+            "bankId": 0,
+            "checksum": 1916312174,
+            "errors": 0,
+            "filter": "Scenes",
+            "itemType": "Header",
+            "name": "Intro.h"
+        },
+        {
+            "assetUUID": "9db5cfca-e63a-4b3b-9878-89431c2b7142",
+            "bankId": 0,
+            "checksum": 2346315624,
+            "errors": 0,
+            "filter": "Scenes",
+            "itemType": "Source",
+            "name": "Outro.cpp"
+        },
+        {
+            "assetUUID": "c31c5c5e-304c-4415-99b5-f4bd4632ec40",
+            "bankId": 0,
+            "checksum": 2029608204,
+            "errors": 0,
+            "filter": "Scenes",
+            "itemType": "Header",
+            "name": "Outro.h"
+        },
+        {
+            "assetUUID": "f705b6eb-c8d5-49b5-8395-7b06b7e1f976",
+            "bankId": 0,
+            "checksum": 4169603775,
+            "errors": 0,
+            "filter": "Scenes",
+            "itemType": "Source",
+            "name": "IScene.cpp"
+        },
+        {
+            "assetUUID": "6b928b6e-3694-4e8f-80a1-04fe7d8e0461",
+            "bankId": 0,
+            "checksum": 2472090458,
+            "errors": 0,
+            "filter": "Scenes",
+            "itemType": "Header",
+            "name": "IScene.h"
+        },
+        {
+            "assetUUID": "2251013f-b24d-480f-9be6-9d7d0b61e058",
+            "bankId": 0,
+            "checksum": 1996874396,
+            "errors": 0,
+            "filter": "Scenes",
+            "itemType": "Source",
+            "name": "LowerThird.cpp"
+        },
+        {
+            "assetUUID": "836e44d0-71cf-4c9f-9bf2-0150c99dfcd5",
+            "bankId": 0,
+            "checksum": 1302904916,
+            "errors": 0,
+            "filter": "Scenes",
+            "itemType": "Header",
+            "name": "LowerThird.h"
+        },
+        {
+            "assetUUID": "dfcc2701-1b04-4232-9dda-5193fed25227",
+            "bankId": 0,
+            "checksum": 3241689257,
+            "errors": 0,
+            "filter": "Scenes",
+            "itemType": "Source",
+            "name": "Break.cpp"
+        },
+        {
+            "assetUUID": "8b4070f4-ff2f-4563-b907-ff5a4bc2550c",
+            "bankId": 0,
+            "checksum": 470737643,
+            "errors": 0,
+            "filter": "Scenes",
+            "itemType": "Header",
+            "name": "Break.h"
+        },
+        {
+            "assetUUID": "e61aee08-6624-4390-81c3-4154fd5aa80d",
+            "bankId": 0,
+            "checksum": 2137843107,
+            "errors": 0,
+            "filter": "Components/Crt",
+            "itemType": "Source",
+            "name": "Crt.cpp"
+        },
+        {
+            "assetUUID": "c691d896-11e6-4c83-ab58-9d993a6c14a2",
+            "bankId": 0,
+            "checksum": 2895943890,
+            "errors": 0,
+            "filter": "Components/Crt",
+            "itemType": "Header",
+            "name": "Crt.h"
+        },
+        {
+            "assetUUID": "b012daee-9c6d-4d0b-bfe0-e927665e4f7d",
+            "bankId": 0,
+            "checksum": 394584903,
+            "errors": 0,
+            "filter": "Components",
+            "itemType": "Source",
+            "name": "Message.cpp"
+        },
+        {
+            "assetUUID": "48c8b814-1f8f-4c81-bfde-1c59b49ce739",
+            "bankId": 0,
+            "checksum": 2888347898,
+            "errors": 0,
+            "filter": "Components",
+            "itemType": "Header",
+            "name": "Message.h"
+        },
+        {
+            "assetUUID": "4fd58898-afa0-4a90-b2f6-702e5fb9879c",
+            "bankId": 0,
+            "checksum": 2423878359,
+            "errors": 0,
+            "filter": "Scenes",
+            "itemType": "Source",
+            "name": "Root.cpp"
+        },
+        {
+            "assetUUID": "f09a746a-d88c-4e21-99c7-d1e18f02d47d",
+            "bankId": 0,
+            "checksum": 2444129965,
+            "errors": 0,
+            "filter": "Scenes",
+            "itemType": "Header",
+            "name": "Root.h"
+        },
+        {
+            "assetUUID": "ed6ed7eb-a04a-40c2-8f8e-b19dbc9d1674",
+            "bankId": 0,
+            "checksum": 3315452573,
+            "errors": 0,
+            "filter": "Components/Crt",
+            "itemType": "Source",
+            "name": "Channel.cpp"
+        },
+        {
+            "assetUUID": "f3cd41db-03a1-4624-8800-14316580c6af",
+            "bankId": 0,
+            "checksum": 22272486,
+            "errors": 0,
+            "filter": "Components/Crt",
+            "itemType": "Header",
+            "name": "Channel.h"
+        }
+    ],
+    "banks": [
+        {
+            "OutputName": "Melody",
+            "SrcDepends": [
+            ],
+            "UseGlfw": false,
+            "UseIcu": false,
+            "UseSdlNet": false,
+            "UseSpine": false,
+            "bankId": 0,
+            "bankName": "Default"
+        }
+    ],
+    "nextBankId": 1
+}

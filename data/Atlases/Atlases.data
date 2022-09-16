@@ -1,0 +1,227 @@
+{
+    "$fileVersion": 9,
+    "banks": [
+        {
+            "bankId": 0,
+            "textures": [
+                {
+                    "assets": [
+                        {
+                            "bottom": 1960,
+                            "checksum": 3895937018,
+                            "left": 483,
+                            "right": 963,
+                            "top": 1690
+                        },
+                        {
+                            "bottom": 1975,
+                            "checksum": 651278336,
+                            "left": 1565,
+                            "right": 2045,
+                            "top": 1705
+                        },
+                        {
+                            "bottom": 1960,
+                            "checksum": 864190113,
+                            "left": 0,
+                            "right": 480,
+                            "top": 1690
+                        },
+                        {
+                            "bottom": 1434,
+                            "checksum": 754456006,
+                            "left": 855,
+                            "right": 1355,
+                            "top": 1073
+                        },
+                        {
+                            "bottom": 974,
+                            "checksum": 1982275632,
+                            "left": 1545,
+                            "right": 2045,
+                            "top": 613
+                        },
+                        {
+                            "bottom": 1798,
+                            "checksum": 2514606331,
+                            "left": 1042,
+                            "right": 1542,
+                            "top": 1437
+                        },
+                        {
+                            "bottom": 1338,
+                            "checksum": 815426564,
+                            "left": 1545,
+                            "right": 2045,
+                            "top": 977
+                        },
+                        {
+                            "bottom": 1702,
+                            "checksum": 2972835015,
+                            "left": 1545,
+                            "right": 2045,
+                            "top": 1341
+                        },
+                        {
+                            "bottom": 610,
+                            "checksum": 2861808397,
+                            "left": 1367,
+                            "right": 1977,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 697,
+                            "checksum": 2196988999,
+                            "left": 1465,
+                            "right": 1536,
+                            "top": 613
+                        },
+                        {
+                            "bottom": 1687,
+                            "checksum": 927925234,
+                            "left": 0,
+                            "right": 852,
+                            "top": 1073
+                        },
+                        {
+                            "bottom": 708,
+                            "checksum": 714265366,
+                            "left": 1367,
+                            "right": 1462,
+                            "top": 613
+                        },
+                        {
+                            "bottom": 1070,
+                            "checksum": 2701470140,
+                            "left": 0,
+                            "right": 1364,
+                            "top": 0
+                        }
+                    ],
+                    "height": 2048,
+                    "textureInfo": 262147,
+                    "width": 2048
+                },
+                {
+                    "assets": [
+                        {
+                            "bottom": 1271,
+                            "checksum": 4268791707,
+                            "left": 1082,
+                            "right": 1562,
+                            "top": 1001
+                        },
+                        {
+                            "bottom": 634,
+                            "checksum": 2292571689,
+                            "left": 1509,
+                            "right": 1989,
+                            "top": 364
+                        },
+                        {
+                            "bottom": 1271,
+                            "checksum": 569794191,
+                            "left": 116,
+                            "right": 596,
+                            "top": 1001
+                        },
+                        {
+                            "bottom": 998,
+                            "checksum": 1012677248,
+                            "left": 116,
+                            "right": 596,
+                            "top": 728
+                        },
+                        {
+                            "bottom": 1271,
+                            "checksum": 1513553027,
+                            "left": 599,
+                            "right": 1079,
+                            "top": 1001
+                        },
+                        {
+                            "bottom": 998,
+                            "checksum": 194819899,
+                            "left": 1082,
+                            "right": 1562,
+                            "top": 728
+                        },
+                        {
+                            "bottom": 1180,
+                            "checksum": 231869684,
+                            "left": 1565,
+                            "right": 2045,
+                            "top": 910
+                        },
+                        {
+                            "bottom": 907,
+                            "checksum": 2305775560,
+                            "left": 1565,
+                            "right": 2045,
+                            "top": 637
+                        },
+                        {
+                            "bottom": 998,
+                            "checksum": 3091607944,
+                            "left": 599,
+                            "right": 1079,
+                            "top": 728
+                        },
+                        {
+                            "bottom": 361,
+                            "checksum": 1776282857,
+                            "left": 1006,
+                            "right": 1506,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 361,
+                            "checksum": 115674671,
+                            "left": 1509,
+                            "right": 2009,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 361,
+                            "checksum": 4286155172,
+                            "left": 0,
+                            "right": 500,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 725,
+                            "checksum": 4146019773,
+                            "left": 503,
+                            "right": 1003,
+                            "top": 364
+                        },
+                        {
+                            "bottom": 725,
+                            "checksum": 2289268722,
+                            "left": 0,
+                            "right": 500,
+                            "top": 364
+                        },
+                        {
+                            "bottom": 725,
+                            "checksum": 188613801,
+                            "left": 1006,
+                            "right": 1506,
+                            "top": 364
+                        },
+                        {
+                            "bottom": 361,
+                            "checksum": 90216008,
+                            "left": 503,
+                            "right": 1003,
+                            "top": 0
+                        }
+                    ],
+                    "height": 2048,
+                    "textureInfo": 262147,
+                    "width": 2048
+                }
+            ]
+        }
+    ]
+}

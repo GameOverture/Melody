@@ -1,0 +1,172 @@
+{
+    "$fileVersion": 9,
+    "Audio": {
+    },
+    "Entities2d": {
+    },
+    "Entities3d": {
+    },
+    "Particles": {
+    },
+    "Prefabs": {
+    },
+    "Spine": {
+    },
+    "Sprites": {
+        "CRT": {
+            "CameraPos": [
+                610,
+                373
+            ],
+            "CameraZoom": 0.33333298563957214,
+            "UUID": "23131b93-fc44-4f9b-8e9f-20aa8342e9f0",
+            "stateArray": [
+                {
+                    "assetUUIDs": [
+                        "b549213b-ba27-4a1e-b707-114456e146de"
+                    ],
+                    "name": ""
+                }
+            ]
+        },
+        "CRT/Frame": {
+            "CameraPos": [
+                545,
+                379
+            ],
+            "CameraZoom": 0.33333298563957214,
+            "UUID": "46ecf7b6-cce3-4894-bb64-73d23dd689e3",
+            "stateArray": [
+                {
+                    "assetUUIDs": [
+                        "b549213b-ba27-4a1e-b707-114456e146de"
+                    ],
+                    "name": ""
+                }
+            ]
+        },
+        "CRT/Nob": {
+            "CameraPos": [
+                0,
+                0
+            ],
+            "CameraZoom": 1,
+            "UUID": "43a8aed3-e273-4b37-9cc7-0f35fceda947",
+            "stateArray": [
+                {
+                    "assetUUIDs": [
+                        "596d0c31-4ab8-471c-acf6-eea95e9319b2"
+                    ],
+                    "name": ""
+                }
+            ]
+        },
+        "CRT/Screen": {
+            "CameraPos": [
+                297,
+                341
+            ],
+            "CameraZoom": 0.5,
+            "UUID": "72748e2a-ab3f-49d2-961c-abb6d341418b",
+            "stateArray": [
+                {
+                    "assetUUIDs": [
+                        "e5a3cfdb-d04a-424b-a6bb-a16c50dec5c7"
+                    ],
+                    "name": ""
+                }
+            ]
+        },
+        "CRT/Static": {
+            "CameraPos": [
+                244,
+                201
+            ],
+            "CameraZoom": 1,
+            "UUID": "4ae657a1-989c-4b82-be89-4468bf871469",
+            "stateArray": [
+                {
+                    "assetUUIDs": [
+                        "e0306643-b171-41f6-829f-6e23840c649d",
+                        "6f3069fe-2f2c-47d1-8b2f-00df39c3a19f",
+                        "ea1b6795-5097-47db-bc00-5a112d4d3f77",
+                        "47535dfb-ae80-4645-91d1-f2ee5e5e0079",
+                        "ae34f10e-d14f-49e9-81c8-11d0c6f51237",
+                        "6e3cc7dc-9dad-4580-b57e-cfc9265f8af7",
+                        "2ee6ac86-fea8-4482-b762-39f9e573a0d5",
+                        "dd9b97c3-31e3-48e5-93e8-7c3eacbd92be",
+                        "8a9ed63d-0493-4256-848b-c73aa15210f5",
+                        "e8e6143c-63c5-41a4-9aa7-73dc387bacd2",
+                        "b9c0328b-e0a9-428a-9009-58aa2c9fd602",
+                        "6ffe0adc-5efd-415a-9edb-52cf257d8eb9"
+                    ],
+                    "name": ""
+                },
+                {
+                    "assetUUIDs": [
+                        "edb4b732-ac7c-45a1-9708-2b1e677fd99f",
+                        "a1a5dd9d-5e7e-4566-946a-543d8f2b4c6e",
+                        "113c4cba-a919-42ce-8cd3-820480219b4b",
+                        "d7f9cd71-cc0d-49c4-b01c-5d0b86b4f616",
+                        "ecc8f05d-6132-4954-a91c-21a94d4ee6bd",
+                        "1ad8af6b-f7d5-457c-ba42-f92a7ed97292",
+                        "0fe87179-ef36-4fbe-a50f-c23cdb0f52a7",
+                        "023f44ce-7c3b-4308-827a-4f7c9c259ab7",
+                        "d680c8be-039a-41ad-af80-6698fe089f82",
+                        "7daaf8b2-4085-4aee-a484-a75758938abf",
+                        "60d840c4-e719-406b-b9b4-ecf49833f82d",
+                        "7c95dcac-29f6-4b15-b5c9-990a4528b8f8"
+                    ],
+                    "name": ""
+                }
+            ]
+        }
+    },
+    "Texts": {
+        "CRT/VCR": {
+            "CameraPos": [
+                0,
+                0
+            ],
+            "CameraZoom": 1,
+            "UUID": "de110f0d-3edf-466f-bdaa-39bbd7401508",
+            "assetUUID": "{5c0435fa-dd14-4b87-8ede-85db740353be}",
+            "availableGlyphs": {
+                "0-9": true,
+                "A-Z": false,
+                "a-z": false,
+                "additional": "",
+                "symbols": false
+            },
+            "stateArray": [
+                {
+                    "name": ""
+                }
+            ]
+        },
+        "MainText": {
+            "CameraPos": [
+                0,
+                0
+            ],
+            "CameraZoom": 1,
+            "UUID": "58595296-c5db-4f52-9091-98fb0cb2030e",
+            "assetUUID": "{3973d981-5aa7-4252-9e46-deff934d06ba}",
+            "availableGlyphs": {
+                "0-9": true,
+                "A-Z": true,
+                "a-z": true,
+                "additional": "",
+                "symbols": true
+            },
+            "stateArray": [
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
+                }
+            ]
+        }
+    }
+}

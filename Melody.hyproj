@@ -1,0 +1,27 @@
+{
+    "$fileVersion": 9,
+    "BuildPath": "./build/",
+    "ConsoleInfo": {
+        "LocationX": 512,
+        "LocationY": 256,
+        "Name": "Harmony Log Console",
+        "ResolutionX": 64,
+        "ResolutionY": 80,
+        "Type": 1
+    },
+    "DataPath": "./data/",
+    "MetaPath": "./meta/",
+    "SourcePath": "meta/Source/",
+    "Title": "Melody",
+    "UseConsole": true,
+    "WindowInfo": [
+        {
+            "LocationX": 0,
+            "LocationY": 80,
+            "Name": "Melody",
+            "ResolutionX": 1364,
+            "ResolutionY": 1070,
+            "Type": 0
+        }
+    ]
+}

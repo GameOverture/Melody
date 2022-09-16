@@ -1,0 +1,11 @@
+{
+    "$fileVersion": 9,
+    "banks": [
+        {
+            "assets": [
+            ],
+            "bankId": 0,
+            "name": "Default"
+        }
+    ]
+}
