@@ -229,20 +229,38 @@
         {
             "assetUUID": "ed6ed7eb-a04a-40c2-8f8e-b19dbc9d1674",
             "bankId": 0,
-            "checksum": 3315452573,
+            "checksum": 2774535590,
             "errors": 0,
-            "filter": "Components/Crt",
+            "filter": "Components/Crt/Channels",
             "itemType": "Source",
             "name": "Channel.cpp"
         },
         {
             "assetUUID": "f3cd41db-03a1-4624-8800-14316580c6af",
             "bankId": 0,
-            "checksum": 22272486,
+            "checksum": 4208729734,
             "errors": 0,
-            "filter": "Components/Crt",
+            "filter": "Components/Crt/Channels",
             "itemType": "Header",
             "name": "Channel.h"
+        },
+        {
+            "assetUUID": "7d44c580-8141-44ec-b3e4-3dc1f735d728",
+            "bankId": 0,
+            "checksum": 2959730829,
+            "errors": 0,
+            "filter": "Components/Crt/Channels",
+            "itemType": "Source",
+            "name": "Music.cpp"
+        },
+        {
+            "assetUUID": "659b2d7b-1945-4f8d-be43-006b2a071e22",
+            "bankId": 0,
+            "checksum": 3830102241,
+            "errors": 0,
+            "filter": "Components/Crt/Channels",
+            "itemType": "Header",
+            "name": "Music.h"
         }
     ],
     "banks": [

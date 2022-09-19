@@ -230,6 +230,528 @@
                     "reverse": false
                 }
             ]
+        },
+        "GameSprites/Dancer": {
+            "stateArray": [
+                {
+                    "bounce": false,
+                    "duration": 1.2000001668930054,
+                    "frames": [
+                        {
+                            "checksum": 2289518861,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -16,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 3359507638,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -17,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 2252036996,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -21,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 1459704002,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -27,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 2252036996,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -21,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 3359507638,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -17,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 2289518861,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -16,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 4233828051,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -17,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 3597872615,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -21,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 3141737980,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -29,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 3597872615,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -21,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 4233828051,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -17,
+                            "offsetY": 0
+                        }
+                    ],
+                    "loop": true,
+                    "reverse": false
+                },
+                {
+                    "bounce": false,
+                    "duration": 1.0600000619888306,
+                    "frames": [
+                        {
+                            "checksum": 245207024,
+                            "duration": 0.11999999731779099,
+                            "offsetX": -20,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 664140172,
+                            "duration": 0.11999999731779099,
+                            "offsetX": -24,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 1096995317,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -24,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 255075663,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -24,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 2425929913,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -23,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 245207024,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -20,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 664140172,
+                            "duration": 0.11999999731779099,
+                            "offsetX": -24,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 3166535162,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -24,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 1480091801,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -24,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 1279782571,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -23,
+                            "offsetY": 0
+                        }
+                    ],
+                    "loop": true,
+                    "reverse": false
+                },
+                {
+                    "bounce": true,
+                    "duration": 1.1200001239776611,
+                    "frames": [
+                        {
+                            "checksum": 3947931900,
+                            "duration": 0.11999999731779099,
+                            "offsetX": -5,
+                            "offsetY": -5
+                        },
+                        {
+                            "checksum": 1383833232,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -8,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 1463149058,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -18,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 3210291268,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -23,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 2463429355,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -14,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 3063735914,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -12,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 2197221932,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -7,
+                            "offsetY": 5
+                        },
+                        {
+                            "checksum": 1496810269,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -4,
+                            "offsetY": 5
+                        },
+                        {
+                            "checksum": 2959275896,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -1,
+                            "offsetY": 1
+                        },
+                        {
+                            "checksum": 3109024657,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -1,
+                            "offsetY": -1
+                        },
+                        {
+                            "checksum": 92866353,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -7,
+                            "offsetY": -1
+                        }
+                    ],
+                    "loop": true,
+                    "reverse": false
+                },
+                {
+                    "bounce": false,
+                    "duration": 1.1200001239776611,
+                    "frames": [
+                        {
+                            "checksum": 3947111233,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -21,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 254159982,
+                            "duration": 0.11999999731779099,
+                            "offsetX": -22,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 3753540411,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -25,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 3666092086,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -20,
+                            "offsetY": 1
+                        },
+                        {
+                            "checksum": 3843109137,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -13,
+                            "offsetY": 1
+                        },
+                        {
+                            "checksum": 3730116419,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -17,
+                            "offsetY": 1
+                        },
+                        {
+                            "checksum": 353695193,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -22,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 2038190561,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -18,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 4058382849,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -15,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 571000082,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -12,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 1698740833,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -15,
+                            "offsetY": 0
+                        }
+                    ],
+                    "loop": true,
+                    "reverse": false
+                },
+                {
+                    "bounce": false,
+                    "duration": 1.2000001668930054,
+                    "frames": [
+                        {
+                            "checksum": 2984332267,
+                            "duration": 0.15000000596046448,
+                            "offsetX": -12,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 3309318963,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -17,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 586292248,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -15,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 2669082377,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -14,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 3238361265,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -16,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 1849325999,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -17,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 742544284,
+                            "duration": 0.15000000596046448,
+                            "offsetX": -12,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 407538721,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -14,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 4240824514,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -14,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 1111946291,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -16,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 3258198842,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -17,
+                            "offsetY": 0
+                        }
+                    ],
+                    "loop": true,
+                    "reverse": false
+                },
+                {
+                    "bounce": false,
+                    "duration": 1.1000001430511475,
+                    "frames": [
+                        {
+                            "checksum": 2280647539,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -14,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 3541080266,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -15,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 2633764539,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -20,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 462875757,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -22,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 2599476002,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -19,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 3789337889,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -14,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 3721913320,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -6,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 3583847589,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -15,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 2598577026,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -13,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 2289524177,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -17,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 1690969997,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -21,
+                            "offsetY": 0
+                        }
+                    ],
+                    "loop": true,
+                    "reverse": false
+                },
+                {
+                    "bounce": false,
+                    "duration": 1.1800000667572021,
+                    "frames": [
+                        {
+                            "checksum": 3714029924,
+                            "duration": 0.14000000059604645,
+                            "offsetX": -18,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 2510221979,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -18,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 1805717877,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -11,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 3413880872,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -17,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 2232419247,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -25,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 3349669989,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -17,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 595453031,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -21,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 256021601,
+                            "duration": 0.14000000059604645,
+                            "offsetX": -18,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 595453031,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -21,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 2796352799,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -16,
+                            "offsetY": 0
+                        },
+                        {
+                            "checksum": 494586859,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -20,
+                            "offsetY": 0
+                        }
+                    ],
+                    "loop": true,
+                    "reverse": false
+                }
+            ]
         }
     },
     "Texts": {

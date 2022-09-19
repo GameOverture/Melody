@@ -4,18 +4,20 @@
 #include "pch.h"
 #include "Channel.h"
 
-#define CRT_MAX_CHANNELS 10
+#define CRT_MAX_CHANNELS 1//0
 
 class Crt : public HyEntity2d
 {
 	std::vector<Channel *>	m_ChannelList;
+	int32					m_iChannelIndex;
 
 	HySprite2d				m_Screen;
 	HyEntity2d				m_Channel;
 	HySprite2d				m_Frame;
 	HySprite2d				m_Nob;
 
-	HyText2d				m_VcrTime;
+	HyText2d				m_VcrTimeHrs;
+	HyText2d				m_VcrTimeMins;
 	
 	HyStencil				m_Stencil;
 
@@ -25,7 +27,8 @@ public:
 
 	void TogglePower();
 
-	void SetChannel(uint32 uiChannelIndex);
+	void SetChannel(int32 iChannelIndex);
+	void NudgeChannel(int32 iIndexOffset);
 
 protected:
 	virtual void OnUpdate() override;

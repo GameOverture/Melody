@@ -1,5 +1,8 @@
 #include "pch.h"
 #include "Crt.h"
+#include "Music.h"
+
+#define CRT_SHRINK_AMT 0.01f
 
 Crt::Crt(HyEntity2d *pParent /*= nullptr*/) :
 	HyEntity2d(pParent),
@@ -7,7 +10,8 @@ Crt::Crt(HyEntity2d *pParent /*= nullptr*/) :
 	m_Channel(this),
 	m_Frame("CRT", "Frame", this),
 	m_Nob("CRT", "Nob", this),
-	m_VcrTime("CRT", "VCR", this)
+	m_VcrTimeHrs("CRT", "VCR", this),
+	m_VcrTimeMins("CRT", "VCR", this)
 {
 	const int32 iScreenX = 148;
 	const int32 iScreenY = 263;
@@ -16,18 +20,27 @@ Crt::Crt(HyEntity2d *pParent /*= nullptr*/) :
 
 	m_Channel.pos.Set(iScreenX, iScreenY);
 	m_Channel.scale_pivot.Set(CRT_SCREEN_WIDTH * 0.5f, CRT_SCREEN_HEIGHT * 0.5f);
-	m_Channel.scale.Set(0.01f, 0.01f);
+	m_Channel.scale.Set(CRT_SHRINK_AMT, CRT_SHRINK_AMT);
 	m_Channel.SetVisible(false);
 	m_Channel.SetStencil(&m_Stencil);
 	
 	m_Nob.pos.Set(1120.0f, 730.0f);
-	m_VcrTime.pos.Set(584, 1040);
+	m_VcrTimeHrs.pos.Set(614, 1040);
+	m_VcrTimeHrs.SetTextAlignment(HYALIGN_Right);
+	m_VcrTimeMins.pos.Set(634, 1040);
 
 	m_Stencil.AddMask(m_Screen);
 
+	m_iChannelIndex = 0;
 	for(uint32 i = 0; i < CRT_MAX_CHANNELS; ++i)
 	{
-		Channel *pNewChannel = HY_NEW Channel(m_Screen, &m_Channel);
+		Channel *pNewChannel = nullptr;
+		if(i == 0)
+			pNewChannel = HY_NEW Music(&m_Channel);
+		else
+			pNewChannel = HY_NEW Channel(&m_Channel);
+		pNewChannel->SetVisible(i == m_iChannelIndex);
+		//pNewChannel->
 		m_ChannelList.push_back(pNewChannel);
 	}
 }
@@ -41,17 +54,32 @@ void Crt::TogglePower()
 	if(m_Channel.IsVisible() == false)
 	{
 		m_Channel.SetVisible(true);
-		m_Channel.scale.Tween(1.0f, 0.01f, 0.2f, HyTween::Linear, [](IHyNode *pThis) { static_cast<HyEntity2d *>(pThis)->scale.Tween(1.0f, 1.0f, 0.4f, HyTween::BounceOut); });
+		m_Channel.scale.Tween(1.0f, CRT_SHRINK_AMT, 0.2f, HyTween::Linear, [](IHyNode *pThis) { static_cast<HyEntity2d *>(pThis)->scale.Tween(1.0f, 1.0f, 0.4f, HyTween::BounceOut); });
 	}
 	else
-	{
-	}
+		m_Channel.scale.Tween(CRT_SHRINK_AMT, CRT_SHRINK_AMT, 0.2f, HyTween::BounceIn, [](IHyNode *pThis)
+			{
+				pThis->SetVisible(false);
+			});
 }
 
-void Crt::SetChannel(uint32 uiChannelIndex)
+void Crt::SetChannel(int32 iChannelIndex)
 {
-	uiChannelIndex = HyClamp(uiChannelIndex, 0u, CRT_MAX_CHANNELS - 1u);
-	m_Nob.rot.Tween(uiChannelIndex, 0.2f, HyTween::QuadInOut);
+	iChannelIndex %= CRT_MAX_CHANNELS;
+	iChannelIndex = fabs(iChannelIndex);
+	if(m_iChannelIndex == iChannelIndex)
+		return;
+
+	m_ChannelList[m_iChannelIndex]->SetVisible(false);
+	m_iChannelIndex = iChannelIndex;
+	m_ChannelList[m_iChannelIndex]->SetVisible(true);
+
+	m_Nob.rot.Tween((360.0f / CRT_MAX_CHANNELS) * m_iChannelIndex, 0.2f, HyTween::QuadIn);
+}
+
+void Crt::NudgeChannel(int32 iIndexOffset)
+{
+	SetChannel(m_iChannelIndex + iIndexOffset);
 }
 
 /*virtual*/ void Crt::OnUpdate() /*override*/
@@ -67,8 +95,17 @@ void Crt::SetChannel(uint32 uiChannelIndex)
 	if(newtime.tm_hour == 0)	// Set hour to 12 if midnight.
 		newtime.tm_hour = 12;
 
-	m_VcrTime.SetText(std::to_string(newtime.tm_hour) + " " + std::to_string(newtime.tm_min));
+	m_VcrTimeHrs.SetText(std::to_string(newtime.tm_hour));
+	if(newtime.tm_min < 10)
+		m_VcrTimeMins.SetText("0" + std::to_string(newtime.tm_min));
+	else
+		m_VcrTimeMins.SetText(std::to_string(newtime.tm_min));
 
 	if(HyEngine::Input().IsActionReleased(INPUT_CrtPowerToggle))
 		TogglePower();
+
+	if(HyEngine::Input().IsActionReleased(INPUT_CrtChannelUp))
+		NudgeChannel(1);
+	if(HyEngine::Input().IsActionReleased(INPUT_CrtChannelDown))
+		NudgeChannel(-1);
 }

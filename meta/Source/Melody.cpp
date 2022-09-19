@@ -13,6 +13,13 @@ Melody::Melody(HarmonyInit &initStruct) :
 	HyEngine::Input().MapBtn(INPUT_GotoWheel, HYKEY_4);
 	HyEngine::Input().MapBtn(INPUT_GotoOutro, HYKEY_6);
 	HyEngine::Input().MapBtn(INPUT_CrtPowerToggle, HYKEY_P);
+	HyEngine::Input().MapBtn(INPUT_CrtChannelUp, HYKEY_W);
+	HyEngine::Input().MapBtn(INPUT_CrtChannelDown, HYKEY_S);
+
+	HyEngine::Input().MapBtn(INPUT_Dance, HYKEY_Z);
+	HyEngine::Input().MapBtn(INPUT_DanceAlt, HYKEY_X);
+	HyEngine::Input().MapBtn(INPUT_DanceStop, HYKEY_C);
+	HyEngine::Input().MapBtn(INPUT_DanceShimmy, HYKEY_V);
 
 	m_Root.Load();
 	m_Root.UseWindowCoordinates();

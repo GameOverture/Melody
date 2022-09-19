@@ -18,7 +18,14 @@ enum InputAction
 	INPUT_GotoWheel,
 	INPUT_GotoOutro,
 
-	INPUT_CrtPowerToggle
+	INPUT_CrtPowerToggle,
+	INPUT_CrtChannelUp,
+	INPUT_CrtChannelDown,
+
+	INPUT_Dance,
+	INPUT_DanceAlt,
+	INPUT_DanceStop,
+	INPUT_DanceShimmy
 };
 
 #endif // pch_h__

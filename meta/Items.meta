@@ -120,6 +120,128 @@
                     "name": ""
                 }
             ]
+        },
+        "GameSprites/Dancer": {
+            "CameraPos": [
+                0,
+                0
+            ],
+            "CameraZoom": 3,
+            "UUID": "e82e282e-ff96-42d1-8bed-bb6b2e8cd918",
+            "stateArray": [
+                {
+                    "assetUUIDs": [
+                        "a2e3fa1d-6465-4df1-80d9-219543d3f99b",
+                        "60487211-cde1-43a2-b0ed-498d56e16f72",
+                        "6ed1ecc2-ee00-4c4c-a1d3-58705610ff51",
+                        "8881c594-35e1-461a-a8f9-3516611683e1",
+                        "6ed1ecc2-ee00-4c4c-a1d3-58705610ff51",
+                        "60487211-cde1-43a2-b0ed-498d56e16f72",
+                        "a2e3fa1d-6465-4df1-80d9-219543d3f99b",
+                        "b354f453-157e-49c6-acb2-6e9d7c11320c",
+                        "e00342ec-d7f7-4d9a-8cb2-574abebcf7c6",
+                        "1c370022-6942-42c7-bf70-f74b7e7b5d68",
+                        "e00342ec-d7f7-4d9a-8cb2-574abebcf7c6",
+                        "b354f453-157e-49c6-acb2-6e9d7c11320c"
+                    ],
+                    "name": ""
+                },
+                {
+                    "assetUUIDs": [
+                        "f83a0ff9-fc3d-4e21-9dd4-b2b2abe42d86",
+                        "0e6fb5a6-e92c-43c2-bb50-bf09c7e46b40",
+                        "abb1e666-39a1-4a7a-84d7-5ab0a6d758bc",
+                        "4a136f23-8e5d-4f03-a614-e5b3388fe7a1",
+                        "bb7ba2e2-4415-477e-a5b9-b156c89ddc5c",
+                        "855e9c1a-ba66-4f73-baf1-4e686eb452f2",
+                        "325c5da8-ad32-407e-964b-023dec4d4223",
+                        "0f97ec1d-79df-4581-9b51-27f28b2780fb",
+                        "c685f914-b9b6-4693-9323-c9060de49425",
+                        "ccd35e49-7c4c-4625-adbb-d1e6ec37ffff"
+                    ],
+                    "name": ""
+                },
+                {
+                    "assetUUIDs": [
+                        "f7119e50-ee15-4795-915e-da88f54614ed",
+                        "4a8678ff-1d24-4a25-9620-de65cc166b0d",
+                        "6a7a07de-748e-4d5b-8bc1-2e32f80242a0",
+                        "5ee01a5b-b529-4786-a6bf-73f34344994a",
+                        "0c66c6ed-4da4-42e3-9978-41bfbea2cba8",
+                        "86cfe10c-e5cd-419c-a8cb-35f733f70c14",
+                        "c58c071f-8575-41fb-8918-bd96ebca0100",
+                        "91c3a5bb-02da-4c4b-9b34-2bddfe2e9e45",
+                        "391bebc0-2dc2-45e2-b472-c8a98eee21af",
+                        "dc55893f-21b6-4280-84a8-f53a6eaaffec",
+                        "8446c44e-f306-4794-bc52-5b9682983f4f"
+                    ],
+                    "name": ""
+                },
+                {
+                    "assetUUIDs": [
+                        "f3263c01-7bf5-49b1-b3dd-c9dc20c2cad0",
+                        "632e90ee-53d8-42d1-ad03-aad893c703ee",
+                        "a0af7cb3-a631-4c95-97b0-a5f4fe4c21ab",
+                        "a1b7dcef-dfc9-4169-947e-bea9b14aadc4",
+                        "4a13d71f-60b1-4666-a8f0-fe3a049fb967",
+                        "8486b91d-7fc9-44ec-b9b6-d8dff6a80406",
+                        "847f7a77-5689-4acd-b9f8-41c41e724f5f",
+                        "d9460090-32a9-4463-8448-e7d6963f1f16",
+                        "3fac8ee5-37a5-4014-a341-f9ccd3e02a02",
+                        "49eef36b-5db1-40c3-9216-80da125bd14d",
+                        "8ef3a530-c3f6-46ac-bca5-f28ed120c5c6"
+                    ],
+                    "name": ""
+                },
+                {
+                    "assetUUIDs": [
+                        "be3052d6-c500-413e-ba8b-d6c56c5d31e6",
+                        "a5e62de0-7878-4789-870f-96110ef2b33c",
+                        "a4ce1588-b8be-4e6a-aa47-ac0d8f893779",
+                        "a9d28ce7-8b4b-4459-981a-a1d386dec953",
+                        "10ecde3f-8eb7-4d20-87ee-1ac2b0af2ace",
+                        "e55b6a51-6133-443f-8fae-cd3fb7adc561",
+                        "c818572b-5a7c-4bae-9d39-985dd6d0e0b1",
+                        "47293091-fb0e-4e70-8e13-8a796650343d",
+                        "60809764-2d4c-4f11-a5ba-3908d6c12f69",
+                        "798ef9bc-a061-444c-be24-bdb23ac30f3f",
+                        "a60d5a7c-fe5a-4e40-a176-e342f78acf6a"
+                    ],
+                    "name": ""
+                },
+                {
+                    "assetUUIDs": [
+                        "37ce7453-df88-4046-afc6-75d235f018f4",
+                        "07a864cc-a5eb-45c9-869f-464e9cde5c5c",
+                        "0a239674-e943-49b6-8ef6-df13891105bb",
+                        "cbacd5bd-4da0-4301-9611-813a4b32cca1",
+                        "60afade3-c464-4c54-a887-c8f21b114d95",
+                        "07916529-6636-4982-b8a7-a1656e16b25f",
+                        "c0f4a63d-1741-4924-ace4-d3557778629b",
+                        "607e8037-a34e-4b93-9c9b-4b3b49d2637e",
+                        "2db896d4-d8b8-44e8-88f6-42a2467d88d3",
+                        "5a8ada62-f94a-4b0d-9e26-9e5492ed5caa",
+                        "64ee17fd-1a16-4e5e-bc6c-aa2b0c50cd65"
+                    ],
+                    "name": ""
+                },
+                {
+                    "assetUUIDs": [
+                        "8addb20b-662b-4c57-bc07-da12a71b6dae",
+                        "aea60ff9-c56d-4612-bd53-4f3c6b96b6e8",
+                        "d6e412bf-c32d-4d18-a482-5ec3e5553ccd",
+                        "32845e60-8c70-40fb-9594-096b8a943c6b",
+                        "03300088-72a9-42cd-b1c0-5aac9f45d693",
+                        "b73d6a91-cf24-49dd-a5d8-a3410366bfb0",
+                        "a6bd701e-5ede-46b8-8d32-69c89f8273b4",
+                        "ee7170c9-2b2f-455e-bc3d-bbfc7ed8f6bc",
+                        "8479233a-1d10-4bec-ac16-7f5389841912",
+                        "681b2127-03c3-4909-b663-bb6140915540",
+                        "0af09390-00b4-4e21-bdf6-fd84883a82c8"
+                    ],
+                    "name": ""
+                }
+            ]
         }
     },
     "Texts": {
