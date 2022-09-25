@@ -8,8 +8,8 @@
 
 class Dancer : public HyEntityLeaf2d<HySprite2d>
 {
-	bool		m_bIsShimmy;
-	float		m_fElapsedTime;
+	bool				m_bIsShimmy;
+	float				m_fElapsedTime;
 
 public:
 	Dancer(HyEntity2d *pParent = nullptr);
@@ -25,7 +25,9 @@ protected:
 
 class Music : public Channel
 {
-	Dancer		m_Dancers[NUM_DANCERS];
+	Dancer				m_Dancers[NUM_DANCERS];
+
+	HyTexturedQuad2d *	m_pBoxArt;
 
 public:
 	Music(HyEntity2d *pParent = nullptr);

@@ -65,7 +65,8 @@ void Dancer::Shimmy()
 }
 
 Music::Music(HyEntity2d *pParent /*= nullptr*/) :
-	Channel(pParent)
+	Channel(pParent),
+	m_pBoxArt(nullptr)
 {
 	for(int32 i = 0; i < NUM_DANCERS; ++i)
 	{
@@ -108,5 +109,10 @@ Music::Music(HyEntity2d *pParent /*= nullptr*/) :
 	{
 		for(int32 i = 0; i < NUM_DANCERS; ++i)
 			m_Dancers[i].Shimmy();
+
+		int32 iWidth, iHeight;
+		HyTextureHandle hTex = HyEngine::HotLoadTexture("\\\\IronMountain/Documents/Video Games Meta-Scrape//NES/media/Named_Boxarts/Batman - The Video Game (USA).png", HYTEXFILTER_NEAREST, iWidth, iHeight);
+		m_pBoxArt = HY_NEW HyTexturedQuad2d(hTex, iWidth, iHeight, this);
+		m_pBoxArt->Load();
 	}
 }
