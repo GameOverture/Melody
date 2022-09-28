@@ -1,11 +1,21 @@
 {
-    "$fileVersion": 9,
+    "$fileVersion": 10,
     "banks": [
         {
             "assets": [
             ],
             "bankId": 0,
             "name": "Default"
+        }
+    ],
+    "groups": [
+        {
+            "groupId": 0,
+            "groupName": "SFX"
+        },
+        {
+            "groupId": 1,
+            "groupName": "Music"
         }
     ]
 }

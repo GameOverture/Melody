@@ -1,5 +1,5 @@
 {
-    "$fileVersion": 9,
+    "$fileVersion": 10,
     "assets": [
     ],
     "banks": [
@@ -8,5 +8,6 @@
             "bankName": "Default"
         }
     ],
-    "nextBankId": 1
+    "nextBankId": 1,
+    "nextGroupId": 2
 }

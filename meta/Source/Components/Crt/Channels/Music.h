@@ -28,6 +28,7 @@ class Music : public Channel
 	Dancer				m_Dancers[NUM_DANCERS];
 
 	HyTexturedQuad2d *	m_pBoxArt;
+	HyAudio2d *			m_pMusic;
 
 public:
 	Music(HyEntity2d *pParent = nullptr);

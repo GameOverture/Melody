@@ -66,7 +66,8 @@ void Dancer::Shimmy()
 
 Music::Music(HyEntity2d *pParent /*= nullptr*/) :
 	Channel(pParent),
-	m_pBoxArt(nullptr)
+	m_pBoxArt(nullptr),
+	m_pMusic(nullptr)
 {
 	for(int32 i = 0; i < NUM_DANCERS; ++i)
 	{
@@ -114,5 +115,10 @@ Music::Music(HyEntity2d *pParent /*= nullptr*/) :
 		HyTextureHandle hTex = HyEngine::HotLoadTexture("\\\\IronMountain/Documents/Video Games Meta-Scrape//NES/media/Named_Boxarts/Batman - The Video Game (USA).png", HYTEXFILTER_NEAREST, iWidth, iHeight);
 		m_pBoxArt = HY_NEW HyTexturedQuad2d(hTex, iWidth, iHeight, this);
 		m_pBoxArt->Load();
+
+		HyAudioHandle hAud = HyEngine::HotLoadAudio("\\\\IronMountain/Documents/Video Games Meta-Scrape/NES/media/Named_Ost/Mega Man 3 (USA)[Wily Fortress 2].wav", true);
+		m_pMusic = HY_NEW HyAudio2d(hAud, this);
+		m_pMusic->Load();
+		m_pMusic->Play();
 	}
 }

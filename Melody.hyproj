@@ -1,5 +1,5 @@
 {
-    "$fileVersion": 9,
+    "$fileVersion": 10,
     "BuildPath": "./build/",
     "ConsoleInfo": {
         "LocationX": 512,
