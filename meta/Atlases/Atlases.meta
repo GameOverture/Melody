@@ -1,5 +1,5 @@
 {
-    "$fileVersion": 10,
+    "$fileVersion": 11,
     "assets": [
         {
             "assetUUID": "e0306643-b171-41f6-829f-6e23840c649d",
@@ -14,11 +14,11 @@
             "height": 270,
             "itemType": "Atlas",
             "name": "frame_00_delay-0",
-            "textureIndex": 1,
+            "textureIndex": 2,
             "textureInfo": 262147,
             "width": 480,
-            "x": 599,
-            "y": 1001
+            "x": 1565,
+            "y": 910
         },
         {
             "assetUUID": "6f3069fe-2f2c-47d1-8b2f-00df39c3a19f",
@@ -33,7 +33,7 @@
             "height": 270,
             "itemType": "Atlas",
             "name": "frame_01_delay-0",
-            "textureIndex": 1,
+            "textureIndex": 2,
             "textureInfo": 262147,
             "width": 480,
             "x": 1082,
@@ -52,11 +52,11 @@
             "height": 270,
             "itemType": "Atlas",
             "name": "frame_02_delay-0",
-            "textureIndex": 1,
+            "textureIndex": 2,
             "textureInfo": 262147,
             "width": 480,
-            "x": 116,
-            "y": 1001
+            "x": 599,
+            "y": 728
         },
         {
             "assetUUID": "47535dfb-ae80-4645-91d1-f2ee5e5e0079",
@@ -71,11 +71,11 @@
             "height": 270,
             "itemType": "Atlas",
             "name": "frame_03_delay-0",
-            "textureIndex": 1,
+            "textureIndex": 2,
             "textureInfo": 262147,
             "width": 480,
-            "x": 1565,
-            "y": 910
+            "x": 116,
+            "y": 1001
         },
         {
             "assetUUID": "ae34f10e-d14f-49e9-81c8-11d0c6f51237",
@@ -90,11 +90,11 @@
             "height": 270,
             "itemType": "Atlas",
             "name": "frame_04_delay-0",
-            "textureIndex": 1,
+            "textureIndex": 2,
             "textureInfo": 262147,
             "width": 480,
-            "x": 116,
-            "y": 728
+            "x": 1565,
+            "y": 637
         },
         {
             "assetUUID": "6e3cc7dc-9dad-4580-b57e-cfc9265f8af7",
@@ -109,10 +109,10 @@
             "height": 270,
             "itemType": "Atlas",
             "name": "frame_05_delay-0",
-            "textureIndex": 1,
+            "textureIndex": 2,
             "textureInfo": 262147,
             "width": 480,
-            "x": 599,
+            "x": 1082,
             "y": 728
         },
         {
@@ -166,10 +166,10 @@
             "height": 270,
             "itemType": "Atlas",
             "name": "frame_08_delay-0",
-            "textureIndex": 1,
+            "textureIndex": 2,
             "textureInfo": 262147,
             "width": 480,
-            "x": 1082,
+            "x": 116,
             "y": 728
         },
         {
@@ -185,11 +185,11 @@
             "height": 270,
             "itemType": "Atlas",
             "name": "frame_09_delay-0",
-            "textureIndex": 1,
+            "textureIndex": 2,
             "textureInfo": 262147,
             "width": 480,
-            "x": 1565,
-            "y": 637
+            "x": 1509,
+            "y": 364
         },
         {
             "assetUUID": "b9c0328b-e0a9-428a-9009-58aa2c9fd602",
@@ -204,11 +204,11 @@
             "height": 270,
             "itemType": "Atlas",
             "name": "frame_10_delay-0",
-            "textureIndex": 1,
+            "textureIndex": 2,
             "textureInfo": 262147,
             "width": 480,
-            "x": 1509,
-            "y": 364
+            "x": 599,
+            "y": 1001
         },
         {
             "assetUUID": "6ffe0adc-5efd-415a-9edb-52cf257d8eb9",
@@ -242,11 +242,11 @@
             "height": 361,
             "itemType": "Atlas",
             "name": "frame_00_delay-0",
-            "textureIndex": 1,
+            "textureIndex": 2,
             "textureInfo": 262147,
             "width": 500,
-            "x": 1509,
-            "y": 0
+            "x": 503,
+            "y": 364
         },
         {
             "assetUUID": "a1a5dd9d-5e7e-4566-946a-543d8f2b4c6e",
@@ -318,11 +318,11 @@
             "height": 361,
             "itemType": "Atlas",
             "name": "frame_04_delay-0",
-            "textureIndex": 1,
+            "textureIndex": 2,
             "textureInfo": 262147,
             "width": 500,
-            "x": 503,
-            "y": 0
+            "x": 0,
+            "y": 364
         },
         {
             "assetUUID": "1ad8af6b-f7d5-457c-ba42-f92a7ed97292",
@@ -337,11 +337,11 @@
             "height": 361,
             "itemType": "Atlas",
             "name": "frame_05_delay-0",
-            "textureIndex": 1,
+            "textureIndex": 2,
             "textureInfo": 262147,
             "width": 500,
-            "x": 503,
-            "y": 364
+            "x": 1509,
+            "y": 0
         },
         {
             "assetUUID": "0fe87179-ef36-4fbe-a50f-c23cdb0f52a7",
@@ -356,10 +356,10 @@
             "height": 361,
             "itemType": "Atlas",
             "name": "frame_06_delay-0",
-            "textureIndex": 1,
+            "textureIndex": 2,
             "textureInfo": 262147,
             "width": 500,
-            "x": 0,
+            "x": 1006,
             "y": 364
         },
         {
@@ -375,10 +375,10 @@
             "height": 361,
             "itemType": "Atlas",
             "name": "frame_07_delay-0",
-            "textureIndex": 1,
+            "textureIndex": 2,
             "textureInfo": 262147,
             "width": 500,
-            "x": 1006,
+            "x": 0,
             "y": 0
         },
         {
@@ -394,11 +394,11 @@
             "height": 361,
             "itemType": "Atlas",
             "name": "frame_08_delay-0",
-            "textureIndex": 1,
+            "textureIndex": 2,
             "textureInfo": 262147,
             "width": 500,
             "x": 1006,
-            "y": 364
+            "y": 0
         },
         {
             "assetUUID": "7daaf8b2-4085-4aee-a484-a75758938abf",
@@ -432,10 +432,10 @@
             "height": 361,
             "itemType": "Atlas",
             "name": "frame_10_delay-0",
-            "textureIndex": 1,
+            "textureIndex": 2,
             "textureInfo": 262147,
             "width": 500,
-            "x": 0,
+            "x": 503,
             "y": 0
         },
         {
@@ -568,8 +568,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 36,
-            "x": 77,
-            "y": 919
+            "x": 298,
+            "y": 0
         },
         {
             "assetUUID": "aea60ff9-c56d-4612-bd53-4f3c6b96b6e8",
@@ -587,8 +587,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 41,
-            "x": 1992,
-            "y": 458
+            "x": 166,
+            "y": 0
         },
         {
             "assetUUID": "d6e412bf-c32d-4d18-a482-5ec3e5553ccd",
@@ -606,8 +606,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 27,
-            "x": 1985,
-            "y": 1183
+            "x": 734,
+            "y": 0
         },
         {
             "assetUUID": "32845e60-8c70-40fb-9594-096b8a943c6b",
@@ -625,8 +625,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 40,
-            "x": 27,
-            "y": 1106
+            "x": 552,
+            "y": 0
         },
         {
             "assetUUID": "03300088-72a9-42cd-b1c0-5aac9f45d693",
@@ -644,8 +644,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 43,
-            "x": 19,
-            "y": 1013
+            "x": 460,
+            "y": 0
         },
         {
             "assetUUID": "b73d6a91-cf24-49dd-a5d8-a3410366bfb0",
@@ -663,7 +663,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 30,
-            "x": 2012,
+            "x": 376,
             "y": 0
         },
         {
@@ -682,8 +682,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 41,
-            "x": 14,
-            "y": 825
+            "x": 210,
+            "y": 0
         },
         {
             "assetUUID": "ee7170c9-2b2f-455e-bc3d-bbfc7ed8f6bc",
@@ -701,8 +701,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 36,
-            "x": 38,
-            "y": 919
+            "x": 337,
+            "y": 0
         },
         {
             "assetUUID": "8479233a-1d10-4bec-ac16-7f5389841912",
@@ -720,8 +720,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 41,
-            "x": 14,
-            "y": 825
+            "x": 210,
+            "y": 0
         },
         {
             "assetUUID": "681b2127-03c3-4909-b663-bb6140915540",
@@ -739,8 +739,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 33,
-            "x": 2012,
-            "y": 94
+            "x": 631,
+            "y": 0
         },
         {
             "assetUUID": "0af09390-00b4-4e21-bdf6-fd84883a82c8",
@@ -758,8 +758,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 41,
-            "x": 11,
-            "y": 728
+            "x": 254,
+            "y": 0
         },
         {
             "assetUUID": "07a864cc-a5eb-45c9-869f-464e9cde5c5c",
@@ -777,8 +777,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 30,
-            "x": 1846,
-            "y": 1183
+            "x": 870,
+            "y": 0
         },
         {
             "assetUUID": "0a239674-e943-49b6-8ef6-df13891105bb",
@@ -796,8 +796,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 34,
-            "x": 1295,
-            "y": 1274
+            "x": 1747,
+            "y": 0
         },
         {
             "assetUUID": "cbacd5bd-4da0-4301-9611-813a4b32cca1",
@@ -815,8 +815,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 38,
-            "x": 1106,
-            "y": 1274
+            "x": 1965,
+            "y": 0
         },
         {
             "assetUUID": "60afade3-c464-4c54-a887-c8f21b114d95",
@@ -834,8 +834,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 38,
-            "x": 74,
-            "y": 1199
+            "x": 1330,
+            "y": 0
         },
         {
             "assetUUID": "07916529-6636-4982-b8a7-a1656e16b25f",
@@ -853,8 +853,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 28,
-            "x": 1075,
-            "y": 1274
+            "x": 2006,
+            "y": 0
         },
         {
             "assetUUID": "c0f4a63d-1741-4924-ace4-d3557778629b",
@@ -872,8 +872,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 27,
-            "x": 1955,
-            "y": 1183
+            "x": 764,
+            "y": 0
         },
         {
             "assetUUID": "607e8037-a34e-4b93-9c9b-4b3b49d2637e",
@@ -891,8 +891,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 34,
-            "x": 913,
-            "y": 1274
+            "x": 1751,
+            "y": 89
         },
         {
             "assetUUID": "2db896d4-d8b8-44e8-88f6-42a2467d88d3",
@@ -910,8 +910,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 26,
-            "x": 776,
-            "y": 1274
+            "x": 1651,
+            "y": 89
         },
         {
             "assetUUID": "5a8ada62-f94a-4b0d-9e26-9e5492ed5caa",
@@ -929,8 +929,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 35,
-            "x": 991,
-            "y": 1274
+            "x": 1964,
+            "y": 88
         },
         {
             "assetUUID": "64ee17fd-1a16-4e5e-bc6c-aa2b0c50cd65",
@@ -948,8 +948,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 43,
-            "x": 1029,
-            "y": 1274
+            "x": 2002,
+            "y": 88
         },
         {
             "assetUUID": "37ce7453-df88-4046-afc6-75d235f018f4",
@@ -967,8 +967,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 29,
-            "x": 1634,
-            "y": 1274
+            "x": 1485,
+            "y": 0
         },
         {
             "assetUUID": "a5e62de0-7878-4789-870f-96110ef2b33c",
@@ -986,8 +986,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 34,
-            "x": 638,
-            "y": 1274
+            "x": 1485,
+            "y": 90
         },
         {
             "assetUUID": "a4ce1588-b8be-4e6a-aa47-ac0d8f893779",
@@ -1005,8 +1005,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 30,
-            "x": 605,
-            "y": 1274
+            "x": 1452,
+            "y": 90
         },
         {
             "assetUUID": "a9d28ce7-8b4b-4459-981a-a1d386dec953",
@@ -1024,8 +1024,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 28,
-            "x": 510,
-            "y": 1274
+            "x": 1357,
+            "y": 90
         },
         {
             "assetUUID": "10ecde3f-8eb7-4d20-87ee-1ac2b0af2ace",
@@ -1043,8 +1043,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 32,
-            "x": 2012,
-            "y": 280
+            "x": 1901,
+            "y": 88
         },
         {
             "assetUUID": "e55b6a51-6133-443f-8fae-cd3fb7adc561",
@@ -1062,8 +1062,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 34,
-            "x": 876,
-            "y": 1274
+            "x": 1714,
+            "y": 89
         },
         {
             "assetUUID": "c818572b-5a7c-4bae-9d39-985dd6d0e0b1",
@@ -1081,8 +1081,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 25,
-            "x": 748,
-            "y": 1274
+            "x": 1623,
+            "y": 89
         },
         {
             "assetUUID": "47293091-fb0e-4e70-8e13-8a796650343d",
@@ -1100,8 +1100,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 29,
-            "x": 541,
-            "y": 1274
+            "x": 1388,
+            "y": 90
         },
         {
             "assetUUID": "60809764-2d4c-4f11-a5ba-3908d6c12f69",
@@ -1119,8 +1119,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 29,
-            "x": 573,
-            "y": 1274
+            "x": 1420,
+            "y": 90
         },
         {
             "assetUUID": "798ef9bc-a061-444c-be24-bdb23ac30f3f",
@@ -1138,8 +1138,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 32,
-            "x": 1992,
-            "y": 552
+            "x": 1866,
+            "y": 88
         },
         {
             "assetUUID": "a60d5a7c-fe5a-4e40-a176-e342f78acf6a",
@@ -1157,8 +1157,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 34,
-            "x": 839,
-            "y": 1274
+            "x": 1788,
+            "y": 89
         },
         {
             "assetUUID": "be3052d6-c500-413e-ba8b-d6c56c5d31e6",
@@ -1176,8 +1176,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 25,
-            "x": 1790,
-            "y": 1274
+            "x": 1595,
+            "y": 89
         },
         {
             "assetUUID": "632e90ee-53d8-42d1-ad03-aad893c703ee",
@@ -1195,8 +1195,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 44,
-            "x": 1992,
-            "y": 364
+            "x": 119,
+            "y": 0
         },
         {
             "assetUUID": "a0af7cb3-a631-4c95-97b0-a5f4fe4c21ab",
@@ -1214,8 +1214,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 52,
-            "x": 1384,
-            "y": 1274
+            "x": 1549,
+            "y": 0
         },
         {
             "assetUUID": "a1b7dcef-dfc9-4169-947e-bea9b14aadc4",
@@ -1233,8 +1233,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 47,
-            "x": 1245,
-            "y": 1274
+            "x": 1817,
+            "y": 0
         },
         {
             "assetUUID": "4a13d71f-60b1-4666-a8f0-fe3a049fb967",
@@ -1252,8 +1252,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 33,
-            "x": 2012,
-            "y": 187
+            "x": 595,
+            "y": 0
         },
         {
             "assetUUID": "8486b91d-7fc9-44ec-b9b6-d8dff6a80406",
@@ -1271,8 +1271,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 37,
-            "x": 1915,
-            "y": 1183
+            "x": 794,
+            "y": 0
         },
         {
             "assetUUID": "847f7a77-5689-4acd-b9f8-41c41e724f5f",
@@ -1290,8 +1290,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 46,
-            "x": 1509,
-            "y": 1274
+            "x": 1281,
+            "y": 0
         },
         {
             "assetUUID": "d9460090-32a9-4463-8448-e7d6963f1f16",
@@ -1309,8 +1309,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 36,
-            "x": 1718,
-            "y": 1274
+            "x": 1708,
+            "y": 0
         },
         {
             "assetUUID": "3fac8ee5-37a5-4014-a341-f9ccd3e02a02",
@@ -1328,8 +1328,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 30,
-            "x": 2015,
-            "y": 1183
+            "x": 701,
+            "y": 0
         },
         {
             "assetUUID": "49eef36b-5db1-40c3-9216-80da125bd14d",
@@ -1347,8 +1347,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 25,
-            "x": 1818,
-            "y": 1183
+            "x": 903,
+            "y": 0
         },
         {
             "assetUUID": "8ef3a530-c3f6-46ac-bca5-f28ed120c5c6",
@@ -1366,8 +1366,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 31,
-            "x": 4,
-            "y": 919
+            "x": 667,
+            "y": 0
         },
         {
             "assetUUID": "f3263c01-7bf5-49b1-b3dd-c9dc20c2cad0",
@@ -1385,8 +1385,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 43,
-            "x": 70,
-            "y": 1106
+            "x": 506,
+            "y": 0
         },
         {
             "assetUUID": "f7119e50-ee15-4795-915e-da88f54614ed",
@@ -1404,8 +1404,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 29,
-            "x": 1439,
-            "y": 1274
+            "x": 1517,
+            "y": 0
         },
         {
             "assetUUID": "4a8678ff-1d24-4a25-9620-de65cc166b0d",
@@ -1423,8 +1423,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 31,
-            "x": 714,
-            "y": 1274
+            "x": 1561,
+            "y": 89
         },
         {
             "assetUUID": "6a7a07de-748e-4d5b-8bc1-2e32f80242a0",
@@ -1442,8 +1442,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 35,
-            "x": 1596,
-            "y": 1274
+            "x": 1447,
+            "y": 0
         },
         {
             "assetUUID": "5ee01a5b-b529-4786-a6bf-73f34344994a",
@@ -1461,8 +1461,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 38,
-            "x": 950,
-            "y": 1274
+            "x": 1825,
+            "y": 88
         },
         {
             "assetUUID": "0c66c6ed-4da4-42e3-9978-41bfbea2cba8",
@@ -1480,8 +1480,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 35,
-            "x": 1471,
-            "y": 1274
+            "x": 1409,
+            "y": 0
         },
         {
             "assetUUID": "86cfe10c-e5cd-419c-a8cb-35f733f70c14",
@@ -1499,8 +1499,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 30,
-            "x": 1757,
-            "y": 1274
+            "x": 1784,
+            "y": 0
         },
         {
             "assetUUID": "c58c071f-8575-41fb-8918-bd96ebca0100",
@@ -1518,8 +1518,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 36,
-            "x": 675,
-            "y": 1274
+            "x": 1522,
+            "y": 90
         },
         {
             "assetUUID": "91c3a5bb-02da-4c4b-9b34-2bddfe2e9e45",
@@ -1537,8 +1537,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 35,
-            "x": 1558,
-            "y": 1274
+            "x": 1371,
+            "y": 0
         },
         {
             "assetUUID": "391bebc0-2dc2-45e2-b472-c8a98eee21af",
@@ -1556,8 +1556,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 31,
-            "x": 805,
-            "y": 1274
+            "x": 1680,
+            "y": 89
         },
         {
             "assetUUID": "dc55893f-21b6-4280-84a8-f53a6eaaffec",
@@ -1575,8 +1575,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 25,
-            "x": 1565,
-            "y": 1183
+            "x": 1936,
+            "y": 88
         },
         {
             "assetUUID": "8446c44e-f306-4794-bc52-5b9682983f4f",
@@ -1594,8 +1594,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 33,
-            "x": 38,
-            "y": 1199
+            "x": 1245,
+            "y": 0
         },
         {
             "assetUUID": "0e6fb5a6-e92c-43c2-bb50-bf09c7e46b40",
@@ -1613,8 +1613,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 48,
-            "x": 65,
-            "y": 1013
+            "x": 409,
+            "y": 0
         },
         {
             "assetUUID": "abb1e666-39a1-4a7a-84d7-5ab0a6d758bc",
@@ -1632,8 +1632,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 49,
-            "x": 1766,
-            "y": 1183
+            "x": 931,
+            "y": 0
         },
         {
             "assetUUID": "4a136f23-8e5d-4f03-a614-e5b3388fe7a1",
@@ -1651,8 +1651,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 49,
-            "x": 1332,
-            "y": 1274
+            "x": 1604,
+            "y": 0
         },
         {
             "assetUUID": "bb7ba2e2-4415-477e-a5b9-b156c89ddc5c",
@@ -1670,8 +1670,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 46,
-            "x": 1147,
-            "y": 1274
+            "x": 1867,
+            "y": 0
         },
         {
             "assetUUID": "855e9c1a-ba66-4f73-baf1-4e686eb452f2",
@@ -1689,8 +1689,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 41,
-            "x": 1632,
-            "y": 1183
+            "x": 1125,
+            "y": 0
         },
         {
             "assetUUID": "325c5da8-ad32-407e-964b-023dec4d4223",
@@ -1708,8 +1708,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 48,
-            "x": 65,
-            "y": 1013
+            "x": 409,
+            "y": 0
         },
         {
             "assetUUID": "0f97ec1d-79df-4581-9b51-27f28b2780fb",
@@ -1727,8 +1727,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 49,
-            "x": 1509,
-            "y": 637
+            "x": 983,
+            "y": 0
         },
         {
             "assetUUID": "c685f914-b9b6-4693-9323-c9060de49425",
@@ -1746,8 +1746,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 49,
-            "x": 1666,
-            "y": 1274
+            "x": 1656,
+            "y": 0
         },
         {
             "assetUUID": "ccd35e49-7c4c-4625-adbb-d1e6ec37ffff",
@@ -1765,8 +1765,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 46,
-            "x": 1196,
-            "y": 1274
+            "x": 1916,
+            "y": 0
         },
         {
             "assetUUID": "f83a0ff9-fc3d-4e21-9dd4-b2b2abe42d86",
@@ -1784,8 +1784,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 41,
-            "x": 1632,
-            "y": 1183
+            "x": 1125,
+            "y": 0
         },
         {
             "assetUUID": "1c370022-6942-42c7-bf70-f74b7e7b5d68",
@@ -1803,8 +1803,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 58,
-            "x": 55,
-            "y": 728
+            "x": 0,
+            "y": 0
         },
         {
             "assetUUID": "e00342ec-d7f7-4d9a-8cb2-574abebcf7c6",
@@ -1822,8 +1822,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 42,
-            "x": 1721,
-            "y": 1183
+            "x": 1035,
+            "y": 0
         },
         {
             "assetUUID": "b354f453-157e-49c6-acb2-6e9d7c11320c",
@@ -1841,8 +1841,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 35,
-            "x": 0,
-            "y": 1199
+            "x": 1169,
+            "y": 0
         },
         {
             "assetUUID": "a2e3fa1d-6465-4df1-80d9-219543d3f99b",
@@ -1860,8 +1860,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 33,
-            "x": 1879,
-            "y": 1183
+            "x": 834,
+            "y": 0
         },
         {
             "assetUUID": "60487211-cde1-43a2-b0ed-498d56e16f72",
@@ -1879,8 +1879,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 35,
-            "x": 1594,
-            "y": 1183
+            "x": 1207,
+            "y": 0
         },
         {
             "assetUUID": "6ed1ecc2-ee00-4c4c-a1d3-58705610ff51",
@@ -1898,8 +1898,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 42,
-            "x": 1676,
-            "y": 1183
+            "x": 1080,
+            "y": 0
         },
         {
             "assetUUID": "8881c594-35e1-461a-a8f9-3516611683e1",
@@ -1917,8 +1917,65 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 55,
-            "x": 58,
-            "y": 825
+            "x": 61,
+            "y": 0
+        },
+        {
+            "assetUUID": "a5724c90-4b4f-4543-908c-4cb6999d5aab",
+            "bankId": 0,
+            "checksum": 3976864377,
+            "cropBottom": 22,
+            "cropLeft": 0,
+            "cropRight": 15,
+            "cropTop": 0,
+            "errors": 0,
+            "filter": "Anims/Castlevania",
+            "height": 23,
+            "itemType": "Atlas",
+            "name": "SimonKneeling",
+            "textureIndex": 2,
+            "textureInfo": 262147,
+            "width": 16,
+            "x": 2012,
+            "y": 26
+        },
+        {
+            "assetUUID": "d2c81d48-3012-4ce8-adba-a8e463c511f6",
+            "bankId": 0,
+            "checksum": 890644827,
+            "cropBottom": 48,
+            "cropLeft": 0,
+            "cropRight": 38,
+            "cropTop": 1,
+            "errors": 0,
+            "filter": "Anims/Castlevania",
+            "height": 50,
+            "itemType": "Atlas",
+            "name": "NES - Castlevania - Boss5",
+            "textureIndex": 2,
+            "textureInfo": 262147,
+            "width": 39,
+            "x": 1992,
+            "y": 364
+        },
+        {
+            "assetUUID": "8e03dbe4-6f90-43dd-b8f6-8ce1882e9836",
+            "bankId": 0,
+            "checksum": 340475718,
+            "cropBottom": 24,
+            "cropLeft": 0,
+            "cropRight": 29,
+            "cropTop": 2,
+            "errors": 0,
+            "filter": "Anims/Castlevania",
+            "height": 25,
+            "itemType": "Atlas",
+            "name": "NES - Castlevania - Boss1",
+            "textureIndex": 2,
+            "textureInfo": 262147,
+            "width": 30,
+            "x": 2012,
+            "y": 0
         }
     ],
     "banks": [
@@ -1934,7 +1991,8 @@
             "sbFrameMarginRight": 1,
             "sbFrameMarginTop": 0,
             "unfilledIndices": [
-                1
+                1,
+                2
             ]
         }
     ],

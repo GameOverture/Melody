@@ -1,5 +1,5 @@
 {
-    "$fileVersion": 10,
+    "$fileVersion": 11,
     "banks": [
         {
             "bankId": 0,
@@ -105,11 +105,522 @@
                 {
                     "assets": [
                         {
-                            "bottom": 1271,
+                            "bottom": 91,
+                            "checksum": 3714029924,
+                            "left": 298,
+                            "right": 334,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 91,
+                            "checksum": 2510221979,
+                            "left": 166,
+                            "right": 207,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 90,
+                            "checksum": 1805717877,
+                            "left": 734,
+                            "right": 761,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 90,
+                            "checksum": 3413880872,
+                            "left": 552,
+                            "right": 592,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 90,
+                            "checksum": 2232419247,
+                            "left": 460,
+                            "right": 503,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 91,
+                            "checksum": 3349669989,
+                            "left": 376,
+                            "right": 406,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 91,
+                            "checksum": 595453031,
+                            "left": 210,
+                            "right": 251,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 91,
+                            "checksum": 256021601,
+                            "left": 337,
+                            "right": 373,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 91,
+                            "checksum": 595453031,
+                            "left": 210,
+                            "right": 251,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 90,
+                            "checksum": 2796352799,
+                            "left": 631,
+                            "right": 664,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 91,
+                            "checksum": 494586859,
+                            "left": 254,
+                            "right": 295,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 89,
+                            "checksum": 3541080266,
+                            "left": 870,
+                            "right": 900,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 86,
+                            "checksum": 2633764539,
+                            "left": 1747,
+                            "right": 1781,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 85,
+                            "checksum": 462875757,
+                            "left": 1965,
+                            "right": 2003,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 87,
+                            "checksum": 2599476002,
+                            "left": 1330,
+                            "right": 1368,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 85,
+                            "checksum": 3789337889,
+                            "left": 2006,
+                            "right": 2034,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 90,
+                            "checksum": 3721913320,
+                            "left": 764,
+                            "right": 791,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 169,
+                            "checksum": 3583847589,
+                            "left": 1751,
+                            "right": 1785,
+                            "top": 89
+                        },
+                        {
+                            "bottom": 168,
+                            "checksum": 2598577026,
+                            "left": 1651,
+                            "right": 1677,
+                            "top": 89
+                        },
+                        {
+                            "bottom": 172,
+                            "checksum": 2289524177,
+                            "left": 1964,
+                            "right": 1999,
+                            "top": 88
+                        },
+                        {
+                            "bottom": 172,
+                            "checksum": 1690969997,
+                            "left": 2002,
+                            "right": 2045,
+                            "top": 88
+                        },
+                        {
+                            "bottom": 87,
+                            "checksum": 2280647539,
+                            "left": 1485,
+                            "right": 1514,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 164,
+                            "checksum": 3309318963,
+                            "left": 1485,
+                            "right": 1519,
+                            "top": 90
+                        },
+                        {
+                            "bottom": 163,
+                            "checksum": 586292248,
+                            "left": 1452,
+                            "right": 1482,
+                            "top": 90
+                        },
+                        {
+                            "bottom": 158,
+                            "checksum": 2669082377,
+                            "left": 1357,
+                            "right": 1385,
+                            "top": 90
+                        },
+                        {
+                            "bottom": 169,
+                            "checksum": 3238361265,
+                            "left": 1901,
+                            "right": 1933,
+                            "top": 88
+                        },
+                        {
+                            "bottom": 169,
+                            "checksum": 1849325999,
+                            "left": 1714,
+                            "right": 1748,
+                            "top": 89
+                        },
+                        {
+                            "bottom": 168,
+                            "checksum": 742544284,
+                            "left": 1623,
+                            "right": 1648,
+                            "top": 89
+                        },
+                        {
+                            "bottom": 158,
+                            "checksum": 407538721,
+                            "left": 1388,
+                            "right": 1417,
+                            "top": 90
+                        },
+                        {
+                            "bottom": 158,
+                            "checksum": 4240824514,
+                            "left": 1420,
+                            "right": 1449,
+                            "top": 90
+                        },
+                        {
+                            "bottom": 169,
+                            "checksum": 1111946291,
+                            "left": 1866,
+                            "right": 1898,
+                            "top": 88
+                        },
+                        {
+                            "bottom": 169,
+                            "checksum": 3258198842,
+                            "left": 1788,
+                            "right": 1822,
+                            "top": 89
+                        },
+                        {
+                            "bottom": 168,
+                            "checksum": 2984332267,
+                            "left": 1595,
+                            "right": 1620,
+                            "top": 89
+                        },
+                        {
+                            "bottom": 91,
+                            "checksum": 254159982,
+                            "left": 119,
+                            "right": 163,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 86,
+                            "checksum": 3753540411,
+                            "left": 1549,
+                            "right": 1601,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 85,
+                            "checksum": 3666092086,
+                            "left": 1817,
+                            "right": 1864,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 90,
+                            "checksum": 3843109137,
+                            "left": 595,
+                            "right": 628,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 89,
+                            "checksum": 3730116419,
+                            "left": 794,
+                            "right": 831,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 87,
+                            "checksum": 353695193,
+                            "left": 1281,
+                            "right": 1327,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 86,
+                            "checksum": 2038190561,
+                            "left": 1708,
+                            "right": 1744,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 90,
+                            "checksum": 4058382849,
+                            "left": 701,
+                            "right": 731,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 89,
+                            "checksum": 571000082,
+                            "left": 903,
+                            "right": 928,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 90,
+                            "checksum": 1698740833,
+                            "left": 667,
+                            "right": 698,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 90,
+                            "checksum": 3947111233,
+                            "left": 506,
+                            "right": 549,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 87,
+                            "checksum": 3947931900,
+                            "left": 1517,
+                            "right": 1546,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 165,
+                            "checksum": 1383833232,
+                            "left": 1561,
+                            "right": 1592,
+                            "top": 89
+                        },
+                        {
+                            "bottom": 87,
+                            "checksum": 1463149058,
+                            "left": 1447,
+                            "right": 1482,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 168,
+                            "checksum": 3210291268,
+                            "left": 1825,
+                            "right": 1863,
+                            "top": 88
+                        },
+                        {
+                            "bottom": 87,
+                            "checksum": 2463429355,
+                            "left": 1409,
+                            "right": 1444,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 86,
+                            "checksum": 3063735914,
+                            "left": 1784,
+                            "right": 1814,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 165,
+                            "checksum": 2197221932,
+                            "left": 1522,
+                            "right": 1558,
+                            "top": 90
+                        },
+                        {
+                            "bottom": 87,
+                            "checksum": 1496810269,
+                            "left": 1371,
+                            "right": 1406,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 169,
+                            "checksum": 2959275896,
+                            "left": 1680,
+                            "right": 1711,
+                            "top": 89
+                        },
+                        {
+                            "bottom": 172,
+                            "checksum": 3109024657,
+                            "left": 1936,
+                            "right": 1961,
+                            "top": 88
+                        },
+                        {
+                            "bottom": 88,
+                            "checksum": 92866353,
+                            "left": 1245,
+                            "right": 1278,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 90,
+                            "checksum": 664140172,
+                            "left": 409,
+                            "right": 457,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 88,
+                            "checksum": 1096995317,
+                            "left": 931,
+                            "right": 980,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 86,
+                            "checksum": 255075663,
+                            "left": 1604,
+                            "right": 1653,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 85,
+                            "checksum": 2425929913,
+                            "left": 1867,
+                            "right": 1913,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 88,
+                            "checksum": 245207024,
+                            "left": 1125,
+                            "right": 1166,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 90,
+                            "checksum": 664140172,
+                            "left": 409,
+                            "right": 457,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 88,
+                            "checksum": 3166535162,
+                            "left": 983,
+                            "right": 1032,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 86,
+                            "checksum": 1480091801,
+                            "left": 1656,
+                            "right": 1705,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 85,
+                            "checksum": 1279782571,
+                            "left": 1916,
+                            "right": 1962,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 88,
+                            "checksum": 245207024,
+                            "left": 1125,
+                            "right": 1166,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 94,
+                            "checksum": 3141737980,
+                            "left": 0,
+                            "right": 58,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 88,
+                            "checksum": 3597872615,
+                            "left": 1035,
+                            "right": 1077,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 88,
+                            "checksum": 4233828051,
+                            "left": 1169,
+                            "right": 1204,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 89,
+                            "checksum": 2289518861,
+                            "left": 834,
+                            "right": 867,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 88,
+                            "checksum": 3359507638,
+                            "left": 1207,
+                            "right": 1242,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 88,
+                            "checksum": 2252036996,
+                            "left": 1080,
+                            "right": 1122,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 91,
+                            "checksum": 1459704002,
+                            "left": 61,
+                            "right": 116,
+                            "top": 0
+                        }
+                    ],
+                    "height": 2048,
+                    "textureInfo": 262144,
+                    "width": 2048
+                },
+                {
+                    "assets": [
+                        {
+                            "bottom": 1180,
                             "checksum": 4268791707,
-                            "left": 599,
-                            "right": 1079,
-                            "top": 1001
+                            "left": 1565,
+                            "right": 2045,
+                            "top": 910
                         },
                         {
                             "bottom": 1271,
@@ -119,610 +630,127 @@
                             "top": 1001
                         },
                         {
-                            "bottom": 1271,
+                            "bottom": 998,
                             "checksum": 569794191,
-                            "left": 116,
-                            "right": 596,
-                            "top": 1001
-                        },
-                        {
-                            "bottom": 1180,
-                            "checksum": 1012677248,
-                            "left": 1565,
-                            "right": 2045,
-                            "top": 910
-                        },
-                        {
-                            "bottom": 998,
-                            "checksum": 1513553027,
-                            "left": 116,
-                            "right": 596,
-                            "top": 728
-                        },
-                        {
-                            "bottom": 998,
-                            "checksum": 194819899,
                             "left": 599,
                             "right": 1079,
                             "top": 728
                         },
                         {
+                            "bottom": 1271,
+                            "checksum": 1012677248,
+                            "left": 116,
+                            "right": 596,
+                            "top": 1001
+                        },
+                        {
+                            "bottom": 907,
+                            "checksum": 1513553027,
+                            "left": 1565,
+                            "right": 2045,
+                            "top": 637
+                        },
+                        {
                             "bottom": 998,
-                            "checksum": 231869684,
+                            "checksum": 194819899,
                             "left": 1082,
                             "right": 1562,
                             "top": 728
                         },
                         {
-                            "bottom": 907,
-                            "checksum": 2305775560,
-                            "left": 1565,
-                            "right": 2045,
-                            "top": 637
+                            "bottom": 998,
+                            "checksum": 231869684,
+                            "left": 116,
+                            "right": 596,
+                            "top": 728
                         },
                         {
                             "bottom": 634,
-                            "checksum": 3091607944,
+                            "checksum": 2305775560,
                             "left": 1509,
                             "right": 1989,
                             "top": 364
                         },
                         {
-                            "bottom": 361,
+                            "bottom": 1271,
+                            "checksum": 3091607944,
+                            "left": 599,
+                            "right": 1079,
+                            "top": 1001
+                        },
+                        {
+                            "bottom": 725,
                             "checksum": 1776282857,
+                            "left": 503,
+                            "right": 1003,
+                            "top": 364
+                        },
+                        {
+                            "bottom": 725,
+                            "checksum": 115674671,
+                            "left": 0,
+                            "right": 500,
+                            "top": 364
+                        },
+                        {
+                            "bottom": 361,
+                            "checksum": 4286155172,
                             "left": 1509,
                             "right": 2009,
                             "top": 0
                         },
                         {
-                            "bottom": 361,
-                            "checksum": 115674671,
-                            "left": 503,
-                            "right": 1003,
-                            "top": 0
-                        },
-                        {
-                            "bottom": 725,
-                            "checksum": 4286155172,
-                            "left": 503,
-                            "right": 1003,
-                            "top": 364
-                        },
-                        {
                             "bottom": 725,
                             "checksum": 4146019773,
-                            "left": 0,
-                            "right": 500,
+                            "left": 1006,
+                            "right": 1506,
                             "top": 364
                         },
                         {
                             "bottom": 361,
                             "checksum": 2289268722,
-                            "left": 1006,
-                            "right": 1506,
-                            "top": 0
-                        },
-                        {
-                            "bottom": 725,
-                            "checksum": 188613801,
-                            "left": 1006,
-                            "right": 1506,
-                            "top": 364
-                        },
-                        {
-                            "bottom": 361,
-                            "checksum": 90216008,
                             "left": 0,
                             "right": 500,
                             "top": 0
                         },
                         {
-                            "bottom": 1010,
-                            "checksum": 3714029924,
-                            "left": 77,
-                            "right": 113,
-                            "top": 919
-                        },
-                        {
-                            "bottom": 549,
-                            "checksum": 2510221979,
-                            "left": 1992,
-                            "right": 2033,
-                            "top": 458
-                        },
-                        {
-                            "bottom": 1273,
-                            "checksum": 1805717877,
-                            "left": 1985,
-                            "right": 2012,
-                            "top": 1183
-                        },
-                        {
-                            "bottom": 1196,
-                            "checksum": 3413880872,
-                            "left": 27,
-                            "right": 67,
-                            "top": 1106
-                        },
-                        {
-                            "bottom": 1103,
-                            "checksum": 2232419247,
-                            "left": 19,
-                            "right": 62,
-                            "top": 1013
-                        },
-                        {
-                            "bottom": 91,
-                            "checksum": 3349669989,
-                            "left": 2012,
-                            "right": 2042,
+                            "bottom": 361,
+                            "checksum": 188613801,
+                            "left": 1006,
+                            "right": 1506,
                             "top": 0
                         },
                         {
-                            "bottom": 916,
-                            "checksum": 595453031,
-                            "left": 14,
-                            "right": 55,
-                            "top": 825
-                        },
-                        {
-                            "bottom": 1010,
-                            "checksum": 256021601,
-                            "left": 38,
-                            "right": 74,
-                            "top": 919
-                        },
-                        {
-                            "bottom": 916,
-                            "checksum": 595453031,
-                            "left": 14,
-                            "right": 55,
-                            "top": 825
-                        },
-                        {
-                            "bottom": 184,
-                            "checksum": 2796352799,
-                            "left": 2012,
-                            "right": 2045,
-                            "top": 94
-                        },
-                        {
-                            "bottom": 819,
-                            "checksum": 494586859,
-                            "left": 11,
-                            "right": 52,
-                            "top": 728
-                        },
-                        {
-                            "bottom": 1272,
-                            "checksum": 3541080266,
-                            "left": 1846,
-                            "right": 1876,
-                            "top": 1183
-                        },
-                        {
-                            "bottom": 1360,
-                            "checksum": 2633764539,
-                            "left": 1295,
-                            "right": 1329,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1359,
-                            "checksum": 462875757,
-                            "left": 1106,
-                            "right": 1144,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1286,
-                            "checksum": 2599476002,
-                            "left": 74,
-                            "right": 112,
-                            "top": 1199
-                        },
-                        {
-                            "bottom": 1359,
-                            "checksum": 3789337889,
-                            "left": 1075,
-                            "right": 1103,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1273,
-                            "checksum": 3721913320,
-                            "left": 1955,
-                            "right": 1982,
-                            "top": 1183
-                        },
-                        {
-                            "bottom": 1354,
-                            "checksum": 3583847589,
-                            "left": 913,
-                            "right": 947,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1353,
-                            "checksum": 2598577026,
-                            "left": 776,
-                            "right": 802,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1358,
-                            "checksum": 2289524177,
-                            "left": 991,
-                            "right": 1026,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1358,
-                            "checksum": 1690969997,
-                            "left": 1029,
-                            "right": 1072,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1361,
-                            "checksum": 2280647539,
-                            "left": 1634,
-                            "right": 1663,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1348,
-                            "checksum": 3309318963,
-                            "left": 638,
-                            "right": 672,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1347,
-                            "checksum": 586292248,
-                            "left": 605,
-                            "right": 635,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1342,
-                            "checksum": 2669082377,
-                            "left": 510,
-                            "right": 538,
-                            "top": 1274
-                        },
-                        {
                             "bottom": 361,
-                            "checksum": 3238361265,
+                            "checksum": 90216008,
+                            "left": 503,
+                            "right": 1003,
+                            "top": 0
+                        },
+                        {
+                            "bottom": 49,
+                            "checksum": 3976864377,
                             "left": 2012,
-                            "right": 2044,
-                            "top": 280
+                            "right": 2028,
+                            "top": 26
                         },
                         {
-                            "bottom": 1354,
-                            "checksum": 1849325999,
-                            "left": 876,
-                            "right": 910,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1353,
-                            "checksum": 742544284,
-                            "left": 748,
-                            "right": 773,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1342,
-                            "checksum": 407538721,
-                            "left": 541,
-                            "right": 570,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1342,
-                            "checksum": 4240824514,
-                            "left": 573,
-                            "right": 602,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 633,
-                            "checksum": 1111946291,
+                            "bottom": 412,
+                            "checksum": 890644827,
                             "left": 1992,
-                            "right": 2024,
-                            "top": 552
-                        },
-                        {
-                            "bottom": 1354,
-                            "checksum": 3258198842,
-                            "left": 839,
-                            "right": 873,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1353,
-                            "checksum": 2984332267,
-                            "left": 1790,
-                            "right": 1815,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 455,
-                            "checksum": 254159982,
-                            "left": 1992,
-                            "right": 2036,
+                            "right": 2031,
                             "top": 364
                         },
                         {
-                            "bottom": 1360,
-                            "checksum": 3753540411,
-                            "left": 1384,
-                            "right": 1436,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1359,
-                            "checksum": 3666092086,
-                            "left": 1245,
-                            "right": 1292,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 277,
-                            "checksum": 3843109137,
+                            "bottom": 23,
+                            "checksum": 340475718,
                             "left": 2012,
-                            "right": 2045,
-                            "top": 187
-                        },
-                        {
-                            "bottom": 1272,
-                            "checksum": 3730116419,
-                            "left": 1915,
-                            "right": 1952,
-                            "top": 1183
-                        },
-                        {
-                            "bottom": 1361,
-                            "checksum": 353695193,
-                            "left": 1509,
-                            "right": 1555,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1360,
-                            "checksum": 2038190561,
-                            "left": 1718,
-                            "right": 1754,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1273,
-                            "checksum": 4058382849,
-                            "left": 2015,
-                            "right": 2045,
-                            "top": 1183
-                        },
-                        {
-                            "bottom": 1272,
-                            "checksum": 571000082,
-                            "left": 1818,
-                            "right": 1843,
-                            "top": 1183
-                        },
-                        {
-                            "bottom": 1009,
-                            "checksum": 1698740833,
-                            "left": 4,
-                            "right": 35,
-                            "top": 919
-                        },
-                        {
-                            "bottom": 1196,
-                            "checksum": 3947111233,
-                            "left": 70,
-                            "right": 113,
-                            "top": 1106
-                        },
-                        {
-                            "bottom": 1361,
-                            "checksum": 3947931900,
-                            "left": 1439,
-                            "right": 1468,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1350,
-                            "checksum": 1383833232,
-                            "left": 714,
-                            "right": 745,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1361,
-                            "checksum": 1463149058,
-                            "left": 1596,
-                            "right": 1631,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1354,
-                            "checksum": 3210291268,
-                            "left": 950,
-                            "right": 988,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1361,
-                            "checksum": 2463429355,
-                            "left": 1471,
-                            "right": 1506,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1360,
-                            "checksum": 3063735914,
-                            "left": 1757,
-                            "right": 1787,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1349,
-                            "checksum": 2197221932,
-                            "left": 675,
-                            "right": 711,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1361,
-                            "checksum": 1496810269,
-                            "left": 1558,
-                            "right": 1593,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1354,
-                            "checksum": 2959275896,
-                            "left": 805,
-                            "right": 836,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1267,
-                            "checksum": 3109024657,
-                            "left": 1565,
-                            "right": 1590,
-                            "top": 1183
-                        },
-                        {
-                            "bottom": 1287,
-                            "checksum": 92866353,
-                            "left": 38,
-                            "right": 71,
-                            "top": 1199
-                        },
-                        {
-                            "bottom": 1103,
-                            "checksum": 664140172,
-                            "left": 65,
-                            "right": 113,
-                            "top": 1013
-                        },
-                        {
-                            "bottom": 1271,
-                            "checksum": 1096995317,
-                            "left": 1766,
-                            "right": 1815,
-                            "top": 1183
-                        },
-                        {
-                            "bottom": 1360,
-                            "checksum": 255075663,
-                            "left": 1332,
-                            "right": 1381,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1359,
-                            "checksum": 2425929913,
-                            "left": 1147,
-                            "right": 1193,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1271,
-                            "checksum": 245207024,
-                            "left": 1632,
-                            "right": 1673,
-                            "top": 1183
-                        },
-                        {
-                            "bottom": 1103,
-                            "checksum": 664140172,
-                            "left": 65,
-                            "right": 113,
-                            "top": 1013
-                        },
-                        {
-                            "bottom": 725,
-                            "checksum": 3166535162,
-                            "left": 1509,
-                            "right": 1558,
-                            "top": 637
-                        },
-                        {
-                            "bottom": 1360,
-                            "checksum": 1480091801,
-                            "left": 1666,
-                            "right": 1715,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1359,
-                            "checksum": 1279782571,
-                            "left": 1196,
-                            "right": 1242,
-                            "top": 1274
-                        },
-                        {
-                            "bottom": 1271,
-                            "checksum": 245207024,
-                            "left": 1632,
-                            "right": 1673,
-                            "top": 1183
-                        },
-                        {
-                            "bottom": 822,
-                            "checksum": 3141737980,
-                            "left": 55,
-                            "right": 113,
-                            "top": 728
-                        },
-                        {
-                            "bottom": 1271,
-                            "checksum": 3597872615,
-                            "left": 1721,
-                            "right": 1763,
-                            "top": 1183
-                        },
-                        {
-                            "bottom": 1287,
-                            "checksum": 4233828051,
-                            "left": 0,
-                            "right": 35,
-                            "top": 1199
-                        },
-                        {
-                            "bottom": 1272,
-                            "checksum": 2289518861,
-                            "left": 1879,
-                            "right": 1912,
-                            "top": 1183
-                        },
-                        {
-                            "bottom": 1271,
-                            "checksum": 3359507638,
-                            "left": 1594,
-                            "right": 1629,
-                            "top": 1183
-                        },
-                        {
-                            "bottom": 1271,
-                            "checksum": 2252036996,
-                            "left": 1676,
-                            "right": 1718,
-                            "top": 1183
-                        },
-                        {
-                            "bottom": 916,
-                            "checksum": 1459704002,
-                            "left": 58,
-                            "right": 113,
-                            "top": 825
+                            "right": 2042,
+                            "top": 0
                         }
                     ],
                     "height": 2048,
-                    "textureInfo": 262144,
+                    "textureInfo": 262147,
                     "width": 2048
                 }
             ]

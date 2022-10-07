@@ -1,5 +1,5 @@
 {
-    "$fileVersion": 9,
+    "$fileVersion": 11,
     "assets": [
         {
             "assetUUID": "7499b1c4-4dad-4385-93bc-4cf51cf51b83",
@@ -268,8 +268,8 @@
             "OutputName": "Melody",
             "SrcDepends": [
             ],
-            "UseGlfw": false,
             "UseIcu": false,
+            "UseSdl2": false,
             "UseSdlNet": false,
             "UseSpine": false,
             "bankId": 0,
