@@ -2,9 +2,69 @@
     "$fileVersion": 11,
     "Audio": {
     },
+    "Entities": {
+        "CRT/CRT": {
+            "CameraPos": [
+                0,
+                0
+            ],
+            "CameraZoom": 0.25,
+            "UUID": "0ad78de9-1b25-4c07-a84e-015aded412fd",
+            "childList": [
+                {
+                    "Body": {
+                        "Alpha": 1,
+                        "Color Tint": [
+                            255,
+                            255,
+                            255
+                        ],
+                        "Display Order": 0,
+                        "Visible": true
+                    },
+                    "Common": {
+                        "UUID": "a605fb45-71e7-417e-8d0b-f473557e922a",
+                        "Update During Paused": false,
+                        "User Tag": 0
+                    },
+                    "Sprite": {
+                        "Frame": 0,
+                        "State": 0
+                    },
+                    "Transformation": {
+                        "Position": [
+                            0,
+                            0
+                        ],
+                        "Rotation": 0,
+                        "Scale": [
+                            1,
+                            1
+                        ]
+                    },
+                    "UUID": "a605fb45-71e7-417e-8d0b-f473557e922a",
+                    "codeName": "m_Frame",
+                    "isSelected": false,
+                    "itemType": "Sprite",
+                    "itemUUID": "46ecf7b6-cce3-4894-bb64-73d23dd689e3"
+                }
+            ],
+            "codeName": "CRT",
+            "entityType": "",
+            "shapeList": [
+            ],
+            "stateArray": [
+                {
+                    "name": ""
+                }
+            ]
+        }
+    },
     "Entities2d": {
     },
     "Entities3d": {
+    },
+    "Not Used": {
     },
     "Particles": {
     },

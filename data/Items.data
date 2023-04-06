@@ -2,9 +2,19 @@
     "$fileVersion": 11,
     "Audio": {
     },
+    "Entities": {
+        "CRT/CRT": {
+            "stateArray": [
+                {
+                }
+            ]
+        }
+    },
     "Entities2d": {
     },
     "Entities3d": {
+    },
+    "Not Used": {
     },
     "Particles": {
     },
