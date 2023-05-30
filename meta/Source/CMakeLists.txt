@@ -35,15 +35,17 @@ set(GAME_SRCFILES
 	"Components/Crt/Channels/Channel.cpp"
 	"Components/Crt/Channels/Channel.h"
 	"Components/Crt/Channels/Music.cpp"
-	"Components/Crt/Channels/Music.h")
+	"Components/Crt/Channels/Music.h"
+	"ControlPanel.cpp"
+	"ControlPanel.h")
 
 set(GAME_INCLUDE_DIRS "")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}")
-list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt")
-list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt/Channels")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Wheel")
-list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Scenes")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt/Channels")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components")
 
 #################################################################################################
 # ^ ^ ^ USER CONFIG ABOVE ^ ^ ^
@@ -54,8 +56,9 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 
 # Build Options
-set(HYBUILD_GLFW ON)
-set(HYBUILD_SDL2 OFF)
+set(HYBUILD_GLFW OFF)
+set(HYBUILD_SDL2 ON)
+set(HYBUILD_SDL_AUDIO OFF)
 set(HYBUILD_SDL_NET OFF)
 option(HYBUILD_DebugEmscripten "Use a Debug build configuration when targeting web browsers" OFF)
 option(HYBUILD_STATIC "Statically link all dependencies into the executable" OFF)
@@ -69,6 +72,9 @@ if(HYBUILD_GLFW)
 endif()
 if(HYBUILD_SDL2)
 	add_compile_definitions(HY_USE_SDL2)
+endif()
+if(HYBUILD_SDL_AUDIO)
+	add_compile_definitions(HY_USE_SDL2_AUDIO)
 endif()
 if(HYBUILD_SPINE)
 	add_compile_definitions(HY_USE_SPINE)
@@ -84,20 +90,14 @@ message(STATUS "Melody building for target: ${CMAKE_SYSTEM_NAME}")
 if("${CMAKE_SYSTEM_NAME}" STREQUAL "Emscripten")
 	set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/${REL_PROJ_PATH}/bin/web")
 	set(HYEM_COMPILE_FLAGS "")
-	list(APPEND HYEM_COMPILE_FLAGS "-s USE_OGG=1")
-	list(APPEND HYEM_COMPILE_FLAGS "-s USE_VORBIS=1")
-	
 	set(HYEM_LINK_FLAGS "")
+	list(APPEND HYEM_LINK_FLAGS "-s TOTAL_STACK=4MB")
 	list(APPEND HYEM_LINK_FLAGS "-s ALLOW_MEMORY_GROWTH=1")
 	list(APPEND HYEM_LINK_FLAGS "-s USE_WEBGL2=1")
-	list(APPEND HYEM_LINK_FLAGS "-s USE_OGG=1")
-	list(APPEND HYEM_LINK_FLAGS "-s USE_VORBIS=1")
 	list(APPEND HYEM_LINK_FLAGS "-s FETCH")
-	#list(APPEND HYEM_LINK_FLAGS "-s EXPORTED_RUNTIME_METHODS=ccall")
-	#list(APPEND HYEM_LINK_FLAGS "-s EXPORTED_FUNCTIONS=_main,_doPariplayEvent")
+	
 	
 	if(HYBUILD_GLFW)
-		list(APPEND HYEM_COMPILE_FLAGS "-s USE_GLFW=3")
 		list(APPEND HYEM_LINK_FLAGS "-s USE_GLFW=3")
 	endif()
 	
@@ -129,20 +129,17 @@ if("${CMAKE_SYSTEM_NAME}" STREQUAL "Emscripten")
 		#list(APPEND HYEM_COMPILE_FLAGS "-s ASSERTIONS=1")
 		#list(APPEND HYEM_COMPILE_FLAGS "-s STACK_OVERFLOW_CHECK=2")
 		#list(APPEND HYEM_COMPILE_FLAGS "-s LLD_REPORT_UNDEFINED")
-		
-		list(APPEND HYEM_LINK_FLAGS "-g")
-		#list(APPEND HYEM_LINK_FLAGS "-s ASSERTIONS=1")
-		#list(APPEND HYEM_LINK_FLAGS "-s STACK_OVERFLOW_CHECK=2")
-		#list(APPEND HYEM_LINK_FLAGS "-s LLD_REPORT_UNDEFINED")
-		
 		#list(APPEND HYEM_COMPILE_FLAGS "-s SAFE_HEAP=1")
-		#list(APPEND HYEM_LINK_FLAGS "-s SAFE_HEAP=1")
-		
 		#list(APPEND HYEM_COMPILE_FLAGS "-fsanitize=undefined")
 		#list(APPEND HYEM_COMPILE_FLAGS "-fsanitize=address")
 		#list(APPEND HYEM_COMPILE_FLAGS "-s TOTAL_MEMORY=2147418112")
 		#list(APPEND HYEM_COMPILE_FLAGS "-gsource-map http://localhost:8000/")
 		
+		list(APPEND HYEM_LINK_FLAGS "-g")
+		#list(APPEND HYEM_LINK_FLAGS "-s ASSERTIONS=1")
+		#list(APPEND HYEM_LINK_FLAGS "-s STACK_OVERFLOW_CHECK=2")
+		#list(APPEND HYEM_LINK_FLAGS "-s LLD_REPORT_UNDEFINED")
+		#list(APPEND HYEM_LINK_FLAGS "-s SAFE_HEAP=1")
 		#list(APPEND HYEM_LINK_FLAGS "-fsanitize=undefined")
 		#list(APPEND HYEM_LINK_FLAGS "-fsanitize=address")
 		#list(APPEND HYEM_LINK_FLAGS "-s TOTAL_MEMORY=2147418112")

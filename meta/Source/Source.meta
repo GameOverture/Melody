@@ -1,5 +1,5 @@
 {
-    "$fileVersion": 11,
+    "$fileVersion": 12,
     "assets": [
         {
             "assetUUID": "7499b1c4-4dad-4385-93bc-4cf51cf51b83",
@@ -261,6 +261,24 @@
             "filter": "Components/Crt/Channels",
             "itemType": "Header",
             "name": "Music.h"
+        },
+        {
+            "assetUUID": "974674a3-6832-4b3b-86ee-180499f27184",
+            "bankId": 0,
+            "checksum": 1373590749,
+            "errors": 0,
+            "filter": "",
+            "itemType": "Source",
+            "name": "ControlPanel.cpp"
+        },
+        {
+            "assetUUID": "a4320f0d-88a1-40cc-9579-fc410c52daf5",
+            "bankId": 0,
+            "checksum": 2108161238,
+            "errors": 0,
+            "filter": "",
+            "itemType": "Header",
+            "name": "ControlPanel.h"
         }
     ],
     "banks": [
@@ -269,7 +287,7 @@
             "SrcDepends": [
             ],
             "UseIcu": false,
-            "UseSdl2": false,
+            "UseSdl2": true,
             "UseSdlNet": false,
             "UseSpine": false,
             "bankId": 0,

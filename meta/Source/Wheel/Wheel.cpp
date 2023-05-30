@@ -450,7 +450,7 @@ void Wheel::Slam()
 
 	case STATE_Stopping: {
 		float fOffsetAmt = (m_fSpinSpeed * HyEngine::DeltaTime()) * (m_bSpinClockwise ? -1.0f : 1.0f);
-		fOffsetAmt *= HyClamp(m_fDegsLeftForStop / m_fSpinDegsToStop, 0.025f, 1.0f);
+		fOffsetAmt *= HyMath::Clamp(m_fDegsLeftForStop / m_fSpinDegsToStop, 0.025f, 1.0f);
 
 		m_fTickerNotchPercentage = 1.0f - (m_fDegsLeftForStop / m_fSpinDegsToStop);
 

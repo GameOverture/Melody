@@ -1,8 +1,15 @@
 {
-    "$fileVersion": 11,
+    "$fileVersion": 12,
     "banks": [
         {
             "assets": [
+                {
+                    "checksum": 158687151,
+                    "fileName": "0158687151.wav",
+                    "groupId": 0,
+                    "instanceLimit": 0,
+                    "isStreaming": false
+                }
             ],
             "bankId": 0,
             "name": "Default"

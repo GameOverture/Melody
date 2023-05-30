@@ -1,5 +1,5 @@
 {
-    "$fileVersion": 11,
+    "$fileVersion": 12,
     "BuildPath": "./build/",
     "ConsoleInfo": {
         "LocationX": 512,
@@ -13,13 +13,22 @@
     "MetaPath": "./meta/",
     "SourcePath": "meta/Source/",
     "Title": "Melody",
+    "UpdatesPerSec": 60,
     "UseConsole": true,
     "WindowInfo": [
         {
-            "LocationX": 0,
+            "LocationX": 556,
             "LocationY": 80,
             "Name": "Melody",
             "ResolutionX": 1364,
+            "ResolutionY": 1070,
+            "Type": 0
+        },
+		{
+            "LocationX": 0,
+            "LocationY": 80,
+            "Name": "Melody",
+            "ResolutionX": 550,
             "ResolutionY": 1070,
             "Type": 0
         }

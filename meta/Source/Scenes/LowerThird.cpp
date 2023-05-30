@@ -6,7 +6,7 @@ LowerThird::LowerThird(HyEntity2d *pParent /*= nullptr*/) :
 	IScene(SCENE_LowerThird, pParent),
 	m_Border(this)
 {
-	m_Border.shape.SetAsBox(HyEngine::Window().GetWidthF(), LOWERTHIRD_HEIGHT);
+	m_Border.SetAsBox(HyEngine::Window().GetWidthF(), LOWERTHIRD_HEIGHT);
 	m_Border.SetWireframe(true);
 
 	UseWindowCoordinates(0);

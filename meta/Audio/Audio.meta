@@ -1,6 +1,31 @@
 {
-    "$fileVersion": 11,
+    "$fileVersion": 12,
     "assets": [
+        {
+            "assetUUID": "99f03af5-d39f-4bae-83cc-aa8996678d51",
+            "bankId": 0,
+            "checksum": 158687151,
+            "errors": 0,
+            "filter": "",
+            "groupId": 0,
+            "instanceLimit": 0,
+            "isCompressed": false,
+            "isExportMono": false,
+            "isStreaming": false,
+            "itemType": "SoundClip",
+            "name": "0158687151",
+            "vbrQuality": 1,
+            "wavHeader": {
+                "audioFormat": 1,
+                "bitsPerSample": 16,
+                "blockAlign": 4,
+                "byteRate": 176400,
+                "chunkSize": 1288292,
+                "dataSize": 1288256,
+                "numChannels": 2,
+                "sampleRate": 44100
+            }
+        }
     ],
     "banks": [
         {

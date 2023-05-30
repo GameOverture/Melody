@@ -23,6 +23,9 @@ Melody::Melody(HarmonyInit &initStruct) :
 
 	m_Root.Load();
 	m_Root.UseWindowCoordinates();
+
+	//m_ControlPanel.
+	m_ControlPanel.Load();
 }
 
 Melody::~Melody()

@@ -3,6 +3,7 @@
 
 #include "pch.h"
 #include "Root.h"
+#include "ControlPanel.h"
 
 class IScene;
 
@@ -10,6 +11,7 @@ class Melody : public HyEngine
 {
 	HyCamera2d *	m_pCamera;
 
+	ControlPanel	m_ControlPanel;
 	Root			m_Root;
 
 public:
