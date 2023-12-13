@@ -1,5 +1,5 @@
 {
-    "$fileVersion": 12,
+    "$fileVersion": 14,
     "assets": [
         {
             "assetUUID": "7499b1c4-4dad-4385-93bc-4cf51cf51b83",
@@ -269,7 +269,7 @@
             "errors": 0,
             "filter": "",
             "itemType": "Source",
-            "name": "ControlPanel.cpp"
+            "name": "FightStick.cpp"
         },
         {
             "assetUUID": "a4320f0d-88a1-40cc-9579-fc410c52daf5",
@@ -278,16 +278,18 @@
             "errors": 0,
             "filter": "",
             "itemType": "Header",
-            "name": "ControlPanel.h"
+            "name": "FightStick.h"
         }
     ],
     "banks": [
         {
+            "EmscriptenCcall": "",
             "OutputName": "Melody",
             "SrcDepends": [
             ],
             "UseIcu": false,
-            "UseSdl2": true,
+            "UseSdl2": false,
+            "UseSdlAudio": false,
             "UseSdlNet": false,
             "UseSpine": false,
             "bankId": 0,

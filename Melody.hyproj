@@ -1,5 +1,5 @@
 {
-    "$fileVersion": 12,
+    "$fileVersion": 14,
     "BuildPath": "./build/",
     "ConsoleInfo": {
         "LocationX": 512,
@@ -17,19 +17,11 @@
     "UseConsole": true,
     "WindowInfo": [
         {
-            "LocationX": 556,
-            "LocationY": 80,
-            "Name": "Melody",
-            "ResolutionX": 1364,
-            "ResolutionY": 1070,
-            "Type": 0
-        },
-		{
             "LocationX": 0,
             "LocationY": 80,
             "Name": "Melody",
-            "ResolutionX": 550,
-            "ResolutionY": 1070,
+            "ResolutionX": 1920,
+            "ResolutionY": 1080,
             "Type": 0
         }
     ]

@@ -21,11 +21,33 @@ Melody::Melody(HarmonyInit &initStruct) :
 	HyEngine::Input().MapBtn(INPUT_DanceStop, HYKEY_C);
 	HyEngine::Input().MapBtn(INPUT_DanceShimmy, HYKEY_V);
 
-	m_Root.Load();
-	m_Root.UseWindowCoordinates();
+	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_LK, HYPAD_A);
+	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_MK, HYPAD_B);
+	//FIGHTSTICK_HK, // Trigger Positive
+	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_LP, HYPAD_X);
+	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_MP, HYPAD_Y);
+	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_HP, HYPAD_RightBumper);
+	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_Start, HYPAD_Start);
+	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_Select, HYPAD_Back);
+	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_Up, HYPAD_DpadUp);
+	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_Down, HYPAD_DpadDown);
+	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_Left, HYPAD_DpadLeft);
+	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_Right, HYPAD_DpadRight);
+	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_DriveImpact, HYPAD_LeftBumper);
+	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_Parry, HYPAD_LeftThumbStick);
 
-	//m_ControlPanel.
-	m_ControlPanel.Load();
+	m_ColorKeyBg.UseWindowCoordinates();
+	m_ColorKeyBg.SetAsBox(1920.0f, 1080.0f);
+	m_ColorKeyBg.pos.Set(0.0f, 0.0f);
+	//m_ColorKeyBg.SetAsBox(312.0f, 139.0f);	// Fight stick camera
+	//m_ColorKeyBg.pos.Set(804.0f, 0.0f);		// Fight stick camera
+	m_ColorKeyBg.SetDisplayOrder(-999999);
+	m_ColorKeyBg.SetTint(HyColor::Magenta);
+
+	m_FightStick.UseWindowCoordinates();
+	m_FightStick.pos.Set(1200.0f, 80.0f);
+	m_FightStick.scale.Set(0.75f, 0.75f);
+	m_FightStick.Load();
 }
 
 Melody::~Melody()

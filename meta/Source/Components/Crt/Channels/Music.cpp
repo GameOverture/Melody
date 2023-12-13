@@ -11,7 +11,7 @@ void Dancer::Dance()
 {
 	m_bIsShimmy = false;
 	m_Leaf.SetAnimCallback(m_Leaf.GetState(), nullptr);
-	m_Leaf.SetAnimCtrl(HYANIMCTRL_Play);
+	m_Leaf.SetAnimCtrl(HYANIMCTRL_ResetAndPlay);
 	m_Leaf.SetAnimCtrl(HYANIMCTRL_DontBounce);
 }
 
@@ -19,7 +19,7 @@ void Dancer::DanceAlt()
 {
 	m_bIsShimmy = false;
 	m_Leaf.SetAnimCallback(m_Leaf.GetState(), nullptr);
-	m_Leaf.SetAnimCtrl(HYANIMCTRL_Play);
+	m_Leaf.SetAnimCtrl(HYANIMCTRL_ResetAndPlay);
 	m_Leaf.SetAnimCtrl(HYANIMCTRL_Bounce);
 }
 
@@ -114,7 +114,9 @@ Music::Music(HyEntity2d *pParent /*= nullptr*/) :
 		int32 iWidth, iHeight;
 		//HyTextureHandle hTex = HyEngine::HotLoadTexture("\\\\IronMountain/Documents/Video Games Meta-Scrape//NES/media/Named_Boxarts/Batman - The Video Game (USA).png", HYTEXFILTER_NEAREST, iWidth, iHeight);
 		//m_pBoxArt = HY_NEW HyTexturedQuad2d(hTex, iWidth, iHeight, this);
-		m_pBoxArt = HY_NEW HyTexturedQuad2d("\\\\IronMountain/Documents/Video Games Meta-Scrape//NES/media/Named_Boxarts/Batman - The Video Game (USA).png", HyTextureInfo(HYTEXFILTER_NEAREST, HYTEXTURE_Uncompressed, 2, 0), nullptr);
+		
+		m_pBoxArt = HY_NEW HyTexturedQuad2d("\\\\IronMountain/Documents/Video Games Meta-Scrape/NES/media/Named_Boxarts/Balloon Fight (USA).png", HyTextureInfo(HYTEXFILTER_NEAREST, HYTEXTURE_Uncompressed, 2, 0), nullptr);
+		//m_pBoxArt = HY_NEW HyTexturedQuad2d("\\\\IronMountain/Documents/Video Games Meta-Scrape/NES/media/Named_Boxarts/Batman - The Video Game (USA).png", HyTextureInfo(HYTEXFILTER_NEAREST, HYTEXTURE_Uncompressed, 2, 0), nullptr);
 		m_pBoxArt->Load();
 
 		HyAudioHandle hAud = HyEngine::HotLoadAudio("\\\\IronMountain/Documents/Video Games Meta-Scrape/NES/media/Named_Ost/Mega Man 3 (USA)[Wily Fortress 2].ogg", true);

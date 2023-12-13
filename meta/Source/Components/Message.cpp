@@ -41,7 +41,7 @@ void Message::SetMsgs(std::string sMain, std::string sSub, float fMainDuration, 
 		{
 			if(m_MainText.alpha.IsAnimating() == false && m_MainText.alpha.Get() == 1.0f)
 			{
-				m_MainText.alpha.Tween(0.0f, 1.0f, HyTween::Linear, [&](IHyNode *pThis) {
+				m_MainText.alpha.Tween(0.0f, 1.0f, HyTween::Linear, 0.0f, [&](IHyNode *pThis) {
 					static_cast<HyText2d *>(pThis)->SetText(m_sSub);
 					static_cast<HyText2d *>(pThis)->alpha.Tween(1.0f, 1.0f);
 					static_cast<HyText2d *>(pThis)->SetState(1);
@@ -54,7 +54,7 @@ void Message::SetMsgs(std::string sMain, std::string sSub, float fMainDuration, 
 		{
 			if(m_MainText.alpha.IsAnimating() == false && m_MainText.alpha.Get() == 1.0f)
 			{
-				m_MainText.alpha.Tween(0.0f, 1.0f, HyTween::Linear, [&](IHyNode *pThis) {
+				m_MainText.alpha.Tween(0.0f, 1.0f, HyTween::Linear, 0.0f, [&](IHyNode *pThis) {
 					static_cast<HyText2d *>(pThis)->SetText(m_sMain);
 					static_cast<HyText2d *>(pThis)->alpha.Tween(1.0f, 1.0f);
 					static_cast<HyText2d *>(pThis)->SetState(0);

@@ -3,7 +3,7 @@
 
 #include "pch.h"
 #include "Root.h"
-#include "ControlPanel.h"
+#include "FightStick.h"
 
 class IScene;
 
@@ -11,8 +11,8 @@ class Melody : public HyEngine
 {
 	HyCamera2d *	m_pCamera;
 
-	ControlPanel	m_ControlPanel;
-	Root			m_Root;
+	HyPrimitive2d	m_ColorKeyBg;
+	FightStick		m_FightStick;
 
 public:
 	Melody(HarmonyInit &initStruct);

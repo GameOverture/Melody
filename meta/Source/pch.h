@@ -25,7 +25,22 @@ enum InputAction
 	INPUT_Dance,
 	INPUT_DanceAlt,
 	INPUT_DanceStop,
-	INPUT_DanceShimmy
+	INPUT_DanceShimmy,
+
+	FIGHTSTICK_LK,
+	FIGHTSTICK_MK,
+	//FIGHTSTICK_HK, // Trigger Positive
+	FIGHTSTICK_LP,
+	FIGHTSTICK_MP,
+	FIGHTSTICK_HP,
+	FIGHTSTICK_Start,
+	FIGHTSTICK_Select,
+	FIGHTSTICK_Up,
+	FIGHTSTICK_Down,
+	FIGHTSTICK_Left,
+	FIGHTSTICK_Right,
+	FIGHTSTICK_DriveImpact,
+	FIGHTSTICK_Parry
 };
 
 #endif // pch_h__

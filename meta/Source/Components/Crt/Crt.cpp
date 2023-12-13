@@ -54,10 +54,10 @@ void Crt::TogglePower()
 	if(m_Channel.IsVisible() == false)
 	{
 		m_Channel.SetVisible(true);
-		m_Channel.scale.Tween(1.0f, CRT_SHRINK_AMT, 0.2f, HyTween::Linear, [](IHyNode *pThis) { static_cast<HyEntity2d *>(pThis)->scale.Tween(1.0f, 1.0f, 0.4f, HyTween::BounceOut); });
+		m_Channel.scale.Tween(1.0f, CRT_SHRINK_AMT, 0.2f, HyTween::Linear, 0.0f, [](IHyNode *pThis) { static_cast<HyEntity2d *>(pThis)->scale.Tween(1.0f, 1.0f, 0.4f, HyTween::BounceOut); });
 	}
 	else
-		m_Channel.scale.Tween(CRT_SHRINK_AMT, CRT_SHRINK_AMT, 0.2f, HyTween::BounceIn, [](IHyNode *pThis)
+		m_Channel.scale.Tween(CRT_SHRINK_AMT, CRT_SHRINK_AMT, 0.2f, HyTween::BounceIn, 0.0f, [](IHyNode *pThis)
 			{
 				pThis->SetVisible(false);
 			});

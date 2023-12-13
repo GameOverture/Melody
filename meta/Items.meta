@@ -1,5 +1,5 @@
 {
-    "$fileVersion": 12,
+    "$fileVersion": 14,
     "Audio": {
     },
     "Entities": {
@@ -120,6 +120,130 @@
                         "7daaf8b2-4085-4aee-a484-a75758938abf",
                         "60d840c4-e719-406b-b9b4-ecf49833f82d",
                         "7c95dcac-29f6-4b15-b5c9-990a4528b8f8"
+                    ],
+                    "name": ""
+                }
+            ]
+        },
+        "FightStick/ButtonsPressed": {
+            "CameraPos": [
+                0,
+                0
+            ],
+            "CameraZoom": 1,
+            "UUID": "499c0c8e-1835-46b3-a140-9167d6ab1809",
+            "stateArray": [
+                {
+                    "assetUUIDs": [
+                        "659f4757-b6a6-4732-9f87-5398ddab9f15"
+                    ],
+                    "name": ""
+                },
+                {
+                    "assetUUIDs": [
+                        "dd3c2c96-79cc-4370-b84b-e4586b2eb196"
+                    ],
+                    "name": ""
+                },
+                {
+                    "assetUUIDs": [
+                        "bd380fb7-e149-4272-9c8e-51e52314b2c6"
+                    ],
+                    "name": ""
+                },
+                {
+                    "assetUUIDs": [
+                        "169a4016-8464-4f13-a2ee-7c1b74d50349"
+                    ],
+                    "name": ""
+                },
+                {
+                    "assetUUIDs": [
+                        "b5aabd17-254a-4877-8d3c-0ecbf5d1bc1b"
+                    ],
+                    "name": ""
+                },
+                {
+                    "assetUUIDs": [
+                        "e464eea6-84e8-49bc-a771-aef2e17f8bae"
+                    ],
+                    "name": ""
+                }
+            ]
+        },
+        "FightStick/ButtonsReleased": {
+            "CameraPos": [
+                0,
+                0
+            ],
+            "CameraZoom": 1,
+            "UUID": "db85246f-23fd-4c3f-b8aa-6d888c8a91fb",
+            "stateArray": [
+                {
+                    "assetUUIDs": [
+                        "b22034d7-2f3a-40b7-8d55-43ea41527492"
+                    ],
+                    "name": ""
+                },
+                {
+                    "assetUUIDs": [
+                        "42f59ce9-e580-4b46-9aeb-726d99a555e6"
+                    ],
+                    "name": ""
+                },
+                {
+                    "assetUUIDs": [
+                        "18366f7e-c373-425d-8573-5557ccdfc73a"
+                    ],
+                    "name": ""
+                },
+                {
+                    "assetUUIDs": [
+                        "cfef32af-c661-4ba1-a9a2-e9f678ab8549"
+                    ],
+                    "name": ""
+                },
+                {
+                    "assetUUIDs": [
+                        "05e394e9-941f-408e-8e75-178753122139"
+                    ],
+                    "name": ""
+                },
+                {
+                    "assetUUIDs": [
+                        "c9f80ba4-5f00-4dee-bbd7-f0837209af1d"
+                    ],
+                    "name": ""
+                }
+            ]
+        },
+        "FightStick/JoystickBall": {
+            "CameraPos": [
+                0,
+                0
+            ],
+            "CameraZoom": 1,
+            "UUID": "28e0de0c-fe5f-4108-b8c2-88e3136a5357",
+            "stateArray": [
+                {
+                    "assetUUIDs": [
+                        "17f6a765-1beb-40b6-bbcb-ab9d0aa201c2"
+                    ],
+                    "name": ""
+                }
+            ]
+        },
+        "FightStick/JoystickGate": {
+            "CameraPos": [
+                0,
+                0
+            ],
+            "CameraZoom": 1,
+            "UUID": "b8f152bb-1ab8-4f2e-94c7-b2f08e1f7a51",
+            "stateArray": [
+                {
+                    "assetUUIDs": [
+                        "7827b2e6-333e-4f81-961b-f81f985351b1"
                     ],
                     "name": ""
                 }

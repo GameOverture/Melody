@@ -36,14 +36,14 @@ set(GAME_SRCFILES
 	"Components/Crt/Channels/Channel.h"
 	"Components/Crt/Channels/Music.cpp"
 	"Components/Crt/Channels/Music.h"
-	"ControlPanel.cpp"
-	"ControlPanel.h")
+	"FightStick.cpp"
+	"FightStick.h")
 
 set(GAME_INCLUDE_DIRS "")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}")
-list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Wheel")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Scenes")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Wheel")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt/Channels")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components")
 
@@ -56,8 +56,8 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 
 # Build Options
-set(HYBUILD_GLFW OFF)
-set(HYBUILD_SDL2 ON)
+set(HYBUILD_GLFW ON)
+set(HYBUILD_SDL2 OFF)
 set(HYBUILD_SDL_AUDIO OFF)
 set(HYBUILD_SDL_NET OFF)
 option(HYBUILD_DebugEmscripten "Use a Debug build configuration when targeting web browsers" OFF)
