@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Intro.h"
-#include "Root.h"
+#include "CtrlPanel.h"
 
 Intro::Intro(HyEntity2d *pParent /*= nullptr*/) :
 	IScene(SCENE_Intro, pParent)

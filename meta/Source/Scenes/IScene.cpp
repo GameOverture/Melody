@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "IScene.h"
-#include "Root.h"
+#include "CtrlPanel.h"
 
 IScene::IScene(SceneType eType, HyEntity2d *pParent /*= nullptr*/) :
 	HyEntity2d(pParent),

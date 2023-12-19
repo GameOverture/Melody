@@ -13,6 +13,9 @@
 
 class Root : public HyEntity2d
 {
+
+
+
 	Crt				m_Crt;
 	Message			m_Message;
 

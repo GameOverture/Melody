@@ -1,29 +1,102 @@
 #include "pch.h"
 #include "FightStick.h"
 
-Joystick::Joystick(HyEntity2d *pParent) :
+FightStick::FightStick(HyEntity2d *pParent /*= nullptr*/) :
 	HyEntity2d(pParent),
 	m_Gate("FightStick", "JoystickGate", this),
 	m_BallFollow("FightStick", "JoystickBall", this),
 	m_Ball("FightStick", "JoystickBall", this),
-	m_eOldBallPos(JSGATE_Neutral)
+	m_eOldBallPos(JSGATE_Neutral),
+	m_DriveImpact(this),
+	m_DriveParry(this),
+	m_ButtonLP("FightStick", "ButtonsPressed", this),
+	m_ButtonMP("FightStick", "ButtonsPressed", this),
+	m_ButtonHP("FightStick", "ButtonsPressed", this),
+	m_ButtonLK("FightStick", "ButtonsPressed", this),
+	m_ButtonMK("FightStick", "ButtonsPressed", this),
+	m_ButtonHK("FightStick", "ButtonsPressed", this),
+	m_uiButtonFlags(0),
+	m_AssignOverlayBG(this),
+	m_AssignOverlayText("", "MainText", this),
+	m_fpAssignControllerFunc(nullptr)
 {
 	m_Gate.SetDisplayOrder(DISPLAYORDER_Gate);
 	m_BallFollow.alpha.Set(0.4f);
-
 	for(int i = 0; i < NUM_JSGATES; ++i)
 	{
 		m_ButtonOverlays[i].Init("FightStick", "ButtonsPressed", this);
 		m_ButtonOverlays[i].pos.Set(JSGatePositions[i]);
 		m_ButtonOverlays[i].SetVisible(false);
 	}
+
+	m_DriveImpact.SetAsBox(75.0f, 200.0f);
+	m_DriveImpact.SetTint(HyColor::Red);
+	m_DriveImpact.pos.Set(305.0f, -100.0f);
+	m_DriveImpact.SetVisible(false);
+
+	m_DriveParry.SetAsBox(75.0f, 200.0f);
+	m_DriveParry.SetTint(HyColor::Green);
+	m_DriveParry.pos.Set(205.0f, -100.0f);
+	m_DriveParry.SetVisible(false);
+
+	m_ButtonLP.pos.Set(142.0f, 50.0f);
+	m_ButtonLP.SetTint(HyColor(128, 128, 128));
+	
+	m_ButtonMP.pos.Set(242.0f, 50.0f);
+	m_ButtonMP.SetState(BTNSTATE_MP);
+	m_ButtonMP.SetTint(HyColor(128, 128, 128));
+
+	m_ButtonHP.pos.Set(342.0f, 50.0f);
+	m_ButtonHP.SetState(BTNSTATE_HP);
+	m_ButtonHP.SetTint(HyColor(128, 128, 128));
+
+	m_ButtonLK.pos.Set(142.0f, -50.0f);
+	m_ButtonLK.SetState(BTNSTATE_LK);
+	m_ButtonLK.SetTint(HyColor(128, 128, 128));
+
+	m_ButtonMK.pos.Set(242.0f, -50.0f);
+	m_ButtonMK.SetState(BTNSTATE_MK);
+	m_ButtonMK.SetTint(HyColor(128, 128, 128));
+
+	m_ButtonHK.pos.Set(342.0f, -50.0f);
+	m_ButtonHK.SetState(BTNSTATE_HK);
+	m_ButtonHK.SetTint(HyColor(128, 128, 128));
+
+	b2AABB sceneAabb = GetSceneAABB();
+	m_AssignOverlayBG.SetAsBox(sceneAabb.upperBound.x - sceneAabb.lowerBound.x, sceneAabb.upperBound.y - sceneAabb.lowerBound.y);
+	m_AssignOverlayBG.pos.Offset(-105.0f, -120.0f);
+	m_AssignOverlayBG.SetVisible(false);
+	m_AssignOverlayText.SetVisible(false);
+	m_AssignOverlayText.SetTextAlignment(HYALIGN_Center);
+	m_AssignOverlayText.pos.Offset(145.0f, 0.0f);
+
+	m_fpAssignControllerFunc = [this](IHyController *pController, bool bIsAxis, int32 iKey, HyControllerInputValue value)
+	{
+		if(bIsAxis || pController->IsGamePad() == false)
+			return;
+
+		HyGamePad *pNewGamePad = static_cast<HyGamePad *>(pController);
+		m_AssignOverlayText.SetText(pNewGamePad->GetName());
+
+		m_AssignOverlayBG.alpha.Tween(0.0f, 1.0f, HyTween::Linear, 0.42f, [](IHyNode *pThis) { pThis->SetVisible(false); });
+		m_AssignOverlayText.alpha.Tween(0.0f, 1.0f, HyTween::Linear, 0.42f, [](IHyNode *pThis) { pThis->SetVisible(false); });
+
+		HyEngine::Input().AssignGamePad(pNewGamePad);
+		HyEngine::Input().SetControllerInputListener(nullptr);
+	};
+
+	EnableMouseInput(); // When mouse input is detected, listen for all controllers and assign a new game pad
 }
 
-void Joystick::SetButtonPress(ButtonState eButtonState, bool bPressed)
+/*virtual*/ FightStick::~FightStick()
+{
+}
+
+void FightStick::SetButtonPress(ButtonState eButtonState, bool bPressed)
 {
 	m_ButtonOverlays[m_eOldBallPos].SetVisible(true);
 	m_ButtonOverlays[m_eOldBallPos].SetState(eButtonState);
-	
+
 	m_ButtonOverlays[m_eOldBallPos].alpha.Set(1.0f);
 	if(bPressed)
 	{
@@ -38,8 +111,9 @@ void Joystick::SetButtonPress(ButtonState eButtonState, bool bPressed)
 	}
 }
 
-/*virtual*/ void Joystick::OnUpdate() /*override*/
+/*virtual*/ void FightStick::OnUpdate() /*override*/
 {
+	// Joystick
 	if(m_PathList.empty() == false)
 	{
 		if(m_PathList.front()->alpha.Get() == 0.0f)
@@ -48,7 +122,6 @@ void Joystick::SetButtonPress(ButtonState eButtonState, bool bPressed)
 			m_PathList.pop_front();
 		}
 	}
-
 	enum DPadFlags
 	{
 		DPad_Up = 0x1,
@@ -105,63 +178,8 @@ void Joystick::SetButtonPress(ButtonState eButtonState, bool bPressed)
 
 		m_eOldBallPos = eCurBallPos;
 	}
-}
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-FightStick::FightStick(HyEntity2d *pParent /*= nullptr*/) :
-	HyEntity2d(pParent),
-	m_Joystick(this),
-	m_DriveImpact(this),
-	m_DriveParry(this),
-	m_ButtonLP("FightStick", "ButtonsPressed", this),
-	m_ButtonMP("FightStick", "ButtonsPressed", this),
-	m_ButtonHP("FightStick", "ButtonsPressed", this),
-	m_ButtonLK("FightStick", "ButtonsPressed", this),
-	m_ButtonMK("FightStick", "ButtonsPressed", this),
-	m_ButtonHK("FightStick", "ButtonsPressed", this),
-	m_uiButtonFlags(0)
-{
-	m_DriveImpact.SetAsBox(75.0f, 200.0f);
-	m_DriveImpact.SetTint(HyColor::Red);
-	m_DriveImpact.pos.Set(305.0f, -100.0f);
-	m_DriveImpact.SetVisible(false);
-
-	m_DriveParry.SetAsBox(75.0f, 200.0f);
-	m_DriveParry.SetTint(HyColor::Green);
-	m_DriveParry.pos.Set(205.0f, -100.0f);
-	m_DriveParry.SetVisible(false);
-
-	m_ButtonLP.pos.Set(142.0f, 50.0f);
-	m_ButtonLP.SetTint(HyColor(128, 128, 128));
-	
-	m_ButtonMP.pos.Set(242.0f, 50.0f);
-	m_ButtonMP.SetState(BTNSTATE_MP);
-	m_ButtonMP.SetTint(HyColor(128, 128, 128));
-
-	m_ButtonHP.pos.Set(342.0f, 50.0f);
-	m_ButtonHP.SetState(BTNSTATE_HP);
-	m_ButtonHP.SetTint(HyColor(128, 128, 128));
-
-	m_ButtonLK.pos.Set(142.0f, -50.0f);
-	m_ButtonLK.SetState(BTNSTATE_LK);
-	m_ButtonLK.SetTint(HyColor(128, 128, 128));
-
-	m_ButtonMK.pos.Set(242.0f, -50.0f);
-	m_ButtonMK.SetState(BTNSTATE_MK);
-	m_ButtonMK.SetTint(HyColor(128, 128, 128));
-
-	m_ButtonHK.pos.Set(342.0f, -50.0f);
-	m_ButtonHK.SetState(BTNSTATE_HK);
-	m_ButtonHK.SetTint(HyColor(128, 128, 128));
-}
-
-/*virtual*/ FightStick::~FightStick()
-{
-}
-
-/*virtual*/ void FightStick::OnUpdate() /*override*/
-{
+	// Buttons
 	uint32 uiNewButtonFlags = 0;
 	if(HyEngine::Input().IsActionDown(FIGHTSTICK_LK))
 		uiNewButtonFlags |= BTNFLAG_LK;
@@ -205,80 +223,94 @@ FightStick::FightStick(HyEntity2d *pParent /*= nullptr*/) :
 		{
 			m_ButtonLP.SetTint(HyColor::White);
 			m_ButtonLP.scale.Tween(fButtonPressScale, fButtonPressScale, 0.1f, HyTween::QuadOut);
-			m_Joystick.SetButtonPress(BTNSTATE_LP, true);
+			SetButtonPress(BTNSTATE_LP, true);
 		}
 		else if(m_uiButtonFlags & BTNFLAG_LP && !(uiNewButtonFlags & BTNFLAG_LP))
 		{
 			m_ButtonLP.SetTint(HyColor(128, 128, 128));
 			m_ButtonLP.scale.Tween(1.0f, 1.0f, 0.1f, HyTween::QuadOut);
-			m_Joystick.SetButtonPress(BTNSTATE_LP, false);
+			SetButtonPress(BTNSTATE_LP, false);
 		}
 
 		if(!(m_uiButtonFlags & BTNFLAG_MP) && uiNewButtonFlags & BTNFLAG_MP)
 		{
 			m_ButtonMP.SetTint(HyColor::White);
 			m_ButtonMP.scale.Tween(fButtonPressScale, fButtonPressScale, 0.1f, HyTween::QuadOut);
-			m_Joystick.SetButtonPress(BTNSTATE_MP, true);
+			SetButtonPress(BTNSTATE_MP, true);
 		}
 		else if(m_uiButtonFlags & BTNFLAG_MP && !(uiNewButtonFlags & BTNFLAG_MP))
 		{
 			m_ButtonMP.SetTint(HyColor(128, 128, 128));
 			m_ButtonMP.scale.Tween(1.0f, 1.0f, 0.1f, HyTween::QuadOut);
-			m_Joystick.SetButtonPress(BTNSTATE_MP, false);
+			SetButtonPress(BTNSTATE_MP, false);
 		}
 
 		if(!(m_uiButtonFlags & BTNFLAG_HP) && uiNewButtonFlags & BTNFLAG_HP)
 		{
 			m_ButtonHP.SetTint(HyColor::White);
 			m_ButtonHP.scale.Tween(fButtonPressScale, fButtonPressScale, 0.1f, HyTween::QuadOut);
-			m_Joystick.SetButtonPress(BTNSTATE_HP, true);
+			SetButtonPress(BTNSTATE_HP, true);
 		}
 		else if(m_uiButtonFlags & BTNFLAG_HP && !(uiNewButtonFlags & BTNFLAG_HP))
 		{
 			m_ButtonHP.SetTint(HyColor(128, 128, 128));
 			m_ButtonHP.scale.Tween(1.0f, 1.0f, 0.1f, HyTween::QuadOut);
-			m_Joystick.SetButtonPress(BTNSTATE_HP, false);
+			SetButtonPress(BTNSTATE_HP, false);
 		}
 
 		if(!(m_uiButtonFlags & BTNFLAG_LK) && uiNewButtonFlags & BTNFLAG_LK)
 		{
 			m_ButtonLK.SetTint(HyColor::White);
 			m_ButtonLK.scale.Tween(fButtonPressScale, fButtonPressScale, 0.1f, HyTween::QuadOut);
-			m_Joystick.SetButtonPress(BTNSTATE_LK, true);
+			SetButtonPress(BTNSTATE_LK, true);
 		}
 		else if(m_uiButtonFlags & BTNFLAG_LK && !(uiNewButtonFlags & BTNFLAG_LK))
 		{
 			m_ButtonLK.SetTint(HyColor(128, 128, 128));
 			m_ButtonLK.scale.Tween(1.0f, 1.0f, 0.1f, HyTween::QuadOut);
-			m_Joystick.SetButtonPress(BTNSTATE_LK, false);
+			SetButtonPress(BTNSTATE_LK, false);
 		}
 
 		if(!(m_uiButtonFlags & BTNFLAG_MK) && uiNewButtonFlags & BTNFLAG_MK)
 		{
 			m_ButtonMK.SetTint(HyColor::White);
 			m_ButtonMK.scale.Tween(fButtonPressScale, fButtonPressScale, 0.1f, HyTween::QuadOut);
-			m_Joystick.SetButtonPress(BTNSTATE_MK, true);
+			SetButtonPress(BTNSTATE_MK, true);
 		}
 		else if(m_uiButtonFlags & BTNFLAG_MK && !(uiNewButtonFlags & BTNFLAG_MK))
 		{
 			m_ButtonMK.SetTint(HyColor(128, 128, 128));
 			m_ButtonMK.scale.Tween(1.0f, 1.0f, 0.1f, HyTween::QuadOut);
-			m_Joystick.SetButtonPress(BTNSTATE_MK, false);
+			SetButtonPress(BTNSTATE_MK, false);
 		}
 
 		if(!(m_uiButtonFlags & BTNFLAG_HK) && uiNewButtonFlags & BTNFLAG_HK)
 		{
 			m_ButtonHK.SetTint(HyColor::White);
 			m_ButtonHK.scale.Tween(fButtonPressScale, fButtonPressScale, 0.1f, HyTween::QuadOut);
-			m_Joystick.SetButtonPress(BTNSTATE_HK, true);
+			SetButtonPress(BTNSTATE_HK, true);
 		}
 		else if(m_uiButtonFlags & BTNFLAG_HK && !(uiNewButtonFlags & BTNFLAG_HK))
 		{
 			m_ButtonHK.SetTint(HyColor(128, 128, 128));
 			m_ButtonHK.scale.Tween(1.0f, 1.0f, 0.1f, HyTween::QuadOut);
-			m_Joystick.SetButtonPress(BTNSTATE_HK, false);
+			SetButtonPress(BTNSTATE_HK, false);
 		}
 
 		m_uiButtonFlags = uiNewButtonFlags;
+	}
+}
+
+/*virtual*/ void FightStick::OnMouseClicked() /*override*/
+{
+	if(m_AssignOverlayBG.IsVisible() == false)
+	{
+		m_AssignOverlayBG.SetVisible(true);
+		m_AssignOverlayBG.alpha.Set(0.5f);
+		m_AssignOverlayText.SetVisible(true);
+		m_AssignOverlayText.alpha.Set(1.0f);
+		m_AssignOverlayText.SetText("Set Controller!");
+
+		HyEngine::Input().SetControllerInputListener(m_fpAssignControllerFunc);
 	}
 }

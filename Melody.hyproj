@@ -23,6 +23,14 @@
             "ResolutionX": 1920,
             "ResolutionY": 1080,
             "Type": 0
+        },
+		{
+            "LocationX": 0,
+            "LocationY": 40,
+            "Name": "Control Panel",
+            "ResolutionX": 420,
+            "ResolutionY": 1000,
+            "Type": 0
         }
     ]
 }

@@ -2,17 +2,21 @@
 #define Melody_h__
 
 #include "pch.h"
-#include "Root.h"
+#include "CtrlPanel.h"
 #include "FightStick.h"
+#include "VgMusic.h"
 
 class IScene;
 
 class Melody : public HyEngine
 {
 	HyCamera2d *	m_pCamera;
+	HyCamera2d *	m_pCameraCtrlPanel;
 
 	HyPrimitive2d	m_ColorKeyBg;
+
 	FightStick		m_FightStick;
+	VgMusic			m_VgMusic;
 
 public:
 	Melody(HarmonyInit &initStruct);

@@ -215,7 +215,7 @@
             "errors": 0,
             "filter": "Scenes",
             "itemType": "Source",
-            "name": "Root.cpp"
+            "name": "CtrlPanel.cpp"
         },
         {
             "assetUUID": "f09a746a-d88c-4e21-99c7-d1e18f02d47d",
@@ -224,7 +224,7 @@
             "errors": 0,
             "filter": "Scenes",
             "itemType": "Header",
-            "name": "Root.h"
+            "name": "CtrlPanel.h"
         },
         {
             "assetUUID": "ed6ed7eb-a04a-40c2-8f8e-b19dbc9d1674",
@@ -267,7 +267,7 @@
             "bankId": 0,
             "checksum": 1373590749,
             "errors": 0,
-            "filter": "",
+            "filter": "Components",
             "itemType": "Source",
             "name": "FightStick.cpp"
         },
@@ -276,9 +276,27 @@
             "bankId": 0,
             "checksum": 2108161238,
             "errors": 0,
-            "filter": "",
+            "filter": "Components",
             "itemType": "Header",
             "name": "FightStick.h"
+        },
+        {
+            "assetUUID": "ed33e43e-1567-4327-bd49-93e9d1e8aa1b",
+            "bankId": 0,
+            "checksum": 1578693461,
+            "errors": 0,
+            "filter": "Components",
+            "itemType": "Source",
+            "name": "VgMusic.cpp"
+        },
+        {
+            "assetUUID": "8f101e68-51e1-4211-b06a-091d56a980a8",
+            "bankId": 0,
+            "checksum": 4105372077,
+            "errors": 0,
+            "filter": "Components",
+            "itemType": "Header",
+            "name": "VgMusic.h"
         }
     ],
     "banks": [

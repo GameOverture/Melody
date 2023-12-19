@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Break.h"
-#include "Root.h"
+#include "CtrlPanel.h"
 
 Break::Break(HyEntity2d *pParent /*= nullptr*/) :
 	IScene(SCENE_Break, pParent)

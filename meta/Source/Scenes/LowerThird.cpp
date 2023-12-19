@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "LowerThird.h"
-#include "Root.h"
+#include "CtrlPanel.h"
 
 LowerThird::LowerThird(HyEntity2d *pParent /*= nullptr*/) :
 	IScene(SCENE_LowerThird, pParent),

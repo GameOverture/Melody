@@ -48,9 +48,7 @@ enum ButtonFlag
 	BTNFLAG_HP = 0x20
 };
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-class Joystick : public HyEntity2d
+class FightStick : public HyEntity2d
 {
 	class GatePath : public HyEntity2d
 	{
@@ -80,48 +78,40 @@ class Joystick : public HyEntity2d
 			SetDisplayOrder(DISPLAYORDER_GatePath);
 		}
 	};
-	std::deque<GatePath *>	m_PathList;
+	// Joystick
+	std::deque<GatePath *>		m_PathList;
+	HySprite2d					m_Gate;
+	HySprite2d					m_BallFollow;
+	HySprite2d					m_Ball;
+	HySprite2d					m_ButtonOverlays[NUM_JSGATES];
+	JSGatePoint					m_eOldBallPos;
 
-	HySprite2d				m_Gate;
-	HySprite2d				m_BallFollow;
-	HySprite2d				m_Ball;
-	HySprite2d				m_ButtonOverlays[NUM_JSGATES];
-
-	JSGatePoint				m_eOldBallPos;
-
-public:
-	Joystick(HyEntity2d *pParent);
-
-	void SetButtonPress(ButtonState eButtonState, bool bPressed);
-
-protected:
-	virtual void OnUpdate() override;
-};
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-class FightStick : public HyEntity2d
-{
-	Joystick					m_Joystick;
-
+	// Buttons
 	HyPrimitive2d				m_DriveImpact;
 	HyPrimitive2d				m_DriveParry;
-
 	HySprite2d					m_ButtonLP;
 	HySprite2d					m_ButtonMP;
 	HySprite2d					m_ButtonHP;
 	HySprite2d					m_ButtonLK;
 	HySprite2d					m_ButtonMK;
 	HySprite2d					m_ButtonHK;
-
 	uint32						m_uiButtonFlags;
+
+	// Assign new controller overlay
+	HyPrimitive2d				m_AssignOverlayBG;
+	HyText2d					m_AssignOverlayText;
+	HyControllerInputFunc		m_fpAssignControllerFunc;
 
 public:
 	FightStick(HyEntity2d *pParent = nullptr);
 	virtual ~FightStick();
 
+	void SetButtonPress(ButtonState eButtonState, bool bPressed);
+
 protected:
 	virtual void OnUpdate() override;
+
+	virtual void OnMouseClicked() override;
 };
 
 #endif // FightStick_h__

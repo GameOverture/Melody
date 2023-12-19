@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Outro.h"
-#include "Root.h"
+#include "CtrlPanel.h"
 
 Outro::Outro(HyEntity2d *pParent /*= nullptr*/) :
 	IScene(SCENE_Outro, pParent)

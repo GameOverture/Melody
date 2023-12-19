@@ -3,7 +3,8 @@
 
 Melody::Melody(HarmonyInit &initStruct) :
 	HyEngine(initStruct),
-	m_pCamera(HyEngine::Window().CreateCamera2d())
+	m_pCamera(HyEngine::Window().CreateCamera2d()),
+	m_pCameraCtrlPanel(HyEngine::Window(1).CreateCamera2d())
 {
 	HyEngine::Input().MapBtn(INPUT_ExitGame, HYKEY_Escape);
 	
@@ -23,7 +24,7 @@ Melody::Melody(HarmonyInit &initStruct) :
 
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_LK, HYPAD_A);
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_MK, HYPAD_B);
-	//FIGHTSTICK_HK, // Trigger Positive
+	//FIGHTSTICK_HK, // On Axis 'HYPADAXIS_TriggerRight'
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_LP, HYPAD_X);
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_MP, HYPAD_Y);
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_HP, HYPAD_RightBumper);
@@ -37,17 +38,19 @@ Melody::Melody(HarmonyInit &initStruct) :
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_Parry, HYPAD_LeftThumbStick);
 
 	m_ColorKeyBg.UseWindowCoordinates();
+	m_ColorKeyBg.SetDisplayOrder(-999999);
+	m_ColorKeyBg.SetTint(HyColor::Black);//HyColor::Magenta);
 	m_ColorKeyBg.SetAsBox(1920.0f, 1080.0f);
 	m_ColorKeyBg.pos.Set(0.0f, 0.0f);
 	//m_ColorKeyBg.SetAsBox(312.0f, 139.0f);	// Fight stick camera
 	//m_ColorKeyBg.pos.Set(804.0f, 0.0f);		// Fight stick camera
-	m_ColorKeyBg.SetDisplayOrder(-999999);
-	m_ColorKeyBg.SetTint(HyColor::Magenta);
 
 	m_FightStick.UseWindowCoordinates();
 	m_FightStick.pos.Set(1200.0f, 80.0f);
 	m_FightStick.scale.Set(0.75f, 0.75f);
 	m_FightStick.Load();
+
+	HyEngine::Input().SetControllerBackgroundInput(true);
 }
 
 Melody::~Melody()

@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "Root.h"
+#include "CtrlPanel.h"
 
 Root::Root(HyEntity2d *pParent /*= nullptr*/) :
 	HyEntity2d(pParent),
