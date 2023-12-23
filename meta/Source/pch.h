@@ -27,6 +27,8 @@ enum InputAction
 	INPUT_DanceStop,
 	INPUT_DanceShimmy,
 
+	INPUT_NextTrack,
+
 	FIGHTSTICK_LK,
 	FIGHTSTICK_MK,
 	//FIGHTSTICK_HK, // Trigger Positive

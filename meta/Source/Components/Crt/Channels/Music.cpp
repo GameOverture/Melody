@@ -111,17 +111,17 @@ Music::Music(HyEntity2d *pParent /*= nullptr*/) :
 		for(int32 i = 0; i < NUM_DANCERS; ++i)
 			m_Dancers[i].Shimmy();
 
-		int32 iWidth, iHeight;
-		//HyTextureHandle hTex = HyEngine::HotLoadTexture("\\\\IronMountain/Documents/Video Games Meta-Scrape//NES/media/Named_Boxarts/Batman - The Video Game (USA).png", HYTEXFILTER_NEAREST, iWidth, iHeight);
-		//m_pBoxArt = HY_NEW HyTexturedQuad2d(hTex, iWidth, iHeight, this);
-		
-		m_pBoxArt = HY_NEW HyTexturedQuad2d("\\\\IronMountain/Documents/Video Games Meta-Scrape/NES/media/Named_Boxarts/Balloon Fight (USA).png", HyTextureInfo(HYTEXFILTER_NEAREST, HYTEXTURE_Uncompressed, 2, 0), nullptr);
-		//m_pBoxArt = HY_NEW HyTexturedQuad2d("\\\\IronMountain/Documents/Video Games Meta-Scrape/NES/media/Named_Boxarts/Batman - The Video Game (USA).png", HyTextureInfo(HYTEXFILTER_NEAREST, HYTEXTURE_Uncompressed, 2, 0), nullptr);
-		m_pBoxArt->Load();
+		//int32 iWidth, iHeight;
+		////HyTextureHandle hTex = HyEngine::HotLoadTexture("\\\\IronMountain/Documents/Video Games Meta-Scrape//NES/media/Named_Boxarts/Batman - The Video Game (USA).png", HYTEXFILTER_NEAREST, iWidth, iHeight);
+		////m_pBoxArt = HY_NEW HyTexturedQuad2d(hTex, iWidth, iHeight, this);
+		//
+		//m_pBoxArt = HY_NEW HyTexturedQuad2d("\\\\IronMountain/Documents/Video Games Meta-Scrape/NES/media/Named_Boxarts/Balloon Fight (USA).png", HyTextureInfo(HYTEXFILTER_NEAREST, HYTEXTURE_Uncompressed, 2, 0), nullptr);
+		////m_pBoxArt = HY_NEW HyTexturedQuad2d("\\\\IronMountain/Documents/Video Games Meta-Scrape/NES/media/Named_Boxarts/Batman - The Video Game (USA).png", HyTextureInfo(HYTEXFILTER_NEAREST, HYTEXTURE_Uncompressed, 2, 0), nullptr);
+		//m_pBoxArt->Load();
 
-		HyAudioHandle hAud = HyEngine::HotLoadAudio("\\\\IronMountain/Documents/Video Games Meta-Scrape/NES/media/Named_Ost/Mega Man 3 (USA)[Wily Fortress 2].ogg", true);
-		m_pMusic = HY_NEW HyAudio2d(hAud, this);
-		m_pMusic->Load();
-		m_pMusic->Play();
+		//HyExternalAudioHandle hAud = HyEngine::HotLoadAudio("\\\\IronMountain/Documents/Video Games Meta-Scrape/NES/media/Named_Ost/Mega Man 3 (USA)[Wily Fortress 2].ogg", true);
+		//m_pMusic = HY_NEW HyAudio2d(hAud, this);
+		//m_pMusic->Load();
+		//m_pMusic->Play();
 	}
 }

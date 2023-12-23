@@ -22,6 +22,8 @@ Melody::Melody(HarmonyInit &initStruct) :
 	HyEngine::Input().MapBtn(INPUT_DanceStop, HYKEY_C);
 	HyEngine::Input().MapBtn(INPUT_DanceShimmy, HYKEY_V);
 
+	HyEngine::Input().MapBtn(INPUT_NextTrack, HYKEY_F);
+
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_LK, HYPAD_A);
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_MK, HYPAD_B);
 	//FIGHTSTICK_HK, // On Axis 'HYPADAXIS_TriggerRight'
@@ -49,6 +51,10 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_FightStick.pos.Set(1200.0f, 80.0f);
 	m_FightStick.scale.Set(0.75f, 0.75f);
 	m_FightStick.Load();
+
+	m_VgMusic.UseWindowCoordinates();
+	m_VgMusic.pos.Set(HyEngine::Window().GetWidthF(0.5f), HyEngine::Window().GetHeightF(0.5f));
+	m_VgMusic.Load();
 
 	HyEngine::Input().SetControllerBackgroundInput(true);
 }

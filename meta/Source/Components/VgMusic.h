@@ -9,6 +9,7 @@ class VgMusic : public HyEntity2d
 	HyTexturedQuad2d			m_Title;
 	HyTexturedQuad2d			m_Snapshot;
 
+	HyAudio2d					m_AudioTrack;
 	HyText2d					m_AudioTrackText;
 
 	std::vector<std::string>	m_MusicFileList;

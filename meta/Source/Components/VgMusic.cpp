@@ -33,6 +33,8 @@ VgMusic::VgMusic(HyEntity2d *pParent /*= nullptr*/) :
 
 /*virtual*/ void VgMusic::OnUpdate() /*override*/
 {
+	if(HyEngine::Input().IsActionReleased(INPUT_NextTrack))
+		NextTrack();
 }
 
 void VgMusic::NextTrack()
@@ -40,6 +42,13 @@ void VgMusic::NextTrack()
 	m_iCurrTrackIndex = (m_iCurrTrackIndex + 1) % m_MusicFileList.size();
 
 	const std::string sMusicFile = m_MusicFileList[m_iCurrTrackIndex];
+
+	//HyAudioHandle hAud = HyEngine::HotLoadAudio(sMusicFile, true);
+	m_AudioTrack.Init(sMusicFile, true, 0, 0, this);
+	//m_pMusic->Load();
+	//m_pMusic->Play();
+
+	//m_AudioTrack.Init();
 
 	
 	std::string sMediaDirectory = HyIO::GetDirectoryFromPath(sMusicFile, false); // First strip the file name
@@ -61,6 +70,4 @@ void VgMusic::NextTrack()
 	m_BoxArt.Init(sBoxartFile, HyTextureInfo(), this);
 	m_Title.Init(sTitleFile, HyTextureInfo(), this);
 	m_Snapshot.Init(sSnapshotFile, HyTextureInfo(), this);
-
-	Load();
 }
