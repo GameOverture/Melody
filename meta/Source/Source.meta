@@ -1,5 +1,5 @@
 {
-    "$fileVersion": 14,
+    "$fileVersion": 15,
     "assets": [
         {
             "assetUUID": "7499b1c4-4dad-4385-93bc-4cf51cf51b83",
@@ -297,6 +297,24 @@
             "filter": "Components",
             "itemType": "Header",
             "name": "VgMusic.h"
+        },
+        {
+            "assetUUID": "3b259488-f1a9-4105-958f-f634d4797533",
+            "bankId": 0,
+            "checksum": 913775727,
+            "errors": 0,
+            "filter": "_hy_",
+            "itemType": "Header",
+            "name": "NewEntity.h"
+        },
+        {
+            "assetUUID": "d184ffb2-aedf-4348-9ec6-6b42732d1b0f",
+            "bankId": 0,
+            "checksum": 3302156420,
+            "errors": 0,
+            "filter": "_hy_",
+            "itemType": "Source",
+            "name": "NewEntity.cpp"
         }
     ],
     "banks": [

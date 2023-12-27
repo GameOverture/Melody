@@ -1,12 +1,12 @@
 {
-    "$fileVersion": 14,
+    "$fileVersion": 15,
     "banks": [
         {
             "assets": [
                 {
+                    "categoryId": 0,
                     "checksum": 158687151,
                     "fileName": "0158687151.wav",
-                    "groupId": 0,
                     "instanceLimit": 0,
                     "isStreaming": false
                 }
@@ -15,14 +15,14 @@
             "name": "Default"
         }
     ],
-    "groups": [
+    "categories": [
         {
-            "groupId": 0,
-            "groupName": "SFX"
+            "categoryId": 0,
+            "categoryName": "SFX"
         },
         {
-            "groupId": 1,
-            "groupName": "Music"
+            "categoryId": 1,
+            "categoryName": "Music"
         }
     ]
 }

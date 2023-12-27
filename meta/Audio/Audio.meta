@@ -1,13 +1,13 @@
 {
-    "$fileVersion": 14,
+    "$fileVersion": 15,
     "assets": [
         {
             "assetUUID": "99f03af5-d39f-4bae-83cc-aa8996678d51",
             "bankId": 0,
+            "categoryId": 0,
             "checksum": 158687151,
             "errors": 0,
             "filter": "",
-            "groupId": 0,
             "instanceLimit": 0,
             "isCompressed": false,
             "isExportMono": false,
@@ -34,5 +34,5 @@
         }
     ],
     "nextBankId": 1,
-    "nextGroupId": 2
+    "nextCategoryId": 2
 }

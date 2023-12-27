@@ -27,7 +27,10 @@ enum InputAction
 	INPUT_DanceStop,
 	INPUT_DanceShimmy,
 
-	INPUT_NextTrack,
+	INPUT_VgMusicPlay, // Also skips current track if already playing
+	INPUT_VgMusicStop,
+	INPUT_VgMusicVolumeDown,
+	INPUT_VgMusicVolumeUp,
 
 	FIGHTSTICK_LK,
 	FIGHTSTICK_MK,

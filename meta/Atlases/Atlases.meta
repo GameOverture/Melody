@@ -1,5 +1,5 @@
 {
-    "$fileVersion": 14,
+    "$fileVersion": 15,
     "assets": [
         {
             "assetUUID": "e0306643-b171-41f6-829f-6e23840c649d",
@@ -618,7 +618,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 41,
-            "x": 166,
+            "x": 210,
             "y": 0
         },
         {
@@ -678,7 +678,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 43,
-            "x": 506,
+            "x": 460,
             "y": 0
         },
         {
@@ -718,7 +718,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 41,
-            "x": 210,
+            "x": 166,
             "y": 0
         },
         {
@@ -758,7 +758,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 41,
-            "x": 210,
+            "x": 166,
             "y": 0
         },
         {
@@ -938,8 +938,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 34,
-            "x": 764,
-            "y": 184
+            "x": 690,
+            "y": 183
         },
         {
             "assetUUID": "2db896d4-d8b8-44e8-88f6-42a2467d88d3",
@@ -1118,8 +1118,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 34,
-            "x": 690,
-            "y": 183
+            "x": 764,
+            "y": 184
         },
         {
             "assetUUID": "c818572b-5a7c-4bae-9d39-985dd6d0e0b1",
@@ -1138,7 +1138,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 25,
-            "x": 599,
+            "x": 571,
             "y": 183
         },
         {
@@ -1238,7 +1238,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 25,
-            "x": 571,
+            "x": 599,
             "y": 183
         },
         {
@@ -1458,7 +1458,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 43,
-            "x": 460,
+            "x": 506,
             "y": 0
         },
         {
@@ -1518,7 +1518,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 35,
-            "x": 560,
+            "x": 598,
             "y": 93
         },
         {
@@ -1558,7 +1558,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 35,
-            "x": 598,
+            "x": 560,
             "y": 93
         },
         {
@@ -1718,8 +1718,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 49,
-            "x": 931,
-            "y": 0
+            "x": 972,
+            "y": 91
         },
         {
             "assetUUID": "4a136f23-8e5d-4f03-a614-e5b3388fe7a1",
@@ -1818,8 +1818,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 49,
-            "x": 972,
-            "y": 91
+            "x": 931,
+            "y": 0
         },
         {
             "assetUUID": "c685f914-b9b6-4693-9323-c9060de49425",
@@ -2360,6 +2360,226 @@
             "width": 67,
             "x": 46,
             "y": 941
+        },
+        {
+            "assetUUID": "eabd64a3-6166-4a96-8331-d77c5615ee47",
+            "bankId": 0,
+            "checksum": 3517499372,
+            "cropBottom": 244,
+            "cropLeft": 57,
+            "cropRight": 446,
+            "cropTop": 0,
+            "errors": 0,
+            "filter": "VgMusic/KrankyKongPlay",
+            "height": 250,
+            "isSubAtlas": false,
+            "itemType": "AtlasFrame",
+            "name": "KrankyKongPlay-00",
+            "textureIndex": 3,
+            "textureInfo": 262147,
+            "width": 500,
+            "x": 786,
+            "y": 248
+        },
+        {
+            "assetUUID": "a1570de4-009f-4ae3-857c-81edcb947f44",
+            "bankId": 0,
+            "checksum": 116310830,
+            "cropBottom": 244,
+            "cropLeft": 52,
+            "cropRight": 446,
+            "cropTop": 0,
+            "errors": 0,
+            "filter": "VgMusic/KrankyKongPlay",
+            "height": 250,
+            "isSubAtlas": false,
+            "itemType": "AtlasFrame",
+            "name": "KrankyKongPlay-01",
+            "textureIndex": 3,
+            "textureInfo": 262147,
+            "width": 500,
+            "x": 398,
+            "y": 0
+        },
+        {
+            "assetUUID": "72db8e47-8d34-4bc0-8ea4-035a6dd08853",
+            "bankId": 0,
+            "checksum": 3129094634,
+            "cropBottom": 244,
+            "cropLeft": 52,
+            "cropRight": 446,
+            "cropTop": 0,
+            "errors": 0,
+            "filter": "VgMusic/KrankyKongPlay",
+            "height": 250,
+            "isSubAtlas": false,
+            "itemType": "AtlasFrame",
+            "name": "KrankyKongPlay-02",
+            "textureIndex": 3,
+            "textureInfo": 262147,
+            "width": 500,
+            "x": 1592,
+            "y": 0
+        },
+        {
+            "assetUUID": "b1449732-4241-4fed-af4e-17a3faa73ccc",
+            "bankId": 0,
+            "checksum": 550353471,
+            "cropBottom": 244,
+            "cropLeft": 52,
+            "cropRight": 446,
+            "cropTop": 0,
+            "errors": 0,
+            "filter": "VgMusic/KrankyKongPlay",
+            "height": 250,
+            "isSubAtlas": false,
+            "itemType": "AtlasFrame",
+            "name": "KrankyKongPlay-03",
+            "textureIndex": 3,
+            "textureInfo": 262147,
+            "width": 500,
+            "x": 1194,
+            "y": 0
+        },
+        {
+            "assetUUID": "e3883b2e-4cf5-4b73-b72d-7ad2a021d571",
+            "bankId": 0,
+            "checksum": 3835735316,
+            "cropBottom": 244,
+            "cropLeft": 52,
+            "cropRight": 446,
+            "cropTop": 0,
+            "errors": 0,
+            "filter": "VgMusic/KrankyKongPlay",
+            "height": 250,
+            "isSubAtlas": false,
+            "itemType": "AtlasFrame",
+            "name": "KrankyKongPlay-04",
+            "textureIndex": 3,
+            "textureInfo": 262147,
+            "width": 500,
+            "x": 0,
+            "y": 0
+        },
+        {
+            "assetUUID": "f1372d08-df60-4c2f-8f9c-084ad8b97a54",
+            "bankId": 0,
+            "checksum": 193953564,
+            "cropBottom": 244,
+            "cropLeft": 52,
+            "cropRight": 446,
+            "cropTop": 0,
+            "errors": 0,
+            "filter": "VgMusic/KrankyKongPlay",
+            "height": 250,
+            "isSubAtlas": false,
+            "itemType": "AtlasFrame",
+            "name": "KrankyKongPlay-05",
+            "textureIndex": 3,
+            "textureInfo": 262147,
+            "width": 500,
+            "x": 796,
+            "y": 0
+        },
+        {
+            "assetUUID": "3762819d-f91a-4427-85cf-e093192029fc",
+            "bankId": 0,
+            "checksum": 425600606,
+            "cropBottom": 244,
+            "cropLeft": 57,
+            "cropRight": 446,
+            "cropTop": 0,
+            "errors": 0,
+            "filter": "VgMusic/KrankyKongPlay",
+            "height": 250,
+            "isSubAtlas": false,
+            "itemType": "AtlasFrame",
+            "name": "KrankyKongPlay-06",
+            "textureIndex": 3,
+            "textureInfo": 262147,
+            "width": 500,
+            "x": 0,
+            "y": 248
+        },
+        {
+            "assetUUID": "4e657fb5-ea01-40bc-bdc6-9dd1b344056c",
+            "bankId": 0,
+            "checksum": 156976219,
+            "cropBottom": 244,
+            "cropLeft": 57,
+            "cropRight": 446,
+            "cropTop": 0,
+            "errors": 0,
+            "filter": "VgMusic/KrankyKongPlay",
+            "height": 250,
+            "isSubAtlas": false,
+            "itemType": "AtlasFrame",
+            "name": "KrankyKongPlay-07",
+            "textureIndex": 3,
+            "textureInfo": 262147,
+            "width": 500,
+            "x": 1179,
+            "y": 248
+        },
+        {
+            "assetUUID": "46b3c3a0-145f-4d95-b9aa-c3c2364eae14",
+            "bankId": 0,
+            "checksum": 2417040155,
+            "cropBottom": 244,
+            "cropLeft": 57,
+            "cropRight": 446,
+            "cropTop": 0,
+            "errors": 0,
+            "filter": "VgMusic/KrankyKongPlay",
+            "height": 250,
+            "isSubAtlas": false,
+            "itemType": "AtlasFrame",
+            "name": "KrankyKongPlay-08",
+            "textureIndex": 3,
+            "textureInfo": 262147,
+            "width": 500,
+            "x": 393,
+            "y": 248
+        },
+        {
+            "assetUUID": "7762ebd6-ab2e-4b28-8d4c-f03492560709",
+            "bankId": 0,
+            "checksum": 3795355071,
+            "cropBottom": 244,
+            "cropLeft": 57,
+            "cropRight": 441,
+            "cropTop": 0,
+            "errors": 0,
+            "filter": "VgMusic/KrankyKongPlay",
+            "height": 250,
+            "isSubAtlas": false,
+            "itemType": "AtlasFrame",
+            "name": "KrankyKongPlay-09",
+            "textureIndex": 3,
+            "textureInfo": 262147,
+            "width": 500,
+            "x": 1572,
+            "y": 248
+        },
+        {
+            "assetUUID": "cf00f094-0de1-4300-bd82-880a4971b678",
+            "bankId": 0,
+            "checksum": 1210332093,
+            "cropBottom": 244,
+            "cropLeft": 57,
+            "cropRight": 441,
+            "cropTop": 0,
+            "errors": 0,
+            "filter": "VgMusic/KrankyKongPlay",
+            "height": 250,
+            "isSubAtlas": false,
+            "itemType": "AtlasFrame",
+            "name": "KrankyKongPlay-10",
+            "textureIndex": 3,
+            "textureInfo": 262147,
+            "width": 500,
+            "x": 0,
+            "y": 496
         }
     ],
     "banks": [
@@ -2390,10 +2610,15 @@
                 [
                     2048,
                     2048
+                ],
+                [
+                    2048,
+                    1024
                 ]
             ],
             "unfilledIndices": [
-                1
+                1,
+                3
             ]
         }
     ],

@@ -22,7 +22,10 @@ Melody::Melody(HarmonyInit &initStruct) :
 	HyEngine::Input().MapBtn(INPUT_DanceStop, HYKEY_C);
 	HyEngine::Input().MapBtn(INPUT_DanceShimmy, HYKEY_V);
 
-	HyEngine::Input().MapBtn(INPUT_NextTrack, HYKEY_F);
+	HyEngine::Input().MapBtn(INPUT_VgMusicPlay, HYKEY_F);
+	HyEngine::Input().MapBtn(INPUT_VgMusicStop, HYKEY_G);
+	HyEngine::Input().MapBtn(INPUT_VgMusicVolumeDown, HYKEY_Minus);
+	HyEngine::Input().MapBtn(INPUT_VgMusicVolumeUp, HYKEY_Equal);
 
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_LK, HYPAD_A);
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_MK, HYPAD_B);
@@ -53,7 +56,6 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_FightStick.Load();
 
 	m_VgMusic.UseWindowCoordinates();
-	m_VgMusic.pos.Set(HyEngine::Window().GetWidthF(0.5f), HyEngine::Window().GetHeightF(0.5f));
 	m_VgMusic.Load();
 
 	HyEngine::Input().SetControllerBackgroundInput(true);

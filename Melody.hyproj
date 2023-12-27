@@ -1,5 +1,5 @@
 {
-    "$fileVersion": 14,
+    "$fileVersion": 15,
     "BuildPath": "./build/",
     "ConsoleInfo": {
         "LocationX": 512,
@@ -24,7 +24,7 @@
             "ResolutionY": 1080,
             "Type": 0
         },
-		{
+        {
             "LocationX": 0,
             "LocationY": 40,
             "Name": "Control Panel",

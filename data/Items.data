@@ -1,8 +1,14 @@
 {
-    "$fileVersion": 14,
+    "$fileVersion": 15,
     "Audio": {
     },
     "Entities": {
+        "CRT/NewEntity": {
+            "stateArray": [
+                {
+                }
+            ]
+        }
     },
     "Entities2d": {
     },
@@ -1080,6 +1086,95 @@
                             "duration": 0.10000000149011612,
                             "offsetX": -20,
                             "offsetY": 0
+                        }
+                    ],
+                    "loop": true,
+                    "reverse": false
+                }
+            ]
+        },
+        "VgMusic/Visualizer": {
+            "stateArray": [
+                {
+                    "bounce": false,
+                    "duration": 0.36666667461395264,
+                    "frames": [
+                        {
+                            "bankId": 0,
+                            "checksum": 3517499372,
+                            "duration": 0.03333333507180214,
+                            "offsetX": -193,
+                            "offsetY": -120
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 116310830,
+                            "duration": 0.03333333507180214,
+                            "offsetX": -198,
+                            "offsetY": -120
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 3129094634,
+                            "duration": 0.03333333507180214,
+                            "offsetX": -198,
+                            "offsetY": -120
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 550353471,
+                            "duration": 0.03333333507180214,
+                            "offsetX": -198,
+                            "offsetY": -120
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 3835735316,
+                            "duration": 0.03333333507180214,
+                            "offsetX": -198,
+                            "offsetY": -120
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 193953564,
+                            "duration": 0.03333333507180214,
+                            "offsetX": -198,
+                            "offsetY": -120
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 425600606,
+                            "duration": 0.03333333507180214,
+                            "offsetX": -193,
+                            "offsetY": -120
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 156976219,
+                            "duration": 0.03333333507180214,
+                            "offsetX": -193,
+                            "offsetY": -120
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 2417040155,
+                            "duration": 0.03333333507180214,
+                            "offsetX": -193,
+                            "offsetY": -120
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 3795355071,
+                            "duration": 0.03333333507180214,
+                            "offsetX": -193,
+                            "offsetY": -120
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 1210332093,
+                            "duration": 0.03333333507180214,
+                            "offsetX": -193,
+                            "offsetY": -120
                         }
                     ],
                     "loop": true,

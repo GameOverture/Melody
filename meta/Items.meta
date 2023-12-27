@@ -1,8 +1,74 @@
 {
-    "$fileVersion": 14,
+    "$fileVersion": 15,
     "Audio": {
     },
     "Entities": {
+        "CRT/NewEntity": {
+            "CameraPos": [
+                0,
+                0
+            ],
+            "CameraZoom": 1,
+            "UUID": "4c6a2a3f-9c9b-4271-9578-1ce60d21505a",
+            "autoInitialize": true,
+            "codeName": "NewEntity",
+            "descChildList": [
+                {
+                    "UUID": "4d6fd447-6566-4568-a2ee-2d7a6c8b89a8",
+                    "codeName": "m_LK_Released",
+                    "isSelected": false,
+                    "itemType": "AtlasFrame",
+                    "itemUUID": "cfef32af-c661-4ba1-a9a2-e9f678ab8549",
+                    "promotedEntityType": ""
+                },
+                {
+                    "UUID": "0a360925-41e6-42ad-a002-95ba92076f8a",
+                    "codeName": "m_HK_Pressed",
+                    "isSelected": false,
+                    "itemType": "AtlasFrame",
+                    "itemUUID": "e464eea6-84e8-49bc-a771-aef2e17f8bae",
+                    "promotedEntityType": ""
+                }
+            ],
+            "descShapeList": [
+            ],
+            "framesPerSecond": 60,
+            "stateArray": [
+                {
+                    "callbacks": [
+                    ],
+                    "keyFrames": {
+                        "0a360925-41e6-42ad-a002-95ba92076f8a": [
+                            {
+                                "frame": 0,
+                                "props": {
+                                    "Transformation": {
+                                        "Position": [
+                                            -33.5,
+                                            -34
+                                        ]
+                                    }
+                                }
+                            }
+                        ],
+                        "4d6fd447-6566-4568-a2ee-2d7a6c8b89a8": [
+                            {
+                                "frame": 0,
+                                "props": {
+                                    "Transformation": {
+                                        "Position": [
+                                            33.52001953125,
+                                            34.02001953125
+                                        ]
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    "name": ""
+                }
+            ]
+        }
     },
     "Entities2d": {
     },
@@ -368,6 +434,32 @@
                         "0af09390-00b4-4e21-bdf6-fd84883a82c8"
                     ],
                     "name": ""
+                }
+            ]
+        },
+        "VgMusic/Visualizer": {
+            "CameraPos": [
+                154,
+                147
+            ],
+            "CameraZoom": 0.75,
+            "UUID": "84371df4-385e-40b4-8f0c-1f03bda38c47",
+            "stateArray": [
+                {
+                    "assetUUIDs": [
+                        "eabd64a3-6166-4a96-8331-d77c5615ee47",
+                        "a1570de4-009f-4ae3-857c-81edcb947f44",
+                        "72db8e47-8d34-4bc0-8ea4-035a6dd08853",
+                        "b1449732-4241-4fed-af4e-17a3faa73ccc",
+                        "e3883b2e-4cf5-4b73-b72d-7ad2a021d571",
+                        "f1372d08-df60-4c2f-8f9c-084ad8b97a54",
+                        "3762819d-f91a-4427-85cf-e093192029fc",
+                        "4e657fb5-ea01-40bc-bdc6-9dd1b344056c",
+                        "46b3c3a0-145f-4d95-b9aa-c3c2364eae14",
+                        "7762ebd6-ab2e-4b28-8d4c-f03492560709",
+                        "cf00f094-0de1-4300-bd82-880a4971b678"
+                    ],
+                    "name": "KrankyKongPlay"
                 }
             ]
         }
