@@ -8,11 +8,11 @@ class VgMusic : public HyEntity2d
 	class LargePlayer : public HyEntity2d
 	{
 		HySprite2d					m_AudioVisualizer;
-		HyText2d					m_TitleText;
-		HyText2d					m_TrackText;
 		HyTexturedQuad2d			m_Snapshot;
 		HyTexturedQuad2d			m_Title;
 		HyTexturedQuad2d			m_BoxArt;
+		HyText2d					m_TitleText;
+		HyText2d					m_TrackText;
 
 		HyPrimitive2d				m_Debugbox;
 
@@ -23,11 +23,14 @@ class VgMusic : public HyEntity2d
 		void InitNextTrack(const std::string &sMusicFile);
 
 		void ShowVisualizer(float fFadeInTime);
-		void ShowSnapshot(float fFadeInTime);
+		void ShowIntroTitle(float fFadeInTime);
 		void ShowNowPlaying(float fFadeInTime);
 		void CycleBoxArt(float fFadeInTime);
 		void CycleTitleAndSnapshot(float fFadeInTime);
 		void FadeOut(float fFadeOutTime);
+
+	protected:
+		void TransformTexture(HyTexturedQuad2d &quadRef, glm::ivec2 vMaxSize, glm::vec2 ptCenter);
 	};
 	LargePlayer					m_LargePlayer;
 	HyTimer						m_LargeCycleTimer;
@@ -44,11 +47,11 @@ class VgMusic : public HyEntity2d
 		LARGESTATE_Stopped,
 
 		LARGESTATE_Intro,
-		LARGESTATE_Snapshot,
-		LARGESTATE_Title,
+		LARGESTATE_IntroTitle,
+		LARGESTATE_NowPlaying,
 		LARGESTATE_CycleBoxArt,
 		LARGESTATE_CycleSnapshot,
-		LARGESTATE_FadeOut,
+
 		LARGESTATE_Hide
 	};
 	LargeState					m_eLargeState;
@@ -62,6 +65,16 @@ class VgMusic : public HyEntity2d
 	};
 	SmallState					m_eSmallState;
 
+	enum PlayState
+	{
+		PLAYSTATE_Stopped,
+		PLAYSTATE_Starting,
+		PLAYSTATE_Playing,
+		PLAYSTATE_FadeOutToNext,
+		PLAYSTATE_FadeOutToStop
+	};
+	PlayState					m_ePlayState;
+
 public:
 	VgMusic(HyEntity2d *pParent = nullptr);
 	virtual ~VgMusic();
@@ -74,7 +87,7 @@ public:
 protected:
 	virtual void OnUpdate() override;
 
-	void NextTrack();
+	void FadeOutTrack(float fFadeOutDuration);
 
 	void FitLargeTextureCentered(HyTexturedQuad2d &textureRef);
 };
