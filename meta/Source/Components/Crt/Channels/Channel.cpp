@@ -1,8 +1,9 @@
 #include "pch.h"
 #include "Channel.h"
 
-Channel::Channel(ComponentType eComponentType, HyEntity2d *pParent /*= nullptr*/) :
-	IComponent(eComponentType, pParent),
+Channel::Channel(ChannelType eChannelType, HyEntity2d *pParent /*= nullptr*/) :
+	HyEntity2d(pParent),
+	m_eCHANNEL_TYPE(eChannelType),
 	m_Static("CRT", "Static", this)
 {
 	m_Static.scale.Set(2.25f, 2.25f);

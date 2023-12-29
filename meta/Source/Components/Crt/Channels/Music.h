@@ -6,18 +6,35 @@
 
 #define NUM_DANCERS 6
 
+class VgMusic;
+
+enum DanceState
+{
+	DANCESTATE_Stop,
+	DANCESTATE_Shimmy,
+	DANCESTATE_Dance,
+	DANCESTATE_DanceAlt,
+};
+
 class Dancer : public HyEntityLeaf2d<HySprite2d>
 {
-	bool				m_bIsShimmy;
+	DanceState			m_eDanceState;
 	float				m_fElapsedTime;
+
+	HyTimer				m_DeferTimer;
+	DanceState			m_eDeferDanceState;
 
 public:
 	Dancer(HyEntity2d *pParent = nullptr);
+
+	DanceState GetDanceState() const;
 
 	void Dance();
 	void DanceAlt();
 	void Stop();
 	void Shimmy();
+
+	void DeferDance(DanceState eDanceState, float fDelay);
 
 protected:
 	virtual void OnUpdate() override;
@@ -25,17 +42,51 @@ protected:
 
 class Music : public Channel
 {
-	Dancer				m_Dancers[NUM_DANCERS];
+	VgMusic &					m_VgMusicRef;
 
-	HyTexturedQuad2d *	m_pBoxArt;
-	HyAudio2d *			m_pMusic;
+	HySprite2d					m_AudioVisualizer;
+	HyTexturedQuad2d			m_Snapshot;
+	HyTexturedQuad2d			m_Title;
+	HyTexturedQuad2d			m_BoxArt;
+
+	Dancer						m_Dancers[NUM_DANCERS];
+
+	HySprite2d					m_NowPlayingSound;
+	HyText2d					m_TitleText;
+	HyText2d					m_TrackText;
+
+	enum LargeState
+	{
+		LARGESTATE_Stopped,
+
+		LARGESTATE_Intro,
+		LARGESTATE_IntroTitle,
+		LARGESTATE_NowPlaying,
+		LARGESTATE_CycleBoxArt,
+		LARGESTATE_CycleSnapshot,
+	};
+	LargeState					m_eLargeState;
+	HyTimer						m_LargeCycleTimer;
+
+	//HyPrimitive2d				m_Debugbox;
 
 public:
-	Music(HyEntity2d *pParent = nullptr);
+	Music(VgMusic &vgMusicRef, HyEntity2d *pParent = nullptr);
 	virtual ~Music();
+
+	void InitNextTrack(const std::string &sMusicFile);
+
+	void ShowVisualizer(float fFadeInTime);
+	void ShowIntroTitle(float fFadeInTime);
+	void ShowNowPlaying(float fFadeInTime);
+	void CycleBoxArt(float fFadeInTime);
+	void CycleTitleAndSnapshot(float fFadeInTime);
+	void FadeOut(float fFadeOutTime);
 
 protected:
 	virtual void OnUpdate() override;
+
+	void TransformTexture(HyTexturedQuad2d &quadRef, glm::ivec2 vMaxSize, glm::vec2 ptCenter);
 };
 
 #endif // Music_h__

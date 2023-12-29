@@ -1211,6 +1211,161 @@
                         }
                     ],
                     "loop": true,
+                    "reverse": true
+                },
+                {
+                    "bounce": true,
+                    "duration": 0.5250000357627869,
+                    "frames": [
+                        {
+                            "bankId": 0,
+                            "checksum": 1180143042,
+                            "duration": 0.02500000037252903,
+                            "offsetX": -240,
+                            "offsetY": -85
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 3126820298,
+                            "duration": 0.02500000037252903,
+                            "offsetX": -240,
+                            "offsetY": -85
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 654046831,
+                            "duration": 0.02500000037252903,
+                            "offsetX": -240,
+                            "offsetY": -85
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 1299319328,
+                            "duration": 0.02500000037252903,
+                            "offsetX": -240,
+                            "offsetY": -85
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 2675801899,
+                            "duration": 0.02500000037252903,
+                            "offsetX": -240,
+                            "offsetY": -88
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 1150044,
+                            "duration": 0.02500000037252903,
+                            "offsetX": -238,
+                            "offsetY": -83
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 3315749822,
+                            "duration": 0.02500000037252903,
+                            "offsetX": -238,
+                            "offsetY": -83
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 2124140215,
+                            "duration": 0.02500000037252903,
+                            "offsetX": -238,
+                            "offsetY": -83
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 3935434664,
+                            "duration": 0.02500000037252903,
+                            "offsetX": -238,
+                            "offsetY": -83
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 2449303703,
+                            "duration": 0.02500000037252903,
+                            "offsetX": -238,
+                            "offsetY": -83
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 1803666976,
+                            "duration": 0.02500000037252903,
+                            "offsetX": -238,
+                            "offsetY": -85
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 590196165,
+                            "duration": 0.02500000037252903,
+                            "offsetX": -238,
+                            "offsetY": -85
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 509925599,
+                            "duration": 0.02500000037252903,
+                            "offsetX": -238,
+                            "offsetY": -85
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 2721663344,
+                            "duration": 0.02500000037252903,
+                            "offsetX": -238,
+                            "offsetY": -85
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 3601209941,
+                            "duration": 0.02500000037252903,
+                            "offsetX": -238,
+                            "offsetY": -85
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 137136623,
+                            "duration": 0.02500000037252903,
+                            "offsetX": -240,
+                            "offsetY": -86
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 2496281473,
+                            "duration": 0.02500000037252903,
+                            "offsetX": -240,
+                            "offsetY": -85
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 3733847306,
+                            "duration": 0.02500000037252903,
+                            "offsetX": -240,
+                            "offsetY": -85
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 3518168003,
+                            "duration": 0.02500000037252903,
+                            "offsetX": -244,
+                            "offsetY": -90
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 4156033511,
+                            "duration": 0.02500000037252903,
+                            "offsetX": -244,
+                            "offsetY": -85
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 402433704,
+                            "duration": 0.02500000037252903,
+                            "offsetX": -244,
+                            "offsetY": -85
+                        }
+                    ],
+                    "loop": true,
                     "reverse": false
                 }
             ]

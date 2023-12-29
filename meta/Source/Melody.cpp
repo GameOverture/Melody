@@ -6,9 +6,10 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_pCamera(HyEngine::Window().CreateCamera2d()),
 	m_pCameraCtrlPanel(HyEngine::Window(1).CreateCamera2d()),
 	m_ColorKeyBg(),
-	m_Crt(),
 	m_FightStick(),
-	m_VgMusic(m_Crt)
+	m_VgMusic(),
+	m_Crt(m_VgMusic),
+	m_CtrlPanel()
 {
 	HyEngine::Input().MapBtn(INPUT_ExitGame, HYKEY_Escape);
 	
@@ -60,7 +61,7 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_FightStick.pos.Set(1200.0f, 80.0f);
 	m_FightStick.scale.Set(0.75f, 0.75f);
 	m_FightStick.Load();
-	m_FightStick.SetVisible(false); 
+	m_FightStick.SetVisible(false);
 
 	m_VgMusic.UseWindowCoordinates();
 	m_VgMusic.Load();
@@ -72,7 +73,7 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_CtrlPanel.UseWindowCoordinates(1);
 	m_CtrlPanel.AddComponent(m_FightStick);
 	m_CtrlPanel.AddComponent(m_Crt);
-	m_CtrlPanel.AddComponent(m_VgMusic.GetLargePlayer());
+	//m_CtrlPanel.AddComponent(m_VgMusic.GetLargePlayer());
 	m_CtrlPanel.FinishComponents();
 	m_CtrlPanel.Load();
 }

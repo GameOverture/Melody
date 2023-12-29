@@ -6,7 +6,6 @@
 enum ComponentType
 {
 	COMPONENT_FightStick = 0,
-	COMPONENT_VgMusicLarge,
 	COMPONENT_Crt,
 	COMPONENT_Wheel,
 

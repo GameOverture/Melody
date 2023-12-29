@@ -1,10 +1,11 @@
 #include "pch.h"
 #include "Crt.h"
+#include "VgMusic.h"
 #include "Music.h"
 
 #define CRT_SHRINK_AMT 0.01f
 
-Crt::Crt(HyEntity2d *pParent /*= nullptr*/) :
+Crt::Crt(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_Crt, pParent),
 	m_Screen("CRT", "Screen", this),
 	m_Channel(this),
@@ -18,7 +19,7 @@ Crt::Crt(HyEntity2d *pParent /*= nullptr*/) :
 	
 	m_Screen.pos.Set(iScreenX, iScreenY);
 
-	m_Channel.pos.Set(iScreenX, iScreenY);
+	m_Channel.pos.Set(iScreenX + 24, iScreenY + 6);
 	m_Channel.scale_pivot.Set(CRT_SCREEN_WIDTH * 0.5f, CRT_SCREEN_HEIGHT * 0.5f);
 	m_Channel.scale.Set(CRT_SHRINK_AMT, CRT_SHRINK_AMT);
 	m_Channel.SetVisible(false);
@@ -36,7 +37,7 @@ Crt::Crt(HyEntity2d *pParent /*= nullptr*/) :
 	{
 		Channel *pNewChannel = nullptr;
 		if(i == 0)
-			pNewChannel = HY_NEW Music(&m_Channel);
+			pNewChannel = HY_NEW Music(vgMusicRef, &m_Channel);
 		//else
 		//	pNewChannel = HY_NEW Channel(&m_Channel);
 		pNewChannel->SetVisible(i == m_iChannelIndex);
@@ -49,6 +50,11 @@ Crt::Crt(HyEntity2d *pParent /*= nullptr*/) :
 
 /*virtual*/ Crt::~Crt()
 {
+}
+
+HyEntity2d &Crt::GetChannelEntity()
+{
+	return m_Channel;
 }
 
 void Crt::TogglePower()

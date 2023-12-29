@@ -18,11 +18,11 @@ class Melody : public HyEngine
 
 	HyPrimitive2d	m_ColorKeyBg;
 
-	Crt				m_Crt;
-
 	FightStick		m_FightStick;
 	VgMusic			m_VgMusic;
 	//Wheel			m_Wheel;
+
+	Crt				m_Crt;
 
 	CtrlPanel		m_CtrlPanel;
 

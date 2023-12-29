@@ -8,6 +8,8 @@
 
 #define CRT_MAX_CHANNELS 1//0
 
+class VgMusic;
+
 class Crt : public IComponent
 {
 	std::vector<Channel *>	m_ChannelList;
@@ -26,8 +28,10 @@ class Crt : public IComponent
 	Message					m_Message;
 
 public:
-	Crt(HyEntity2d *pParent = nullptr);
+	Crt(VgMusic &vgMusicRef, HyEntity2d *pParent = nullptr);
 	virtual ~Crt();
+
+	HyEntity2d &GetChannelEntity();
 
 	void TogglePower();
 
