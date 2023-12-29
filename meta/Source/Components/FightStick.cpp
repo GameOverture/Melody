@@ -2,7 +2,7 @@
 #include "FightStick.h"
 
 FightStick::FightStick(HyEntity2d *pParent /*= nullptr*/) :
-	HyEntity2d(pParent),
+	IComponent(COMPONENT_FightStick, pParent),
 	m_Gate("FightStick", "JoystickGate", this),
 	m_BallFollow("FightStick", "JoystickBall", this),
 	m_Ball("FightStick", "JoystickBall", this),
@@ -86,6 +86,8 @@ FightStick::FightStick(HyEntity2d *pParent /*= nullptr*/) :
 	};
 
 	EnableMouseInput(); // When mouse input is detected, listen for all controllers and assign a new game pad
+
+	SetDisplayOrder(DISPLAYORDER_FIGHTSTICK);
 }
 
 /*virtual*/ FightStick::~FightStick()

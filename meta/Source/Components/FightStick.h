@@ -2,9 +2,7 @@
 #define FightStick_h__
 
 #include "pch.h"
-
-#define DISPLAYORDER_GatePath -100
-#define DISPLAYORDER_Gate -110
+#include "IComponent.h"
 
 enum JSGatePoint
 {
@@ -48,7 +46,7 @@ enum ButtonFlag
 	BTNFLAG_HP = 0x20
 };
 
-class FightStick : public HyEntity2d
+class FightStick : public IComponent
 {
 	class GatePath : public HyEntity2d
 	{

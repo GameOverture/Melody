@@ -1,62 +1,29 @@
 #include "pch.h"
 #include "CtrlPanel.h"
+#include "IComponent.h"
 
-Root::Root(HyEntity2d *pParent /*= nullptr*/) :
-	HyEntity2d(pParent),
-	m_Crt(this),
-	m_Message(this),
-	m_pCurrentScene(nullptr),
-	m_Intro(this),
-	m_LowerThird(this),
-	m_Break(this),
-	m_Wheel(WheelInit(), this),
-	m_Outro(this)
+CtrlPanel::CtrlPanel(HyEntity2d *pParent /*= nullptr*/) :
+	HyUiContainer(HYORIEN_Vertical, HyPanelInit(), pParent)
 {
-	m_Intro.Hide(0.0f);
-	m_LowerThird.Hide(0.0f);
-	m_Break.Hide(0.0f);
-	m_Wheel.Hide(0.0f);
-	m_Outro.Hide(0.0f);
-
-	m_pCurrentScene = &m_Intro;
-	m_Intro.Show(0.0f);
+	SetSize(420, 1000);
 }
 
-/*virtual*/ Root::~Root()
+/*virtual*/ CtrlPanel::~CtrlPanel()
 {
 }
 
-Crt &Root::GetCrt()
+void CtrlPanel::AddComponent(IComponent &componentRef)
 {
-	return m_Crt;
+	HyLayoutHandle hRow = InsertLayout(HYORIEN_Horizontal);
+	InsertWidget(componentRef.GetCtrlPanelCheckBox(), hRow);
+	InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
 }
 
-Message &Root::GetMessage()
+void CtrlPanel::FinishComponents()
 {
-	return m_Message;
+	InsertSpacer();
 }
 
-/*virtual*/ void Root::OnUpdate() /*override*/
+/*virtual*/ void CtrlPanel::OnContainerUpdate() /*override*/
 {
-	// INPUT
-	IScene *pNextScene = nullptr;
-	if(HyEngine::Input().IsActionReleased(INPUT_GotoIntro))
-		pNextScene = &m_Intro;
-	else if(HyEngine::Input().IsActionReleased(INPUT_GotoLowerThird))
-		pNextScene = &m_LowerThird;
-	else if(HyEngine::Input().IsActionReleased(INPUT_GotoBreak))
-		pNextScene = &m_Break;
-	else if(HyEngine::Input().IsActionReleased(INPUT_GotoWheel))
-		pNextScene = &m_Wheel;
-	else if(HyEngine::Input().IsActionReleased(INPUT_GotoOutro))
-		pNextScene = &m_Outro;
-
-	// TRANSITION
-	if(pNextScene && pNextScene != m_pCurrentScene)
-	{
-		m_pCurrentScene->Hide(0.0f);
-		pNextScene->Show(2.0f);
-		m_pCurrentScene = pNextScene;
-		pNextScene = nullptr;
-	}
 }

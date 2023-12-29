@@ -123,18 +123,18 @@
             "bankId": 0,
             "checksum": 4169603775,
             "errors": 0,
-            "filter": "Scenes",
+            "filter": "Components",
             "itemType": "Source",
-            "name": "IScene.cpp"
+            "name": "IComponent.cpp"
         },
         {
             "assetUUID": "6b928b6e-3694-4e8f-80a1-04fe7d8e0461",
             "bankId": 0,
             "checksum": 2472090458,
             "errors": 0,
-            "filter": "Scenes",
+            "filter": "Components",
             "itemType": "Header",
-            "name": "IScene.h"
+            "name": "IComponent.h"
         },
         {
             "assetUUID": "2251013f-b24d-480f-9be6-9d7d0b61e058",

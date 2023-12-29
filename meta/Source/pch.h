@@ -3,6 +3,10 @@
 
 #include "HyEngine.h"
 
+#define DISPLAYORDER_FIGHTSTICK		999999
+#define DISPLAYORDER_GatePath		999980
+#define DISPLAYORDER_Gate			999970
+
 #define CRT_SCREEN_WIDTH 851
 #define CRT_SCREEN_HEIGHT 613
 

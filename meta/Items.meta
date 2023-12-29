@@ -437,6 +437,24 @@
                 }
             ]
         },
+        "VgMusic/NowPlayingSound": {
+            "CameraPos": [
+                -338,
+                118
+            ],
+            "CameraZoom": 1,
+            "UUID": "0e67c812-452a-4660-9642-cbdb6356357d",
+            "stateArray": [
+                {
+                    "assetUUIDs": [
+                        "98c78465-12a9-4f47-a870-65fb42be36bf",
+                        "e32b59e5-3dc5-440f-a97d-693ebc4126ca",
+                        "d863e4ac-6e6b-4b81-b913-3cd6f948cff6"
+                    ],
+                    "name": ""
+                }
+            ]
+        },
         "VgMusic/Visualizer": {
             "CameraPos": [
                 154,
@@ -479,6 +497,27 @@
                 "a-z": false,
                 "additional": "",
                 "symbols": false
+            },
+            "stateArray": [
+                {
+                    "name": ""
+                }
+            ]
+        },
+        "CtrlPanel": {
+            "CameraPos": [
+                -13,
+                -11
+            ],
+            "CameraZoom": 1,
+            "UUID": "d16833ae-f145-496f-9574-c07c6cca1ddc",
+            "assetUUID": "388f179c-0af2-4282-b70e-222318f6c3a7",
+            "availableGlyphs": {
+                "0-9": true,
+                "A-Z": true,
+                "a-z": true,
+                "additional": "",
+                "symbols": true
             },
             "stateArray": [
                 {

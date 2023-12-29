@@ -5,7 +5,7 @@
 #define CRT_SHRINK_AMT 0.01f
 
 Crt::Crt(HyEntity2d *pParent /*= nullptr*/) :
-	HyEntity2d(pParent),
+	IComponent(COMPONENT_Crt, pParent),
 	m_Screen("CRT", "Screen", this),
 	m_Channel(this),
 	m_Frame("CRT", "Frame", this),
@@ -37,12 +37,14 @@ Crt::Crt(HyEntity2d *pParent /*= nullptr*/) :
 		Channel *pNewChannel = nullptr;
 		if(i == 0)
 			pNewChannel = HY_NEW Music(&m_Channel);
-		else
-			pNewChannel = HY_NEW Channel(&m_Channel);
+		//else
+		//	pNewChannel = HY_NEW Channel(&m_Channel);
 		pNewChannel->SetVisible(i == m_iChannelIndex);
 		//pNewChannel->
 		m_ChannelList.push_back(pNewChannel);
 	}
+
+	pos.Set(548.0f, 0.0f);
 }
 
 /*virtual*/ Crt::~Crt()

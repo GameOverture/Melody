@@ -4,7 +4,11 @@
 Melody::Melody(HarmonyInit &initStruct) :
 	HyEngine(initStruct),
 	m_pCamera(HyEngine::Window().CreateCamera2d()),
-	m_pCameraCtrlPanel(HyEngine::Window(1).CreateCamera2d())
+	m_pCameraCtrlPanel(HyEngine::Window(1).CreateCamera2d()),
+	m_ColorKeyBg(),
+	m_Crt(),
+	m_FightStick(),
+	m_VgMusic(m_Crt)
 {
 	HyEngine::Input().MapBtn(INPUT_ExitGame, HYKEY_Escape);
 	
@@ -42,6 +46,8 @@ Melody::Melody(HarmonyInit &initStruct) :
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_DriveImpact, HYPAD_LeftBumper);
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_Parry, HYPAD_LeftThumbStick);
 
+	HyEngine::Input().SetControllerBackgroundInput(true);
+
 	m_ColorKeyBg.UseWindowCoordinates();
 	m_ColorKeyBg.SetDisplayOrder(-999999);
 	m_ColorKeyBg.SetTint(HyColor::Black);//HyColor::Magenta);
@@ -54,11 +60,21 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_FightStick.pos.Set(1200.0f, 80.0f);
 	m_FightStick.scale.Set(0.75f, 0.75f);
 	m_FightStick.Load();
+	m_FightStick.SetVisible(false); 
 
 	m_VgMusic.UseWindowCoordinates();
 	m_VgMusic.Load();
 
-	HyEngine::Input().SetControllerBackgroundInput(true);
+	m_Crt.UseWindowCoordinates();
+	m_Crt.Load();
+	m_Crt.SetVisible(false);
+
+	m_CtrlPanel.UseWindowCoordinates(1);
+	m_CtrlPanel.AddComponent(m_FightStick);
+	m_CtrlPanel.AddComponent(m_Crt);
+	m_CtrlPanel.AddComponent(m_VgMusic.GetLargePlayer());
+	m_CtrlPanel.FinishComponents();
+	m_CtrlPanel.Load();
 }
 
 Melody::~Melody()

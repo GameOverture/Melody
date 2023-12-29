@@ -80,7 +80,7 @@ Wheel::SpinEnt::SpinEnt(const WheelInit &initStructRef) :
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Wheel::Wheel(const WheelInit &initStructRef, HyEntity2d *pParent /*= nullptr*/) :
-	IScene(SCENE_Wheel, pParent),
+	IComponent(COMPONENT_Wheel, pParent),
 	m_SpinEnt(initStructRef),
 	m_Ticker(initStructRef.ticker.m_sPrefix, initStructRef.ticker.m_sName),
 	m_pWeightTable(initStructRef.pWedgeWeightTable),

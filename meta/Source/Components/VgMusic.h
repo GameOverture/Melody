@@ -2,36 +2,40 @@
 #define VgMusic_h__
 
 #include "pch.h"
+#include "Channel.h"
+#include "Crt.h"
+
+class LargePlayer : public Channel
+{
+	HySprite2d					m_AudioVisualizer;
+	HyTexturedQuad2d			m_Snapshot;
+	HyTexturedQuad2d			m_Title;
+	HyTexturedQuad2d			m_BoxArt;
+	HySprite2d					m_NowPlayingSound;
+	HyText2d					m_TitleText;
+	HyText2d					m_TrackText;
+
+	HyPrimitive2d				m_Debugbox;
+
+public:
+	LargePlayer(HyEntity2d *pParent);
+	virtual ~LargePlayer();
+
+	void InitNextTrack(const std::string &sMusicFile);
+
+	void ShowVisualizer(float fFadeInTime);
+	void ShowIntroTitle(float fFadeInTime);
+	void ShowNowPlaying(float fFadeInTime);
+	void CycleBoxArt(float fFadeInTime);
+	void CycleTitleAndSnapshot(float fFadeInTime);
+	void FadeOut(float fFadeOutTime);
+
+protected:
+	void TransformTexture(HyTexturedQuad2d &quadRef, glm::ivec2 vMaxSize, glm::vec2 ptCenter);
+};
 
 class VgMusic : public HyEntity2d
 {
-	class LargePlayer : public HyEntity2d
-	{
-		HySprite2d					m_AudioVisualizer;
-		HyTexturedQuad2d			m_Snapshot;
-		HyTexturedQuad2d			m_Title;
-		HyTexturedQuad2d			m_BoxArt;
-		HyText2d					m_TitleText;
-		HyText2d					m_TrackText;
-
-		HyPrimitive2d				m_Debugbox;
-
-	public:
-		LargePlayer(HyEntity2d *pParent);
-		virtual ~LargePlayer();
-
-		void InitNextTrack(const std::string &sMusicFile);
-
-		void ShowVisualizer(float fFadeInTime);
-		void ShowIntroTitle(float fFadeInTime);
-		void ShowNowPlaying(float fFadeInTime);
-		void CycleBoxArt(float fFadeInTime);
-		void CycleTitleAndSnapshot(float fFadeInTime);
-		void FadeOut(float fFadeOutTime);
-
-	protected:
-		void TransformTexture(HyTexturedQuad2d &quadRef, glm::ivec2 vMaxSize, glm::vec2 ptCenter);
-	};
 	LargePlayer					m_LargePlayer;
 	HyTimer						m_LargeCycleTimer;
 
@@ -76,13 +80,15 @@ class VgMusic : public HyEntity2d
 	PlayState					m_ePlayState;
 
 public:
-	VgMusic(HyEntity2d *pParent = nullptr);
+	VgMusic(Crt &crtRef, HyEntity2d *pParent = nullptr);
 	virtual ~VgMusic();
 
 	bool IsLargeShowing() const;
 	void ShowLarge(bool bEnable);
 	bool IsSmallShowing() const;
 	void ShowSmall(bool bEnable);
+
+	LargePlayer &GetLargePlayer();
 
 protected:
 	virtual void OnUpdate() override;

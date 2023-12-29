@@ -2,13 +2,13 @@
 #define Wheel_h__
 
 #include "pch.h"
-#include "IScene.h"
+#include "IComponent.h"
 #include "WheelInit.h"
 #include "WeightTable.h"
 
 typedef HyEntityLeaf2d<HySprite2d> Wedge;
 
-class Wheel : public IScene
+class Wheel : public IComponent
 {
 	class SpinEnt : public HyEntity2d
 	{

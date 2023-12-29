@@ -20,8 +20,8 @@ set(GAME_SRCFILES
 	"Scenes/Intro.h"
 	"Scenes/Outro.cpp"
 	"Scenes/Outro.h"
-	"Scenes/IScene.cpp"
-	"Scenes/IScene.h"
+	"Components/IComponent.cpp"
+	"Components/IComponent.h"
 	"Scenes/LowerThird.cpp"
 	"Scenes/LowerThird.h"
 	"Scenes/Break.cpp"
@@ -45,12 +45,12 @@ set(GAME_SRCFILES
 
 set(GAME_INCLUDE_DIRS "")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}")
-list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt/Channels")
-list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components")
-list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt")
-list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Scenes")
-list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/_hy_")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Wheel")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt/Channels")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Scenes")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/_hy_")
 
 #################################################################################################
 # ^ ^ ^ USER CONFIG ABOVE ^ ^ ^

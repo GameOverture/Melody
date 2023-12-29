@@ -2,11 +2,13 @@
 #define Crt_h__
 
 #include "pch.h"
+#include "IComponent.h"
 #include "Channel.h"
+#include "Message.h"
 
 #define CRT_MAX_CHANNELS 1//0
 
-class Crt : public HyEntity2d
+class Crt : public IComponent
 {
 	std::vector<Channel *>	m_ChannelList;
 	int32					m_iChannelIndex;
@@ -20,6 +22,8 @@ class Crt : public HyEntity2d
 	HyText2d				m_VcrTimeMins;
 	
 	HyStencil				m_Stencil;
+
+	Message					m_Message;
 
 public:
 	Crt(HyEntity2d *pParent = nullptr);

@@ -65,7 +65,7 @@ void Dancer::Shimmy()
 }
 
 Music::Music(HyEntity2d *pParent /*= nullptr*/) :
-	Channel(pParent),
+	Channel(COMPONENT_VgMusicLarge, pParent),
 	m_pBoxArt(nullptr),
 	m_pMusic(nullptr)
 {

@@ -5,6 +5,9 @@
 #include "CtrlPanel.h"
 #include "FightStick.h"
 #include "VgMusic.h"
+#include "Wheel.h"
+#include "Crt.h"
+#include "Message.h"
 
 class IScene;
 
@@ -15,8 +18,13 @@ class Melody : public HyEngine
 
 	HyPrimitive2d	m_ColorKeyBg;
 
+	Crt				m_Crt;
+
 	FightStick		m_FightStick;
 	VgMusic			m_VgMusic;
+	//Wheel			m_Wheel;
+
+	CtrlPanel		m_CtrlPanel;
 
 public:
 	Melody(HarmonyInit &initStruct);

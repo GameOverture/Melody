@@ -1,7 +1,8 @@
 #include "pch.h"
 #include "VgMusic.h"
+#include "Crt.h"
 
-#define LARGE_INTRO_TIME 5.0f//20.0f
+#define LARGE_INTRO_TIME 20.0f
 #define LARGE_INTROSNAPSHOT_TIME 5.0f
 #define LARGE_INTRONOWPLAYING_TIME 5.0f
 
@@ -11,19 +12,24 @@
 
 #define VGMUSIC_NEXT_FADEOUT_DUR 5.0f
 #define VGMUSIC_STOP_FADEOUT_DUR 0.5f
-#define VGMUSIC_MAX_SONG_LENGTH 20.0f//115.0f
+#define VGMUSIC_MAX_SONG_LENGTH 115.0f
 
-VgMusic::LargePlayer::LargePlayer(HyEntity2d *pParent) :
-	HyEntity2d(pParent),
+LargePlayer::LargePlayer(HyEntity2d *pParent) :
+	Channel(COMPONENT_VgMusicLarge, pParent),
 	m_AudioVisualizer("VgMusic", "Visualizer", this),
 	m_Snapshot(this),
 	m_Title(this),
 	m_BoxArt(this),
+	m_NowPlayingSound("VgMusic", "NowPlayingSound", this),
 	m_TitleText("", "MainText", this),
 	m_TrackText("", "MainText", this),
 	m_Debugbox(this)
 {
 	m_AudioVisualizer.SetVisible(false);
+
+	m_NowPlayingSound.SetVisible(false);
+	m_NowPlayingSound.scale.Set(1.0f, 0.5f);
+	m_NowPlayingSound.pos.Set(LARGE_WIDTH, 0.0f);
 
 	m_TitleText.SetVisible(false);
 	m_TitleText.SetTextAlignment(HYALIGN_Right);
@@ -43,11 +49,11 @@ VgMusic::LargePlayer::LargePlayer(HyEntity2d *pParent) :
 	m_Debugbox.SetAsBox(LARGE_WIDTH, LARGE_HEIGHT);
 }
 
-/*virtual*/ VgMusic::LargePlayer::~LargePlayer()
+/*virtual*/ LargePlayer::~LargePlayer()
 {
 }
 
-void VgMusic::LargePlayer::InitNextTrack(const std::string &sMusicFile)
+void LargePlayer::InitNextTrack(const std::string &sMusicFile)
 {
 	std::string sMediaDirectory = HyIO::GetDirectoryFromPath(sMusicFile); // First strip the file name
 	sMediaDirectory = HyIO::GetDirectoryFromPath(sMediaDirectory); // Then go back one directory
@@ -79,6 +85,7 @@ void VgMusic::LargePlayer::InitNextTrack(const std::string &sMusicFile)
 	m_Snapshot.Init(sSnapshotFile, HyTextureInfo(), this);
 
 	m_AudioVisualizer.SetVisible(false);
+	m_NowPlayingSound.SetVisible(false);
 	m_TitleText.SetVisible(false);
 	m_TrackText.SetVisible(false);
 	m_Snapshot.SetVisible(false);
@@ -86,7 +93,7 @@ void VgMusic::LargePlayer::InitNextTrack(const std::string &sMusicFile)
 	m_BoxArt.SetVisible(false);
 }
 
-void VgMusic::LargePlayer::ShowVisualizer(float fFadeInTime)
+void LargePlayer::ShowVisualizer(float fFadeInTime)
 {
 	FadeOut(fFadeInTime);
 
@@ -104,7 +111,7 @@ void VgMusic::LargePlayer::ShowVisualizer(float fFadeInTime)
 	m_AudioVisualizer.SetVisible(true);
 }
 
-void VgMusic::LargePlayer::ShowIntroTitle(float fFadeInTime)
+void LargePlayer::ShowIntroTitle(float fFadeInTime)
 {
 	FadeOut(fFadeInTime);
 
@@ -117,8 +124,12 @@ void VgMusic::LargePlayer::ShowIntroTitle(float fFadeInTime)
 	m_Title.SetVisible(true);
 }
 
-void VgMusic::LargePlayer::ShowNowPlaying(float fFadeInTime)
+void LargePlayer::ShowNowPlaying(float fFadeInTime)
 {
+	m_NowPlayingSound.alpha.Set(0.0f);
+	m_NowPlayingSound.alpha.Tween(1.0f, fFadeInTime);
+	m_NowPlayingSound.SetVisible(true);
+
 	m_TitleText.alpha.Set(0.0f);
 	m_TitleText.alpha.Tween(1.0f, fFadeInTime);
 	m_TitleText.SetVisible(true);
@@ -128,7 +139,7 @@ void VgMusic::LargePlayer::ShowNowPlaying(float fFadeInTime)
 	m_TrackText.SetVisible(true);
 }
 
-void VgMusic::LargePlayer::CycleBoxArt(float fFadeInTime)
+void LargePlayer::CycleBoxArt(float fFadeInTime)
 {
 	if(m_Snapshot.IsVisible())
 		m_Snapshot.alpha.Tween(0.0f, fFadeInTime, HyTween::Linear, 0.0f, [](IHyNode *pThis) { pThis->SetVisible(false); });
@@ -144,7 +155,7 @@ void VgMusic::LargePlayer::CycleBoxArt(float fFadeInTime)
 	m_BoxArt.SetVisible(true);
 }
 
-void VgMusic::LargePlayer::CycleTitleAndSnapshot(float fFadeInTime)
+void LargePlayer::CycleTitleAndSnapshot(float fFadeInTime)
 {
 	if(m_BoxArt.IsVisible())
 		m_BoxArt.alpha.Tween(0.0f, fFadeInTime, HyTween::Linear, 0.0f, [](IHyNode *pThis) { pThis->SetVisible(false); });
@@ -164,10 +175,12 @@ void VgMusic::LargePlayer::CycleTitleAndSnapshot(float fFadeInTime)
 	m_Snapshot.SetVisible(true);
 }
 
-void VgMusic::LargePlayer::FadeOut(float fFadeOutTime)
+void LargePlayer::FadeOut(float fFadeOutTime)
 {
 	if(m_AudioVisualizer.IsVisible())
 		m_AudioVisualizer.alpha.Tween(0.0f, fFadeOutTime, HyTween::Linear, 0.0f, [](IHyNode *pThis) { pThis->SetVisible(false); });
+	if(m_NowPlayingSound.IsVisible())
+		m_NowPlayingSound.alpha.Tween(0.0f, fFadeOutTime, HyTween::Linear, 0.0f, [](IHyNode *pThis) { pThis->SetVisible(false); });
 	if(m_TitleText.IsVisible())
 		m_TitleText.alpha.Tween(0.0f, fFadeOutTime, HyTween::Linear, 0.0f, [](IHyNode *pThis) { pThis->SetVisible(false); });
 	if(m_TrackText.IsVisible())
@@ -180,7 +193,7 @@ void VgMusic::LargePlayer::FadeOut(float fFadeOutTime)
 		m_BoxArt.alpha.Tween(0.0f, fFadeOutTime, HyTween::Linear, 0.0f, [](IHyNode *pThis) { pThis->SetVisible(false); });
 }
 
-void VgMusic::LargePlayer::TransformTexture(HyTexturedQuad2d &quadRef, glm::ivec2 vMaxSize, glm::vec2 ptCenter)
+void LargePlayer::TransformTexture(HyTexturedQuad2d &quadRef, glm::ivec2 vMaxSize, glm::vec2 ptCenter)
 {
 	// Scale the texture to fit within the max width and height
 	quadRef.scale.Set(1.0f);
@@ -197,9 +210,9 @@ void VgMusic::LargePlayer::TransformTexture(HyTexturedQuad2d &quadRef, glm::ivec
 
 //////////////////////////////////////////////////////////////////////////
 
-VgMusic::VgMusic(HyEntity2d *pParent /*= nullptr*/) :
+VgMusic::VgMusic(Crt &crtRef, HyEntity2d *pParent /*= nullptr*/) :
 	HyEntity2d(pParent),
-	m_LargePlayer(this),
+	m_LargePlayer(&crtRef),
 	m_fAudioVolume(0.4f),
 	m_iCurrTrackIndex(-1),
 	m_eLargeState(LARGESTATE_Hidden),
@@ -229,7 +242,7 @@ VgMusic::VgMusic(HyEntity2d *pParent /*= nullptr*/) :
 	HyRand::Shuffle(m_MusicFileList);
 
 	ShowLarge(true);
-	m_LargePlayer.pos.Set(HyEngine::Window().GetWidthF(0.5f) - (LARGE_WIDTH * 0.5f), HyEngine::Window().GetHeightF(0.5f) - (LARGE_HEIGHT * 0.5f));
+	m_LargePlayer.SetVisible(false);
 }
 
 /*virtual*/ VgMusic::~VgMusic()
@@ -272,6 +285,11 @@ void VgMusic::ShowSmall(bool bEnable)
 		if(m_eSmallState != SMALLSTATE_Hidden)
 			m_eSmallState = SMALLSTATE_Hide;
 	}
+}
+
+LargePlayer &VgMusic::GetLargePlayer()
+{
+	return m_LargePlayer;
 }
 
 /*virtual*/ void VgMusic::OnUpdate() /*override*/
