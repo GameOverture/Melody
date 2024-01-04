@@ -80,6 +80,25 @@
                 }
             ]
         },
+        "CRT/ScreenOverlay": {
+            "stateArray": [
+                {
+                    "bounce": false,
+                    "duration": 0.03333333507180214,
+                    "frames": [
+                        {
+                            "bankId": 0,
+                            "checksum": 2332699500,
+                            "duration": 0.03333333507180214,
+                            "offsetX": 13,
+                            "offsetY": 1
+                        }
+                    ],
+                    "loop": false,
+                    "reverse": false
+                }
+            ]
+        },
         "CRT/Static": {
             "stateArray": [
                 {

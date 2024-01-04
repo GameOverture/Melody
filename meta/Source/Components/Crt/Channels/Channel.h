@@ -14,10 +14,13 @@
 
 enum ChannelType
 {
-	CHANNELTYPE_Music
+	CHANNELTYPE_Static = 0,
+	CHANNELTYPE_Music,
+
+	NUM_CHANNELTYPE
 };
 
-class Channel : public HyEntity2d//IComponent
+class Channel : public HyEntity2d
 {
 protected:
 	const ChannelType	m_eCHANNEL_TYPE;

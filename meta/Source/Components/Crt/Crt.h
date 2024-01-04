@@ -6,17 +6,15 @@
 #include "Channel.h"
 #include "Message.h"
 
-#define CRT_MAX_CHANNELS 1//0
-
 class VgMusic;
 
 class Crt : public IComponent
 {
-	std::vector<Channel *>	m_ChannelList;
 	int32					m_iChannelIndex;
 
 	HySprite2d				m_Screen;
-	HyEntity2d				m_Channel;
+	HyEntity2d				m_ChannelStack;		// Only holds IChannel entities
+	HySprite2d				m_ScreenOverlay;
 	HySprite2d				m_Frame;
 	HySprite2d				m_Nob;
 
@@ -31,9 +29,11 @@ public:
 	Crt(VgMusic &vgMusicRef, HyEntity2d *pParent = nullptr);
 	virtual ~Crt();
 
-	HyEntity2d &GetChannelEntity();
+	virtual void Show(float fDuration) override;
+	virtual void Hide(float fDuration) override;
 
-	void TogglePower();
+	bool IsPowerOn() const;
+	void TogglePower(bool bPowerOn);
 
 	void SetChannel(int32 iChannelIndex);
 	void NudgeChannel(int32 iIndexOffset);

@@ -147,6 +147,22 @@
                 }
             ]
         },
+        "CRT/ScreenOverlay": {
+            "CameraPos": [
+                498,
+                333
+            ],
+            "CameraZoom": 0.75,
+            "UUID": "0d7275ef-d8d0-43a2-8e42-3bb33c95d4bb",
+            "stateArray": [
+                {
+                    "assetUUIDs": [
+                        "67ad6edc-801e-4c37-a6ec-fa42bfe7808f"
+                    ],
+                    "name": ""
+                }
+            ]
+        },
         "CRT/Static": {
             "CameraPos": [
                 244,

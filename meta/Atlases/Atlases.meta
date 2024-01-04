@@ -618,7 +618,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 41,
-            "x": 210,
+            "x": 254,
             "y": 0
         },
         {
@@ -638,7 +638,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 27,
-            "x": 734,
+            "x": 764,
             "y": 0
         },
         {
@@ -778,7 +778,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 33,
-            "x": 631,
+            "x": 595,
             "y": 0
         },
         {
@@ -798,7 +798,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 41,
-            "x": 254,
+            "x": 210,
             "y": 0
         },
         {
@@ -918,7 +918,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 27,
-            "x": 764,
+            "x": 734,
             "y": 0
         },
         {
@@ -1018,7 +1018,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 29,
-            "x": 496,
+            "x": 528,
             "y": 93
         },
         {
@@ -1118,8 +1118,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 34,
-            "x": 727,
-            "y": 183
+            "x": 764,
+            "y": 184
         },
         {
             "assetUUID": "c818572b-5a7c-4bae-9d39-985dd6d0e0b1",
@@ -1138,7 +1138,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 25,
-            "x": 599,
+            "x": 571,
             "y": 183
         },
         {
@@ -1158,7 +1158,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 29,
-            "x": 364,
+            "x": 396,
             "y": 183
         },
         {
@@ -1178,7 +1178,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 29,
-            "x": 396,
+            "x": 364,
             "y": 183
         },
         {
@@ -1218,8 +1218,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 34,
-            "x": 764,
-            "y": 184
+            "x": 727,
+            "y": 183
         },
         {
             "assetUUID": "be3052d6-c500-413e-ba8b-d6c56c5d31e6",
@@ -1238,7 +1238,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 25,
-            "x": 571,
+            "x": 599,
             "y": 183
         },
         {
@@ -1318,7 +1318,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 33,
-            "x": 595,
+            "x": 631,
             "y": 0
         },
         {
@@ -1478,7 +1478,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 29,
-            "x": 528,
+            "x": 496,
             "y": 93
         },
         {
@@ -1518,7 +1518,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 35,
-            "x": 560,
+            "x": 598,
             "y": 93
         },
         {
@@ -1558,7 +1558,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 35,
-            "x": 598,
+            "x": 636,
             "y": 93
         },
         {
@@ -1618,7 +1618,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 35,
-            "x": 636,
+            "x": 560,
             "y": 93
         },
         {
@@ -1718,8 +1718,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 49,
-            "x": 931,
-            "y": 0
+            "x": 972,
+            "y": 91
         },
         {
             "assetUUID": "4a136f23-8e5d-4f03-a614-e5b3388fe7a1",
@@ -1738,7 +1738,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 49,
-            "x": 337,
+            "x": 389,
             "y": 94
         },
         {
@@ -1818,8 +1818,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 49,
-            "x": 972,
-            "y": 91
+            "x": 931,
+            "y": 0
         },
         {
             "assetUUID": "c685f914-b9b6-4693-9323-c9060de49425",
@@ -1838,7 +1838,7 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 49,
-            "x": 389,
+            "x": 337,
             "y": 94
         },
         {
@@ -1938,8 +1938,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 35,
-            "x": 800,
-            "y": 92
+            "x": 983,
+            "y": 0
         },
         {
             "assetUUID": "a2e3fa1d-6465-4df1-80d9-219543d3f99b",
@@ -1978,8 +1978,8 @@
             "textureIndex": 1,
             "textureInfo": 262144,
             "width": 35,
-            "x": 983,
-            "y": 0
+            "x": 800,
+            "y": 92
         },
         {
             "assetUUID": "6ed1ecc2-ee00-4c4c-a1d3-58705610ff51",
@@ -2558,7 +2558,7 @@
             "textureIndex": 4,
             "textureInfo": 262147,
             "width": 500,
-            "x": 388,
+            "x": 1229,
             "y": 0
         },
         {
@@ -2578,7 +2578,7 @@
             "textureIndex": 4,
             "textureInfo": 262147,
             "width": 500,
-            "x": 0,
+            "x": 841,
             "y": 0
         },
         {
@@ -2598,8 +2598,8 @@
             "textureIndex": 4,
             "textureInfo": 262147,
             "width": 307,
-            "x": 0,
-            "y": 248
+            "x": 1617,
+            "y": 0
         },
         {
             "assetUUID": "98c78465-12a9-4f47-a870-65fb42be36bf",
@@ -3080,6 +3080,26 @@
             "width": 500,
             "x": 0,
             "y": 0
+        },
+        {
+            "assetUUID": "67ad6edc-801e-4c37-a6ec-fa42bfe7808f",
+            "bankId": 0,
+            "checksum": 2332699500,
+            "cropBottom": 612,
+            "cropLeft": 13,
+            "cropRight": 850,
+            "cropTop": 0,
+            "errors": 0,
+            "filter": "CRT",
+            "height": 614,
+            "isSubAtlas": false,
+            "itemType": "AtlasFrame",
+            "name": "CrtScreenOverlay",
+            "textureIndex": 4,
+            "textureInfo": 262147,
+            "width": 852,
+            "x": 0,
+            "y": 0
         }
     ],
     "banks": [
@@ -3116,7 +3136,7 @@
                     2048
                 ],
                 [
-                    1024,
+                    2048,
                     1024
                 ]
             ],
