@@ -70,7 +70,13 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_Crt.Load();
 	m_Crt.SetVisible(false);
 
+	m_Brb.UseWindowCoordinates();
+	m_Brb.Load();
+	m_Brb.SetVisible(false);
+	m_Brb.pos.Set(-500.0f, HyEngine::Window(0).GetHeightF() - 500.0f);
+
 	m_CtrlPanel.UseWindowCoordinates(1);
+	m_CtrlPanel.AddComponent(m_Brb);
 	m_CtrlPanel.AddComponent(m_FightStick);
 	m_CtrlPanel.AddComponent(m_Crt);
 	//m_CtrlPanel.AddComponent(m_VgMusic.GetLargePlayer());

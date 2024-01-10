@@ -5,7 +5,8 @@
 
 enum ComponentType
 {
-	COMPONENT_FightStick = 0,
+	COMPONENT_Brb = 0,
+	COMPONENT_FightStick,
 	COMPONENT_Crt,
 	COMPONENT_Wheel,
 
@@ -24,7 +25,7 @@ public:
 
 	ComponentType GetComponentType() const;
 	HyCheckBox &GetCtrlPanelCheckBox();
-
+	
 	virtual void Show(float fDuration);
 	virtual void Hide(float fDuration);
 

@@ -83,6 +83,29 @@
     "Spine": {
     },
     "Sprites": {
+        "BRB": {
+            "CameraPos": [
+                304,
+                227
+            ],
+            "CameraZoom": 0.5,
+            "UUID": "92ab5f53-4ef8-4ee6-9388-d7f3a0b38a6a",
+            "stateArray": [
+                {
+                    "assetUUIDs": [
+                        "9b590565-0bc8-4ee1-a065-c3a2bbbde150",
+                        "6cda09b6-389d-4122-97b6-0014c7428861",
+                        "cfb6d8ff-8334-484b-b748-5ce731c929c2",
+                        "3616afd9-214e-4c30-84c9-8199a23b8fb4",
+                        "217bc381-b259-4688-a6c9-5a79e1f5f120",
+                        "83ee2432-8293-482f-a782-bca503f1675a",
+                        "d1fa3257-ef0d-41cd-b0dd-d40dd310f477",
+                        "76e29102-38ee-4bf9-93d6-97538ff94bac"
+                    ],
+                    "name": ""
+                }
+            ]
+        },
         "CRT": {
             "CameraPos": [
                 610,

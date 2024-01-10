@@ -315,6 +315,24 @@
             "filter": "_hy_",
             "itemType": "Source",
             "name": "NewEntity.cpp"
+        },
+        {
+            "assetUUID": "9ebd8206-6380-4ae7-9ef7-f1d9c36c8657",
+            "bankId": 0,
+            "checksum": 1360769003,
+            "errors": 0,
+            "filter": "Components",
+            "itemType": "Source",
+            "name": "Brb.cpp"
+        },
+        {
+            "assetUUID": "7a9cca7f-3921-4381-aa6a-c056b197e02c",
+            "bankId": 0,
+            "checksum": 3889906735,
+            "errors": 0,
+            "filter": "Components",
+            "itemType": "Header",
+            "name": "Brb.h"
         }
     ],
     "banks": [

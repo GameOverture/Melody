@@ -7,6 +7,7 @@
 #include "VgMusic.h"
 #include "Wheel.h"
 #include "Crt.h"
+#include "Brb.h"
 #include "Message.h"
 
 class IScene;
@@ -21,8 +22,8 @@ class Melody : public HyEngine
 	FightStick		m_FightStick;
 	VgMusic			m_VgMusic;
 	//Wheel			m_Wheel;
-
 	Crt				m_Crt;
+	Brb				m_Brb;
 
 	CtrlPanel		m_CtrlPanel;
 
