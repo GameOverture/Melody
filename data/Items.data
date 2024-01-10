@@ -23,6 +23,74 @@
     "Spine": {
     },
     "Sprites": {
+        "BRB": {
+            "stateArray": [
+                {
+                    "bounce": false,
+                    "duration": 0.8000000715255737,
+                    "frames": [
+                        {
+                            "bankId": 0,
+                            "checksum": 386608943,
+                            "duration": 0.10000000149011612,
+                            "offsetX": 109,
+                            "offsetY": 61
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 3243476540,
+                            "duration": 0.10000000149011612,
+                            "offsetX": 109,
+                            "offsetY": 61
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 3821506137,
+                            "duration": 0.10000000149011612,
+                            "offsetX": 109,
+                            "offsetY": 61
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 1543400257,
+                            "duration": 0.10000000149011612,
+                            "offsetX": 109,
+                            "offsetY": 61
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 3879420584,
+                            "duration": 0.10000000149011612,
+                            "offsetX": 109,
+                            "offsetY": 61
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 587920399,
+                            "duration": 0.10000000149011612,
+                            "offsetX": 109,
+                            "offsetY": 61
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 1899004676,
+                            "duration": 0.10000000149011612,
+                            "offsetX": 109,
+                            "offsetY": 61
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 330516932,
+                            "duration": 0.10000000149011612,
+                            "offsetX": 109,
+                            "offsetY": 61
+                        }
+                    ],
+                    "loop": true,
+                    "reverse": false
+                }
+            ]
+        },
         "CRT/Frame": {
             "stateArray": [
                 {

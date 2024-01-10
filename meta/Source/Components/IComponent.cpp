@@ -7,6 +7,7 @@
 
 const std::string g_ComponentTypeNames[NUM_COMPONENTS] =
 {
+	"BRB",
 	"Fight Stick",
 	"Crt",
 	"Wheel",

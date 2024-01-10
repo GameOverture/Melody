@@ -45,6 +45,8 @@ Crt::Crt(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
 
 /*virtual*/ Crt::~Crt()
 {
+	for(int i = 0; i < m_ChannelStack.ChildCount(); ++i)
+		delete m_ChannelStack.ChildGet(i);
 }
 
 /*virtual*/ void Crt::Show(float fDuration) /*override*/
