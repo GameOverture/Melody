@@ -52,4 +52,24 @@ enum InputAction
 	FIGHTSTICK_Parry
 };
 
+enum ComponentType
+{
+	COMPONENT_Brb = 0,
+	COMPONENT_FightStick,
+	COMPONENT_Crt,
+	COMPONENT_HeartBeat,
+	COMPONENT_Wheel,
+
+	NUM_COMPONENTS
+};
+
+const std::string g_ComponentTypeNames[NUM_COMPONENTS] =
+{
+	"BRB",
+	"Fight Stick",
+	"Crt",
+	"Heart Beat",
+	"Wheel",
+};
+
 #endif // pch_h__

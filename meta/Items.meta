@@ -14,6 +14,14 @@
             "codeName": "NewEntity",
             "descChildList": [
                 {
+                    "UUID": "9f8ad1d9-7659-40f2-a70c-247d81a1147f",
+                    "codeName": "m_frame_01_delay-0",
+                    "isSelected": true,
+                    "itemType": "AtlasFrame",
+                    "itemUUID": "6f3069fe-2f2c-47d1-8b2f-00df39c3a19f",
+                    "promotedEntityType": ""
+                },
+                {
                     "UUID": "4d6fd447-6566-4568-a2ee-2d7a6c8b89a8",
                     "codeName": "m_LK_Released",
                     "isSelected": false,
@@ -63,6 +71,23 @@
                                     }
                                 }
                             }
+                        ],
+                        "9f8ad1d9-7659-40f2-a70c-247d81a1147f": [
+                            {
+                                "frame": 0,
+                                "props": {
+                                    "Transformation": {
+                                        "Position": [
+                                            -330.0000305175781,
+                                            -133.38003540039062
+                                        ],
+                                        "Scale": [
+                                            1.375,
+                                            0.9879999756813049
+                                        ]
+                                    }
+                                }
+                            }
                         ]
                     },
                     "name": ""
@@ -79,6 +104,8 @@
     "Particles": {
     },
     "Prefabs": {
+    },
+    "Shaders": {
     },
     "Spine": {
     },

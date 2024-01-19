@@ -333,6 +333,24 @@
             "filter": "Components",
             "itemType": "Header",
             "name": "Brb.h"
+        },
+        {
+            "assetUUID": "dd0d1357-f316-4467-91aa-cd71c0d7072b",
+            "bankId": 0,
+            "checksum": 3558875623,
+            "errors": 0,
+            "filter": "Components",
+            "itemType": "Source",
+            "name": "HeartBeat.cpp"
+        },
+        {
+            "assetUUID": "c03b337b-c0ae-49a4-a74e-ac316e79a34d",
+            "bankId": 0,
+            "checksum": 2281052247,
+            "errors": 0,
+            "filter": "Components",
+            "itemType": "Header",
+            "name": "HeartBeat.h"
         }
     ],
     "banks": [
@@ -340,6 +358,10 @@
             "EmscriptenCcall": "",
             "OutputName": "Melody",
             "SrcDepends": [
+                {
+                    "ProjectName": "simpleble",
+                    "RelPath": "../../../SimpleBLE/simpleble"
+                }
             ],
             "UseIcu": false,
             "UseSdl2": false,

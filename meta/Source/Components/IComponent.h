@@ -3,16 +3,6 @@
 
 #include "pch.h"
 
-enum ComponentType
-{
-	COMPONENT_Brb = 0,
-	COMPONENT_FightStick,
-	COMPONENT_Crt,
-	COMPONENT_Wheel,
-
-	NUM_COMPONENTS
-};
-
 class IComponent : public HyEntity2d
 {
 	const ComponentType		m_eCOMPONENT_TYPE;

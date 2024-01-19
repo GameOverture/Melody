@@ -5,14 +5,6 @@
 #define LGAUTOBETDLG_CheckBoxSize 32
 #define LGAUTOBETDLG_CheckBoxStroke 4
 
-const std::string g_ComponentTypeNames[NUM_COMPONENTS] =
-{
-	"BRB",
-	"Fight Stick",
-	"Crt",
-	"Wheel",
-};
-
 IComponent::IComponent(ComponentType eType, HyEntity2d *pParent /*= nullptr*/) :
 	HyEntity2d(pParent),
 	m_eCOMPONENT_TYPE(eType),

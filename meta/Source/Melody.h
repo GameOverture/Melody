@@ -8,6 +8,7 @@
 #include "Wheel.h"
 #include "Crt.h"
 #include "Brb.h"
+#include "HeartBeat.h"
 #include "Message.h"
 
 class IScene;
@@ -24,6 +25,7 @@ class Melody : public HyEngine
 	//Wheel			m_Wheel;
 	Crt				m_Crt;
 	Brb				m_Brb;
+	HeartBeat		m_HeartBeat;
 
 	CtrlPanel		m_CtrlPanel;
 
