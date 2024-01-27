@@ -3,6 +3,7 @@
 
 #include "HyEngine.h"
 
+#define DISPLAYORDER_CrtVolume		999999
 #define DISPLAYORDER_FIGHTSTICK		999999
 #define DISPLAYORDER_GatePath		999980
 #define DISPLAYORDER_Gate			999970
@@ -33,8 +34,8 @@ enum InputAction
 
 	INPUT_VgMusicPlay, // Also skips current track if already playing
 	INPUT_VgMusicStop,
-	INPUT_VgMusicVolumeDown,
-	INPUT_VgMusicVolumeUp,
+	INPUT_GlobalVolumeDown,
+	INPUT_GlobalVolumeUp,
 
 	FIGHTSTICK_LK,
 	FIGHTSTICK_MK,

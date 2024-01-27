@@ -3,7 +3,6 @@
 
 VgMusic::VgMusic(HyEntity2d *pParent /*= nullptr*/) :
 	HyEntity2d(pParent),
-	m_fAudioVolume(0.4f),
 	m_iCurrTrackIndex(-1),
 	m_ePlayState(PLAYSTATE_Stopped),
 	m_fpOnTrackChange(nullptr),
@@ -71,19 +70,6 @@ float VgMusic::GetElapsedPlayTime() const
 		m_ePlayState = PLAYSTATE_FadeOutToStop;
 	}
 
-	if(HyEngine::Input().IsActionReleased(INPUT_VgMusicVolumeDown))
-	{
-		m_fAudioVolume = HyMath::Clamp(m_fAudioVolume - 0.1f, 0.0f, 1.0f);
-		if(m_AudioTrack.volume.IsAnimating() == false)
-			m_AudioTrack.volume.Set(m_fAudioVolume);
-	}
-	if(HyEngine::Input().IsActionReleased(INPUT_VgMusicVolumeUp))
-	{
-		m_fAudioVolume = HyMath::Clamp(m_fAudioVolume + 0.1f, 0.0f, 1.0f);
-		if(m_AudioTrack.volume.IsAnimating() == false)
-			m_AudioTrack.volume.Set(m_fAudioVolume);
-	}
-
 	switch(m_ePlayState)
 	{
 	case PLAYSTATE_Stopped:
@@ -109,7 +95,7 @@ float VgMusic::GetElapsedPlayTime() const
 			const std::string sMusicFile = m_MusicFileList[m_iCurrTrackIndex];
 
 			m_AudioTrack.Init(sMusicFile, true, 0, 0, this);
-			m_AudioTrack.volume.Set(m_fAudioVolume);
+			m_AudioTrack.volume.Set(1.0f);
 			m_AudioTrack.Play();
 			m_AudioTrack.Load();
 
@@ -132,7 +118,7 @@ float VgMusic::GetElapsedPlayTime() const
 
 void VgMusic::FadeOutTrack(float fFadeOutDuration)
 {
-	m_AudioTrack.volume.Set(m_fAudioVolume);
+	m_AudioTrack.volume.Set(1.0f);
 	m_AudioTrack.volume.Tween(0.0f, fFadeOutDuration);
 
 	if(m_fpOnFadeOut)

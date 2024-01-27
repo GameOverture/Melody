@@ -31,9 +31,25 @@ Crt::Crt(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
 	//m_ChannelStack.SetPostProcessing(
 	
 	m_Nob.pos.Set(1120.0f, 730.0f);
-	m_VcrTimeHrs.pos.Set(614, 1040);
+	m_VcrTimeHrs.pos.Set(620, 1050);
 	m_VcrTimeHrs.SetTextAlignment(HYALIGN_Right);
-	m_VcrTimeMins.pos.Set(634, 1040);
+	m_VcrTimeMins.pos.Set(640, 1050);
+
+	m_VolumeText.Init("CRT", "Volume", &m_ChannelStack);
+	m_VolumeText.SetText("VOLUME");
+	m_VolumeText.pos.Set(95, 160);
+	m_VolumeText.SetDisplayOrder(DISPLAYORDER_CrtVolume);
+	m_VolumeText.SetVisible(false);
+	for(int i = 0; i < NUM_VOLUME_BARS; ++i)
+	{
+		m_VolumeBar[i].SetVisible(false);
+		m_VolumeBar[i].SetTint(HyColor::Green);
+		m_VolumeBar[i].SetAsBox(24.0f, 48.0f);
+		m_VolumeBar[i].pos.Set(100 + (i * 32), 100);
+		m_VolumeBar[i].SetDisplayOrder(DISPLAYORDER_CrtVolume);
+		
+		m_ChannelStack.ChildAppend(m_VolumeBar[i]);
+	}
 
 	m_Stencil.AddMask(m_Screen);
 
@@ -103,6 +119,23 @@ void Crt::NudgeChannel(int32 iIndexOffset)
 	SetChannel(m_iChannelIndex + iIndexOffset);
 }
 
+void Crt::SetVolume(float fVolume)
+{
+	m_VolumeText.SetVisible(true);
+	for(int i = 0; i < NUM_VOLUME_BARS; ++i)
+	{
+		if(fVolume >= 0.05f)
+		{
+			m_VolumeBar[i].SetVisible(true);
+			fVolume -= 0.05f;
+		}
+		else
+			m_VolumeBar[i].SetVisible(false);
+	}
+
+	m_fVolumeShowTime = 2.0f;
+}
+
 /*virtual*/ void Crt::OnUpdate() /*override*/
 {
 	// VCR Time
@@ -129,4 +162,16 @@ void Crt::NudgeChannel(int32 iIndexOffset)
 		NudgeChannel(1);
 	if(HyEngine::Input().IsActionReleased(INPUT_CrtChannelDown))
 		NudgeChannel(-1);
+
+	if(m_fVolumeShowTime > 0.0f)
+	{
+		m_fVolumeShowTime -= HyEngine::DeltaTime();
+		if(m_fVolumeShowTime <= 0.0f)
+		{
+			m_fVolumeShowTime = 0.0f;
+			m_VolumeText.SetVisible(false);
+			for(int i = 0; i < NUM_VOLUME_BARS; ++i)
+				m_VolumeBar[i].SetVisible(false);
+		}
+	}
 }

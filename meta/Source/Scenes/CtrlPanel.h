@@ -7,11 +7,14 @@ class IComponent;
 
 class CtrlPanel : public HyUiContainer
 {
+	HyLineEdit		m_MessagesLineEdit;
+
 public:
 	CtrlPanel(HyEntity2d *pParent = nullptr);
 	virtual ~CtrlPanel();
 
 	void AddComponent(IComponent &componentRef);
+	void AddMessageWidgets();
 	void FinishComponents();
 
 protected:

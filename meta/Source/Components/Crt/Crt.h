@@ -8,6 +8,8 @@
 
 class VgMusic;
 
+#define NUM_VOLUME_BARS 20
+
 class Crt : public IComponent
 {
 	int32					m_iChannelIndex;
@@ -20,6 +22,10 @@ class Crt : public IComponent
 
 	HyText2d				m_VcrTimeHrs;
 	HyText2d				m_VcrTimeMins;
+
+	HyText2d				m_VolumeText;
+	HyPrimitive2d			m_VolumeBar[NUM_VOLUME_BARS];
+	float					m_fVolumeShowTime;
 	
 	HyStencil				m_Stencil;
 
@@ -37,6 +43,8 @@ public:
 
 	void SetChannel(int32 iChannelIndex);
 	void NudgeChannel(int32 iIndexOffset);
+
+	void SetVolume(float fVolume);
 
 protected:
 	virtual void OnUpdate() override;

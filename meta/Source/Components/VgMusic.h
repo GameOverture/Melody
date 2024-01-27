@@ -19,7 +19,6 @@ enum PlayState
 
 class VgMusic : public HyEntity2d
 {
-	float 										m_fAudioVolume;
 	HyAudio2d									m_AudioTrack;
 
 	std::vector<std::string>					m_MusicFileList;

@@ -20,7 +20,7 @@ Brb::Brb(HyEntity2d *pParent /*= nullptr*/) :
 	m_ElapsedTime.Start();
 
 	IComponent::Show(fDuration);
-	pos.Tween(0.0f, pos.GetY(), fDuration * 2.0f, HyTween::QuadInOut);
+	pos.Tween(150.0f, pos.GetY(), fDuration * 2.0f, HyTween::QuadInOut);
 }
 
 /*virtual*/ void Brb::Hide(float fDuration) /*override*/

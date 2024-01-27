@@ -29,8 +29,8 @@ Melody::Melody(HarmonyInit &initStruct) :
 
 	HyEngine::Input().MapBtn(INPUT_VgMusicPlay, HYKEY_F);
 	HyEngine::Input().MapBtn(INPUT_VgMusicStop, HYKEY_G);
-	HyEngine::Input().MapBtn(INPUT_VgMusicVolumeDown, HYKEY_Minus);
-	HyEngine::Input().MapBtn(INPUT_VgMusicVolumeUp, HYKEY_Equal);
+	HyEngine::Input().MapBtn(INPUT_GlobalVolumeDown, HYKEY_Minus);
+	HyEngine::Input().MapBtn(INPUT_GlobalVolumeUp, HYKEY_Equal);
 
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_LK, HYPAD_A);
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_MK, HYPAD_B);
@@ -57,13 +57,18 @@ Melody::Melody(HarmonyInit &initStruct) :
 	//m_ColorKeyBg.SetAsBox(312.0f, 139.0f);	// Fight stick camera
 	//m_ColorKeyBg.pos.Set(804.0f, 0.0f);		// Fight stick camera
 
+	m_AboveLiveSplit.UseWindowCoordinates();
+	m_AboveLiveSplit.SetAsBox(548.0f, 310.0f);
+	m_AboveLiveSplit.SetWireframe(true);
+	m_AboveLiveSplit.pos.Set(0.0f, HyEngine::Window(0).GetHeightF() - 310.0f);
+
 	m_FightStick.UseWindowCoordinates();
 	m_FightStick.pos.Set(1200.0f, 80.0f);
 	m_FightStick.scale.Set(0.75f, 0.75f);
 	m_FightStick.Load();
 	m_FightStick.SetVisible(false);
 
-	m_VgMusic.UseWindowCoordinates();
+	//m_VgMusic.UseWindowCoordinates();
 	m_VgMusic.Load();
 
 	m_Crt.UseWindowCoordinates();
@@ -73,7 +78,8 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_Brb.UseWindowCoordinates();
 	m_Brb.Load();
 	m_Brb.SetVisible(false);
-	m_Brb.pos.Set(-500.0f, HyEngine::Window(0).GetHeightF() - 500.0f);
+	m_Brb.scale.Set(0.5f, 0.5f);
+	m_Brb.pos.Set(-500.0f, HyEngine::Window(0).GetHeightF() - 264.0f);
 
 	m_HeartBeat.UseWindowCoordinates();
 	m_HeartBeat.Load();
@@ -82,8 +88,8 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_CtrlPanel.AddComponent(m_Brb);
 	m_CtrlPanel.AddComponent(m_HeartBeat);
 	m_CtrlPanel.AddComponent(m_FightStick);
+	m_CtrlPanel.AddMessageWidgets();
 	m_CtrlPanel.AddComponent(m_Crt);
-	//m_CtrlPanel.AddComponent(m_VgMusic.GetLargePlayer());
 	m_CtrlPanel.FinishComponents();
 	m_CtrlPanel.Load();
 }
@@ -94,5 +100,16 @@ Melody::~Melody()
 
 /*virtual*/ bool Melody::OnUpdate() /*override*/
 {
+	if(HyEngine::Input().IsActionReleased(INPUT_GlobalVolumeDown))
+	{
+		HyEngine::Audio().SetGlobalVolume(HyMath::Clamp(HyEngine::Audio().GetGlobalVolume() - 0.05f, 0.0f, 1.0f));
+		m_Crt.SetVolume(HyEngine::Audio().GetGlobalVolume());
+	}
+	if(HyEngine::Input().IsActionReleased(INPUT_GlobalVolumeUp))
+	{
+		HyEngine::Audio().SetGlobalVolume(HyMath::Clamp(HyEngine::Audio().GetGlobalVolume() + 0.05f, 0.0f, 1.0f));
+		m_Crt.SetVolume(HyEngine::Audio().GetGlobalVolume());
+	}
+
 	return !HyEngine::Input().IsActionReleased(INPUT_ExitGame);
 }

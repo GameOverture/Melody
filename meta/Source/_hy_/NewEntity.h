@@ -18,7 +18,6 @@ protected:
 	float					m_fElapsedFrameTime;
 	uint32					m_uiCurFrame;
 
-	HyTexturedQuad2d		m_frame_01_delay-0;
 	HyTexturedQuad2d		m_LK_Released;
 	HyTexturedQuad2d		m_HK_Pressed;
 

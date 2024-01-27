@@ -20,6 +20,8 @@ class Melody : public HyEngine
 
 	HyPrimitive2d	m_ColorKeyBg;
 
+	HyPrimitive2d	m_AboveLiveSplit;
+
 	FightStick		m_FightStick;
 	VgMusic			m_VgMusic;
 	//Wheel			m_Wheel;
