@@ -1,7 +1,7 @@
 #include "pch.h"
-#include "Message.h"
+#include "MessageCycle.h"
 
-Message::Message(HyEntity2d *pParent /*= nullptr*/) :
+MessageCycle::MessageCycle(HyEntity2d *pParent /*= nullptr*/) :
 	HyEntity2d(pParent),
 	m_MainText("", "MainText", this),
 	m_fMainDuration(0.0f),
@@ -10,11 +10,11 @@ Message::Message(HyEntity2d *pParent /*= nullptr*/) :
 	m_MainText.SetTextAlignment(HYALIGN_Center);
 }
 
-/*virtual*/ Message::~Message()
+/*virtual*/ MessageCycle::~MessageCycle()
 {
 }
 
-void Message::SetMsgs(std::string sMain, std::string sSub, float fMainDuration, float fSubDuration)
+void MessageCycle::SetMsgs(std::string sMain, std::string sSub, float fMainDuration, float fSubDuration)
 {
 	m_sMain = sMain;
 	m_sSub = sSub;
@@ -25,7 +25,7 @@ void Message::SetMsgs(std::string sMain, std::string sSub, float fMainDuration, 
 	m_Timer.InitStart(m_fMainDuration);
 }
 
-/*virtual*/ void Message::OnUpdate() /*override*/
+/*virtual*/ void MessageCycle::OnUpdate() /*override*/
 {
 	if(m_MainText.pos.IsAnimating() == false)
 	{

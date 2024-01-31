@@ -88,7 +88,6 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_CtrlPanel.AddComponent(m_Brb);
 	m_CtrlPanel.AddComponent(m_HeartBeat);
 	m_CtrlPanel.AddComponent(m_FightStick);
-	m_CtrlPanel.AddMessageWidgets();
 	m_CtrlPanel.AddComponent(m_Crt);
 	m_CtrlPanel.FinishComponents();
 	m_CtrlPanel.Load();

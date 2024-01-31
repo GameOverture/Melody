@@ -9,7 +9,7 @@
 #include "Crt.h"
 #include "Brb.h"
 #include "HeartBeat.h"
-#include "Message.h"
+#include "MessageCycle.h"
 
 class IScene;
 
@@ -28,6 +28,7 @@ class Melody : public HyEngine
 	Crt				m_Crt;
 	Brb				m_Brb;
 	HeartBeat		m_HeartBeat;
+	MessageCycle	m_MessageCycle;
 
 	CtrlPanel		m_CtrlPanel;
 

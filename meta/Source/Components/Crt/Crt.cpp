@@ -1,7 +1,5 @@
 #include "pch.h"
 #include "Crt.h"
-#include "VgMusic.h"
-#include "Music.h"
 
 #define CRT_SHRINK_AMT 0.01f
 #define CRT_SHUTOFF_DUR 0.2f
@@ -15,7 +13,9 @@ Crt::Crt(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
 	m_Frame("CRT", "Frame", this),
 	m_Nob("CRT", "Nob", this),
 	m_VcrTimeHrs("CRT", "VCR", this),
-	m_VcrTimeMins("CRT", "VCR", this)
+	m_VcrTimeMins("CRT", "VCR", this),
+	m_ChannelStatic(CHANNELTYPE_Static, &m_ChannelStack),
+	m_ChannelMusic(vgMusicRef, &m_ChannelStack)
 {
 	const int32 iScreenX = 148;
 	const int32 iScreenY = 263;
@@ -53,16 +53,11 @@ Crt::Crt(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
 
 	m_Stencil.AddMask(m_Screen);
 
-	HY_NEW Channel(CHANNELTYPE_Static, &m_ChannelStack);
-	HY_NEW Music(vgMusicRef, &m_ChannelStack);
-
 	pos.Set(548.0f, 0.0f);
 }
 
 /*virtual*/ Crt::~Crt()
 {
-	for(int i = 0; i < m_ChannelStack.ChildCount(); ++i)
-		delete m_ChannelStack.ChildGet(i);
 }
 
 /*virtual*/ void Crt::Show(float fDuration) /*override*/

@@ -4,7 +4,9 @@
 #include "pch.h"
 #include "IComponent.h"
 #include "Channel.h"
-#include "Message.h"
+#include "MessageCycle.h"
+#include "VgMusic.h"
+#include "Music.h"
 
 class VgMusic;
 
@@ -15,7 +17,7 @@ class Crt : public IComponent
 	int32					m_iChannelIndex;
 
 	HySprite2d				m_Screen;
-	HyEntity2d				m_ChannelStack;		// Only holds IChannel entities
+	HyEntity2d				m_ChannelStack;
 	HySprite2d				m_ScreenOverlay;
 	HySprite2d				m_Frame;
 	HySprite2d				m_Nob;
@@ -29,7 +31,8 @@ class Crt : public IComponent
 	
 	HyStencil				m_Stencil;
 
-	Message					m_Message;
+	Channel					m_ChannelStatic;
+	Music					m_ChannelMusic;
 
 public:
 	Crt(VgMusic &vgMusicRef, HyEntity2d *pParent = nullptr);

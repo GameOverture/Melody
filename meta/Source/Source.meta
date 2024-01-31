@@ -197,7 +197,7 @@
             "errors": 0,
             "filter": "Components",
             "itemType": "Source",
-            "name": "Message.cpp"
+            "name": "MessageCycle.cpp"
         },
         {
             "assetUUID": "48c8b814-1f8f-4c81-bfde-1c59b49ce739",
@@ -206,7 +206,7 @@
             "errors": 0,
             "filter": "Components",
             "itemType": "Header",
-            "name": "Message.h"
+            "name": "MessageCycle.h"
         },
         {
             "assetUUID": "4fd58898-afa0-4a90-b2f6-702e5fb9879c",

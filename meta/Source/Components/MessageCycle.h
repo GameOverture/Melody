@@ -1,9 +1,9 @@
-#ifndef Message_h__
-#define Message_h__
+#ifndef MessageCycle_h__
+#define MessageCycle_h__
 
 #include "pch.h"
 
-class Message : public HyEntity2d
+class MessageCycle : public HyEntity2d
 {
 	std::string		m_sMain;
 	std::string		m_sSub;
@@ -15,8 +15,8 @@ class Message : public HyEntity2d
 	HyTimer			m_Timer;
 
 public:
-	Message(HyEntity2d *pParent = nullptr);
-	virtual ~Message();
+	MessageCycle(HyEntity2d *pParent = nullptr);
+	virtual ~MessageCycle();
 
 	void SetMsgs(std::string sMain, std::string sSub, float fMainDuration, float fSubDuration);
 
@@ -24,4 +24,4 @@ protected:
 	virtual void OnUpdate() override;
 };
 
-#endif // Message_h__
+#endif // MessageCycle_h__
