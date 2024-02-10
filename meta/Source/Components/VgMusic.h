@@ -39,6 +39,10 @@ public:
 	PlayState GetPlayState() const;
 	float GetElapsedPlayTime() const;
 
+	void Prev();
+	void Play();
+	void Stop();
+
 protected:
 	virtual void OnUpdate() override;
 

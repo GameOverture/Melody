@@ -56,19 +56,39 @@ float VgMusic::GetElapsedPlayTime() const
 	return m_AudioTrack.GetElapsedPlayTime();
 }
 
+void VgMusic::Prev()
+{
+	if(m_iCurrTrackIndex > 0)
+		m_iCurrTrackIndex--;
+	else
+		m_iCurrTrackIndex = static_cast<int>(m_MusicFileList.size()) - 1;
+	
+	Play();
+}
+
+void VgMusic::Play()
+{
+	FadeOutTrack(0.5f);
+	m_ePlayState = PLAYSTATE_FadeOutToNext;
+}
+
+void VgMusic::Stop()
+{
+	FadeOutTrack(VGMUSIC_STOP_FADEOUT_DUR);
+	m_ePlayState = PLAYSTATE_FadeOutToStop;
+}
+
 /*virtual*/ void VgMusic::OnUpdate() /*override*/
 {
-	if(HyEngine::Input().IsActionReleased(INPUT_VgMusicPlay))
-	{
-		FadeOutTrack(0.5f);
-		m_ePlayState = PLAYSTATE_FadeOutToNext;
-	}
+	//if(HyEngine::Input().IsActionReleased(INPUT_VgMusicPlay))
+	//{
+	//	Play();
+	//}
 
-	if(HyEngine::Input().IsActionReleased(INPUT_VgMusicStop))
-	{
-		FadeOutTrack(VGMUSIC_STOP_FADEOUT_DUR);
-		m_ePlayState = PLAYSTATE_FadeOutToStop;
-	}
+	//if(HyEngine::Input().IsActionReleased(INPUT_VgMusicStop))
+	//{
+	//	Stop();
+	//}
 
 	switch(m_ePlayState)
 	{

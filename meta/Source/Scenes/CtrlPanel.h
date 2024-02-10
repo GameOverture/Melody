@@ -4,9 +4,21 @@
 #include "pch.h"
 
 class IComponent;
+class VgMusic;
+class Crt;
 
 class CtrlPanel : public HyUiContainer
 {
+	VgMusic &			m_VgMusicRef;
+	Crt &				m_CrtRef;
+
+	HyButton			m_btnMusic_Prev;
+	HyButton			m_btnMusic_Play;
+	HyButton			m_btnMusic_Stop;
+	
+	HyButton			m_btnVolume_Down;
+	HyButton			m_btnVolume_Up;
+
 	HyLineEdit			m_MessagesLineEdit;
 	HyButton			m_AddMessageBtn;
 
@@ -42,7 +54,7 @@ class CtrlPanel : public HyUiContainer
 	std::vector<Message *> m_MessageListToRemove;
 
 public:
-	CtrlPanel(HyEntity2d *pParent = nullptr);
+	CtrlPanel(VgMusic &vgMusicRef, Crt &crtRef, HyEntity2d *pParent = nullptr);
 	virtual ~CtrlPanel();
 
 	void AddComponent(IComponent &componentRef);

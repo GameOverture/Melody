@@ -308,26 +308,26 @@ void Music::FadeOut(float fFadeOutTime)
 
 /*virtual*/ void Music::OnUpdate() /*override*/
 {
-	if(HyEngine::Input().IsActionReleased(INPUT_Dance))
-	{
-		for(int32 i = 0; i < NUM_DANCERS; ++i)
-			m_Dancers[i].Dance();
-	}
-	if(HyEngine::Input().IsActionReleased(INPUT_DanceAlt))
-	{
-		for(int32 i = 0; i < NUM_DANCERS; ++i)
-			m_Dancers[i].DanceAlt();
-	}
-	if(HyEngine::Input().IsActionReleased(INPUT_DanceStop))
-	{
-		for(int32 i = 0; i < NUM_DANCERS; ++i)
-			m_Dancers[i].Stop();
-	}
-	if(HyEngine::Input().IsActionReleased(INPUT_DanceShimmy))
-	{
-		for(int32 i = 0; i < NUM_DANCERS; ++i)
-			m_Dancers[i].Shimmy();
-	}
+	//if(HyEngine::Input().IsActionReleased(INPUT_Dance))
+	//{
+	//	for(int32 i = 0; i < NUM_DANCERS; ++i)
+	//		m_Dancers[i].Dance();
+	//}
+	//if(HyEngine::Input().IsActionReleased(INPUT_DanceAlt))
+	//{
+	//	for(int32 i = 0; i < NUM_DANCERS; ++i)
+	//		m_Dancers[i].DanceAlt();
+	//}
+	//if(HyEngine::Input().IsActionReleased(INPUT_DanceStop))
+	//{
+	//	for(int32 i = 0; i < NUM_DANCERS; ++i)
+	//		m_Dancers[i].Stop();
+	//}
+	//if(HyEngine::Input().IsActionReleased(INPUT_DanceShimmy))
+	//{
+	//	for(int32 i = 0; i < NUM_DANCERS; ++i)
+	//		m_Dancers[i].Shimmy();
+	//}
 
 	switch(m_eLargeState)
 	{

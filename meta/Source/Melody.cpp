@@ -9,7 +9,7 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_FightStick(),
 	m_VgMusic(),
 	m_Crt(m_VgMusic),
-	m_CtrlPanel()
+	m_CtrlPanel(m_VgMusic, m_Crt)
 {
 	HyEngine::Input().MapBtn(INPUT_ExitGame, HYKEY_Escape);
 	
@@ -99,16 +99,16 @@ Melody::~Melody()
 
 /*virtual*/ bool Melody::OnUpdate() /*override*/
 {
-	if(HyEngine::Input().IsActionReleased(INPUT_GlobalVolumeDown))
-	{
-		HyEngine::Audio().SetGlobalVolume(HyMath::Clamp(HyEngine::Audio().GetGlobalVolume() - 0.05f, 0.0f, 1.0f));
-		m_Crt.SetVolume(HyEngine::Audio().GetGlobalVolume());
-	}
-	if(HyEngine::Input().IsActionReleased(INPUT_GlobalVolumeUp))
-	{
-		HyEngine::Audio().SetGlobalVolume(HyMath::Clamp(HyEngine::Audio().GetGlobalVolume() + 0.05f, 0.0f, 1.0f));
-		m_Crt.SetVolume(HyEngine::Audio().GetGlobalVolume());
-	}
+	//if(HyEngine::Input().IsActionReleased(INPUT_GlobalVolumeDown))
+	//{
+	//	HyEngine::Audio().SetGlobalVolume(HyMath::Clamp(HyEngine::Audio().GetGlobalVolume() - 0.05f, 0.0f, 1.0f));
+	//	m_Crt.SetVolume(HyEngine::Audio().GetGlobalVolume());
+	//}
+	//if(HyEngine::Input().IsActionReleased(INPUT_GlobalVolumeUp))
+	//{
+	//	HyEngine::Audio().SetGlobalVolume(HyMath::Clamp(HyEngine::Audio().GetGlobalVolume() + 0.05f, 0.0f, 1.0f));
+	//	m_Crt.SetVolume(HyEngine::Audio().GetGlobalVolume());
+	//}
 
 	return !HyEngine::Input().IsActionReleased(INPUT_ExitGame);
 }

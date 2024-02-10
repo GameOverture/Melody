@@ -1,12 +1,53 @@
 #include "pch.h"
 #include "CtrlPanel.h"
 #include "IComponent.h"
+#include "VgMusic.h"
+#include "Crt.h"
 
-CtrlPanel::CtrlPanel(HyEntity2d *pParent /*= nullptr*/) :
+CtrlPanel::CtrlPanel(VgMusic &vgMusicRef, Crt &crtRef, HyEntity2d *pParent /*= nullptr*/) :
 	HyUiContainer(HYORIEN_Vertical, HyPanelInit(), pParent),
+	m_VgMusicRef(vgMusicRef),
+	m_CrtRef(crtRef),
+	m_btnMusic_Prev(HyPanelInit(120, 50, 2), HyNodePath("", "CtrlPanel"), this),
+	m_btnMusic_Play(HyPanelInit(120, 50, 2), HyNodePath("", "CtrlPanel"), this),
+	m_btnMusic_Stop(HyPanelInit(120, 50, 2), HyNodePath("", "CtrlPanel"), this),
+	m_btnVolume_Down(HyPanelInit(120, 50, 2), HyNodePath("", "CtrlPanel"), this),
+	m_btnVolume_Up(HyPanelInit(120, 50, 2), HyNodePath("", "CtrlPanel"), this),
 	m_MessagesLineEdit(HyPanelInit(350, 50, 2, HyColor::Blue), HyNodePath("", "CtrlPanel"), this),
 	m_AddMessageBtn(HyPanelInit(50, 50, 2, HyColor::Green), HyNodePath("", "CtrlPanel"), this)
 {
+	m_btnMusic_Prev.SetText("PREV");
+	m_btnMusic_Prev.SetButtonClickedCallback([this](HyButton *pThis, void *pData)
+	{
+		m_VgMusicRef.Prev();
+	});
+
+	m_btnMusic_Play.SetText("PLAY");
+	m_btnMusic_Play.SetButtonClickedCallback([this](HyButton *pThis, void *pData)
+	{
+		m_VgMusicRef.Play();
+	});
+
+	m_btnMusic_Stop.SetText("STOP");
+	m_btnMusic_Stop.SetButtonClickedCallback([this](HyButton *pThis, void *pData)
+	{
+		m_VgMusicRef.Stop();
+	});
+
+	m_btnVolume_Down.SetText("VOL -");
+	m_btnVolume_Down.SetButtonClickedCallback([this](HyButton *pThis, void *pData)
+	{
+		HyEngine::Audio().SetGlobalVolume(HyMath::Clamp(HyEngine::Audio().GetGlobalVolume() - 0.05f, 0.0f, 1.0f));
+		m_CrtRef.SetVolume(HyEngine::Audio().GetGlobalVolume());
+	});
+
+	m_btnVolume_Up.SetText("VOL +");
+	m_btnVolume_Up.SetButtonClickedCallback([this](HyButton *pThis, void *pData)
+	{
+		HyEngine::Audio().SetGlobalVolume(HyMath::Clamp(HyEngine::Audio().GetGlobalVolume() + 0.05f, 0.0f, 1.0f));
+		m_CrtRef.SetVolume(HyEngine::Audio().GetGlobalVolume());
+	});
+
 	m_AddMessageBtn.SetText("ADD");
 	m_AddMessageBtn.SetButtonClickedCallback([this](HyButton *pThis, void *pData)
 	{
@@ -14,6 +55,8 @@ CtrlPanel::CtrlPanel(HyEntity2d *pParent /*= nullptr*/) :
 		m_MessageList.push_back(pMessage);
 	});
 	SetSize(420, 1000);
+
+	EnableScrollBars(true, false);
 }
 
 /*virtual*/ CtrlPanel::~CtrlPanel()
@@ -31,10 +74,19 @@ void CtrlPanel::AddComponent(IComponent &componentRef)
 
 void CtrlPanel::FinishComponents()
 {
-	HyLayoutHandle hRow = InsertLayout(HYORIEN_Horizontal);
-	InsertWidget(m_MessagesLineEdit, hRow);
-	InsertWidget(m_AddMessageBtn, hRow);
-	InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
+	HyLayoutHandle hCurRow = InsertLayout(HYORIEN_Horizontal);
+	InsertWidget(m_btnMusic_Prev, hCurRow);
+	InsertWidget(m_btnMusic_Play, hCurRow);
+	InsertWidget(m_btnMusic_Stop, hCurRow);
+	
+	hCurRow = InsertLayout(HYORIEN_Horizontal);
+	InsertWidget(m_btnVolume_Down, hCurRow);
+	InsertWidget(m_btnVolume_Up, hCurRow);
+
+	hCurRow = InsertLayout(HYORIEN_Horizontal);
+	InsertWidget(m_MessagesLineEdit, hCurRow);
+	InsertWidget(m_AddMessageBtn, hCurRow);
+	InsertSpacer(HYSIZEPOLICY_Expanding, 0, hCurRow);
 
 	InsertSpacer();
 }
