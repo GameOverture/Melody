@@ -3,11 +3,13 @@
 #include "IComponent.h"
 #include "VgMusic.h"
 #include "Crt.h"
+#include "MessageCycle.h"
 
-CtrlPanel::CtrlPanel(VgMusic &vgMusicRef, Crt &crtRef, HyEntity2d *pParent /*= nullptr*/) :
+CtrlPanel::CtrlPanel(VgMusic &vgMusicRef, Crt &crtRef, MessageCycle &msgCycle, HyEntity2d *pParent /*= nullptr*/) :
 	HyUiContainer(HYORIEN_Vertical, HyPanelInit(), pParent),
 	m_VgMusicRef(vgMusicRef),
 	m_CrtRef(crtRef),
+	m_MsgCycle(msgCycle),
 	m_btnMusic_Prev(HyPanelInit(120, 50, 2), HyNodePath("", "CtrlPanel"), this),
 	m_btnMusic_Play(HyPanelInit(120, 50, 2), HyNodePath("", "CtrlPanel"), this),
 	m_btnMusic_Stop(HyPanelInit(120, 50, 2), HyNodePath("", "CtrlPanel"), this),
@@ -53,6 +55,12 @@ CtrlPanel::CtrlPanel(VgMusic &vgMusicRef, Crt &crtRef, HyEntity2d *pParent /*= n
 	{
 		Message *pMessage = HY_NEW Message(*this, m_MessagesLineEdit.GetUtf8String());
 		m_MessageList.push_back(pMessage);
+
+		std::vector<std::string> msgList;
+		for(auto msg : m_MessageList)
+			msgList.push_back(msg->m_Message.GetUtf8String());
+
+		m_MsgCycle.SetMsgs(msgList, 5.0f);
 	});
 	SetSize(420, 1000);
 

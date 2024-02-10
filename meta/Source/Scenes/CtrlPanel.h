@@ -6,11 +6,13 @@
 class IComponent;
 class VgMusic;
 class Crt;
+class MessageCycle;
 
 class CtrlPanel : public HyUiContainer
 {
 	VgMusic &			m_VgMusicRef;
 	Crt &				m_CrtRef;
+	MessageCycle &		m_MsgCycle;
 
 	HyButton			m_btnMusic_Prev;
 	HyButton			m_btnMusic_Play;
@@ -54,7 +56,7 @@ class CtrlPanel : public HyUiContainer
 	std::vector<Message *> m_MessageListToRemove;
 
 public:
-	CtrlPanel(VgMusic &vgMusicRef, Crt &crtRef, HyEntity2d *pParent = nullptr);
+	CtrlPanel(VgMusic &vgMusicRef, Crt &crtRef, MessageCycle &msgCycle, HyEntity2d *pParent = nullptr);
 	virtual ~CtrlPanel();
 
 	void AddComponent(IComponent &componentRef);

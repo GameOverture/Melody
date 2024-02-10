@@ -3,6 +3,7 @@
 
 #include "HyEngine.h"
 
+#define DISPLAYORDER_MessageCycle	9999999
 #define DISPLAYORDER_CrtVolume		999999
 #define DISPLAYORDER_FIGHTSTICK		999999
 #define DISPLAYORDER_GatePath		999980
@@ -60,6 +61,7 @@ enum ComponentType
 	COMPONENT_Crt,
 	COMPONENT_HeartBeat,
 	COMPONENT_Wheel,
+	COMPONENT_MessageCycle,
 
 	NUM_COMPONENTS
 };
@@ -71,6 +73,7 @@ const std::string g_ComponentTypeNames[NUM_COMPONENTS] =
 	"Crt",
 	"Heart Beat",
 	"Wheel",
+	"Message Cycle"
 };
 
 #endif // pch_h__

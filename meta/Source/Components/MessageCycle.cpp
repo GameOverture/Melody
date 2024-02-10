@@ -1,67 +1,75 @@
 #include "pch.h"
 #include "MessageCycle.h"
 
+#define MSGCYCLE_HIDE_YPOS		-100.0f
+#define MSGCYCLE_SHOW_YPOS		100.0f
+
 MessageCycle::MessageCycle(HyEntity2d *pParent /*= nullptr*/) :
-	HyEntity2d(pParent),
-	m_MainText("", "MainText", this),
-	m_fMainDuration(0.0f),
-	m_fSubDuration(0.0f)
+	IComponent(COMPONENT_MessageCycle, pParent),
+	m_iCurrMsgIndex(0),
+	m_Text("", "MainText", this)
 {
-	m_MainText.SetTextAlignment(HYALIGN_Center);
+	m_Text.SetTextAlignment(HYALIGN_Center);
+	
+	pos.Set(HyEngine::Window().GetWidthF(0.5f), MSGCYCLE_HIDE_YPOS);
 }
 
 /*virtual*/ MessageCycle::~MessageCycle()
 {
 }
 
-void MessageCycle::SetMsgs(std::string sMain, std::string sSub, float fMainDuration, float fSubDuration)
+/*virtual*/ void MessageCycle::Show(float fDuration) /*override*/
 {
-	m_sMain = sMain;
-	m_sSub = sSub;
-	m_fMainDuration = fMainDuration;
-	m_fSubDuration = fSubDuration;
+	SetVisible(true);
+	pos.Tween(HyEngine::Window().GetWidthF(0.5f), MSGCYCLE_SHOW_YPOS, 1.25f, HyTween::QuadOut);
+}
 
-	m_MainText.SetText(m_sMain);
-	m_Timer.InitStart(m_fMainDuration);
+/*virtual*/ void MessageCycle::Hide(float fDuration) /*override*/
+{
+	pos.Tween(HyEngine::Window().GetWidthF(0.5f), MSGCYCLE_HIDE_YPOS, fDuration, HyTween::QuadIn, 0.0f, [this](IHyNode *pThis) { pThis->SetVisible(false); });
+}
+
+void MessageCycle::SetMsgs(std::vector<std::string> &sMsgList, float fCycleDuration)
+{
+	m_sMsgList = sMsgList;
+	m_Timer.Init(fCycleDuration);
+
+	if(IsVisible())
+		m_Timer.Resume();
 }
 
 /*virtual*/ void MessageCycle::OnUpdate() /*override*/
 {
-	if(m_MainText.pos.IsAnimating() == false)
+	if(IsVisible() == false || m_sMsgList.empty())
+		return;
+
+	if(m_Text.pos.IsAnimating() == false)
 	{
-		if(m_MainText.pos.Y() >= 0.0f)
-			m_MainText.pos.Tween(0.0f, -6.0f, 6.0f, HyTween::QuadInOut);
+		if(m_Text.pos.Y() >= 0.0f)
+			m_Text.pos.Tween(0.0f, -6.0f, 6.0f, HyTween::QuadInOut);
 		else
-			m_MainText.pos.Tween(0.0f, 6.0f, 6.0f, HyTween::QuadInOut);
+			m_Text.pos.Tween(0.0f, 6.0f, 6.0f, HyTween::QuadInOut);
 	}
 
-	if(m_Timer.IsExpired() && m_sSub.empty() == false)
+	if(m_Timer.IsExpired() && m_sMsgList.size() > 1)
 	{
-		if(m_sMain == m_MainText.GetUtf8String())
+		if(m_Text.alpha.IsAnimating() == false && m_Text.alpha.Get() == 1.0f)
 		{
-			if(m_MainText.alpha.IsAnimating() == false && m_MainText.alpha.Get() == 1.0f)
-			{
-				m_MainText.alpha.Tween(0.0f, 1.0f, HyTween::Linear, 0.0f, [&](IHyNode *pThis) {
-					static_cast<HyText2d *>(pThis)->SetText(m_sSub);
+			m_Text.alpha.Tween(0.0f, 1.0f, HyTween::Linear, 0.0f, 
+				[this](IHyNode *pThis)
+				{
+					OnNextMsg();
 					static_cast<HyText2d *>(pThis)->alpha.Tween(1.0f, 1.0f);
-					static_cast<HyText2d *>(pThis)->SetState(1);
-					m_Timer.InitStart(m_fSubDuration);
-					});
-				
-			}
-		}
-		else // sub text
-		{
-			if(m_MainText.alpha.IsAnimating() == false && m_MainText.alpha.Get() == 1.0f)
-			{
-				m_MainText.alpha.Tween(0.0f, 1.0f, HyTween::Linear, 0.0f, [&](IHyNode *pThis) {
-					static_cast<HyText2d *>(pThis)->SetText(m_sMain);
-					static_cast<HyText2d *>(pThis)->alpha.Tween(1.0f, 1.0f);
-					static_cast<HyText2d *>(pThis)->SetState(0);
-					m_Timer.InitStart(m_fMainDuration);
-					});
-			}
-			
+				});
 		}
 	}
+}
+
+void MessageCycle::OnNextMsg()
+{
+	m_iCurrMsgIndex = (m_iCurrMsgIndex + 1) % m_sMsgList.size();
+	m_Text.SetText(m_sMsgList[m_iCurrMsgIndex]);
+
+	m_Timer.Reset();
+	m_Timer.Start();
 }

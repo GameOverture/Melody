@@ -2,26 +2,29 @@
 #define MessageCycle_h__
 
 #include "pch.h"
+#include "IComponent.h"
 
-class MessageCycle : public HyEntity2d
+class MessageCycle : public IComponent
 {
-	std::string		m_sMain;
-	std::string		m_sSub;
-	float			m_fMainDuration;
-	float			m_fSubDuration;
-
-	HyText2d		m_MainText;
-
-	HyTimer			m_Timer;
+	std::vector<std::string>	m_sMsgList;
+	int32						m_iCurrMsgIndex;
+	HyTimer						m_Timer;
+	
+	HyText2d					m_Text;
 
 public:
 	MessageCycle(HyEntity2d *pParent = nullptr);
 	virtual ~MessageCycle();
 
-	void SetMsgs(std::string sMain, std::string sSub, float fMainDuration, float fSubDuration);
+	virtual void Show(float fDuration) override;
+	virtual void Hide(float fDuration) override;
+
+	void SetMsgs(std::vector<std::string> &sMsgList, float fCycleDuration);
 
 protected:
 	virtual void OnUpdate() override;
+
+	void OnNextMsg();
 };
 
 #endif // MessageCycle_h__

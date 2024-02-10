@@ -9,7 +9,7 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_FightStick(),
 	m_VgMusic(),
 	m_Crt(m_VgMusic),
-	m_CtrlPanel(m_VgMusic, m_Crt)
+	m_CtrlPanel(m_VgMusic, m_Crt, m_MessageCycle)
 {
 	HyEngine::Input().MapBtn(INPUT_ExitGame, HYKEY_Escape);
 	
@@ -84,11 +84,17 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_HeartBeat.UseWindowCoordinates();
 	m_HeartBeat.Load();
 
+	m_MessageCycle.UseWindowCoordinates();
+	m_MessageCycle.Load();
+	m_MessageCycle.pos.Set(HyEngine::Window(0).GetWidthF(0.5f), 100.0f);
+	m_MessageCycle.SetDisplayOrder(DISPLAYORDER_MessageCycle);
+
 	m_CtrlPanel.UseWindowCoordinates(1);
 	m_CtrlPanel.AddComponent(m_Brb);
 	m_CtrlPanel.AddComponent(m_HeartBeat);
 	m_CtrlPanel.AddComponent(m_FightStick);
 	m_CtrlPanel.AddComponent(m_Crt);
+	m_CtrlPanel.AddComponent(m_MessageCycle);
 	m_CtrlPanel.FinishComponents();
 	m_CtrlPanel.Load();
 }
