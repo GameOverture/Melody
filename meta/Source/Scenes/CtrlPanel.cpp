@@ -4,8 +4,8 @@
 
 CtrlPanel::CtrlPanel(HyEntity2d *pParent /*= nullptr*/) :
 	HyUiContainer(HYORIEN_Vertical, HyPanelInit(), pParent),
-	m_MessagesLineEdit(HyPanelInit(350, 50, 2, HyColor::Blue), "", "CtrlPanel", this),
-	m_AddMessageBtn(HyPanelInit(50, 50, 2, HyColor::Green), "", "CtrlPanel", this)
+	m_MessagesLineEdit(HyPanelInit(350, 50, 2, HyColor::Blue), HyNodePath("", "CtrlPanel"), this),
+	m_AddMessageBtn(HyPanelInit(50, 50, 2, HyColor::Green), HyNodePath("", "CtrlPanel"), this)
 {
 	m_AddMessageBtn.SetText("ADD");
 	m_AddMessageBtn.SetButtonClickedCallback([this](HyButton *pThis, void *pData)

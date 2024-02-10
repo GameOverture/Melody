@@ -19,8 +19,8 @@ class CtrlPanel : public HyUiContainer
 
 		Message(CtrlPanel &ctrlPanelRef, std::string sText) :
 			m_CtrlPanelRef(ctrlPanelRef),
-			m_Message(HyPanelInit(350, 50, 2, HyColor::DarkGray), "", "CtrlPanel", nullptr),
-			m_Remove(HyPanelInit(50, 50, 2, HyColor::Red), "", "CtrlPanel", nullptr)
+			m_Message(HyPanelInit(350, 50, 2, HyColor::DarkGray), HyNodePath("", "CtrlPanel"), nullptr),
+			m_Remove(HyPanelInit(50, 50, 2, HyColor::Red), HyNodePath("", "CtrlPanel"), nullptr)
 		{
 			m_Message.SetText(sText);
 			m_Remove.SetText("X");

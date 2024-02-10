@@ -7,8 +7,8 @@
 Wheel::SpinEnt::SpinEnt(const WheelInit &initStructRef) :
 	m_WedgeAngleList(initStructRef.wedgeDegreeThicknessList)
 {
-	m_Frame.Init(initStructRef.frame.m_sPrefix, initStructRef.frame.m_sName, nullptr);
-	m_Notches.Init(initStructRef.notches.m_sPrefix, initStructRef.notches.m_sName, this);
+	m_Frame.Init(initStructRef.frame.m_sPrefix.c_str(), initStructRef.frame.m_sName.c_str(), nullptr);
+	m_Notches.Init(initStructRef.notches.m_sPrefix.c_str(), initStructRef.notches.m_sName.c_str(), this);
 
 	if(initStructRef.pWedgeWeightTable == nullptr)
 	{
@@ -29,7 +29,7 @@ Wheel::SpinEnt::SpinEnt(const WheelInit &initStructRef) :
 	float fRotationOffset = 0.0f;
 	for(uint32 i = 0; i < uiNumWedges; ++i)
 	{
-		HyEntityLeaf2d<HySprite2d> *pNewWedge = HY_NEW HyEntityLeaf2d<HySprite2d>(initStructRef.wedges.m_sPrefix, initStructRef.wedges.m_sName);
+		HyEntityLeaf2d<HySprite2d> *pNewWedge = HY_NEW HyEntityLeaf2d<HySprite2d>(initStructRef.wedges.m_sPrefix.c_str(), initStructRef.wedges.m_sName.c_str());
 		ChildAppend(*pNewWedge);
 		pNewWedge->rot.Set(fRotationOffset);
 
@@ -39,7 +39,7 @@ Wheel::SpinEnt::SpinEnt(const WheelInit &initStructRef) :
 		if(initStructRef.wedgeDecal.IsUsed())
 		{
 			HySprite2d *pNewWedgeDecal = HY_NEW HySprite2d();
-			pNewWedgeDecal->Init(initStructRef.wedgeDecal.m_sPrefix, initStructRef.wedgeDecal.m_sName, pNewWedge);
+			pNewWedgeDecal->Init(initStructRef.wedgeDecal.m_sPrefix.c_str(), initStructRef.wedgeDecal.m_sName.c_str(), pNewWedge);
 			pNewWedgeDecal->SetVisible(false);
 			m_WedgeDecalList.push_back(pNewWedgeDecal);
 		}
@@ -82,7 +82,7 @@ Wheel::SpinEnt::SpinEnt(const WheelInit &initStructRef) :
 Wheel::Wheel(const WheelInit &initStructRef, HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_Wheel, pParent),
 	m_SpinEnt(initStructRef),
-	m_Ticker(initStructRef.ticker.m_sPrefix, initStructRef.ticker.m_sName),
+	m_Ticker(initStructRef.ticker.m_sPrefix.c_str(), initStructRef.ticker.m_sName.c_str()),
 	m_pWeightTable(initStructRef.pWedgeWeightTable),
 	m_bSpinClockwise(true),
 	m_bIsClockwise(m_bSpinClockwise),
@@ -111,10 +111,10 @@ Wheel::Wheel(const WheelInit &initStructRef, HyEntity2d *pParent /*= nullptr*/) 
 	m_fTickerPos(0.0f),
 	m_fTickerNotchPercentage(1.0f)
 {
-	m_Base.Init(initStructRef.base.m_sPrefix, initStructRef.base.m_sName, this);
+	m_Base.Init(initStructRef.base.m_sPrefix.c_str(), initStructRef.base.m_sName.c_str(), this);
 	ChildAppend(m_SpinEnt);
 	ChildAppend(m_Ticker);
-	m_Hub.Init(initStructRef.hub.m_sPrefix, initStructRef.hub.m_sName, this);
+	m_Hub.Init(initStructRef.hub.m_sPrefix.c_str(), initStructRef.hub.m_sName.c_str(), this);
 
 	for(uint32 i = 0; i < static_cast<uint32>(m_SpinEnt.m_WedgeList.size()); ++i)
 	{
@@ -212,7 +212,7 @@ std::vector<HyText2d *> Wheel::SetTextOnWedge(uint32 uiWedgeIndex, std::string s
 	for(uint32 i = 0; i < uiNumTexts; ++i)
 	{
 		HyText2d *pText = HY_NEW HyText2d();
-		pText->Init(sPrefix, sName, m_SpinEnt.m_WedgeList[uiWedgeIndex]);
+		pText->Init(sPrefix.c_str(), sName.c_str(), m_SpinEnt.m_WedgeList[uiWedgeIndex]);
 
 		if(bVerticalText)
 		{

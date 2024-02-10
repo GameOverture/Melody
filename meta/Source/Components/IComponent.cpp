@@ -3,12 +3,12 @@
 #include "CtrlPanel.h"
 
 #define LGAUTOBETDLG_CheckBoxSize 32
-#define LGAUTOBETDLG_CheckBoxStroke 4
+#define LGAUTOBETDLG_CheckBoxStroke 2
 
 IComponent::IComponent(ComponentType eType, HyEntity2d *pParent /*= nullptr*/) :
 	HyEntity2d(pParent),
 	m_eCOMPONENT_TYPE(eType),
-	m_CtrlPanelCheckBox(HyPanelInit(LGAUTOBETDLG_CheckBoxSize, LGAUTOBETDLG_CheckBoxSize, LGAUTOBETDLG_CheckBoxStroke), "", "CtrlPanel")
+	m_CtrlPanelCheckBox(HyPanelInit(LGAUTOBETDLG_CheckBoxSize, LGAUTOBETDLG_CheckBoxSize, LGAUTOBETDLG_CheckBoxStroke), HyNodePath("", "CtrlPanel"))
 {
 	m_CtrlPanelCheckBox.SetText("Show " + g_ComponentTypeNames[eType]);
 	m_CtrlPanelCheckBox.SetCheckedChangedCallback(
