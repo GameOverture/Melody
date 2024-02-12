@@ -2,23 +2,10 @@
 #include "IComponent.h"
 #include "CtrlPanel.h"
 
-#define LGAUTOBETDLG_CheckBoxSize 32
-#define LGAUTOBETDLG_CheckBoxStroke 2
-
 IComponent::IComponent(ComponentType eType, HyEntity2d *pParent /*= nullptr*/) :
 	HyEntity2d(pParent),
-	m_eCOMPONENT_TYPE(eType),
-	m_CtrlPanelCheckBox(HyPanelInit(LGAUTOBETDLG_CheckBoxSize, LGAUTOBETDLG_CheckBoxSize, LGAUTOBETDLG_CheckBoxStroke), HyNodePath("", "CtrlPanel"))
+	m_eCOMPONENT_TYPE(eType)
 {
-	m_CtrlPanelCheckBox.SetText("Show " + g_ComponentTypeNames[eType]);
-	m_CtrlPanelCheckBox.SetCheckedChangedCallback(
-		[this](HyCheckBox *pCheckBox, void *pData)
-		{
-			if(pCheckBox->IsChecked())
-				reinterpret_cast<IComponent *>(pData)->Show(0.5f);
-			else
-				reinterpret_cast<IComponent *>(pData)->Hide(0.5f);
-		}, this);
 }
 
 /*virtual*/ IComponent::~IComponent()
@@ -28,11 +15,6 @@ IComponent::IComponent(ComponentType eType, HyEntity2d *pParent /*= nullptr*/) :
 ComponentType IComponent::GetComponentType() const
 {
 	return m_eCOMPONENT_TYPE;
-}
-
-HyCheckBox &IComponent::GetCtrlPanelCheckBox()
-{
-	return m_CtrlPanelCheckBox;
 }
 
 /*virtual*/ void IComponent::Show(float fDuration)

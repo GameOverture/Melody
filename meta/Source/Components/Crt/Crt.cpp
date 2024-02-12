@@ -1,11 +1,21 @@
 #include "pch.h"
 #include "Crt.h"
+#include "CtrlPanel.h"
+
+#define CRT_UNZOOM_POS 548.0f, 0.0f
+#define CRT_UNZOOM_SCALE 1.0f, 1.0f
+
+#define CRT_ZOOM_POS 475.0f, -216.0f
+#define CRT_ZOOM_SCALE 1.31f, 1.42f
 
 #define CRT_SHRINK_AMT 0.01f
 #define CRT_SHUTOFF_DUR 0.2f
 
 Crt::Crt(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_Crt, pParent),
+	m_CtrlPanel_CheckBox(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
+	m_CtrlPanel_ZoomBtn(HyPanelInit(100, 32, 2), HyNodePath("", "CtrlPanel")),
+	m_CtrlPanel_UnzoomBtn(HyPanelInit(100, 32, 2), HyNodePath("", "CtrlPanel")),
 	m_iChannelIndex(0),
 	m_Screen("CRT", "Screen", this),
 	m_ChannelStack(this),
@@ -17,6 +27,30 @@ Crt::Crt(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
 	m_ChannelStatic(CHANNELTYPE_Static, &m_ChannelStack),
 	m_ChannelMusic(vgMusicRef, &m_ChannelStack)
 {
+	m_CtrlPanel_CheckBox.SetText("CRT");
+	m_CtrlPanel_CheckBox.SetCheckedChangedCallback(
+		[this](HyCheckBox *pCheckBox, void *pData)
+		{
+			if(pCheckBox->IsChecked())
+				reinterpret_cast<IComponent *>(pData)->Show(0.5f);
+			else
+				reinterpret_cast<IComponent *>(pData)->Hide(0.5f);
+		}, this);
+
+	m_CtrlPanel_ZoomBtn.SetText("Zoom");
+	m_CtrlPanel_ZoomBtn.SetButtonClickedCallback(
+		[this](HyButton *pButton, void *pData)
+		{
+			reinterpret_cast<Crt *>(pData)->SetAsZoomed(true);
+		}, this);
+
+	m_CtrlPanel_UnzoomBtn.SetText("Unzoom");
+	m_CtrlPanel_UnzoomBtn.SetButtonClickedCallback(
+		[this](HyButton *pButton, void *pData)
+		{
+			reinterpret_cast<Crt *>(pData)->SetAsZoomed(false);
+		}, this);
+
 	const int32 iScreenX = 148;
 	const int32 iScreenY = 263;
 	
@@ -58,6 +92,15 @@ Crt::Crt(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
 
 /*virtual*/ Crt::~Crt()
 {
+}
+
+/*virtual*/ void Crt::PopulateCtrlPanel(CtrlPanel &ctrlPanel) /*override*/
+{
+	HyLayoutHandle hRow = ctrlPanel.InsertLayout(HYORIEN_Horizontal);
+	ctrlPanel.InsertWidget(m_CtrlPanel_CheckBox, hRow);
+	ctrlPanel.InsertWidget(m_CtrlPanel_ZoomBtn, hRow);
+	ctrlPanel.InsertWidget(m_CtrlPanel_UnzoomBtn, hRow);
+	ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
 }
 
 /*virtual*/ void Crt::Show(float fDuration) /*override*/
@@ -129,6 +172,28 @@ void Crt::SetVolume(float fVolume)
 	}
 
 	m_fVolumeShowTime = 2.0f;
+}
+
+void Crt::SetAsZoomed(bool bZoomed)
+{
+	if(bZoomed)
+	{
+		pos.Tween(CRT_ZOOM_POS, 1.5f, HyTween::QuadInOut);
+		scale.Tween(CRT_ZOOM_SCALE, 1.5f, HyTween::QuadInOut);
+
+		m_ChannelStack.alpha.Tween(0.0f, 0.75f, HyTween::Linear);
+		m_Screen.alpha.Tween(0.0f, 0.75f, HyTween::Linear);
+		m_ScreenOverlay.alpha.Tween(0.0f, 0.75f, HyTween::Linear);
+	}
+	else
+	{
+		pos.Tween(CRT_UNZOOM_POS, 1.5f, HyTween::QuadInOut);
+		scale.Tween(CRT_UNZOOM_SCALE, 1.5f, HyTween::QuadInOut);
+
+		m_ChannelStack.alpha.Tween(1.0f, 0.75f, HyTween::Linear);
+		m_Screen.alpha.Tween(1.0f, 0.75f, HyTween::Linear);
+		m_ScreenOverlay.alpha.Tween(1.0f, 0.75f, HyTween::Linear);
+	}
 }
 
 /*virtual*/ void Crt::OnUpdate() /*override*/

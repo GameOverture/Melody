@@ -1,8 +1,10 @@
 #include "pch.h"
 #include "FightStick.h"
+#include "CtrlPanel.h"
 
 FightStick::FightStick(HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_FightStick, pParent),
+	m_CtrlPanel_CheckBox(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
 	m_Gate("FightStick", "JoystickGate", this),
 	m_BallFollow("FightStick", "JoystickBall", this),
 	m_Ball("FightStick", "JoystickBall", this),
@@ -20,6 +22,16 @@ FightStick::FightStick(HyEntity2d *pParent /*= nullptr*/) :
 	m_AssignOverlayText("", "MainText", this),
 	m_fpAssignControllerFunc(nullptr)
 {
+	m_CtrlPanel_CheckBox.SetText("Fight Stick");
+	m_CtrlPanel_CheckBox.SetCheckedChangedCallback(
+		[this](HyCheckBox *pCheckBox, void *pData)
+		{
+			if(pCheckBox->IsChecked())
+				reinterpret_cast<IComponent *>(pData)->Show(0.5f);
+			else
+				reinterpret_cast<IComponent *>(pData)->Hide(0.5f);
+		}, this);
+
 	m_Gate.SetDisplayOrder(DISPLAYORDER_Gate);
 	m_BallFollow.alpha.Set(0.4f);
 	for(int i = 0; i < NUM_JSGATES; ++i)
@@ -92,6 +104,13 @@ FightStick::FightStick(HyEntity2d *pParent /*= nullptr*/) :
 
 /*virtual*/ FightStick::~FightStick()
 {
+}
+
+/*virtual*/ void FightStick::PopulateCtrlPanel(CtrlPanel &ctrlPanel) /*override*/
+{
+	HyLayoutHandle hRow = ctrlPanel.InsertLayout(HYORIEN_Horizontal);
+	ctrlPanel.InsertWidget(m_CtrlPanel_CheckBox, hRow);
+	ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
 }
 
 void FightStick::SetButtonPress(ButtonState eButtonState, bool bPressed)

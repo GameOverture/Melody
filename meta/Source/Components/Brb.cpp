@@ -1,17 +1,36 @@
 #include "pch.h"
 #include "Brb.h"
+#include "CtrlPanel.h"
 
 Brb::Brb(HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_Brb, pParent),
+	m_CtrlPanel_CheckBox(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
 	m_Brb("", "BRB", this),
 	m_ElapsedTimeText("", "MainText", this)
 {
+	m_CtrlPanel_CheckBox.SetText("BRB");
+	m_CtrlPanel_CheckBox.SetCheckedChangedCallback(
+		[this](HyCheckBox *pCheckBox, void *pData)
+		{
+			if(pCheckBox->IsChecked())
+				reinterpret_cast<IComponent *>(pData)->Show(0.5f);
+			else
+				reinterpret_cast<IComponent *>(pData)->Hide(0.5f);
+		}, this);
+
 	m_ElapsedTimeText.pos.SetX(BRB_WIDTH * 0.5f);
 	m_ElapsedTimeText.SetTextAlignment(HYALIGN_Center);
 }
 
 /*virtual*/ Brb::~Brb()
 {
+}
+
+/*virtual*/ void Brb::PopulateCtrlPanel(CtrlPanel &ctrlPanel) /*override*/
+{
+	HyLayoutHandle hRow = ctrlPanel.InsertLayout(HYORIEN_Horizontal);
+	ctrlPanel.InsertWidget(m_CtrlPanel_CheckBox, hRow);
+	ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
 }
 
 /*virtual*/ void Brb::Show(float fDuration) /*override*/

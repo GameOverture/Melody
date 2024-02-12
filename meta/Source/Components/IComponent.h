@@ -3,19 +3,19 @@
 
 #include "pch.h"
 
+class CtrlPanel;
+
 class IComponent : public HyEntity2d
 {
 	const ComponentType		m_eCOMPONENT_TYPE;
-
-	HyCheckBox				m_CtrlPanelCheckBox;
 
 public:
 	IComponent(ComponentType eType, HyEntity2d *pParent = nullptr);
 	virtual ~IComponent();
 
 	ComponentType GetComponentType() const;
-	HyCheckBox &GetCtrlPanelCheckBox();
 	
+	virtual void PopulateCtrlPanel(CtrlPanel &ctrlPanel) = 0;
 	virtual void Show(float fDuration);
 	virtual void Hide(float fDuration);
 

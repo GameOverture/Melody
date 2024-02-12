@@ -20,17 +20,18 @@ class Melody : public HyEngine
 
 	HyPrimitive2d	m_ColorKeyBg;
 
-	HyPrimitive2d	m_AboveLiveSplit;
-
-	FightStick		m_FightStick;
-	VgMusic			m_VgMusic;
-	//Wheel			m_Wheel;
-	Crt				m_Crt;
-	Brb				m_Brb;
-	HeartBeat		m_HeartBeat;
-	MessageCycle	m_MessageCycle;
+	HyPrimitive2d	m_RetroLeftSide;
+	HyStencil		m_RetroLeftSideStencil;
+	//HyPrimitive2d	m_RetroCaptureArea;
 
 	CtrlPanel		m_CtrlPanel;
+
+	VgMusic			m_VgMusic;
+	Brb				m_Brb;
+	Crt				m_Crt;
+	FightStick		m_FightStick;
+	HeartBeat		m_HeartBeat;
+	MessageCycle	m_MessageCycle;
 
 public:
 	Melody(HarmonyInit &initStruct);

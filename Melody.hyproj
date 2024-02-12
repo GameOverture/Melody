@@ -28,8 +28,8 @@
             "LocationX": 0,
             "LocationY": 40,
             "Name": "Control Panel",
-            "ResolutionX": 420,
-            "ResolutionY": 1000,
+            "ResolutionX": 300,
+            "ResolutionY": 1080,
             "Type": 0
         }
     ]

@@ -44,8 +44,8 @@ NewEntity::NewEntity(HyEntity2d *pParent /*= nullptr*/) :
 					break;
 
 				case 0:
-					m_LK_Released.pos.Set(33.520020f, 34.020020f);
 					m_HK_Pressed.pos.Set(-33.500000f, -34.000000f);
+					m_LK_Released.pos.Set(33.520020f, 34.020020f);
 					break;
 
 				}
@@ -57,6 +57,8 @@ NewEntity::NewEntity(HyEntity2d *pParent /*= nullptr*/) :
 	
 	m_fElapsedFrameTime = 0.0f;
 	m_uiCurFrame = 0;
+	
+	return true;
 }
 
 /*virtual*/ uint32 NewEntity::GetNumStates()

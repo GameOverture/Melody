@@ -48,6 +48,8 @@ enum ButtonFlag
 
 class FightStick : public IComponent
 {
+	HyCheckBox				m_CtrlPanel_CheckBox;
+
 	class GatePath : public HyEntity2d
 	{
 		HyPrimitive2d		m_Path;
@@ -103,6 +105,8 @@ class FightStick : public IComponent
 public:
 	FightStick(HyEntity2d *pParent = nullptr);
 	virtual ~FightStick();
+
+	virtual void PopulateCtrlPanel(CtrlPanel &ctrlPanel) override;
 
 	void SetButtonPress(ButtonState eButtonState, bool bPressed);
 

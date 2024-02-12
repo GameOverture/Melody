@@ -8,9 +8,13 @@
 
 class HeartBeat : public IComponent
 {
+	HyCheckBox				m_CtrlPanel_CheckBox;
+
 public:
 	HeartBeat(HyEntity2d *pParent = nullptr);
 	virtual ~HeartBeat();
+
+	virtual void PopulateCtrlPanel(CtrlPanel &ctrlPanel) override;
 
 protected:
 	virtual void OnUpdate() override;

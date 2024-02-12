@@ -557,7 +557,7 @@
             ],
             "CameraZoom": 1,
             "UUID": "de110f0d-3edf-466f-bdaa-39bbd7401508",
-            "assetUUID": "{5c0435fa-dd14-4b87-8ede-85db740353be}",
+            "assetUUID": "5c0435fa-dd14-4b87-8ede-85db740353be",
             "availableGlyphs": {
                 "0-9": true,
                 "A-Z": false,
@@ -615,12 +615,12 @@
         },
         "MainText": {
             "CameraPos": [
-                0,
-                0
+                -113,
+                -111
             ],
             "CameraZoom": 1,
             "UUID": "58595296-c5db-4f52-9091-98fb0cb2030e",
-            "assetUUID": "{3973d981-5aa7-4252-9e46-deff934d06ba}",
+            "assetUUID": "3973d981-5aa7-4252-9e46-deff934d06ba",
             "availableGlyphs": {
                 "0-9": true,
                 "A-Z": true,

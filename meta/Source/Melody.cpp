@@ -9,7 +9,7 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_FightStick(),
 	m_VgMusic(),
 	m_Crt(m_VgMusic),
-	m_CtrlPanel(m_VgMusic, m_Crt, m_MessageCycle)
+	m_CtrlPanel(m_Crt)
 {
 	HyEngine::Input().MapBtn(INPUT_ExitGame, HYKEY_Escape);
 	
@@ -57,45 +57,61 @@ Melody::Melody(HarmonyInit &initStruct) :
 	//m_ColorKeyBg.SetAsBox(312.0f, 139.0f);	// Fight stick camera
 	//m_ColorKeyBg.pos.Set(804.0f, 0.0f);		// Fight stick camera
 
-	m_AboveLiveSplit.UseWindowCoordinates();
-	m_AboveLiveSplit.SetAsBox(548.0f, 310.0f);
-	m_AboveLiveSplit.SetWireframe(true);
-	m_AboveLiveSplit.pos.Set(0.0f, HyEngine::Window(0).GetHeightF() - 310.0f);
+	m_RetroLeftSide.UseWindowCoordinates();
+	//m_RetroLeftSide.SetWireframe(true);
+	//m_RetroLeftSide.SetAsBox(548.0f, 310.0f);
+	//m_RetroLeftSide.pos.Set(0.0f, HyEngine::Window(0).GetHeightF() - 310.0f);
+	m_RetroLeftSide.SetAsBox(548.0f, HyEngine::Window(0).GetHeightF());
+	m_RetroLeftSide.pos.Set(0.0f, 0.0f);
+	m_RetroLeftSide.SetVisible(false);
 
-	m_FightStick.UseWindowCoordinates();
-	m_FightStick.pos.Set(1200.0f, 80.0f);
-	m_FightStick.scale.Set(0.75f, 0.75f);
-	m_FightStick.Load();
-	m_FightStick.SetVisible(false);
+	m_RetroLeftSideStencil.AddMask(m_RetroLeftSide);
+	m_RetroLeftSideStencil.SetAsInvertedMask();
 
-	//m_VgMusic.UseWindowCoordinates();
+	//m_RetroCaptureArea.UseWindowCoordinates();
+	//m_RetroCaptureArea.SetAsBox(1144.0f, 898.0f);
+	//m_RetroCaptureArea.SetWireframe(true);
+	//m_RetroCaptureArea.pos.Set(544.0f + 116.0f, 150.0f);
+	//m_RetroCaptureArea.SetDisplayOrder(DISPLAYORDER_DEBUG);
+
+	m_CtrlPanel.UseWindowCoordinates(1);
+
 	m_VgMusic.Load();
-
-	m_Crt.UseWindowCoordinates();
-	m_Crt.Load();
-	m_Crt.SetVisible(false);
+	m_VgMusic.PopulateCtrlPanel(m_CtrlPanel);
 
 	m_Brb.UseWindowCoordinates();
 	m_Brb.Load();
 	m_Brb.SetVisible(false);
 	m_Brb.scale.Set(0.5f, 0.5f);
 	m_Brb.pos.Set(-500.0f, HyEngine::Window(0).GetHeightF() - 264.0f);
+	m_Brb.PopulateCtrlPanel(m_CtrlPanel);
+
+	m_Crt.UseWindowCoordinates();
+	m_Crt.Load();
+	m_Crt.SetVisible(false);
+	m_Crt.SetStencil(&m_RetroLeftSideStencil);
+	m_Crt.PopulateCtrlPanel(m_CtrlPanel);
+
+	m_FightStick.UseWindowCoordinates();
+	m_FightStick.pos.Set(1200.0f, 80.0f);
+	m_FightStick.scale.Set(0.75f, 0.75f);
+	m_FightStick.Load();
+	m_FightStick.SetVisible(false);
+	m_FightStick.PopulateCtrlPanel(m_CtrlPanel);
 
 	m_HeartBeat.UseWindowCoordinates();
 	m_HeartBeat.Load();
+	m_HeartBeat.SetVisible(false);
+	m_HeartBeat.PopulateCtrlPanel(m_CtrlPanel);
 
 	m_MessageCycle.UseWindowCoordinates();
 	m_MessageCycle.Load();
-	m_MessageCycle.pos.Set(HyEngine::Window(0).GetWidthF(0.5f), 100.0f);
+	//float fMsgXPos = HyEngine::Window(0).GetWidthF(0.5f);
+	float fMsgXPos = 544.0f + 116.0f + 1144.0f * 0.5f;
+	m_MessageCycle.pos.Set(fMsgXPos, 64.0f);
 	m_MessageCycle.SetDisplayOrder(DISPLAYORDER_MessageCycle);
+	m_MessageCycle.PopulateCtrlPanel(m_CtrlPanel);
 
-	m_CtrlPanel.UseWindowCoordinates(1);
-	m_CtrlPanel.AddComponent(m_Brb);
-	m_CtrlPanel.AddComponent(m_HeartBeat);
-	m_CtrlPanel.AddComponent(m_FightStick);
-	m_CtrlPanel.AddComponent(m_Crt);
-	m_CtrlPanel.AddComponent(m_MessageCycle);
-	m_CtrlPanel.FinishComponents();
 	m_CtrlPanel.Load();
 }
 

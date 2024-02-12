@@ -14,6 +14,10 @@ class VgMusic;
 
 class Crt : public IComponent
 {
+	HyCheckBox				m_CtrlPanel_CheckBox;
+	HyButton				m_CtrlPanel_ZoomBtn;
+	HyButton				m_CtrlPanel_UnzoomBtn;
+
 	int32					m_iChannelIndex;
 
 	HySprite2d				m_Screen;
@@ -38,6 +42,8 @@ public:
 	Crt(VgMusic &vgMusicRef, HyEntity2d *pParent = nullptr);
 	virtual ~Crt();
 
+	virtual void PopulateCtrlPanel(CtrlPanel &ctrlPanel) override;
+
 	virtual void Show(float fDuration) override;
 	virtual void Hide(float fDuration) override;
 
@@ -48,6 +54,8 @@ public:
 	void NudgeChannel(int32 iIndexOffset);
 
 	void SetVolume(float fVolume);
+
+	void SetAsZoomed(bool bZoomed);
 
 protected:
 	virtual void OnUpdate() override;

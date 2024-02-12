@@ -1,13 +1,35 @@
 #include "pch.h"
 #include "VgMusic.h"
+#include "CtrlPanel.h"
 
 VgMusic::VgMusic(HyEntity2d *pParent /*= nullptr*/) :
 	HyEntity2d(pParent),
+	m_CtrlPanel_PrevBtn(HyPanelInit(95, 50, 2), HyNodePath("", "MainText"), this),
+	m_CtrlPanel_PlayBtn(HyPanelInit(95, 50, 2), HyNodePath("", "MainText"), this),
+	m_CtrlPanel_StopBtn(HyPanelInit(95, 50, 2), HyNodePath("", "MainText"), this),
 	m_iCurrTrackIndex(-1),
 	m_ePlayState(PLAYSTATE_Stopped),
 	m_fpOnTrackChange(nullptr),
 	m_fpOnFadeOut(nullptr)
 {
+	m_CtrlPanel_PrevBtn.SetText("<");
+	m_CtrlPanel_PrevBtn.SetButtonClickedCallback([this](HyButton *pThis, void *pData)
+		{
+			Prev();
+		});
+
+	m_CtrlPanel_PlayBtn.SetText(">");
+	m_CtrlPanel_PlayBtn.SetButtonClickedCallback([this](HyButton *pThis, void *pData)
+		{
+			Play();
+		});
+
+	m_CtrlPanel_StopBtn.SetText("[]");
+	m_CtrlPanel_StopBtn.SetButtonClickedCallback([this](HyButton *pThis, void *pData)
+		{
+			Stop();
+		});
+
 	std::vector<std::string> tempDirFileList;
 	// Nintendo Entertainment System
 	tempDirFileList = HyIO::GetFileList("\\\\IronMountain/Documents/Video Games Meta-Scrape/NES/media/Named_Ost", ".ogg", false);
@@ -34,6 +56,14 @@ VgMusic::VgMusic(HyEntity2d *pParent /*= nullptr*/) :
 
 /*virtual*/ VgMusic::~VgMusic()
 {
+}
+
+void VgMusic::PopulateCtrlPanel(CtrlPanel &ctrlPanel)
+{
+	HyLayoutHandle hCurRow = ctrlPanel.InsertLayout(HYORIEN_Horizontal);
+	ctrlPanel.InsertWidget(m_CtrlPanel_PrevBtn, hCurRow);
+	ctrlPanel.InsertWidget(m_CtrlPanel_PlayBtn, hCurRow);
+	ctrlPanel.InsertWidget(m_CtrlPanel_StopBtn, hCurRow);
 }
 
 void VgMusic::SetOnTrackChangeCallback(std::function<void(const std::string &)> fpOnTrackChange)
