@@ -51,7 +51,7 @@ Melody::Melody(HarmonyInit &initStruct) :
 
 	m_ColorKeyBg.UseWindowCoordinates();
 	m_ColorKeyBg.SetDisplayOrder(-999999);
-	m_ColorKeyBg.SetTint(HyColor::Magenta/*HyColor::Black*/);
+	m_ColorKeyBg.SetTint(HyColor::Orange/*HyColor::Magenta*/);
 	m_ColorKeyBg.SetAsBox(1920.0f, 1080.0f);
 	m_ColorKeyBg.pos.Set(0.0f, 0.0f);
 	//m_ColorKeyBg.SetAsBox(312.0f, 139.0f);	// Fight stick camera

@@ -16,6 +16,7 @@ enum ChannelType
 {
 	CHANNELTYPE_Static = 0,
 	CHANNELTYPE_Music,
+	CHANNELTYPE_Game,
 
 	NUM_CHANNELTYPE
 };
@@ -24,14 +25,10 @@ class Channel : public HyEntity2d
 {
 protected:
 	const ChannelType	m_eCHANNEL_TYPE;
-	HySprite2d			m_Static;
 
 public:
 	Channel(ChannelType eChannelType, HyEntity2d *pParent = nullptr);
 	virtual ~Channel();
-
-	void ShowStatic();
-	void HideStatic();
 
 protected:
 	virtual void OnUpdate() override;

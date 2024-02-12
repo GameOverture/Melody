@@ -16,17 +16,26 @@ Crt::Crt(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
 	m_CtrlPanel_CheckBox(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
 	m_CtrlPanel_ZoomBtn(HyPanelInit(100, 32, 2), HyNodePath("", "CtrlPanel")),
 	m_CtrlPanel_UnzoomBtn(HyPanelInit(100, 32, 2), HyNodePath("", "CtrlPanel")),
-	m_iChannelIndex(0),
+	m_iChannelIndex(-1),
 	m_Screen("CRT", "Screen", this),
 	m_ChannelStack(this),
 	m_ScreenOverlay("CRT", "ScreenOverlay", this),
+	m_Static("CRT", "Static"),
 	m_Frame("CRT", "Frame", this),
 	m_Nob("CRT", "Nob", this),
 	m_VcrTimeHrs("CRT", "VCR", this),
 	m_VcrTimeMins("CRT", "VCR", this),
 	m_ChannelStatic(CHANNELTYPE_Static, &m_ChannelStack),
-	m_ChannelMusic(vgMusicRef, &m_ChannelStack)
+	m_ChannelMusic(vgMusicRef, &m_ChannelStack),
+	m_ChannelGame(CHANNELTYPE_Game, &m_ChannelStack),
+	m_eChannelState(CRTSTATE_Off),
+	m_fElapsedTime(0.0f)
 {
+	m_ChannelList.push_back(&m_ChannelStatic);
+	m_ChannelList.push_back(&m_ChannelMusic);
+	m_ChannelList.push_back(&m_ChannelGame);
+	HyAssert(m_ChannelList.size() == NUM_CHANNELTYPE, "Crt::Crt() - m_ChannelList.size() != CHANNELTYPE_COUNT");
+
 	m_CtrlPanel_CheckBox.SetText("CRT");
 	m_CtrlPanel_CheckBox.SetCheckedChangedCallback(
 		[this](HyCheckBox *pCheckBox, void *pData)
@@ -37,18 +46,18 @@ Crt::Crt(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
 				reinterpret_cast<IComponent *>(pData)->Hide(0.5f);
 		}, this);
 
-	m_CtrlPanel_ZoomBtn.SetText("Zoom");
+	m_CtrlPanel_ZoomBtn.SetText("Game");
 	m_CtrlPanel_ZoomBtn.SetButtonClickedCallback(
 		[this](HyButton *pButton, void *pData)
 		{
-			reinterpret_cast<Crt *>(pData)->SetAsZoomed(true);
+			reinterpret_cast<Crt *>(pData)->SetChannel(CHANNELTYPE_Game);
 		}, this);
 
-	m_CtrlPanel_UnzoomBtn.SetText("Unzoom");
+	m_CtrlPanel_UnzoomBtn.SetText("Music");
 	m_CtrlPanel_UnzoomBtn.SetButtonClickedCallback(
 		[this](HyButton *pButton, void *pData)
 		{
-			reinterpret_cast<Crt *>(pData)->SetAsZoomed(false);
+			reinterpret_cast<Crt *>(pData)->SetChannel(CHANNELTYPE_Music);
 		}, this);
 
 	const int32 iScreenX = 148;
@@ -57,11 +66,17 @@ Crt::Crt(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
 	m_Screen.pos.Set(iScreenX, iScreenY);
 	m_ScreenOverlay.pos.Set(iScreenX, iScreenY);
 
+	m_Static.scale.Set(2.4f, 2.4f);
+	m_Static.pos.Set(-75, -20);
+	m_Static.SetDisplayOrder(DISPLAYORDER_CrtVolume);
+	m_Static.SetVisible(false);
+
 	m_ChannelStack.pos.Set(iScreenX + 24, iScreenY + 6);
 	m_ChannelStack.scale_pivot.Set(CRT_SCREEN_WIDTH * 0.5f, CRT_SCREEN_HEIGHT * 0.5f);
 	m_ChannelStack.scale.Set(CRT_SHRINK_AMT, CRT_SHRINK_AMT);
 	m_ChannelStack.SetVisible(false);
 	m_ChannelStack.SetStencil(&m_Stencil);
+	m_ChannelStack.ChildAppend(m_Static);
 	//m_ChannelStack.SetPostProcessing(
 	
 	m_Nob.pos.Set(1120.0f, 730.0f);
@@ -69,9 +84,9 @@ Crt::Crt(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
 	m_VcrTimeHrs.SetTextAlignment(HYALIGN_Right);
 	m_VcrTimeMins.pos.Set(640, 1050);
 
-	m_VolumeText.Init("CRT", "Volume", &m_ChannelStack);
+	m_VolumeText.Init("CRT", "Volume", this);
 	m_VolumeText.SetText("VOLUME");
-	m_VolumeText.pos.Set(95, 160);
+	m_VolumeText.pos.Set(iScreenX + 95, iScreenY + 160);
 	m_VolumeText.SetDisplayOrder(DISPLAYORDER_CrtVolume);
 	m_VolumeText.SetVisible(false);
 	for(int i = 0; i < NUM_VOLUME_BARS; ++i)
@@ -79,10 +94,10 @@ Crt::Crt(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
 		m_VolumeBar[i].SetVisible(false);
 		m_VolumeBar[i].SetTint(HyColor::Green);
 		m_VolumeBar[i].SetAsBox(24.0f, 48.0f);
-		m_VolumeBar[i].pos.Set(100 + (i * 32), 100);
+		m_VolumeBar[i].pos.Set(iScreenX + 100 + (i * 32), iScreenY + 100);
 		m_VolumeBar[i].SetDisplayOrder(DISPLAYORDER_CrtVolume);
 		
-		m_ChannelStack.ChildAppend(m_VolumeBar[i]);
+		ChildAppend(m_VolumeBar[i]);
 	}
 
 	m_Stencil.AddMask(m_Screen);
@@ -129,27 +144,32 @@ void Crt::TogglePower(bool bPowerOn)
 		{
 			m_ChannelStack.SetVisible(true);
 			m_ChannelStack.scale.Tween(1.0f, CRT_SHRINK_AMT, 0.2f, HyTween::Linear, 0.0f, [](IHyNode *pThis) { static_cast<HyEntity2d *>(pThis)->scale.Tween(1.0f, 1.0f, 0.4f, HyTween::BounceOut); });
+			SetChannel(CHANNELTYPE_Static);
 		}
 	}
 	else
 	{
 		if(IsPowerOn())
+		{
 			m_ChannelStack.scale.Tween(CRT_SHRINK_AMT, CRT_SHRINK_AMT, CRT_SHUTOFF_DUR, HyTween::BounceIn, 0.0f, [](IHyNode *pThis) {  pThis->SetVisible(false); });
+			m_eChannelState = CRTSTATE_Off;
+			m_iChannelIndex = -1;
+		}
 	}
 }
 
 void Crt::SetChannel(int32 iChannelIndex)
 {
+	if(m_eChannelState != CRTSTATE_Idle && m_eChannelState != CRTSTATE_Off)
+		return;
+
 	iChannelIndex %= NUM_CHANNELTYPE;
 	iChannelIndex = fabs(iChannelIndex);
 	if(m_iChannelIndex == iChannelIndex)
 		return;
 
-	//m_ChannelList[m_iChannelIndex]->SetVisible(false);
 	m_iChannelIndex = iChannelIndex;
-	//m_ChannelList[m_iChannelIndex]->SetVisible(true);
-
-	m_Nob.rot.Tween((360.0f / NUM_CHANNELTYPE) * m_iChannelIndex, 0.2f, HyTween::QuadIn);
+	m_eChannelState = CRTSTATE_PreChangeChannel;
 }
 
 void Crt::NudgeChannel(int32 iIndexOffset)
@@ -172,28 +192,6 @@ void Crt::SetVolume(float fVolume)
 	}
 
 	m_fVolumeShowTime = 2.0f;
-}
-
-void Crt::SetAsZoomed(bool bZoomed)
-{
-	if(bZoomed)
-	{
-		pos.Tween(CRT_ZOOM_POS, 1.5f, HyTween::QuadInOut);
-		scale.Tween(CRT_ZOOM_SCALE, 1.5f, HyTween::QuadInOut);
-
-		m_ChannelStack.alpha.Tween(0.0f, 0.75f, HyTween::Linear);
-		m_Screen.alpha.Tween(0.0f, 0.75f, HyTween::Linear);
-		m_ScreenOverlay.alpha.Tween(0.0f, 0.75f, HyTween::Linear);
-	}
-	else
-	{
-		pos.Tween(CRT_UNZOOM_POS, 1.5f, HyTween::QuadInOut);
-		scale.Tween(CRT_UNZOOM_SCALE, 1.5f, HyTween::QuadInOut);
-
-		m_ChannelStack.alpha.Tween(1.0f, 0.75f, HyTween::Linear);
-		m_Screen.alpha.Tween(1.0f, 0.75f, HyTween::Linear);
-		m_ScreenOverlay.alpha.Tween(1.0f, 0.75f, HyTween::Linear);
-	}
 }
 
 /*virtual*/ void Crt::OnUpdate() /*override*/
@@ -233,5 +231,63 @@ void Crt::SetAsZoomed(bool bZoomed)
 			for(int i = 0; i < NUM_VOLUME_BARS; ++i)
 				m_VolumeBar[i].SetVisible(false);
 		}
+	}
+
+	switch(m_eChannelState)
+	{
+	case CRTSTATE_Off:
+		break;
+
+	case CRTSTATE_PreChangeChannel:
+		if(m_iChannelIndex == CHANNELTYPE_Game)
+		{
+			pos.Tween(CRT_ZOOM_POS, 1.5f, HyTween::QuadInOut);
+			scale.Tween(CRT_ZOOM_SCALE, 1.5f, HyTween::QuadInOut);
+		}
+
+		m_eChannelState = CRTSTATE_ChangeChannel;
+		break;
+
+	case CRTSTATE_ChangeChannel:
+		if(pos.IsAnimating() || scale.IsAnimating())
+			break;
+
+		if(m_iChannelIndex == CHANNELTYPE_Game)
+		{
+			m_Screen.SetVisible(false);
+			m_ScreenOverlay.SetVisible(false);
+		}
+		else
+		{
+			m_Screen.SetVisible(true);
+			m_ScreenOverlay.SetVisible(true);
+
+			pos.Tween(CRT_UNZOOM_POS, 1.5f, HyTween::QuadInOut);
+			scale.Tween(CRT_UNZOOM_SCALE, 1.5f, HyTween::QuadInOut);
+		}
+
+		for(int i = 0; i < NUM_CHANNELTYPE; ++i)
+			m_ChannelList[i]->SetVisible(false);
+		m_Static.SetVisible(true);
+		m_Nob.rot.Tween((360.0f / NUM_CHANNELTYPE) * m_iChannelIndex, 0.2f, HyTween::QuadIn);
+
+		m_fElapsedTime = 0.0f;
+		m_eChannelState = CRTSTATE_PostChangeChannel;
+		break;
+
+	case CRTSTATE_PostChangeChannel:
+		m_fElapsedTime += HyEngine::DeltaTime();
+		if(m_fElapsedTime >= 0.5f)
+		{
+			if(m_iChannelIndex != CHANNELTYPE_Static)
+				m_Static.SetVisible(false);
+
+			m_ChannelList[m_iChannelIndex]->SetVisible(true);
+			m_eChannelState = CRTSTATE_Idle;
+		}
+		break;
+
+	case CRTSTATE_Idle:
+		break;
 	}
 }

@@ -23,6 +23,7 @@ class Crt : public IComponent
 	HySprite2d				m_Screen;
 	HyEntity2d				m_ChannelStack;
 	HySprite2d				m_ScreenOverlay;
+	HySprite2d				m_Static;
 	HySprite2d				m_Frame;
 	HySprite2d				m_Nob;
 
@@ -37,6 +38,20 @@ class Crt : public IComponent
 
 	Channel					m_ChannelStatic;
 	Music					m_ChannelMusic;
+	Channel					m_ChannelGame;
+	
+	std::vector<Channel *>	m_ChannelList;
+	
+	enum CrtState
+	{
+		CRTSTATE_Off,
+		CRTSTATE_PreChangeChannel,
+		CRTSTATE_ChangeChannel,
+		CRTSTATE_PostChangeChannel,
+		CRTSTATE_Idle
+	};
+	CrtState				m_eChannelState;
+	float					m_fElapsedTime;
 
 public:
 	Crt(VgMusic &vgMusicRef, HyEntity2d *pParent = nullptr);
@@ -54,8 +69,6 @@ public:
 	void NudgeChannel(int32 iIndexOffset);
 
 	void SetVolume(float fVolume);
-
-	void SetAsZoomed(bool bZoomed);
 
 protected:
 	virtual void OnUpdate() override;
