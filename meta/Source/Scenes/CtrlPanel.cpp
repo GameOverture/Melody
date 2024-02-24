@@ -10,6 +10,7 @@ CtrlPanel::CtrlPanel(Crt &crtRef, HyEntity2d *pParent /*= nullptr*/) :
 	m_btnVolume_Down(HyPanelInit(120, 50, 2), HyNodePath("", "CtrlPanel"), this),
 	m_btnVolume_Up(HyPanelInit(120, 50, 2), HyNodePath("", "CtrlPanel"), this)
 {
+	m_btnVolume_Down.SetAsStacked(HYALIGN_Center, HYTEXT_Box);
 	m_btnVolume_Down.SetText("VOL -");
 	m_btnVolume_Down.SetButtonClickedCallback([this](HyButton *pThis, void *pData)
 	{
@@ -17,6 +18,7 @@ CtrlPanel::CtrlPanel(Crt &crtRef, HyEntity2d *pParent /*= nullptr*/) :
 		m_CrtRef.SetVolume(HyEngine::Audio().GetGlobalVolume());
 	});
 
+	m_btnVolume_Up.SetAsStacked(HYALIGN_Center, HYTEXT_Box);
 	m_btnVolume_Up.SetText("VOL +");
 	m_btnVolume_Up.SetButtonClickedCallback([this](HyButton *pThis, void *pData)
 	{

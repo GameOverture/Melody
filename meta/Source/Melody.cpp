@@ -8,29 +8,31 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_ColorKeyBg(),
 	m_FightStick(),
 	m_VgMusic(),
-	m_Crt(m_VgMusic),
+	m_Brb(),
+	m_MessageCycle(m_Brb),
+	m_Crt(m_VgMusic, m_MessageCycle),
 	m_CtrlPanel(m_Crt)
 {
-	HyEngine::Input().MapBtn(INPUT_ExitGame, HYKEY_Escape);
-	
-	HyEngine::Input().MapBtn(INPUT_GotoIntro, HYKEY_1);
-	HyEngine::Input().MapBtn(INPUT_GotoLowerThird, HYKEY_2);
-	HyEngine::Input().MapBtn(INPUT_GotoBreak, HYKEY_3);
-	HyEngine::Input().MapBtn(INPUT_GotoWheel, HYKEY_4);
-	HyEngine::Input().MapBtn(INPUT_GotoOutro, HYKEY_6);
-	HyEngine::Input().MapBtn(INPUT_CrtPowerToggle, HYKEY_P);
-	HyEngine::Input().MapBtn(INPUT_CrtChannelUp, HYKEY_W);
-	HyEngine::Input().MapBtn(INPUT_CrtChannelDown, HYKEY_S);
+	//HyEngine::Input().MapBtn(INPUT_ExitGame, HYKEY_Escape);
+	//
+	//HyEngine::Input().MapBtn(INPUT_GotoIntro, HYKEY_1);
+	//HyEngine::Input().MapBtn(INPUT_GotoLowerThird, HYKEY_2);
+	//HyEngine::Input().MapBtn(INPUT_GotoBreak, HYKEY_3);
+	//HyEngine::Input().MapBtn(INPUT_GotoWheel, HYKEY_4);
+	//HyEngine::Input().MapBtn(INPUT_GotoOutro, HYKEY_6);
+	//HyEngine::Input().MapBtn(INPUT_CrtPowerToggle, HYKEY_P);
+	//HyEngine::Input().MapBtn(INPUT_CrtChannelUp, HYKEY_W);
+	//HyEngine::Input().MapBtn(INPUT_CrtChannelDown, HYKEY_S);
 
-	HyEngine::Input().MapBtn(INPUT_Dance, HYKEY_Z);
-	HyEngine::Input().MapBtn(INPUT_DanceAlt, HYKEY_X);
-	HyEngine::Input().MapBtn(INPUT_DanceStop, HYKEY_C);
-	HyEngine::Input().MapBtn(INPUT_DanceShimmy, HYKEY_V);
+	//HyEngine::Input().MapBtn(INPUT_Dance, HYKEY_Z);
+	//HyEngine::Input().MapBtn(INPUT_DanceAlt, HYKEY_X);
+	//HyEngine::Input().MapBtn(INPUT_DanceStop, HYKEY_C);
+	//HyEngine::Input().MapBtn(INPUT_DanceShimmy, HYKEY_V);
 
-	HyEngine::Input().MapBtn(INPUT_VgMusicPlay, HYKEY_F);
-	HyEngine::Input().MapBtn(INPUT_VgMusicStop, HYKEY_G);
-	HyEngine::Input().MapBtn(INPUT_GlobalVolumeDown, HYKEY_Minus);
-	HyEngine::Input().MapBtn(INPUT_GlobalVolumeUp, HYKEY_Equal);
+	//HyEngine::Input().MapBtn(INPUT_VgMusicPlay, HYKEY_F);
+	//HyEngine::Input().MapBtn(INPUT_VgMusicStop, HYKEY_G);
+	//HyEngine::Input().MapBtn(INPUT_GlobalVolumeDown, HYKEY_Minus);
+	//HyEngine::Input().MapBtn(INPUT_GlobalVolumeUp, HYKEY_Equal);
 
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_LK, HYPAD_A);
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_MK, HYPAD_B);
@@ -106,9 +108,6 @@ Melody::Melody(HarmonyInit &initStruct) :
 
 	m_MessageCycle.UseWindowCoordinates();
 	m_MessageCycle.Load();
-	//float fMsgXPos = HyEngine::Window(0).GetWidthF(0.5f);
-	float fMsgXPos = 544.0f + 116.0f + 1144.0f * 0.5f;
-	m_MessageCycle.pos.Set(fMsgXPos, 64.0f);
 	m_MessageCycle.SetDisplayOrder(DISPLAYORDER_MessageCycle);
 	m_MessageCycle.PopulateCtrlPanel(m_CtrlPanel);
 
@@ -132,5 +131,7 @@ Melody::~Melody()
 	//	m_Crt.SetVolume(HyEngine::Audio().GetGlobalVolume());
 	//}
 
-	return !HyEngine::Input().IsActionReleased(INPUT_ExitGame);
+	//return !HyEngine::Input().IsActionReleased(INPUT_ExitGame);
+
+	return true;
 }

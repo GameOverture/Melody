@@ -17,28 +17,6 @@
 
 enum InputAction
 {
-	INPUT_ExitGame = 0,
-
-	INPUT_GotoIntro,
-	INPUT_GotoLowerThird,
-	INPUT_GotoBreak,
-	INPUT_GotoWheel,
-	INPUT_GotoOutro,
-
-	INPUT_CrtPowerToggle,
-	INPUT_CrtChannelUp,
-	INPUT_CrtChannelDown,
-
-	INPUT_Dance,
-	INPUT_DanceAlt,
-	INPUT_DanceStop,
-	INPUT_DanceShimmy,
-
-	INPUT_VgMusicPlay, // Also skips current track if already playing
-	INPUT_VgMusicStop,
-	INPUT_GlobalVolumeDown,
-	INPUT_GlobalVolumeUp,
-
 	FIGHTSTICK_LK,
 	FIGHTSTICK_MK,
 	//FIGHTSTICK_HK, // Trigger Positive

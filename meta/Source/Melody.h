@@ -28,10 +28,10 @@ class Melody : public HyEngine
 
 	VgMusic			m_VgMusic;
 	Brb				m_Brb;
+	MessageCycle	m_MessageCycle;
 	Crt				m_Crt;
 	FightStick		m_FightStick;
 	HeartBeat		m_HeartBeat;
-	MessageCycle	m_MessageCycle;
 
 public:
 	Melody(HarmonyInit &initStruct);

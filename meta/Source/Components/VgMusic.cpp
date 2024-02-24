@@ -12,18 +12,21 @@ VgMusic::VgMusic(HyEntity2d *pParent /*= nullptr*/) :
 	m_fpOnTrackChange(nullptr),
 	m_fpOnFadeOut(nullptr)
 {
+	m_CtrlPanel_PrevBtn.SetAsStacked(HYALIGN_Center, HYTEXT_Box);
 	m_CtrlPanel_PrevBtn.SetText("<");
 	m_CtrlPanel_PrevBtn.SetButtonClickedCallback([this](HyButton *pThis, void *pData)
 		{
 			Prev();
 		});
 
+	m_CtrlPanel_PlayBtn.SetAsStacked(HYALIGN_Center, HYTEXT_Box);
 	m_CtrlPanel_PlayBtn.SetText(">");
 	m_CtrlPanel_PlayBtn.SetButtonClickedCallback([this](HyButton *pThis, void *pData)
 		{
 			Play();
 		});
 
+	m_CtrlPanel_StopBtn.SetAsStacked(HYALIGN_Center, HYTEXT_Box);
 	m_CtrlPanel_StopBtn.SetText("[]");
 	m_CtrlPanel_StopBtn.SetButtonClickedCallback([this](HyButton *pThis, void *pData)
 		{

@@ -4,47 +4,71 @@
 #include "pch.h"
 #include "IComponent.h"
 
+#define MSGCYCLE_HIDE_YPOS		-100.0f
+#define MSGCYCLE_SHOW_YPOS		50.0f
+
+#define MSGCYCLE_DURATION_LONG	20.0f
+#define MSGCYCLE_DURATION_SHORT	5.0f
+
+class Brb;
+
 class MessageCycle : public IComponent
 {
+	Brb &						m_BrbRef;
 	CtrlPanel *					m_pCtrlPanel;
+
+	float						m_fXPos;
 
 	HyCheckBox					m_CtrlPanel_CheckBox;
 	HyLineEdit					m_CtrlPanel_LineEdit;
 	HyButton					m_CtrlPanel_AddBtn;
 
-	std::vector<std::string>	m_sMsgList;
+	HyRadioButton				m_CtrlPanel_radLong;
+	HyRadioButton				m_CtrlPanel_radShort;
+
 	int32						m_iCurrMsgIndex;
 	HyTimer						m_Timer;
 	
 	HyText2d					m_Text;
 
-
 	struct Message
 	{
+		float			m_fDuration;
 		HyLabel			m_Message;
 		HyButton		m_Remove;
 		HyLayoutHandle	m_hLayout;
 
-		Message() :
-			m_Message(HyPanelInit(225, 50, 2, HyColor::DarkGray), HyNodePath("", "CtrlPanel"), nullptr),
+		Message(bool bLongDur) :
+			m_fDuration(bLongDur ? MSGCYCLE_DURATION_LONG : MSGCYCLE_DURATION_SHORT),
+			m_Message(HyPanelInit(225, 50, 2, bLongDur ? HyColor::DarkGray : HyColor::DarkGreen), HyNodePath("", "CtrlPanel"), nullptr),
 			m_Remove(HyPanelInit(50, 50, 2, HyColor::Red), HyNodePath("", "MainText"), nullptr),
 			m_hLayout(HY_UNUSED_HANDLE)
 		{
 		}
+
+		~Message()
+		{
+			m_Message.DisableMouseInput();
+			m_Remove.DisableMouseInput();
+		}
+
+		std::string GetMsg() const { return m_Message.GetUtf8String(); }
+		float GetDuration() const { return m_fDuration; }
 	};
 	std::vector<Message *> m_MessageList;
-	std::vector<Message *> m_MessageListToRemove;
+	std::vector<Message *> m_DeleteList;
 
 public:
-	MessageCycle(HyEntity2d *pParent = nullptr);
+	MessageCycle(Brb &brbRef, HyEntity2d *pParent = nullptr);
 	virtual ~MessageCycle();
+
+	void SetXPosOffset(float fXPos);
 
 	virtual void PopulateCtrlPanel(CtrlPanel &ctrlPanel) override;
 
 	virtual void Show(float fDuration) override;
 	virtual void Hide(float fDuration) override;
 
-	void SetMsgs(std::vector<std::string> &sMsgList, float fCycleDuration);
 	void OnRemoveMessage(Message *pMessage);
 
 protected:

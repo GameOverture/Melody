@@ -14,9 +14,12 @@ class VgMusic;
 
 class Crt : public IComponent
 {
+	MessageCycle &			m_MsgCycleRef;
+
 	HyCheckBox				m_CtrlPanel_CheckBox;
-	HyButton				m_CtrlPanel_ZoomBtn;
-	HyButton				m_CtrlPanel_UnzoomBtn;
+	HyButton				m_CtrlPanel_btnGame;
+	HyButton				m_CtrlPanel_btnMusic;
+	HyButton				m_CtrlPanel_btnStatic;
 
 	int32					m_iChannelIndex;
 
@@ -33,6 +36,9 @@ class Crt : public IComponent
 	HyText2d				m_VolumeText;
 	HyPrimitive2d			m_VolumeBar[NUM_VOLUME_BARS];
 	float					m_fVolumeShowTime;
+
+	HyText2d				m_ChannelText;
+	float					m_fChannelShowTime;
 	
 	HyStencil				m_Stencil;
 
@@ -46,7 +52,7 @@ class Crt : public IComponent
 	{
 		CRTSTATE_Off,
 		CRTSTATE_PreChangeChannel,
-		CRTSTATE_ChangeChannel,
+		CRTSTATE_ChangingChannel,
 		CRTSTATE_PostChangeChannel,
 		CRTSTATE_Idle
 	};
@@ -54,7 +60,7 @@ class Crt : public IComponent
 	float					m_fElapsedTime;
 
 public:
-	Crt(VgMusic &vgMusicRef, HyEntity2d *pParent = nullptr);
+	Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, HyEntity2d *pParent = nullptr);
 	virtual ~Crt();
 
 	virtual void PopulateCtrlPanel(CtrlPanel &ctrlPanel) override;

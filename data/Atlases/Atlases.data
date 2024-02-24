@@ -52,8 +52,8 @@
                             "checksum": 2232419247,
                             "cropMaskHi": 0,
                             "cropMaskLo": 0,
-                            "frameMaskHi": 98173638,
-                            "frameMaskLo": 100991776
+                            "frameMaskHi": 90112808,
+                            "frameMaskLo": 92930946
                         },
                         {
                             "checksum": 3349669989,
@@ -66,8 +66,8 @@
                             "checksum": 595453031,
                             "cropMaskHi": 0,
                             "cropMaskLo": 0,
-                            "frameMaskHi": 130285850,
-                            "frameMaskLo": 132972917
+                            "frameMaskHi": 130285944,
+                            "frameMaskLo": 132973011
                         },
                         {
                             "checksum": 256021601,
@@ -80,8 +80,8 @@
                             "checksum": 595453031,
                             "cropMaskHi": 0,
                             "cropMaskLo": 0,
-                            "frameMaskHi": 130285850,
-                            "frameMaskLo": 132972917
+                            "frameMaskHi": 130285944,
+                            "frameMaskLo": 132973011
                         },
                         {
                             "checksum": 2796352799,
@@ -94,8 +94,8 @@
                             "checksum": 494586859,
                             "cropMaskHi": 0,
                             "cropMaskLo": 0,
-                            "frameMaskHi": 130285944,
-                            "frameMaskLo": 132973011
+                            "frameMaskHi": 130285850,
+                            "frameMaskLo": 132972917
                         },
                         {
                             "checksum": 3541080266,
@@ -143,8 +143,8 @@
                             "checksum": 3583847589,
                             "cropMaskHi": 0,
                             "cropMaskLo": 0,
-                            "frameMaskHi": 15271842,
-                            "frameMaskLo": 17500146
+                            "frameMaskHi": 12847010,
+                            "frameMaskLo": 15075314
                         },
                         {
                             "checksum": 2598577026,
@@ -206,8 +206,8 @@
                             "checksum": 1849325999,
                             "cropMaskHi": 0,
                             "cropMaskLo": 0,
-                            "frameMaskHi": 12847010,
-                            "frameMaskLo": 15075314
+                            "frameMaskHi": 15271842,
+                            "frameMaskLo": 17500146
                         },
                         {
                             "checksum": 742544284,
@@ -325,8 +325,8 @@
                             "checksum": 3947111233,
                             "cropMaskHi": 0,
                             "cropMaskLo": 0,
-                            "frameMaskHi": 90112808,
-                            "frameMaskLo": 92930946
+                            "frameMaskHi": 98173638,
+                            "frameMaskLo": 100991776
                         },
                         {
                             "checksum": 3947931900,
@@ -346,8 +346,8 @@
                             "checksum": 1463149058,
                             "cropMaskHi": 0,
                             "cropMaskLo": 0,
-                            "frameMaskHi": 130614594,
-                            "frameMaskLo": 132908441
+                            "frameMaskHi": 130614684,
+                            "frameMaskLo": 132908531
                         },
                         {
                             "checksum": 3210291268,
@@ -360,8 +360,8 @@
                             "checksum": 2463429355,
                             "cropMaskHi": 0,
                             "cropMaskLo": 0,
-                            "frameMaskHi": 130614684,
-                            "frameMaskLo": 132908531
+                            "frameMaskHi": 130614774,
+                            "frameMaskLo": 132908621
                         },
                         {
                             "checksum": 3063735914,
@@ -381,8 +381,8 @@
                             "checksum": 1496810269,
                             "cropMaskHi": 0,
                             "cropMaskLo": 0,
-                            "frameMaskHi": 130614774,
-                            "frameMaskLo": 132908621
+                            "frameMaskHi": 130614594,
+                            "frameMaskLo": 132908441
                         },
                         {
                             "checksum": 2959275896,
@@ -416,8 +416,8 @@
                             "checksum": 1096995317,
                             "cropMaskHi": 0,
                             "cropMaskLo": 0,
-                            "frameMaskHi": 91489250,
-                            "frameMaskLo": 94700602
+                            "frameMaskHi": 88671294,
+                            "frameMaskLo": 91882646
                         },
                         {
                             "checksum": 255075663,
@@ -451,8 +451,8 @@
                             "checksum": 3166535162,
                             "cropMaskHi": 0,
                             "cropMaskLo": 0,
-                            "frameMaskHi": 88671294,
-                            "frameMaskLo": 91882646
+                            "frameMaskHi": 91489250,
+                            "frameMaskLo": 94700602
                         },
                         {
                             "checksum": 1480091801,
@@ -486,8 +486,8 @@
                             "checksum": 3597872615,
                             "cropMaskHi": 0,
                             "cropMaskLo": 0,
-                            "frameMaskHi": 95028286,
-                            "frameMaskLo": 97780886
+                            "frameMaskHi": 92079166,
+                            "frameMaskLo": 94831766
                         },
                         {
                             "checksum": 4233828051,
@@ -514,8 +514,8 @@
                             "checksum": 2252036996,
                             "cropMaskHi": 0,
                             "cropMaskLo": 0,
-                            "frameMaskHi": 92079166,
-                            "frameMaskLo": 94831766
+                            "frameMaskHi": 95028286,
+                            "frameMaskLo": 97780886
                         },
                         {
                             "checksum": 1459704002,
@@ -549,39 +549,39 @@
                             "checksum": 116310830,
                             "cropMaskHi": 3407872,
                             "cropMaskLo": 3473413,
-                            "frameMaskHi": 62457355,
-                            "frameMaskLo": 88344320
-                        },
-                        {
-                            "checksum": 3129094634,
-                            "cropMaskHi": 3407872,
-                            "cropMaskLo": 3473413,
                             "frameMaskHi": 52168451,
                             "frameMaskLo": 78055416
                         },
                         {
-                            "checksum": 550353471,
-                            "cropMaskHi": 3407872,
-                            "cropMaskLo": 3473413,
-                            "frameMaskHi": 108136184,
-                            "frameMaskLo": 134023149
-                        },
-                        {
-                            "checksum": 3835735316,
-                            "cropMaskHi": 3407872,
-                            "cropMaskLo": 3473413,
-                            "frameMaskHi": 26085034,
-                            "frameMaskLo": 51971999
-                        },
-                        {
-                            "checksum": 193953564,
+                            "checksum": 3129094634,
                             "cropMaskHi": 3407872,
                             "cropMaskLo": 3473413,
                             "frameMaskHi": 1706,
                             "frameMaskLo": 25888671
                         },
                         {
-                            "checksum": 2417040155,
+                            "checksum": 550353471,
+                            "cropMaskHi": 3407872,
+                            "cropMaskLo": 3473413,
+                            "frameMaskHi": 26085034,
+                            "frameMaskLo": 51971999
+                        },
+                        {
+                            "checksum": 3835735316,
+                            "cropMaskHi": 3407872,
+                            "cropMaskLo": 3473413,
+                            "frameMaskHi": 62457355,
+                            "frameMaskLo": 88344320
+                        },
+                        {
+                            "checksum": 193953564,
+                            "cropMaskHi": 3407872,
+                            "cropMaskLo": 3473413,
+                            "frameMaskHi": 108136184,
+                            "frameMaskLo": 134023149
+                        },
+                        {
+                            "checksum": 425600606,
                             "cropMaskHi": 3735552,
                             "cropMaskLo": 3473413,
                             "frameMaskHi": 78251779,
@@ -605,15 +605,15 @@
                             "checksum": 4156033511,
                             "cropMaskHi": 393356,
                             "cropMaskLo": 393232,
-                            "frameMaskHi": 102040529,
-                            "frameMaskLo": 134022316
+                            "frameMaskHi": 56493115,
+                            "frameMaskLo": 88474902
                         },
                         {
                             "checksum": 402433704,
                             "cropMaskHi": 393356,
                             "cropMaskLo": 393232,
-                            "frameMaskHi": 56493115,
-                            "frameMaskLo": 88474902
+                            "frameMaskHi": 102040529,
+                            "frameMaskLo": 134022316
                         },
                         {
                             "checksum": 1543400257,
@@ -651,7 +651,7 @@
                             "frameMaskLo": 96535239
                         },
                         {
-                            "checksum": 2596104185,
+                            "checksum": 803052084,
                             "cropMaskHi": 0,
                             "cropMaskLo": 0,
                             "frameMaskHi": 0,
@@ -1025,13 +1025,6 @@
                             "checksum": 3517499372,
                             "cropMaskHi": 3735552,
                             "cropMaskLo": 3473413,
-                            "frameMaskHi": 51511296,
-                            "frameMaskLo": 77070581
-                        },
-                        {
-                            "checksum": 425600606,
-                            "cropMaskHi": 3735552,
-                            "cropMaskLo": 3473413,
                             "frameMaskHi": 0,
                             "frameMaskLo": 25559285
                         },
@@ -1041,6 +1034,13 @@
                             "cropMaskLo": 3473413,
                             "frameMaskHi": 25755648,
                             "frameMaskLo": 51314933
+                        },
+                        {
+                            "checksum": 2417040155,
+                            "cropMaskHi": 3735552,
+                            "cropMaskLo": 3473413,
+                            "frameMaskHi": 51511296,
+                            "frameMaskLo": 77070581
                         },
                         {
                             "checksum": 3795355071,
@@ -1081,15 +1081,15 @@
                             "checksum": 330467946,
                             "cropMaskHi": 0,
                             "cropMaskLo": 0,
-                            "frameMaskHi": 13762820,
-                            "frameMaskLo": 18153800
+                            "frameMaskHi": 18350340,
+                            "frameMaskLo": 22741320
                         },
                         {
                             "checksum": 2183961275,
                             "cropMaskHi": 0,
                             "cropMaskLo": 0,
-                            "frameMaskHi": 22937884,
-                            "frameMaskLo": 27328864
+                            "frameMaskHi": 28966912,
+                            "frameMaskLo": 33357892
                         },
                         {
                             "checksum": 1644920864,
@@ -1123,57 +1123,57 @@
                             "checksum": 2156613929,
                             "cropMaskHi": 0,
                             "cropMaskLo": 0,
-                            "frameMaskHi": 26083541,
-                            "frameMaskLo": 30474521
+                            "frameMaskHi": 21495997,
+                            "frameMaskLo": 25886977
                         },
                         {
                             "checksum": 3547625482,
-                            "cropMaskHi": 0,
-                            "cropMaskLo": 0,
-                            "frameMaskHi": 28967054,
-                            "frameMaskLo": 33358034
-                        },
-                        {
-                            "checksum": 508576899,
-                            "cropMaskHi": 0,
-                            "cropMaskLo": 0,
-                            "frameMaskHi": 28966912,
-                            "frameMaskLo": 33357892
-                        },
-                        {
-                            "checksum": 1200994289,
-                            "cropMaskHi": 0,
-                            "cropMaskLo": 0,
-                            "frameMaskHi": 28966983,
-                            "frameMaskLo": 33357963
-                        },
-                        {
-                            "checksum": 3330870377,
                             "cropMaskHi": 0,
                             "cropMaskLo": 0,
                             "frameMaskHi": 9175298,
                             "frameMaskLo": 13566278
                         },
                         {
-                            "checksum": 1110594313,
+                            "checksum": 508576899,
+                            "cropMaskHi": 0,
+                            "cropMaskLo": 0,
+                            "frameMaskHi": 22937884,
+                            "frameMaskLo": 27328864
+                        },
+                        {
+                            "checksum": 1200994289,
+                            "cropMaskHi": 0,
+                            "cropMaskLo": 0,
+                            "frameMaskHi": 26083541,
+                            "frameMaskLo": 30474521
+                        },
+                        {
+                            "checksum": 3330870377,
                             "cropMaskHi": 0,
                             "cropMaskLo": 0,
                             "frameMaskHi": 16908477,
                             "frameMaskLo": 21299457
                         },
                         {
+                            "checksum": 1110594313,
+                            "cropMaskHi": 0,
+                            "cropMaskLo": 0,
+                            "frameMaskHi": 28966983,
+                            "frameMaskLo": 33357963
+                        },
+                        {
                             "checksum": 832492841,
                             "cropMaskHi": 0,
                             "cropMaskLo": 0,
-                            "frameMaskHi": 21495997,
-                            "frameMaskLo": 25886977
+                            "frameMaskHi": 28967054,
+                            "frameMaskLo": 33358034
                         },
                         {
                             "checksum": 529758639,
                             "cropMaskHi": 0,
                             "cropMaskLo": 0,
-                            "frameMaskHi": 18350340,
-                            "frameMaskLo": 22741320
+                            "frameMaskHi": 13762820,
+                            "frameMaskLo": 18153800
                         },
                         {
                             "checksum": 2368147424,
