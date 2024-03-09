@@ -4,7 +4,7 @@
 #include "pch.h"
 #include "IComponent.h"
 
-#include <simpleble/SimpleBLE.h>
+//#include <simpleble/SimpleBLE.h>
 
 class HeartBeat : public IComponent
 {

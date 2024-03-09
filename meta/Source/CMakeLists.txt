@@ -49,12 +49,12 @@ set(GAME_SRCFILES
 
 set(GAME_INCLUDE_DIRS "")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}")
-list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Wheel")
-list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/_hy_")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components")
-list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt/Channels")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/_hy_")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Scenes")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt/Channels")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt")
 
 #################################################################################################
 # ^ ^ ^ USER CONFIG ABOVE ^ ^ ^
@@ -177,7 +177,8 @@ else()
 endif()
 
 add_subdirectory("${REL_HARMONY_DIR}/Engine" "HyEngine")
-add_subdirectory("../../../SimpleBLE/simpleble" "simpleble")
+add_subdirectory("../../lib/NESController" "NESController")
+set_target_properties(NESController PROPERTIES FOLDER "Melody Libs")
 
 add_executable(${PROJECT_NAME} WIN32 ${GAME_SRCFILES})
 set_target_properties(${PROJECT_NAME} PROPERTIES
@@ -190,7 +191,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE "$<BUILD_INTERFACE:${GAME_INC
 if(NOT "${CMAKE_SYSTEM_NAME}" STREQUAL "Emscripten")
 	target_precompile_headers(${PROJECT_NAME} PRIVATE "pch.h")
 endif()
-target_link_libraries(${PROJECT_NAME} PUBLIC HyEngine "simpleble" )
+target_link_libraries(${PROJECT_NAME} PUBLIC HyEngine "NESController" )
 
 
 if(TARGET uninstall)
