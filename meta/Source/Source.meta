@@ -390,6 +390,26 @@
             "filter": "Components",
             "itemType": "Header",
             "name": "HeartBeat.h"
+        },
+        {
+            "assetUUID": "50d43691-3412-4be8-8626-3029ef9fde4d",
+            "bankId": 0,
+            "baseClass": "IComponent",
+            "checksum": 3991504338,
+            "errors": 0,
+            "filter": "Components",
+            "itemType": "Source",
+            "name": "NESController.cpp"
+        },
+        {
+            "assetUUID": "7a5f487b-38ba-46f6-b6d4-24c03188d653",
+            "bankId": 0,
+            "baseClass": "IComponent",
+            "checksum": 717451686,
+            "errors": 0,
+            "filter": "Components",
+            "itemType": "Header",
+            "name": "NESController.h"
         }
     ],
     "banks": [

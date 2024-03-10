@@ -10,6 +10,7 @@
 #include "Brb.h"
 #include "HeartBeat.h"
 #include "MessageCycle.h"
+#include "NESController.h"
 
 class IScene;
 
@@ -32,6 +33,7 @@ class Melody : public HyEngine
 	Crt				m_Crt;
 	FightStick		m_FightStick;
 	HeartBeat		m_HeartBeat;
+	NESController	m_NESController;
 
 public:
 	Melody(HarmonyInit &initStruct);

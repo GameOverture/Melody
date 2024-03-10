@@ -41,6 +41,7 @@ enum ComponentType
 	COMPONENT_HeartBeat,
 	COMPONENT_Wheel,
 	COMPONENT_MessageCycle,
+	COMPONENT_NESController,
 
 	NUM_COMPONENTS
 };

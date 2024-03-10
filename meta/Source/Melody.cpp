@@ -106,6 +106,11 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_HeartBeat.SetVisible(false);
 	m_HeartBeat.PopulateCtrlPanel(m_CtrlPanel);
 
+	m_NESController.UseWindowCoordinates();
+	m_NESController.Load();
+	m_NESController.SetVisible(false);
+	m_NESController.PopulateCtrlPanel(m_CtrlPanel);
+
 	m_MessageCycle.UseWindowCoordinates();
 	m_MessageCycle.Load();
 	m_MessageCycle.SetDisplayOrder(DISPLAYORDER_MessageCycle);
