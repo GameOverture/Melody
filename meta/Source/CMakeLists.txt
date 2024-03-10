@@ -3,7 +3,7 @@ project(Melody)
 
 set(REL_PROJ_PATH "../../")
 set(REL_DATA_DIR "../../data")
-set(REL_HARMONY_DIR "../../../HarmonyEngine")
+set(REL_HARMONY_DIR "../../../../../LG/_GameFramework/HarmonyEngine")
 set(EXE_OUTPUT_NAME "Melody")
 
 set(GAME_SRCFILES
@@ -36,8 +36,8 @@ set(GAME_SRCFILES
 	"Components/Crt/Channels/Channel.h"
 	"Components/Crt/Channels/Music.cpp"
 	"Components/Crt/Channels/Music.h"
-	"Components/FightStick.cpp"
-	"Components/FightStick.h"
+	"Components/InputViewer/Controllers/StreetFighter.cpp"
+	"Components/InputViewer/Controllers/StreetFighter.h"
 	"Components/VgMusic.cpp"
 	"Components/VgMusic.h"
 	"_hy_/NewEntity.h"
@@ -46,16 +46,26 @@ set(GAME_SRCFILES
 	"Components/Brb.h"
 	"Components/HeartBeat.cpp"
 	"Components/HeartBeat.h"
-	"Components/NESController.cpp"
-	"Components/NESController.h")
+	"Components/InputViewer/Controllers/NES.cpp"
+	"Components/InputViewer/Controllers/NES.h"
+	"Components/InputViewer/InputViewer.cpp"
+	"Components/InputViewer/InputViewer.h"
+	"Components/InputViewer/Dpad.cpp"
+	"Components/InputViewer/Dpad.h"
+	"Components/InputViewer/Controllers/IController.cpp"
+	"Components/InputViewer/Controllers/IController.h"
+	"Components/InputViewer/Controllers/StarCitizen.cpp"
+	"Components/InputViewer/Controllers/StarCitizen.h")
 
 set(GAME_INCLUDE_DIRS "")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}")
-list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt/Channels")
-list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/_hy_")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt")
-list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Wheel")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Scenes")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/_hy_")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Wheel")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt/Channels")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/InputViewer")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/InputViewer/Controllers")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components")
 
 #################################################################################################

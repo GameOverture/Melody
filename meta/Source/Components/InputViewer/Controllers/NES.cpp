@@ -1,22 +1,11 @@
 #include "pch.h"
-#include "NESController.h"
+#include "NES.h"
 #include "CtrlPanel.h"
 
 NESController::NESController(HyEntity2d *pParent /*= nullptr*/) :
-	IComponent(COMPONENT_NESController, pParent),
-	m_CtrlPanel_CheckBox(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
+	IController(pParent),
 	m_pArduino(nullptr)
 {
-	m_CtrlPanel_CheckBox.SetText("NES Controller");
-	m_CtrlPanel_CheckBox.SetCheckedChangedCallback(
-		[this](HyCheckBox *pCheckBox, void *pData)
-		{
-			if(pCheckBox->IsChecked())
-				reinterpret_cast<IComponent *>(pData)->Show(0.5f);
-			else
-				reinterpret_cast<IComponent *>(pData)->Hide(0.5f);
-		}, this);
-
 	memset((void *)m_TempReadBuffer, 0, NESCONTROLLER_BUFFER_LENGTH);
 }
 
@@ -25,22 +14,8 @@ NESController::NESController(HyEntity2d *pParent /*= nullptr*/) :
 	delete m_pArduino;
 }
 
-/*virtual*/ void NESController::PopulateCtrlPanel(CtrlPanel &ctrlPanel) /*override*/
+/*virtual*/ void NESController::ApplyInputs() /*override*/
 {
-	HyLayoutHandle hRow = ctrlPanel.InsertLayout(HYORIEN_Horizontal);
-	ctrlPanel.InsertWidget(m_CtrlPanel_CheckBox, hRow);
-	ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
-}
-
-/*virtual*/ void NESController::Show(float fDuration)
-{
-	IComponent::Show(fDuration);
-	Connect();
-}
-
-/*virtual*/ void NESController::Hide(float fDuration)
-{
-	IComponent::Hide(fDuration);
 }
 
 void NESController::Connect()

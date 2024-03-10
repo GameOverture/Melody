@@ -3,14 +3,13 @@
 
 #include "pch.h"
 #include "CtrlPanel.h"
-#include "FightStick.h"
+#include "InputViewer.h"
 #include "VgMusic.h"
 #include "Wheel.h"
 #include "Crt.h"
 #include "Brb.h"
 #include "HeartBeat.h"
 #include "MessageCycle.h"
-#include "NESController.h"
 
 class IScene;
 
@@ -31,9 +30,8 @@ class Melody : public HyEngine
 	Brb				m_Brb;
 	MessageCycle	m_MessageCycle;
 	Crt				m_Crt;
-	FightStick		m_FightStick;
+	InputViewer		m_InputViewer;
 	HeartBeat		m_HeartBeat;
-	NESController	m_NESController;
 
 public:
 	Melody(HarmonyInit &initStruct);

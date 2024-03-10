@@ -297,9 +297,9 @@
             "baseClass": "",
             "checksum": 1373590749,
             "errors": 0,
-            "filter": "Components",
+            "filter": "Components/InputViewer/Controllers",
             "itemType": "Source",
-            "name": "FightStick.cpp"
+            "name": "StreetFighter.cpp"
         },
         {
             "assetUUID": "a4320f0d-88a1-40cc-9579-fc410c52daf5",
@@ -307,9 +307,9 @@
             "baseClass": "",
             "checksum": 2108161238,
             "errors": 0,
-            "filter": "Components",
+            "filter": "Components/InputViewer/Controllers",
             "itemType": "Header",
-            "name": "FightStick.h"
+            "name": "StreetFighter.h"
         },
         {
             "assetUUID": "ed33e43e-1567-4327-bd49-93e9d1e8aa1b",
@@ -397,9 +397,9 @@
             "baseClass": "IComponent",
             "checksum": 3991504338,
             "errors": 0,
-            "filter": "Components",
+            "filter": "Components/InputViewer/Controllers",
             "itemType": "Source",
-            "name": "NESController.cpp"
+            "name": "NES.cpp"
         },
         {
             "assetUUID": "7a5f487b-38ba-46f6-b6d4-24c03188d653",
@@ -407,9 +407,89 @@
             "baseClass": "IComponent",
             "checksum": 717451686,
             "errors": 0,
-            "filter": "Components",
+            "filter": "Components/InputViewer/Controllers",
             "itemType": "Header",
-            "name": "NESController.h"
+            "name": "NES.h"
+        },
+        {
+            "assetUUID": "b592bfe0-ba1d-4fe8-be3e-d7a629b944db",
+            "bankId": 0,
+            "baseClass": "IComponent",
+            "checksum": 1962372778,
+            "errors": 0,
+            "filter": "Components/InputViewer",
+            "itemType": "Source",
+            "name": "InputViewer.cpp"
+        },
+        {
+            "assetUUID": "b37ec9cb-0662-43d8-8457-66e14cceb5b6",
+            "bankId": 0,
+            "baseClass": "IComponent",
+            "checksum": 666841400,
+            "errors": 0,
+            "filter": "Components/InputViewer",
+            "itemType": "Header",
+            "name": "InputViewer.h"
+        },
+        {
+            "assetUUID": "97d58853-3623-4dc2-9e29-f0ba6e301254",
+            "bankId": 0,
+            "baseClass": "HyEntity2d",
+            "checksum": 1615221718,
+            "errors": 0,
+            "filter": "Components/InputViewer",
+            "itemType": "Source",
+            "name": "Dpad.cpp"
+        },
+        {
+            "assetUUID": "e62730db-bee9-4ab8-9bd3-d2c1b6ede89d",
+            "bankId": 0,
+            "baseClass": "HyEntity2d",
+            "checksum": 2517897026,
+            "errors": 0,
+            "filter": "Components/InputViewer",
+            "itemType": "Header",
+            "name": "Dpad.h"
+        },
+        {
+            "assetUUID": "9de9aa76-4678-41a3-b7df-a5bffa3e5038",
+            "bankId": 0,
+            "baseClass": "HyEntity2d",
+            "checksum": 3105518029,
+            "errors": 0,
+            "filter": "Components/InputViewer/Controllers",
+            "itemType": "Source",
+            "name": "IController.cpp"
+        },
+        {
+            "assetUUID": "499e3007-228d-47e3-8bc9-1c8088cf9fff",
+            "bankId": 0,
+            "baseClass": "HyEntity2d",
+            "checksum": 2333739609,
+            "errors": 0,
+            "filter": "Components/InputViewer/Controllers",
+            "itemType": "Header",
+            "name": "IController.h"
+        },
+        {
+            "assetUUID": "8ab0f354-9565-4cf5-830d-98c7c7aa3de2",
+            "bankId": 0,
+            "baseClass": "HyEntity2d",
+            "checksum": 4111729437,
+            "errors": 0,
+            "filter": "Components/InputViewer/Controllers",
+            "itemType": "Source",
+            "name": "StarCitizen.cpp"
+        },
+        {
+            "assetUUID": "c8b5c528-c1de-44b6-95b1-2e7636e1eae5",
+            "bankId": 0,
+            "baseClass": "HyEntity2d",
+            "checksum": 887023554,
+            "errors": 0,
+            "filter": "Components/InputViewer/Controllers",
+            "itemType": "Header",
+            "name": "StarCitizen.h"
         }
     ],
     "banks": [

@@ -2,13 +2,13 @@
 #define NESController_h__
 
 #include "pch.h"
-#include "IComponent.h"
+#include "IController.h"
 
 #include "../../lib/NESController/pch.h"
 
 #define NESCONTROLLER_BUFFER_LENGTH 255
 
-class NESController : public IComponent
+class NESController : public IController
 {
 	HyCheckBox				m_CtrlPanel_CheckBox;
 	
@@ -21,9 +21,7 @@ public:
 	NESController(HyEntity2d *pParent = nullptr);
 	virtual ~NESController();
 
-	virtual void PopulateCtrlPanel(CtrlPanel &ctrlPanel) override;
-	virtual void Show(float fDuration);
-	virtual void Hide(float fDuration);
+	virtual void ApplyInputs() override;
 
 	void Connect();
 

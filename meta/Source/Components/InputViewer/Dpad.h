@@ -1,8 +1,17 @@
-#ifndef FightStick_h__
-#define FightStick_h__
+#ifndef Dpad_h__
+#define Dpad_h__
 
 #include "pch.h"
-#include "IComponent.h"
+
+class Buttons;
+
+enum DPadFlags
+{
+	DPad_Up = 0x1,
+	DPad_Down = 0x2,
+	DPad_Left = 0x4,
+	DPad_Right = 0x8
+};
 
 enum JSGatePoint
 {
@@ -27,29 +36,9 @@ const glm::vec2 JSGatePositions[NUM_JSGATES] = { {0.0f, 0.0f},
 												 {75.0f, 75.0f},
 												 {-75.0f, -75.0f},
 												 {75.0f, -75.0f} };
-enum ButtonState
-{
-	BTNSTATE_LP = 0,
-	BTNSTATE_MP,
-	BTNSTATE_HP,
-	BTNSTATE_LK,
-	BTNSTATE_MK,
-	BTNSTATE_HK
-};
-enum ButtonFlag
-{
-	BTNFLAG_LK = 0x01,
-	BTNFLAG_MK = 0x02,
-	BTNFLAG_HK = 0x04,
-	BTNFLAG_LP = 0x08,
-	BTNFLAG_MP = 0x10,
-	BTNFLAG_HP = 0x20
-};
 
-class FightStick : public IComponent
+class Dpad : public HyEntity2d
 {
-	HyCheckBox				m_CtrlPanel_CheckBox;
-
 	class GatePath : public HyEntity2d
 	{
 		HyPrimitive2d		m_Path;
@@ -63,7 +52,7 @@ class FightStick : public IComponent
 			m_StartPoint(this),
 			m_EndPoint(this)
 		{
-			HyAssert(eStart != eEnd, "Joystick::GatePath::GatePath() - eStart == eEnd");
+			HyAssert(eStart != eEnd, "GatePath::GatePath() - eStart == eEnd");
 			m_Path.SetAsLineSegment(JSGatePositions[eStart], JSGatePositions[eEnd]);
 			m_Path.SetTint(HyColor::Red);
 			m_Path.SetLineThickness(12.0f);
@@ -86,34 +75,16 @@ class FightStick : public IComponent
 	HySprite2d					m_ButtonOverlays[NUM_JSGATES];
 	JSGatePoint					m_eOldBallPos;
 
-	// Buttons
-	HyPrimitive2d				m_DriveImpact;
-	HyPrimitive2d				m_DriveParry;
-	HySprite2d					m_ButtonLP;
-	HySprite2d					m_ButtonMP;
-	HySprite2d					m_ButtonHP;
-	HySprite2d					m_ButtonLK;
-	HySprite2d					m_ButtonMK;
-	HySprite2d					m_ButtonHK;
-	uint32						m_uiButtonFlags;
-
-	// Assign new controller overlay
-	HyPrimitive2d				m_AssignOverlayBG;
-	HyText2d					m_AssignOverlayText;
-	HyControllerInputFunc		m_fpAssignControllerFunc;
-
 public:
-	FightStick(HyEntity2d *pParent = nullptr);
-	virtual ~FightStick();
+	Dpad(const HyNodePath &gatePath, const HyNodePath &pressPath, const HyNodePath &buttonsPath, HyEntity2d *pParent = nullptr);
+	virtual ~Dpad();
 
-	virtual void PopulateCtrlPanel(CtrlPanel &ctrlPanel) override;
-
-	void SetButtonPress(ButtonState eButtonState, bool bPressed);
+	void ApplyInput(uint32 uiDPadFlags);
+	
+	void SetButtonPress(int iButtonState, bool bPressed);
 
 protected:
 	virtual void OnUpdate() override;
-
-	virtual void OnMouseClicked() override;
 };
 
-#endif // FightStick_h__
+#endif // Dpad_h__

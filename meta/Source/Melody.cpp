@@ -6,7 +6,7 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_pCamera(HyEngine::Window().CreateCamera2d()),
 	m_pCameraCtrlPanel(HyEngine::Window(1).CreateCamera2d()),
 	m_ColorKeyBg(),
-	m_FightStick(),
+	m_InputViewer(),
 	m_VgMusic(),
 	m_Brb(),
 	m_MessageCycle(m_Brb),
@@ -94,22 +94,22 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_Crt.SetStencil(&m_RetroLeftSideStencil);
 	m_Crt.PopulateCtrlPanel(m_CtrlPanel);
 
-	m_FightStick.UseWindowCoordinates();
-	m_FightStick.pos.Set(1200.0f, 80.0f);
-	m_FightStick.scale.Set(0.75f, 0.75f);
-	m_FightStick.Load();
-	m_FightStick.SetVisible(false);
-	m_FightStick.PopulateCtrlPanel(m_CtrlPanel);
+	m_InputViewer.UseWindowCoordinates();
+	m_InputViewer.pos.Set(1200.0f, 80.0f);
+	m_InputViewer.scale.Set(0.75f, 0.75f);
+	m_InputViewer.Load();
+	m_InputViewer.SetVisible(false);
+	m_InputViewer.PopulateCtrlPanel(m_CtrlPanel);
 
 	m_HeartBeat.UseWindowCoordinates();
 	m_HeartBeat.Load();
 	m_HeartBeat.SetVisible(false);
 	m_HeartBeat.PopulateCtrlPanel(m_CtrlPanel);
 
-	m_NESController.UseWindowCoordinates();
-	m_NESController.Load();
-	m_NESController.SetVisible(false);
-	m_NESController.PopulateCtrlPanel(m_CtrlPanel);
+	//m_NESController.UseWindowCoordinates();
+	//m_NESController.Load();
+	//m_NESController.SetVisible(false);
+	//m_NESController.PopulateCtrlPanel(m_CtrlPanel);
 
 	m_MessageCycle.UseWindowCoordinates();
 	m_MessageCycle.Load();

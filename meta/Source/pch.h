@@ -33,15 +33,23 @@ enum InputAction
 	FIGHTSTICK_Parry
 };
 
+enum InputController
+{
+	INPUTCONTROLLER_StreetFighter = 0,
+	INPUTCONTROLLER_NES,
+	INPUTCONTROLLER_StarCitizen,
+
+	NUM_INPUTCONTROLLERS
+};
+
 enum ComponentType
 {
 	COMPONENT_Brb = 0,
-	COMPONENT_FightStick,
+	COMPONENT_InputViewer,
 	COMPONENT_Crt,
 	COMPONENT_HeartBeat,
 	COMPONENT_Wheel,
 	COMPONENT_MessageCycle,
-	COMPONENT_NESController,
 
 	NUM_COMPONENTS
 };
