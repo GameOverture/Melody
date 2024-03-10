@@ -4,9 +4,23 @@
 
 NESController::NESController(HyEntity2d *pParent /*= nullptr*/) :
 	IController(pParent),
-	m_pArduino(nullptr)
+	m_pArduino(nullptr),
+	m_Dpad(HyNodePath("InputViewer/NES/DpadGate"), HyNodePath("InputViewer/DpadBall"), HyNodePath("InputViewer/NES/Buttons"), this),
+	m_Btns{ HySprite2d(HyNodePath("InputViewer/NES/Buttons"), this), HySprite2d(HyNodePath("InputViewer/NES/Buttons"), this), HySprite2d(HyNodePath("InputViewer/NES/Buttons"), this), HySprite2d(HyNodePath("InputViewer/NES/Buttons"), this) }
 {
 	memset((void *)m_TempReadBuffer, 0, NESCONTROLLER_BUFFER_LENGTH);
+
+	m_Btns[BUTTON_B].pos.Set(198.0f, -12.0f);
+	m_Btns[BUTTON_A].pos.Set(264.0f, -12.0f);
+	m_Btns[BUTTON_SELECT].pos.Set(78.0f, -25.0f);
+	m_Btns[BUTTON_START].pos.Set(138.0f, -25.0f);
+
+	for(int i = 0; i < NUM_NES_BUTTONS; ++i)
+	{
+		m_Btns[i].SetState(i);
+	}
+
+	ResetDisplayOrder();
 }
 
 /*virtual*/ NESController::~NESController()

@@ -3,28 +3,12 @@
 
 #include "pch.h"
 #include "IController.h"
-
-enum ButtonState
-{
-	BTNSTATE_LP = 0,
-	BTNSTATE_MP,
-	BTNSTATE_HP,
-	BTNSTATE_LK,
-	BTNSTATE_MK,
-	BTNSTATE_HK
-};
-enum ButtonFlag
-{
-	BTNFLAG_LK = 0x01,
-	BTNFLAG_MK = 0x02,
-	BTNFLAG_HK = 0x04,
-	BTNFLAG_LP = 0x08,
-	BTNFLAG_MP = 0x10,
-	BTNFLAG_HP = 0x20
-};
+#include "Dpad.h"
 
 class StreetFighter : public IController
 {
+	Dpad						m_Dpad;
+
 	// Buttons
 	HyPrimitive2d				m_DriveImpact;
 	HyPrimitive2d				m_DriveParry;
@@ -40,6 +24,25 @@ class StreetFighter : public IController
 	HyPrimitive2d				m_AssignOverlayBG;
 	HyText2d					m_AssignOverlayText;
 	HyControllerInputFunc		m_fpAssignControllerFunc;
+
+	enum ButtonState
+	{
+		BTNSTATE_LP = 0,
+		BTNSTATE_MP,
+		BTNSTATE_HP,
+		BTNSTATE_LK,
+		BTNSTATE_MK,
+		BTNSTATE_HK
+	};
+	enum ButtonFlag
+	{
+		BTNFLAG_LK = 0x01,
+		BTNFLAG_MK = 0x02,
+		BTNFLAG_HK = 0x04,
+		BTNFLAG_LP = 0x08,
+		BTNFLAG_MP = 0x10,
+		BTNFLAG_HP = 0x20
+	};
 
 public:
 	StreetFighter(HyEntity2d *pParent = nullptr);

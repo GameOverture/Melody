@@ -2010,7 +2010,7 @@
             "cropRight": 0,
             "cropTop": 0,
             "errors": 0,
-            "filter": "FightStick",
+            "filter": "InputViewer/FightStick",
             "height": 68,
             "isSubAtlas": false,
             "itemType": "AtlasFrame",
@@ -2018,8 +2018,8 @@
             "textureIndex": 4,
             "textureInfo": 262147,
             "width": 67,
-            "x": 280,
-            "y": 260
+            "x": 0,
+            "y": 411
         },
         {
             "assetUUID": "c9f80ba4-5f00-4dee-bbd7-f0837209af1d",
@@ -2030,7 +2030,7 @@
             "cropRight": 0,
             "cropTop": 0,
             "errors": 0,
-            "filter": "FightStick",
+            "filter": "InputViewer/FightStick",
             "height": 68,
             "isSubAtlas": false,
             "itemType": "AtlasFrame",
@@ -2038,8 +2038,8 @@
             "textureIndex": 4,
             "textureInfo": 262147,
             "width": 67,
-            "x": 442,
-            "y": 0
+            "x": 258,
+            "y": 342
         },
         {
             "assetUUID": "bd380fb7-e149-4272-9c8e-51e52314b2c6",
@@ -2050,7 +2050,7 @@
             "cropRight": 0,
             "cropTop": 0,
             "errors": 0,
-            "filter": "FightStick",
+            "filter": "InputViewer/FightStick",
             "height": 68,
             "isSubAtlas": false,
             "itemType": "AtlasFrame",
@@ -2058,8 +2058,8 @@
             "textureIndex": 4,
             "textureInfo": 262147,
             "width": 67,
-            "x": 70,
-            "y": 258
+            "x": 398,
+            "y": 355
         },
         {
             "assetUUID": "18366f7e-c373-425d-8573-5557ccdfc73a",
@@ -2070,7 +2070,7 @@
             "cropRight": 0,
             "cropTop": 0,
             "errors": 0,
-            "filter": "FightStick",
+            "filter": "InputViewer/FightStick",
             "height": 68,
             "isSubAtlas": false,
             "itemType": "AtlasFrame",
@@ -2078,8 +2078,8 @@
             "textureIndex": 4,
             "textureInfo": 262147,
             "width": 67,
-            "x": 0,
-            "y": 258
+            "x": 210,
+            "y": 413
         },
         {
             "assetUUID": "17f6a765-1beb-40b6-bbcb-ab9d0aa201c2",
@@ -2090,7 +2090,7 @@
             "cropRight": 0,
             "cropTop": 0,
             "errors": 0,
-            "filter": "FightStick",
+            "filter": "InputViewer/FightStick",
             "height": 50,
             "isSubAtlas": false,
             "itemType": "AtlasFrame",
@@ -2098,8 +2098,8 @@
             "textureIndex": 4,
             "textureInfo": 262147,
             "width": 50,
-            "x": 420,
-            "y": 284
+            "x": 383,
+            "y": 0
         },
         {
             "assetUUID": "7827b2e6-333e-4f81-961b-f81f985351b1",
@@ -2110,7 +2110,7 @@
             "cropRight": 0,
             "cropTop": 0,
             "errors": 0,
-            "filter": "FightStick",
+            "filter": "InputViewer/FightStick",
             "height": 186,
             "isSubAtlas": false,
             "itemType": "AtlasFrame",
@@ -2119,7 +2119,7 @@
             "textureInfo": 262147,
             "width": 181,
             "x": 258,
-            "y": 0
+            "y": 153
         },
         {
             "assetUUID": "169a4016-8464-4f13-a2ee-7c1b74d50349",
@@ -2130,7 +2130,7 @@
             "cropRight": 0,
             "cropTop": 0,
             "errors": 0,
-            "filter": "FightStick",
+            "filter": "InputViewer/FightStick",
             "height": 68,
             "isSubAtlas": false,
             "itemType": "AtlasFrame",
@@ -2138,8 +2138,8 @@
             "textureIndex": 4,
             "textureInfo": 262147,
             "width": 67,
-            "x": 328,
-            "y": 189
+            "x": 70,
+            "y": 411
         },
         {
             "assetUUID": "cfef32af-c661-4ba1-a9a2-e9f678ab8549",
@@ -2150,7 +2150,7 @@
             "cropRight": 0,
             "cropTop": 0,
             "errors": 0,
-            "filter": "FightStick",
+            "filter": "InputViewer/FightStick",
             "height": 68,
             "isSubAtlas": false,
             "itemType": "AtlasFrame",
@@ -2158,8 +2158,8 @@
             "textureIndex": 4,
             "textureInfo": 262147,
             "width": 67,
-            "x": 140,
-            "y": 258
+            "x": 442,
+            "y": 0
         },
         {
             "assetUUID": "659f4757-b6a6-4732-9f87-5398ddab9f15",
@@ -2170,7 +2170,7 @@
             "cropRight": 0,
             "cropTop": 0,
             "errors": 0,
-            "filter": "FightStick",
+            "filter": "InputViewer/FightStick",
             "height": 68,
             "isSubAtlas": false,
             "itemType": "AtlasFrame",
@@ -2178,8 +2178,8 @@
             "textureIndex": 4,
             "textureInfo": 262147,
             "width": 67,
-            "x": 350,
-            "y": 284
+            "x": 442,
+            "y": 213
         },
         {
             "assetUUID": "b22034d7-2f3a-40b7-8d55-43ea41527492",
@@ -2190,7 +2190,7 @@
             "cropRight": 0,
             "cropTop": 0,
             "errors": 0,
-            "filter": "FightStick",
+            "filter": "InputViewer/FightStick",
             "height": 68,
             "isSubAtlas": false,
             "itemType": "AtlasFrame",
@@ -2198,8 +2198,8 @@
             "textureIndex": 4,
             "textureInfo": 262147,
             "width": 67,
-            "x": 398,
-            "y": 213
+            "x": 328,
+            "y": 342
         },
         {
             "assetUUID": "b5aabd17-254a-4877-8d3c-0ecbf5d1bc1b",
@@ -2210,7 +2210,7 @@
             "cropRight": 0,
             "cropTop": 0,
             "errors": 0,
-            "filter": "FightStick",
+            "filter": "InputViewer/FightStick",
             "height": 68,
             "isSubAtlas": false,
             "itemType": "AtlasFrame",
@@ -2218,8 +2218,8 @@
             "textureIndex": 4,
             "textureInfo": 262147,
             "width": 67,
-            "x": 258,
-            "y": 189
+            "x": 442,
+            "y": 284
         },
         {
             "assetUUID": "05e394e9-941f-408e-8e75-178753122139",
@@ -2230,7 +2230,7 @@
             "cropRight": 0,
             "cropTop": 0,
             "errors": 0,
-            "filter": "FightStick",
+            "filter": "InputViewer/FightStick",
             "height": 68,
             "isSubAtlas": false,
             "itemType": "AtlasFrame",
@@ -2250,7 +2250,7 @@
             "cropRight": 0,
             "cropTop": 0,
             "errors": 0,
-            "filter": "FightStick",
+            "filter": "InputViewer/FightStick",
             "height": 68,
             "isSubAtlas": false,
             "itemType": "AtlasFrame",
@@ -2258,8 +2258,8 @@
             "textureIndex": 4,
             "textureInfo": 262147,
             "width": 67,
-            "x": 442,
-            "y": 142
+            "x": 140,
+            "y": 411
         },
         {
             "assetUUID": "42f59ce9-e580-4b46-9aeb-726d99a555e6",
@@ -2270,7 +2270,7 @@
             "cropRight": 0,
             "cropTop": 0,
             "errors": 0,
-            "filter": "FightStick",
+            "filter": "InputViewer/FightStick",
             "height": 68,
             "isSubAtlas": false,
             "itemType": "AtlasFrame",
@@ -2278,8 +2278,8 @@
             "textureIndex": 4,
             "textureInfo": 262147,
             "width": 67,
-            "x": 210,
-            "y": 260
+            "x": 442,
+            "y": 142
         },
         {
             "assetUUID": "eabd64a3-6166-4a96-8331-d77c5615ee47",
@@ -3239,7 +3239,7 @@
             "textureInfo": 262147,
             "width": 255,
             "x": 0,
-            "y": 0
+            "y": 153
         },
         {
             "assetUUID": "67ad6edc-801e-4c37-a6ec-fa42bfe7808f",
@@ -3280,6 +3280,106 @@
             "width": 1372,
             "x": 0,
             "y": 0
+        },
+        {
+            "assetUUID": "e6a03228-d46e-4381-bb3d-46cda0c45a61",
+            "bankId": 0,
+            "checksum": 3912552343,
+            "cropBottom": 0,
+            "cropLeft": 0,
+            "cropRight": 0,
+            "cropTop": 0,
+            "errors": 0,
+            "filter": "InputViewer/NES",
+            "height": 49,
+            "isSubAtlas": false,
+            "itemType": "AtlasFrame",
+            "name": "A",
+            "textureIndex": 4,
+            "textureInfo": 262147,
+            "width": 48,
+            "x": 383,
+            "y": 53
+        },
+        {
+            "assetUUID": "3cc1ffb3-ce88-4cbf-8ddf-2708c0a1c7c0",
+            "bankId": 0,
+            "checksum": 911040515,
+            "cropBottom": 0,
+            "cropLeft": 0,
+            "cropRight": 0,
+            "cropTop": 0,
+            "errors": 0,
+            "filter": "InputViewer/NES",
+            "height": 49,
+            "isSubAtlas": false,
+            "itemType": "AtlasFrame",
+            "name": "B",
+            "textureIndex": 4,
+            "textureInfo": 262147,
+            "width": 48,
+            "x": 280,
+            "y": 413
+        },
+        {
+            "assetUUID": "c8722fd8-572b-466f-82fa-c13457032d79",
+            "bankId": 0,
+            "checksum": 2029360089,
+            "cropBottom": 0,
+            "cropLeft": 0,
+            "cropRight": 0,
+            "cropTop": 0,
+            "errors": 0,
+            "filter": "InputViewer/NES",
+            "height": 150,
+            "isSubAtlas": false,
+            "itemType": "AtlasFrame",
+            "name": "NESbuttonless",
+            "textureIndex": 4,
+            "textureInfo": 262147,
+            "width": 380,
+            "x": 0,
+            "y": 0
+        },
+        {
+            "assetUUID": "e1aedd1a-e0d2-47a4-988e-062eb433100f",
+            "bankId": 0,
+            "checksum": 450903187,
+            "cropBottom": 0,
+            "cropLeft": 0,
+            "cropRight": 0,
+            "cropTop": 0,
+            "errors": 0,
+            "filter": "InputViewer/NES",
+            "height": 14,
+            "isSubAtlas": false,
+            "itemType": "AtlasFrame",
+            "name": "Select",
+            "textureIndex": 4,
+            "textureInfo": 262147,
+            "width": 45,
+            "x": 383,
+            "y": 122
+        },
+        {
+            "assetUUID": "2a9fb165-f241-4727-98f2-691a9c24b028",
+            "bankId": 0,
+            "checksum": 1865924777,
+            "cropBottom": 0,
+            "cropLeft": 0,
+            "cropRight": 0,
+            "cropTop": 0,
+            "errors": 0,
+            "filter": "InputViewer/NES",
+            "height": 14,
+            "isSubAtlas": false,
+            "itemType": "AtlasFrame",
+            "name": "Start",
+            "textureIndex": 4,
+            "textureInfo": 262147,
+            "width": 46,
+            "x": 383,
+            "y": 105
         }
     ],
     "banks": [

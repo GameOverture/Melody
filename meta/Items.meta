@@ -370,6 +370,56 @@
                 }
             ]
         },
+        "InputViewer/NES/Buttons": {
+            "CameraPos": [
+                0,
+                0
+            ],
+            "CameraZoom": 1,
+            "UUID": "1368a795-fc8b-4e7e-b115-08d606a9a51d",
+            "stateArray": [
+                {
+                    "assetUUIDs": [
+                        "3cc1ffb3-ce88-4cbf-8ddf-2708c0a1c7c0"
+                    ],
+                    "name": "B"
+                },
+                {
+                    "assetUUIDs": [
+                        "e6a03228-d46e-4381-bb3d-46cda0c45a61"
+                    ],
+                    "name": "A"
+                },
+                {
+                    "assetUUIDs": [
+                        "2a9fb165-f241-4727-98f2-691a9c24b028"
+                    ],
+                    "name": "Start"
+                },
+                {
+                    "assetUUIDs": [
+                        "e1aedd1a-e0d2-47a4-988e-062eb433100f"
+                    ],
+                    "name": "Select"
+                }
+            ]
+        },
+        "InputViewer/NES/DpadGate": {
+            "CameraPos": [
+                0,
+                0
+            ],
+            "CameraZoom": 2,
+            "UUID": "05f0dd60-fc42-4d50-94bc-d1a0d18d91d1",
+            "stateArray": [
+                {
+                    "assetUUIDs": [
+                        "c8722fd8-572b-466f-82fa-c13457032d79"
+                    ],
+                    "name": ""
+                }
+            ]
+        },
         "InputViewer/StreetFighter/ButtonsPressed": {
             "CameraPos": [
                 0,

@@ -975,6 +975,89 @@
                 }
             ]
         },
+        "InputViewer/NES/Buttons": {
+            "stateArray": [
+                {
+                    "bounce": false,
+                    "duration": 0.03333333507180214,
+                    "frames": [
+                        {
+                            "bankId": 0,
+                            "checksum": 911040515,
+                            "duration": 0.03333333507180214,
+                            "offsetX": -24,
+                            "offsetY": -24
+                        }
+                    ],
+                    "loop": false,
+                    "reverse": false
+                },
+                {
+                    "bounce": false,
+                    "duration": 0.03333333507180214,
+                    "frames": [
+                        {
+                            "bankId": 0,
+                            "checksum": 3912552343,
+                            "duration": 0.03333333507180214,
+                            "offsetX": -24,
+                            "offsetY": -24
+                        }
+                    ],
+                    "loop": false,
+                    "reverse": false
+                },
+                {
+                    "bounce": false,
+                    "duration": 0.03333333507180214,
+                    "frames": [
+                        {
+                            "bankId": 0,
+                            "checksum": 1865924777,
+                            "duration": 0.03333333507180214,
+                            "offsetX": -23,
+                            "offsetY": -7
+                        }
+                    ],
+                    "loop": false,
+                    "reverse": false
+                },
+                {
+                    "bounce": false,
+                    "duration": 0.03333333507180214,
+                    "frames": [
+                        {
+                            "bankId": 0,
+                            "checksum": 450903187,
+                            "duration": 0.03333333507180214,
+                            "offsetX": -22,
+                            "offsetY": -7
+                        }
+                    ],
+                    "loop": false,
+                    "reverse": false
+                }
+            ]
+        },
+        "InputViewer/NES/DpadGate": {
+            "stateArray": [
+                {
+                    "bounce": false,
+                    "duration": 0.03333333507180214,
+                    "frames": [
+                        {
+                            "bankId": 0,
+                            "checksum": 2029360089,
+                            "duration": 0.03333333507180214,
+                            "offsetX": -68,
+                            "offsetY": -73
+                        }
+                    ],
+                    "loop": false,
+                    "reverse": false
+                }
+            ]
+        },
         "InputViewer/StreetFighter/ButtonsPressed": {
             "stateArray": [
                 {

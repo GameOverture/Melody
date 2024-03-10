@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "StreetFighter.h"
-#include "Dpad.h"
 
 StreetFighter::StreetFighter(HyEntity2d *pParent /*= nullptr*/) :
 	IController(pParent),
+	m_Dpad(HyNodePath("InputViewer/StreetFighter/JoystickGate"), HyNodePath("InputViewer/DpadBall"), HyNodePath("InputViewer/StreetFighter/ButtonsPressed"), this),
 	m_DriveImpact(this),
 	m_DriveParry(this),
 	m_ButtonLP("InputViewer/StreetFighter/ButtonsPressed", this),
@@ -17,9 +17,6 @@ StreetFighter::StreetFighter(HyEntity2d *pParent /*= nullptr*/) :
 	m_AssignOverlayText("", "MainText", this),
 	m_fpAssignControllerFunc(nullptr)
 {
-	m_pDpad = HY_NEW Dpad(HyNodePath("InputViewer/StreetFighter/JoystickGate"), HyNodePath("InputViewer/DpadBall"), HyNodePath("InputViewer/StreetFighter/ButtonsPressed"), this);
-
-
 	m_DriveImpact.SetAsBox(75.0f, 200.0f);
 	m_DriveImpact.SetTint(HyColor::Red);
 	m_DriveImpact.pos.Set(305.0f, -100.0f);
@@ -98,7 +95,7 @@ StreetFighter::StreetFighter(HyEntity2d *pParent /*= nullptr*/) :
 	if(HyEngine::Input().IsActionDown(FIGHTSTICK_Right))
 		uiDPadFlags |= DPad_Right;
 
-	m_pDpad->ApplyInput(uiDPadFlags);
+	m_Dpad.ApplyInput(uiDPadFlags);
 
 	// BUTTONS
 	uint32 uiNewButtonFlags = 0;
@@ -144,78 +141,78 @@ StreetFighter::StreetFighter(HyEntity2d *pParent /*= nullptr*/) :
 		{
 			m_ButtonLP.SetTint(HyColor::White);
 			m_ButtonLP.scale.Tween(fButtonPressScale, fButtonPressScale, 0.1f, HyTween::QuadOut);
-			m_pDpad->SetButtonPress(BTNSTATE_LP, true);
+			m_Dpad.SetButtonPress(BTNSTATE_LP, true);
 		}
 		else if(m_uiButtonFlags & BTNFLAG_LP && !(uiNewButtonFlags & BTNFLAG_LP))
 		{
 			m_ButtonLP.SetTint(HyColor(128, 128, 128));
 			m_ButtonLP.scale.Tween(1.0f, 1.0f, 0.1f, HyTween::QuadOut);
-			m_pDpad->SetButtonPress(BTNSTATE_LP, false);
+			m_Dpad.SetButtonPress(BTNSTATE_LP, false);
 		}
 
 		if(!(m_uiButtonFlags & BTNFLAG_MP) && uiNewButtonFlags & BTNFLAG_MP)
 		{
 			m_ButtonMP.SetTint(HyColor::White);
 			m_ButtonMP.scale.Tween(fButtonPressScale, fButtonPressScale, 0.1f, HyTween::QuadOut);
-			m_pDpad->SetButtonPress(BTNSTATE_MP, true);
+			m_Dpad.SetButtonPress(BTNSTATE_MP, true);
 		}
 		else if(m_uiButtonFlags & BTNFLAG_MP && !(uiNewButtonFlags & BTNFLAG_MP))
 		{
 			m_ButtonMP.SetTint(HyColor(128, 128, 128));
 			m_ButtonMP.scale.Tween(1.0f, 1.0f, 0.1f, HyTween::QuadOut);
-			m_pDpad->SetButtonPress(BTNSTATE_MP, false);
+			m_Dpad.SetButtonPress(BTNSTATE_MP, false);
 		}
 
 		if(!(m_uiButtonFlags & BTNFLAG_HP) && uiNewButtonFlags & BTNFLAG_HP)
 		{
 			m_ButtonHP.SetTint(HyColor::White);
 			m_ButtonHP.scale.Tween(fButtonPressScale, fButtonPressScale, 0.1f, HyTween::QuadOut);
-			m_pDpad->SetButtonPress(BTNSTATE_HP, true);
+			m_Dpad.SetButtonPress(BTNSTATE_HP, true);
 		}
 		else if(m_uiButtonFlags & BTNFLAG_HP && !(uiNewButtonFlags & BTNFLAG_HP))
 		{
 			m_ButtonHP.SetTint(HyColor(128, 128, 128));
 			m_ButtonHP.scale.Tween(1.0f, 1.0f, 0.1f, HyTween::QuadOut);
-			m_pDpad->SetButtonPress(BTNSTATE_HP, false);
+			m_Dpad.SetButtonPress(BTNSTATE_HP, false);
 		}
 
 		if(!(m_uiButtonFlags & BTNFLAG_LK) && uiNewButtonFlags & BTNFLAG_LK)
 		{
 			m_ButtonLK.SetTint(HyColor::White);
 			m_ButtonLK.scale.Tween(fButtonPressScale, fButtonPressScale, 0.1f, HyTween::QuadOut);
-			m_pDpad->SetButtonPress(BTNSTATE_LK, true);
+			m_Dpad.SetButtonPress(BTNSTATE_LK, true);
 		}
 		else if(m_uiButtonFlags & BTNFLAG_LK && !(uiNewButtonFlags & BTNFLAG_LK))
 		{
 			m_ButtonLK.SetTint(HyColor(128, 128, 128));
 			m_ButtonLK.scale.Tween(1.0f, 1.0f, 0.1f, HyTween::QuadOut);
-			m_pDpad->SetButtonPress(BTNSTATE_LK, false);
+			m_Dpad.SetButtonPress(BTNSTATE_LK, false);
 		}
 
 		if(!(m_uiButtonFlags & BTNFLAG_MK) && uiNewButtonFlags & BTNFLAG_MK)
 		{
 			m_ButtonMK.SetTint(HyColor::White);
 			m_ButtonMK.scale.Tween(fButtonPressScale, fButtonPressScale, 0.1f, HyTween::QuadOut);
-			m_pDpad->SetButtonPress(BTNSTATE_MK, true);
+			m_Dpad.SetButtonPress(BTNSTATE_MK, true);
 		}
 		else if(m_uiButtonFlags & BTNFLAG_MK && !(uiNewButtonFlags & BTNFLAG_MK))
 		{
 			m_ButtonMK.SetTint(HyColor(128, 128, 128));
 			m_ButtonMK.scale.Tween(1.0f, 1.0f, 0.1f, HyTween::QuadOut);
-			m_pDpad->SetButtonPress(BTNSTATE_MK, false);
+			m_Dpad.SetButtonPress(BTNSTATE_MK, false);
 		}
 
 		if(!(m_uiButtonFlags & BTNFLAG_HK) && uiNewButtonFlags & BTNFLAG_HK)
 		{
 			m_ButtonHK.SetTint(HyColor::White);
 			m_ButtonHK.scale.Tween(fButtonPressScale, fButtonPressScale, 0.1f, HyTween::QuadOut);
-			m_pDpad->SetButtonPress(BTNSTATE_HK, true);
+			m_Dpad.SetButtonPress(BTNSTATE_HK, true);
 		}
 		else if(m_uiButtonFlags & BTNFLAG_HK && !(uiNewButtonFlags & BTNFLAG_HK))
 		{
 			m_ButtonHK.SetTint(HyColor(128, 128, 128));
 			m_ButtonHK.scale.Tween(1.0f, 1.0f, 0.1f, HyTween::QuadOut);
-			m_pDpad->SetButtonPress(BTNSTATE_HK, false);
+			m_Dpad.SetButtonPress(BTNSTATE_HK, false);
 		}
 
 		m_uiButtonFlags = uiNewButtonFlags;

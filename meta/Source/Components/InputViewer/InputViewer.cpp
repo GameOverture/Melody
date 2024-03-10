@@ -20,6 +20,32 @@ InputViewer::InputViewer(HyEntity2d *pParent /*= nullptr*/) :
 				reinterpret_cast<IComponent *>(pData)->Hide(0.5f);
 		}, this);
 
+	for(int i = 0; i < NUM_INPUTCONTROLLERS; ++i)
+	{
+		m_CtrlPanel_radController[i].Setup(HyPanelInit(24, 24, 2), HyNodePath("", "CtrlPanel"));
+		m_CtrlPanel_radController[i].SetTag(i);
+		m_BtnGrp.AddButton(m_CtrlPanel_radController[i]);
+	}
+	m_CtrlPanel_radController[INPUTCONTROLLER_StreetFighter].SetChecked(true);
+	m_CtrlPanel_radController[INPUTCONTROLLER_StarCitizen].SetText("SC");
+	m_CtrlPanel_radController[INPUTCONTROLLER_NES].SetText("NES");
+	m_CtrlPanel_radController[INPUTCONTROLLER_StreetFighter].SetText("SF");
+
+	for(int i = 0; i < NUM_INPUTCONTROLLERS; ++i)
+	{
+		m_CtrlPanel_radController[i].SetCheckedChangedCallback(
+			[this](HyRadioButton *pRadio, void *pData)
+			{
+				if(pRadio->IsChecked())
+				{
+					InputViewer *pThis = reinterpret_cast<InputViewer *>(pData);
+					pThis->m_Controllers[pThis->m_eActiveController]->SetVisible(false);
+					pThis->m_eActiveController = static_cast<InputController>(pRadio->GetTag());
+					pThis->m_Controllers[pThis->m_eActiveController]->SetVisible(true);
+				}
+			}, this);
+	}
+
 	// Assemble the controllers dynamically
 	for(int i = 0; i < NUM_INPUTCONTROLLERS; ++i)
 	{
@@ -53,6 +79,11 @@ InputViewer::InputViewer(HyEntity2d *pParent /*= nullptr*/) :
 {
 	HyLayoutHandle hRow = ctrlPanel.InsertLayout(HYORIEN_Horizontal);
 	ctrlPanel.InsertWidget(m_CtrlPanel_CheckBox, hRow);
+	ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
+
+	hRow = ctrlPanel.InsertLayout(HYORIEN_Horizontal);
+	for(int i = 0; i < NUM_INPUTCONTROLLERS; ++i)
+		ctrlPanel.InsertWidget(m_CtrlPanel_radController[i], hRow);
 	ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
 }
 

@@ -7,10 +7,6 @@ class Dpad;
 
 class IController : public HyEntity2d
 {
-protected: // Construct data in derived classes
-	Dpad *							m_pDpad;
-	std::vector<HySprite2d *>		m_ButtonList;
-
 public:
 	IController(HyEntity2d *pParent = nullptr);
 	virtual ~IController();

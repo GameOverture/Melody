@@ -3,19 +3,30 @@
 
 #include "pch.h"
 #include "IController.h"
+#include "Dpad.h"
 
 #include "../../lib/NESController/pch.h"
 
 #define NESCONTROLLER_BUFFER_LENGTH 255
 
 class NESController : public IController
-{
-	HyCheckBox				m_CtrlPanel_CheckBox;
-	
+{	
 	const char *			m_szPORTNAME = "\\\\.\\COM5";
 	SerialPort *			m_pArduino;
 	char					m_TempReadBuffer[NESCONTROLLER_BUFFER_LENGTH];
 	std::vector<uint8>		m_ReadBuffer;
+
+	Dpad					m_Dpad;
+	enum NES_BUTTONS
+	{
+		BUTTON_B = 0,
+		BUTTON_A,
+		BUTTON_START,
+		BUTTON_SELECT,
+
+		NUM_NES_BUTTONS
+	};
+	HySprite2d				m_Btns[NUM_NES_BUTTONS];
 
 public:
 	NESController(HyEntity2d *pParent = nullptr);
