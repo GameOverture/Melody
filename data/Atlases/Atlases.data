@@ -1216,6 +1216,13 @@
                             "cropMaskLo": 0,
                             "frameMaskHi": 25100393,
                             "frameMaskLo": 28115063
+                        },
+                        {
+                            "checksum": 1015716163,
+                            "cropMaskHi": 0,
+                            "cropMaskLo": 0,
+                            "frameMaskHi": 30671203,
+                            "frameMaskLo": 32768387
                         }
                     ],
                     "height": 512,

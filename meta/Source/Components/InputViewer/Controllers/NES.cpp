@@ -5,7 +5,9 @@
 NESController::NESController(HyEntity2d *pParent /*= nullptr*/) :
 	IController(pParent),
 	m_pArduino(nullptr),
-	m_Dpad(HyNodePath("InputViewer/NES/DpadGate"), HyNodePath("InputViewer/DpadBall"), HyNodePath("InputViewer/NES/Buttons"), this),
+	m_uiDpadFlags(0),
+	m_uiBtnFlags(0),
+	m_Dpad(HyNodePath("InputViewer/NES/DpadGate"), HyNodePath("InputViewer/NES/DpadBall"), HyNodePath("InputViewer/NES/Buttons"), this),
 	m_Btns{ HySprite2d(HyNodePath("InputViewer/NES/Buttons"), this), HySprite2d(HyNodePath("InputViewer/NES/Buttons"), this), HySprite2d(HyNodePath("InputViewer/NES/Buttons"), this), HySprite2d(HyNodePath("InputViewer/NES/Buttons"), this) }
 {
 	memset((void *)m_TempReadBuffer, 0, NESCONTROLLER_BUFFER_LENGTH);
@@ -18,6 +20,7 @@ NESController::NESController(HyEntity2d *pParent /*= nullptr*/) :
 	for(int i = 0; i < NUM_NES_BUTTONS; ++i)
 	{
 		m_Btns[i].SetState(i);
+		m_Btns[i].SetTint(HyColor(128, 128, 128));
 	}
 
 	ResetDisplayOrder();
@@ -30,6 +33,76 @@ NESController::NESController(HyEntity2d *pParent /*= nullptr*/) :
 
 /*virtual*/ void NESController::ApplyInputs() /*override*/
 {
+	m_Dpad.ApplyInput(m_uiDpadFlags);
+
+	uint32 uiCurBtnFlags = 0;
+	for(int i = 0; i < NUM_NES_BUTTONS; ++i)
+		uiCurBtnFlags |= (m_Btns[i].GetTag() << i);
+
+	if(uiCurBtnFlags != m_uiBtnFlags)
+	{
+		const float fButtonPressScale = 1.15f;
+
+		if(!(uiCurBtnFlags & BTNFLAG_B) && m_uiBtnFlags & BTNFLAG_B)
+		{
+			m_Btns[BUTTON_B].SetTint(HyColor::White);
+			m_Btns[BUTTON_B].scale.Tween(fButtonPressScale, fButtonPressScale, 0.1f, HyTween::QuadOut);
+			m_Btns[BUTTON_B].SetTag(1);
+			m_Dpad.SetButtonPress(BUTTON_B, true);
+		}
+		else if(uiCurBtnFlags & BTNFLAG_B && !(m_uiBtnFlags & BTNFLAG_B))
+		{
+			m_Btns[BUTTON_B].SetTint(HyColor(128, 128, 128));
+			m_Btns[BUTTON_B].scale.Tween(1.0f, 1.0f, 0.1f, HyTween::QuadOut);
+			m_Btns[BUTTON_B].SetTag(0);
+			m_Dpad.SetButtonPress(BUTTON_B, false);
+		}
+
+		if(!(uiCurBtnFlags & BTNFLAG_A) && m_uiBtnFlags & BTNFLAG_A)
+		{
+			m_Btns[BUTTON_A].SetTint(HyColor::White);
+			m_Btns[BUTTON_A].scale.Tween(fButtonPressScale, fButtonPressScale, 0.1f, HyTween::QuadOut);
+			m_Btns[BUTTON_A].SetTag(1);
+			m_Dpad.SetButtonPress(BUTTON_A, true);
+		}
+		else if(uiCurBtnFlags & BTNFLAG_A && !(m_uiBtnFlags & BTNFLAG_A))
+		{
+			m_Btns[BUTTON_A].SetTint(HyColor(128, 128, 128));
+			m_Btns[BUTTON_A].scale.Tween(1.0f, 1.0f, 0.1f, HyTween::QuadOut);
+			m_Btns[BUTTON_A].SetTag(0);
+			m_Dpad.SetButtonPress(BUTTON_A, false);
+		}
+
+		if(!(uiCurBtnFlags & BTNFLAG_START) && m_uiBtnFlags & BTNFLAG_START)
+		{
+			m_Btns[BUTTON_START].SetTint(HyColor::White);
+			m_Btns[BUTTON_START].scale.Tween(fButtonPressScale, fButtonPressScale, 0.1f, HyTween::QuadOut);
+			m_Btns[BUTTON_START].SetTag(1);
+			m_Dpad.SetButtonPress(BUTTON_START, true);
+		}
+		else if(uiCurBtnFlags & BTNFLAG_START && !(m_uiBtnFlags & BTNFLAG_START))
+		{
+			m_Btns[BUTTON_START].SetTint(HyColor(128, 128, 128));
+			m_Btns[BUTTON_START].scale.Tween(1.0f, 1.0f, 0.1f, HyTween::QuadOut);
+			m_Btns[BUTTON_START].SetTag(0);
+			m_Dpad.SetButtonPress(BUTTON_START, false);
+		}
+
+		if(!(uiCurBtnFlags & BTNFLAG_SELECT) && m_uiBtnFlags & BTNFLAG_SELECT)
+		{
+			m_Btns[BUTTON_SELECT].SetTint(HyColor::White);
+			m_Btns[BUTTON_SELECT].scale.Tween(fButtonPressScale, fButtonPressScale, 0.1f, HyTween::QuadOut);
+			m_Btns[BUTTON_SELECT].SetTag(1);
+			m_Dpad.SetButtonPress(BUTTON_SELECT, true);
+		}
+		else if(uiCurBtnFlags & BTNFLAG_SELECT && !(m_uiBtnFlags & BTNFLAG_SELECT))
+		{
+			m_Btns[BUTTON_SELECT].SetTint(HyColor(128, 128, 128));
+			m_Btns[BUTTON_SELECT].scale.Tween(1.0f, 1.0f, 0.1f, HyTween::QuadOut);
+			m_Btns[BUTTON_SELECT].SetTag(0);
+			m_Dpad.SetButtonPress(BUTTON_SELECT, false);
+		}
+	}
 }
 
 void NESController::Connect()
@@ -86,5 +159,20 @@ void NESController::PacketRecv(std::vector<uint8_t> packet)
 	for(uint8_t byte : packet)
 		sPacket += std::to_string(byte);
 
-	HyLog("PACKET: " << sPacket);
+	// Write out the packet in binary
+	for(uint8_t byte : packet)
+	{
+		std::string sBinary;
+		for(int i = 7; i >= 0; --i)
+			sBinary += (byte & (1 << i)) ? "1" : "0";
+		sBinary += " ";
+		HyLog(sBinary);
+	}
+
+	//m_uiDpadFlags = packet[1];
+	// m_uiBtnFlags
+	//m_uiBtnFlags[BUTTON_B] = (packet[0] & 0x01) ? true : false;
+	//m_bBtnStates[BUTTON_A] = (packet[0] & 0x02) ? true : false;
+	//m_bBtnStates[BUTTON_SELECT] = (packet[0] & 0x04) ? true : false;
+	//m_bBtnStates[BUTTON_START] = (packet[0] & 0x08) ? true : false;
 }

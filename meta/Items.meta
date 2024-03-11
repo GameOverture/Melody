@@ -354,22 +354,6 @@
                 }
             ]
         },
-        "InputViewer/DpadBall": {
-            "CameraPos": [
-                0,
-                0
-            ],
-            "CameraZoom": 1,
-            "UUID": "28e0de0c-fe5f-4108-b8c2-88e3136a5357",
-            "stateArray": [
-                {
-                    "assetUUIDs": [
-                        "17f6a765-1beb-40b6-bbcb-ab9d0aa201c2"
-                    ],
-                    "name": ""
-                }
-            ]
-        },
         "InputViewer/NES/Buttons": {
             "CameraPos": [
                 0,
@@ -404,6 +388,22 @@
                 }
             ]
         },
+        "InputViewer/NES/DpadBall": {
+            "CameraPos": [
+                0,
+                0
+            ],
+            "CameraZoom": 1,
+            "UUID": "e567cd4a-6cf8-4b30-9a13-81cfc4b53635",
+            "stateArray": [
+                {
+                    "assetUUIDs": [
+                        "442d8df8-e7dd-4ab8-a0a9-cfd950d915f5"
+                    ],
+                    "name": ""
+                }
+            ]
+        },
         "InputViewer/NES/DpadGate": {
             "CameraPos": [
                 0,
@@ -420,7 +420,7 @@
                 }
             ]
         },
-        "InputViewer/StreetFighter/ButtonsPressed": {
+        "InputViewer/StreetFighter/Buttons": {
             "CameraPos": [
                 0,
                 0
@@ -466,53 +466,23 @@
                 }
             ]
         },
-        "InputViewer/StreetFighter/ButtonsReleased": {
+        "InputViewer/StreetFighter/DpadBall": {
             "CameraPos": [
                 0,
                 0
             ],
             "CameraZoom": 1,
-            "UUID": "db85246f-23fd-4c3f-b8aa-6d888c8a91fb",
+            "UUID": "28e0de0c-fe5f-4108-b8c2-88e3136a5357",
             "stateArray": [
                 {
                     "assetUUIDs": [
-                        "b22034d7-2f3a-40b7-8d55-43ea41527492"
-                    ],
-                    "name": ""
-                },
-                {
-                    "assetUUIDs": [
-                        "42f59ce9-e580-4b46-9aeb-726d99a555e6"
-                    ],
-                    "name": ""
-                },
-                {
-                    "assetUUIDs": [
-                        "18366f7e-c373-425d-8573-5557ccdfc73a"
-                    ],
-                    "name": ""
-                },
-                {
-                    "assetUUIDs": [
-                        "cfef32af-c661-4ba1-a9a2-e9f678ab8549"
-                    ],
-                    "name": ""
-                },
-                {
-                    "assetUUIDs": [
-                        "05e394e9-941f-408e-8e75-178753122139"
-                    ],
-                    "name": ""
-                },
-                {
-                    "assetUUIDs": [
-                        "c9f80ba4-5f00-4dee-bbd7-f0837209af1d"
+                        "17f6a765-1beb-40b6-bbcb-ab9d0aa201c2"
                     ],
                     "name": ""
                 }
             ]
         },
-        "InputViewer/StreetFighter/JoystickGate": {
+        "InputViewer/StreetFighter/DpadGate": {
             "CameraPos": [
                 0,
                 0

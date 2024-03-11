@@ -956,25 +956,6 @@
                 }
             ]
         },
-        "InputViewer/DpadBall": {
-            "stateArray": [
-                {
-                    "bounce": false,
-                    "duration": 0.03333333507180214,
-                    "frames": [
-                        {
-                            "bankId": 0,
-                            "checksum": 3456146448,
-                            "duration": 0.03333333507180214,
-                            "offsetX": -25,
-                            "offsetY": -25
-                        }
-                    ],
-                    "loop": false,
-                    "reverse": false
-                }
-            ]
-        },
         "InputViewer/NES/Buttons": {
             "stateArray": [
                 {
@@ -1039,6 +1020,25 @@
                 }
             ]
         },
+        "InputViewer/NES/DpadBall": {
+            "stateArray": [
+                {
+                    "bounce": false,
+                    "duration": 0.03333333507180214,
+                    "frames": [
+                        {
+                            "bankId": 0,
+                            "checksum": 1015716163,
+                            "duration": 0.03333333507180214,
+                            "offsetX": -16,
+                            "offsetY": -16
+                        }
+                    ],
+                    "loop": false,
+                    "reverse": false
+                }
+            ]
+        },
         "InputViewer/NES/DpadGate": {
             "stateArray": [
                 {
@@ -1058,7 +1058,7 @@
                 }
             ]
         },
-        "InputViewer/StreetFighter/ButtonsPressed": {
+        "InputViewer/StreetFighter/Buttons": {
             "stateArray": [
                 {
                     "bounce": false,
@@ -1152,7 +1152,7 @@
                 }
             ]
         },
-        "InputViewer/StreetFighter/ButtonsReleased": {
+        "InputViewer/StreetFighter/DpadBall": {
             "stateArray": [
                 {
                     "bounce": false,
@@ -1160,85 +1160,10 @@
                     "frames": [
                         {
                             "bankId": 0,
-                            "checksum": 1200994289,
+                            "checksum": 3456146448,
                             "duration": 0.03333333507180214,
-                            "offsetX": -33,
-                            "offsetY": -34
-                        }
-                    ],
-                    "loop": false,
-                    "reverse": false
-                },
-                {
-                    "bounce": false,
-                    "duration": 0.03333333507180214,
-                    "frames": [
-                        {
-                            "bankId": 0,
-                            "checksum": 529758639,
-                            "duration": 0.03333333507180214,
-                            "offsetX": -33,
-                            "offsetY": -34
-                        }
-                    ],
-                    "loop": false,
-                    "reverse": false
-                },
-                {
-                    "bounce": false,
-                    "duration": 0.03333333507180214,
-                    "frames": [
-                        {
-                            "bankId": 0,
-                            "checksum": 1605459436,
-                            "duration": 0.03333333507180214,
-                            "offsetX": -33,
-                            "offsetY": -34
-                        }
-                    ],
-                    "loop": false,
-                    "reverse": false
-                },
-                {
-                    "bounce": false,
-                    "duration": 0.03333333507180214,
-                    "frames": [
-                        {
-                            "bankId": 0,
-                            "checksum": 3547625482,
-                            "duration": 0.03333333507180214,
-                            "offsetX": -33,
-                            "offsetY": -34
-                        }
-                    ],
-                    "loop": false,
-                    "reverse": false
-                },
-                {
-                    "bounce": false,
-                    "duration": 0.03333333507180214,
-                    "frames": [
-                        {
-                            "bankId": 0,
-                            "checksum": 1110594313,
-                            "duration": 0.03333333507180214,
-                            "offsetX": -33,
-                            "offsetY": -34
-                        }
-                    ],
-                    "loop": false,
-                    "reverse": false
-                },
-                {
-                    "bounce": false,
-                    "duration": 0.03333333507180214,
-                    "frames": [
-                        {
-                            "bankId": 0,
-                            "checksum": 2183961275,
-                            "duration": 0.03333333507180214,
-                            "offsetX": -33,
-                            "offsetY": -34
+                            "offsetX": -25,
+                            "offsetY": -25
                         }
                     ],
                     "loop": false,
@@ -1246,7 +1171,7 @@
                 }
             ]
         },
-        "InputViewer/StreetFighter/JoystickGate": {
+        "InputViewer/StreetFighter/DpadGate": {
             "stateArray": [
                 {
                     "bounce": false,
