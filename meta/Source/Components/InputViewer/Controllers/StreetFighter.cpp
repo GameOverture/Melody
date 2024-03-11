@@ -73,6 +73,8 @@ StreetFighter::StreetFighter(HyEntity2d *pParent /*= nullptr*/) :
 		HyEngine::Input().SetControllerInputListener(nullptr);
 	};
 
+	pos.Set(1200.0f, 80.0f);
+	scale.Set(0.75f, 0.75f);
 	EnableMouseInput(); // When mouse input is detected, listen for all controllers and assign a new game pad
 	SetDisplayOrder(DISPLAYORDER_Buttons);
 }

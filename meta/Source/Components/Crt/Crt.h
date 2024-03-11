@@ -9,12 +9,14 @@
 #include "Music.h"
 
 class VgMusic;
+class InputViewer;
 
 #define NUM_VOLUME_BARS 20
 
 class Crt : public IComponent
 {
 	MessageCycle &			m_MsgCycleRef;
+	InputViewer &			m_InputViewerRef;
 
 	HyCheckBox				m_CtrlPanel_CheckBox;
 	HyButton				m_CtrlPanel_btnGame;
@@ -60,7 +62,7 @@ class Crt : public IComponent
 	float					m_fElapsedTime;
 
 public:
-	Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, HyEntity2d *pParent = nullptr);
+	Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewerRef, HyEntity2d *pParent = nullptr);
 	virtual ~Crt();
 
 	virtual void PopulateCtrlPanel(CtrlPanel &ctrlPanel) override;

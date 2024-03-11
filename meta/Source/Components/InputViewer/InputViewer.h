@@ -13,6 +13,7 @@ class InputViewer : public IComponent
 
 	IController *			m_Controllers[NUM_INPUTCONTROLLERS];
 	InputController			m_eActiveController;
+	bool					m_bShowRetro;
 
 public:
 	InputViewer(HyEntity2d *pParent = nullptr);
@@ -21,6 +22,10 @@ public:
 	virtual void PopulateCtrlPanel(CtrlPanel &ctrlPanel) override;
 	virtual void Show(float fDuration) override;
 	virtual void Hide(float fDuration) override;
+
+	void SetShowRetro(bool bShow);
+	void RetroIntro();
+	void RetroOutro();
 
 protected:
 	virtual void OnUpdate() override;

@@ -5,6 +5,7 @@
 NESController::NESController(HyEntity2d *pParent /*= nullptr*/) :
 	IController(pParent),
 	m_pArduino(nullptr),
+	m_fElapsedTime(0.0f),
 	m_uiDpadFlags(0),
 	m_uiBtnFlags(0),
 	m_Dpad(HyNodePath("InputViewer/NES/DpadGate"), HyNodePath("InputViewer/NES/DpadBall"), HyNodePath("InputViewer/NES/Buttons"), 38.0f, 32.0f, HyColor::LightGray, 8.0f, this),
@@ -120,12 +121,17 @@ void NESController::Connect()
 
 	if(m_pArduino->isConnected() == false)
 	{
-		HyLog("NESController - Arduino connection lost...");
-		
-		Connect();
-		//Checking if pArduino is connected or not
-		if(m_pArduino->isConnected())
-			HyLog("Connection established at port " << m_szPORTNAME);
+		m_fElapsedTime -= HyEngine::DeltaTime();
+		if(m_fElapsedTime <= 0.0f)
+		{
+			HyLog("NESController - Arduino connection lost, retrying connection...");
+
+			Connect();
+			if(m_pArduino->isConnected())
+				HyLog("Connection reestablished at port " << m_szPORTNAME);
+
+			m_fElapsedTime = 5.0f;
+		}
 	}
 	else // Is connected
 	{

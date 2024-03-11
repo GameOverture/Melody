@@ -6,34 +6,13 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_pCamera(HyEngine::Window().CreateCamera2d()),
 	m_pCameraCtrlPanel(HyEngine::Window(1).CreateCamera2d()),
 	m_ColorKeyBg(),
-	m_InputViewer(),
 	m_VgMusic(),
 	m_Brb(),
 	m_MessageCycle(m_Brb),
-	m_Crt(m_VgMusic, m_MessageCycle),
+	m_InputViewer(),
+	m_Crt(m_VgMusic, m_MessageCycle, m_InputViewer),
 	m_CtrlPanel(m_Crt)
 {
-	//HyEngine::Input().MapBtn(INPUT_ExitGame, HYKEY_Escape);
-	//
-	//HyEngine::Input().MapBtn(INPUT_GotoIntro, HYKEY_1);
-	//HyEngine::Input().MapBtn(INPUT_GotoLowerThird, HYKEY_2);
-	//HyEngine::Input().MapBtn(INPUT_GotoBreak, HYKEY_3);
-	//HyEngine::Input().MapBtn(INPUT_GotoWheel, HYKEY_4);
-	//HyEngine::Input().MapBtn(INPUT_GotoOutro, HYKEY_6);
-	//HyEngine::Input().MapBtn(INPUT_CrtPowerToggle, HYKEY_P);
-	//HyEngine::Input().MapBtn(INPUT_CrtChannelUp, HYKEY_W);
-	//HyEngine::Input().MapBtn(INPUT_CrtChannelDown, HYKEY_S);
-
-	//HyEngine::Input().MapBtn(INPUT_Dance, HYKEY_Z);
-	//HyEngine::Input().MapBtn(INPUT_DanceAlt, HYKEY_X);
-	//HyEngine::Input().MapBtn(INPUT_DanceStop, HYKEY_C);
-	//HyEngine::Input().MapBtn(INPUT_DanceShimmy, HYKEY_V);
-
-	//HyEngine::Input().MapBtn(INPUT_VgMusicPlay, HYKEY_F);
-	//HyEngine::Input().MapBtn(INPUT_VgMusicStop, HYKEY_G);
-	//HyEngine::Input().MapBtn(INPUT_GlobalVolumeDown, HYKEY_Minus);
-	//HyEngine::Input().MapBtn(INPUT_GlobalVolumeUp, HYKEY_Equal);
-
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_LK, HYPAD_A);
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_MK, HYPAD_B);
 	//FIGHTSTICK_HK, // On Axis 'HYPADAXIS_TriggerRight'
@@ -95,8 +74,6 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_Crt.PopulateCtrlPanel(m_CtrlPanel);
 
 	m_InputViewer.UseWindowCoordinates();
-	m_InputViewer.pos.Set(1200.0f, 80.0f);
-	m_InputViewer.scale.Set(0.75f, 0.75f);
 	m_InputViewer.Load();
 	m_InputViewer.SetVisible(false);
 	m_InputViewer.PopulateCtrlPanel(m_CtrlPanel);
@@ -105,11 +82,6 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_HeartBeat.Load();
 	m_HeartBeat.SetVisible(false);
 	m_HeartBeat.PopulateCtrlPanel(m_CtrlPanel);
-
-	//m_NESController.UseWindowCoordinates();
-	//m_NESController.Load();
-	//m_NESController.SetVisible(false);
-	//m_NESController.PopulateCtrlPanel(m_CtrlPanel);
 
 	m_MessageCycle.UseWindowCoordinates();
 	m_MessageCycle.Load();

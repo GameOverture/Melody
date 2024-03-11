@@ -11,6 +11,8 @@
 #define DISPLAYORDER_GatePath		80
 #define DISPLAYORDER_Gate			70
 
+#define DISPLAYORDER_CrtStatic		60
+
 #define CRT_SCREEN_WIDTH 851
 #define CRT_SCREEN_HEIGHT 613
 

@@ -39,6 +39,7 @@ class NESController : public IController
 	SerialPort *			m_pArduino;
 	char					m_TempReadBuffer[NESCONTROLLER_BUFFER_LENGTH];
 	std::vector<uint8>		m_ReadBuffer;
+	float					m_fElapsedTime;
 
 	// Cached input state
 	uint32					m_uiDpadFlags;

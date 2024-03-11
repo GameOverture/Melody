@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Crt.h"
 #include "CtrlPanel.h"
+#include "InputViewer.h"
 
 #define CRT_UNZOOM_POS 548.0f, 0.0f
 #define CRT_UNZOOM_SCALE 1.0f, 1.0f
@@ -11,9 +12,13 @@
 #define CRT_SHRINK_AMT 0.01f
 #define CRT_SHUTOFF_DUR 0.2f
 
-Crt::Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, HyEntity2d *pParent /*= nullptr*/) :
+#define MESSAGECYCLE_POS_X 240.0f
+#define MESSAGECYCLE_GAMEPOS_X 325.0f
+
+Crt::Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewerRef, HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_Crt, pParent),
 	m_MsgCycleRef(msgCycleRef),
+	m_InputViewerRef(inputViewerRef),
 	m_CtrlPanel_CheckBox(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
 	m_CtrlPanel_btnGame(HyPanelInit(64, 32, 2), HyNodePath("", "CtrlPanel")),
 	m_CtrlPanel_btnMusic(HyPanelInit(64, 32, 2), HyNodePath("", "CtrlPanel")),
@@ -79,7 +84,7 @@ Crt::Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, HyEntity2d *pParent /*=
 
 	m_Static.scale.Set(2.4f, 2.4f);
 	m_Static.pos.Set(-75, -20);
-	m_Static.SetDisplayOrder(DISPLAYORDER_CrtVolume);
+	m_Static.SetDisplayOrder(DISPLAYORDER_CrtStatic);
 	m_Static.SetVisible(false);
 
 	m_ChannelStack.pos.Set(iScreenX + 24, iScreenY + 6);
@@ -138,7 +143,7 @@ Crt::Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, HyEntity2d *pParent /*=
 
 /*virtual*/ void Crt::Show(float fDuration) /*override*/
 {
-	m_MsgCycleRef.SetXPosOffset(240.0f);
+	m_MsgCycleRef.SetXPosOffset(MESSAGECYCLE_POS_X);
 
 	alpha.Set(0.0f);
 	alpha.Tween(1.0f, fDuration, HyTween::Linear, 0.0f, [this](IHyNode *pThis) { TogglePower(true); });
@@ -293,6 +298,9 @@ void Crt::SetVolume(float fVolume)
 		{
 			m_Screen.SetVisible(false);
 			m_ScreenOverlay.SetVisible(false);
+
+			m_InputViewerRef.RetroIntro();
+			m_MsgCycleRef.SetXPosOffset(MESSAGECYCLE_GAMEPOS_X);
 		}
 		else
 		{
@@ -301,6 +309,9 @@ void Crt::SetVolume(float fVolume)
 
 			pos.Tween(CRT_UNZOOM_POS, 1.5f, HyTween::QuadInOut);
 			scale.Tween(CRT_UNZOOM_SCALE, 1.5f, HyTween::QuadInOut);
+
+			m_InputViewerRef.RetroOutro();
+			m_MsgCycleRef.SetXPosOffset(MESSAGECYCLE_POS_X);
 		}
 
 		for(int i = 0; i < NUM_CHANNELTYPE; ++i)
