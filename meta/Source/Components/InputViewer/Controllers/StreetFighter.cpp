@@ -3,7 +3,7 @@
 
 StreetFighter::StreetFighter(HyEntity2d *pParent /*= nullptr*/) :
 	IController(pParent),
-	m_Dpad(HyNodePath("InputViewer/StreetFighter/DpadGate"), HyNodePath("InputViewer/StreetFighter/DpadBall"), HyNodePath("InputViewer/StreetFighter/Buttons"), this),
+	m_Dpad(HyNodePath("InputViewer/StreetFighter/DpadGate"), HyNodePath("InputViewer/StreetFighter/DpadBall"), HyNodePath("InputViewer/StreetFighter/Buttons"), 85.0f, 75.0f, HyColor::Red, 16.0f, this),
 	m_DriveImpact(this),
 	m_DriveParry(this),
 	m_ButtonLP("InputViewer/StreetFighter/Buttons", this),
@@ -74,8 +74,7 @@ StreetFighter::StreetFighter(HyEntity2d *pParent /*= nullptr*/) :
 	};
 
 	EnableMouseInput(); // When mouse input is detected, listen for all controllers and assign a new game pad
-
-	SetDisplayOrder(DISPLAYORDER_FIGHTSTICK);
+	SetDisplayOrder(DISPLAYORDER_Buttons);
 }
 
 /*virtual*/ StreetFighter::~StreetFighter()

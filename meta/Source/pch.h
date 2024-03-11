@@ -3,12 +3,13 @@
 
 #include "HyEngine.h"
 
-#define DISPLAYORDER_DEBUG			99999999
-#define DISPLAYORDER_MessageCycle	9999999
-#define DISPLAYORDER_CrtVolume		999999
-#define DISPLAYORDER_FIGHTSTICK		999999
-#define DISPLAYORDER_GatePath		999980
-#define DISPLAYORDER_Gate			999970
+#define DISPLAYORDER_DEBUG			9999
+#define DISPLAYORDER_MessageCycle	999
+#define DISPLAYORDER_CrtVolume		99
+#define DISPLAYORDER_Buttons		99
+#define DISPLAYORDER_BallTop		85
+#define DISPLAYORDER_GatePath		80
+#define DISPLAYORDER_Gate			70
 
 #define CRT_SCREEN_WIDTH 851
 #define CRT_SCREEN_HEIGHT 613

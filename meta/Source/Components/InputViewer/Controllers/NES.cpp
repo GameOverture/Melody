@@ -7,7 +7,7 @@ NESController::NESController(HyEntity2d *pParent /*= nullptr*/) :
 	m_pArduino(nullptr),
 	m_uiDpadFlags(0),
 	m_uiBtnFlags(0),
-	m_Dpad(HyNodePath("InputViewer/NES/DpadGate"), HyNodePath("InputViewer/NES/DpadBall"), HyNodePath("InputViewer/NES/Buttons"), this),
+	m_Dpad(HyNodePath("InputViewer/NES/DpadGate"), HyNodePath("InputViewer/NES/DpadBall"), HyNodePath("InputViewer/NES/Buttons"), 38.0f, 32.0f, HyColor::LightGray, 8.0f, this),
 	m_Btns{ HySprite2d(HyNodePath("InputViewer/NES/Buttons"), this), HySprite2d(HyNodePath("InputViewer/NES/Buttons"), this), HySprite2d(HyNodePath("InputViewer/NES/Buttons"), this), HySprite2d(HyNodePath("InputViewer/NES/Buttons"), this) }
 {
 	memset((void *)m_TempReadBuffer, 0, NESCONTROLLER_BUFFER_LENGTH);
@@ -21,9 +21,8 @@ NESController::NESController(HyEntity2d *pParent /*= nullptr*/) :
 	{
 		m_Btns[i].SetState(i);
 		m_Btns[i].SetTint(HyColor(128, 128, 128));
+		m_Btns[i].SetDisplayOrder(DISPLAYORDER_Buttons);
 	}
-
-	ResetDisplayOrder();
 }
 
 /*virtual*/ NESController::~NESController()
@@ -107,6 +106,9 @@ NESController::NESController(HyEntity2d *pParent /*= nullptr*/) :
 
 void NESController::Connect()
 {
+	if(m_pArduino && m_pArduino->isConnected())
+		return;
+
 	delete m_pArduino;
 	m_pArduino = new SerialPort(m_szPORTNAME);
 }
@@ -155,19 +157,27 @@ void NESController::Connect()
 
 void NESController::PacketRecv(std::vector<uint8_t> packet)
 {
-	std::string sPacket;
-	for(uint8_t byte : packet)
-		sPacket += std::to_string(byte);
+	if(packet.size() < 8)
+		return;
 
-	// Write out the packet in binary
-	for(uint8_t byte : packet)
+	m_uiBtnFlags = 0;
+	for(int i = 0; i < 8; ++i)
 	{
-		std::string sBinary;
-		for(int i = 7; i >= 0; --i)
-			sBinary += (byte & (1 << i)) ? "1" : "0";
-		sBinary += " ";
-		HyLog(sBinary);
+		if(packet[i] != 0x00)
+			m_uiBtnFlags |= (1 << i);
 	}
+
+	m_uiDpadFlags = (m_uiBtnFlags & BTNFLAG_DPAD_MASK) >> 4;
+
+	//// Write out the packet in binary
+	//std::string sBinary;
+	//for(uint8_t byte : packet)
+	//{
+	//	for(int i = 7; i >= 0; --i)
+	//		sBinary += (byte & (1 << i)) ? "1" : "0";
+	//	sBinary += " ";
+	//}
+	//HyLog(sBinary);
 
 	//m_uiDpadFlags = packet[1];
 	// m_uiBtnFlags

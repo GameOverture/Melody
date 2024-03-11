@@ -13,19 +13,25 @@ class NESController : public IController
 {
 	enum ButtonState
 	{
-		BUTTON_B = 0,
-		BUTTON_A,
-		BUTTON_START,
+		BUTTON_A = 0,
+		BUTTON_B,
 		BUTTON_SELECT,
+		BUTTON_START,
 
 		NUM_NES_BUTTONS
 	};
 	enum ButtonFlag
 	{
-		BTNFLAG_B = 0x01,
-		BTNFLAG_A = 0x02,
-		BTNFLAG_START = 0x04,
-		BTNFLAG_SELECT = 0x08,
+		BTNFLAG_A = 1 << 0,
+		BTNFLAG_B = 1 << 1,
+		BTNFLAG_SELECT = 1 << 2,
+		BTNFLAG_START = 1 << 3,
+		BTNFLAG_UP = 1 << 4,
+		BTNFLAG_DOWN = 1 << 5,
+		BTNFLAG_LEFT = 1 << 6,
+		BTNFLAG_RIGHT = 1 << 7,
+
+		BTNFLAG_DPAD_MASK = (BTNFLAG_UP | BTNFLAG_DOWN | BTNFLAG_LEFT | BTNFLAG_RIGHT)
 	};
 
 	// USB Serial

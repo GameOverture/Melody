@@ -3,7 +3,7 @@ project(Melody)
 
 set(REL_PROJ_PATH "../../")
 set(REL_DATA_DIR "../../data")
-set(REL_HARMONY_DIR "../../../../../LG/_GameFramework/HarmonyEngine")
+set(REL_HARMONY_DIR "../../../HarmonyEngine")
 set(EXE_OUTPUT_NAME "Melody")
 
 set(GAME_SRCFILES
@@ -59,14 +59,14 @@ set(GAME_SRCFILES
 
 set(GAME_INCLUDE_DIRS "")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}")
-list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt")
-list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Scenes")
-list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/_hy_")
-list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Wheel")
-list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt/Channels")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/InputViewer")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/_hy_")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/InputViewer/Controllers")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Scenes")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Wheel")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt/Channels")
 
 #################################################################################################
 # ^ ^ ^ USER CONFIG ABOVE ^ ^ ^

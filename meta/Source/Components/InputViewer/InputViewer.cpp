@@ -42,6 +42,9 @@ InputViewer::InputViewer(HyEntity2d *pParent /*= nullptr*/) :
 					pThis->m_Controllers[pThis->m_eActiveController]->SetVisible(false);
 					pThis->m_eActiveController = static_cast<InputController>(pRadio->GetTag());
 					pThis->m_Controllers[pThis->m_eActiveController]->SetVisible(true);
+
+					if(pThis->m_eActiveController == INPUTCONTROLLER_NES)
+						static_cast<NESController *>(pThis->m_Controllers[INPUTCONTROLLER_NES])->Connect();
 				}
 			}, this);
 	}

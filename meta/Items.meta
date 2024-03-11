@@ -364,27 +364,27 @@
             "stateArray": [
                 {
                     "assetUUIDs": [
-                        "3cc1ffb3-ce88-4cbf-8ddf-2708c0a1c7c0"
-                    ],
-                    "name": "B"
-                },
-                {
-                    "assetUUIDs": [
                         "e6a03228-d46e-4381-bb3d-46cda0c45a61"
                     ],
                     "name": "A"
                 },
                 {
                     "assetUUIDs": [
-                        "2a9fb165-f241-4727-98f2-691a9c24b028"
+                        "3cc1ffb3-ce88-4cbf-8ddf-2708c0a1c7c0"
                     ],
-                    "name": "Start"
+                    "name": "B"
                 },
                 {
                     "assetUUIDs": [
                         "e1aedd1a-e0d2-47a4-988e-062eb433100f"
                     ],
                     "name": "Select"
+                },
+                {
+                    "assetUUIDs": [
+                        "2a9fb165-f241-4727-98f2-691a9c24b028"
+                    ],
+                    "name": "Start"
                 }
             ]
         },
