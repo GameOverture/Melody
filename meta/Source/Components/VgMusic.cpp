@@ -12,23 +12,23 @@ VgMusic::VgMusic(HyEntity2d *pParent /*= nullptr*/) :
 	m_fpOnTrackChange(nullptr),
 	m_fpOnFadeOut(nullptr)
 {
-	m_CtrlPanel_PrevBtn.SetAsStacked(HYALIGN_Center, HYTEXT_Box);
+	m_CtrlPanel_PrevBtn.SetAsBox(HYALIGN_Center);
 	m_CtrlPanel_PrevBtn.SetText("<");
-	m_CtrlPanel_PrevBtn.SetButtonClickedCallback([this](HyButton *pThis, void *pData)
+	m_CtrlPanel_PrevBtn.SetButtonClickedCallback([this](HyButton *pThis)
 		{
 			Prev();
 		});
 
-	m_CtrlPanel_PlayBtn.SetAsStacked(HYALIGN_Center, HYTEXT_Box);
+	m_CtrlPanel_PlayBtn.SetAsBox(HYALIGN_Center);
 	m_CtrlPanel_PlayBtn.SetText(">");
-	m_CtrlPanel_PlayBtn.SetButtonClickedCallback([this](HyButton *pThis, void *pData)
+	m_CtrlPanel_PlayBtn.SetButtonClickedCallback([this](HyButton *pThis)
 		{
 			Play();
 		});
 
-	m_CtrlPanel_StopBtn.SetAsStacked(HYALIGN_Center, HYTEXT_Box);
+	m_CtrlPanel_StopBtn.SetAsBox(HYALIGN_Center);
 	m_CtrlPanel_StopBtn.SetText("[]");
-	m_CtrlPanel_StopBtn.SetButtonClickedCallback([this](HyButton *pThis, void *pData)
+	m_CtrlPanel_StopBtn.SetButtonClickedCallback([this](HyButton *pThis)
 		{
 			Stop();
 		});
@@ -63,7 +63,7 @@ VgMusic::VgMusic(HyEntity2d *pParent /*= nullptr*/) :
 
 void VgMusic::PopulateCtrlPanel(CtrlPanel &ctrlPanel)
 {
-	HyLayoutHandle hCurRow = ctrlPanel.InsertLayout(HYORIEN_Horizontal);
+	HyLayoutHandle hCurRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
 	ctrlPanel.InsertWidget(m_CtrlPanel_PrevBtn, hCurRow);
 	ctrlPanel.InsertWidget(m_CtrlPanel_PlayBtn, hCurRow);
 	ctrlPanel.InsertWidget(m_CtrlPanel_StopBtn, hCurRow);

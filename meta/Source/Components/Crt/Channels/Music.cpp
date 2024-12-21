@@ -3,11 +3,11 @@
 #include "VgMusic.h"
 
 Dancer::Dancer(HyEntity2d *pParent /*= nullptr*/) :
-	HyEntityLeaf2d("GameSprites", "Dancer", pParent),
+	HyEntityWrapper2d<HySprite2d>("GameSprites", "Dancer", pParent),
 	m_eDanceState(DANCESTATE_Stop),
 	m_eDeferDanceState(DANCESTATE_Stop)
 {
-	m_Leaf.scale.Set(2.0f, 2.0f);
+	m_FusedNode.scale.Set(2.0f, 2.0f);
 }
 
 DanceState Dancer::GetDanceState() const
@@ -18,38 +18,38 @@ DanceState Dancer::GetDanceState() const
 void Dancer::Dance()
 {
 	m_eDanceState = DANCESTATE_Dance;
-	m_Leaf.SetAnimCallback(m_Leaf.GetState(), nullptr);
-	m_Leaf.SetAnimCtrl(HYANIMCTRL_ResetAndPlay);
-	m_Leaf.SetAnimCtrl(HYANIMCTRL_DontBounce);
+	m_FusedNode.SetAnimCallback(m_FusedNode.GetState(), nullptr);
+	m_FusedNode.SetAnimCtrl(HYANIMCTRL_ResetAndPlay);
+	m_FusedNode.SetAnimCtrl(HYANIMCTRL_DontBounce);
 }
 
 void Dancer::DanceAlt()
 {
 	m_eDanceState = DANCESTATE_DanceAlt;
-	m_Leaf.SetAnimCallback(m_Leaf.GetState(), nullptr);
-	m_Leaf.SetAnimCtrl(HYANIMCTRL_ResetAndPlay);
-	m_Leaf.SetAnimCtrl(HYANIMCTRL_Bounce);
+	m_FusedNode.SetAnimCallback(m_FusedNode.GetState(), nullptr);
+	m_FusedNode.SetAnimCtrl(HYANIMCTRL_ResetAndPlay);
+	m_FusedNode.SetAnimCtrl(HYANIMCTRL_Bounce);
 }
 
 void Dancer::Stop()
 {
 	m_eDanceState = DANCESTATE_Stop;
-	m_Leaf.SetAnimCallback(m_Leaf.GetState(), 
-		[](HySprite2d *pSelf, void *pParam)
+	m_FusedNode.SetAnimCallback(m_FusedNode.GetState(), 
+		[](HySprite2d *pSelf)
 		{
 			pSelf->SetAnimCtrl(HYANIMCTRL_Reset);
 			pSelf->SetAnimPause(true);
-		}, this);
+		});
 }
 
 void Dancer::Shimmy()
 {
-	m_Leaf.SetAnimCallback(m_Leaf.GetState(),
-		[](HySprite2d *pSelf, void *pParam)
+	m_FusedNode.SetAnimCallback(m_FusedNode.GetState(),
+		[](HySprite2d *pSelf)
 		{
 			pSelf->SetAnimCtrl(HYANIMCTRL_Reset);
 			pSelf->SetAnimPause(true);
-		}, this);
+		});
 
 	m_fElapsedTime = 0.0f;
 	m_eDanceState = DANCESTATE_Shimmy;
@@ -85,13 +85,13 @@ void Dancer::DeferDance(DanceState eDanceState, float fDelay)
 
 	if(m_eDanceState == DANCESTATE_Shimmy)
 	{
-		if(m_Leaf.GetFrame() == 0 || m_Leaf.GetFrame() == 1)
+		if(m_FusedNode.GetFrame() == 0 || m_FusedNode.GetFrame() == 1)
 		{
 			m_fElapsedTime += HyEngine::DeltaTime();
 
 			if(m_fElapsedTime > 0.5f)
 			{
-				m_Leaf.SetFrame(m_Leaf.GetFrame() == 0 ? 1 : 0);
+				m_FusedNode.SetFrame(m_FusedNode.GetFrame() == 0 ? 1 : 0);
 				m_fElapsedTime = 0.0f;
 			}
 		}
@@ -124,12 +124,12 @@ Music::Music(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
 	m_NowPlayingSound.pos.Set(LARGE_WIDTH, -10.0f);
 
 	m_TitleText.SetVisible(false);
-	m_TitleText.SetTextAlignment(HYALIGN_Right);
+	m_TitleText.SetAlignment(HYALIGN_Right);
 	m_TitleText.pos.Set(0.0f, 50.0f);
 	m_TitleText.SetAsScaleBox(LARGE_WIDTH, 50.0f);
 
 	m_TrackText.SetVisible(false);
-	m_TrackText.SetTextAlignment(HYALIGN_Right);
+	m_TrackText.SetAlignment(HYALIGN_Right);
 	m_TrackText.pos.Set(0.0f, 0.0f);
 	m_TrackText.SetAsScaleBox(LARGE_WIDTH, 50.0f);
 
@@ -210,11 +210,11 @@ void Music::ShowVisualizer(float fFadeInTime)
 	FadeOut(fFadeInTime);
 
 	// Center the texture, using the bottom left corner as the anchor. Fade it in from 0.0f alpha to 1.0f alpha
-	m_AudioVisualizer.scale.Set(1.0f);
+	m_AudioVisualizer.scale.Set(1.0f, 1.0f);
 	if(m_AudioVisualizer.GetWidth() > LARGE_WIDTH || m_AudioVisualizer.GetHeight() > LARGE_HEIGHT - 100.0f)
 	{
 		float fScale = std::min(LARGE_WIDTH / m_AudioVisualizer.GetWidth(), (LARGE_HEIGHT - 100.0f) / m_AudioVisualizer.GetHeight());
-		m_AudioVisualizer.scale.Set(fScale);
+		m_AudioVisualizer.scale.Set(fScale, fScale);
 	}
 	m_AudioVisualizer.pos.Set(LARGE_WIDTH / 2.0f, 100.0f + (LARGE_HEIGHT / 2.0f));
 	m_AudioVisualizer.SetState(HyRand::Range(0u, m_AudioVisualizer.GetNumStates() - 1));
@@ -410,11 +410,11 @@ void Music::FadeOut(float fFadeOutTime)
 void Music::TransformTexture(HyTexturedQuad2d &quadRef, glm::ivec2 vMaxSize, glm::vec2 ptCenter)
 {
 	// Scale the texture to fit within the max width and height
-	quadRef.scale.Set(1.0f);
+	quadRef.scale.SetAll(1.0f);
 	//if(quadRef.GetWidth() > vMaxSize.x || quadRef.GetHeight() > vMaxSize.y)
 	{
 		float fScale = std::min(vMaxSize.x / quadRef.GetWidth(), vMaxSize.y / quadRef.GetHeight());
-		quadRef.scale.Set(fScale);
+		quadRef.scale.SetAll(fScale);
 	}
 
 	// Find center of desired position, then offset by half the width and height of the texture

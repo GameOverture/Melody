@@ -90,7 +90,7 @@ void Dpad::SetButtonPress(int iButtonState, bool bPressed)
 	m_ButtonOverlays[m_eOldBallPos].alpha.Set(1.0f);
 	if(bPressed)
 	{
-		m_ButtonOverlays[m_eOldBallPos].scale.Set(0.9f);
+		m_ButtonOverlays[m_eOldBallPos].scale.SetAll(0.9f);
 		m_ButtonOverlays[m_eOldBallPos].scale.Tween(1.0f, 1.0f, 0.1f, HyTween::QuadOut);
 	}
 	else

@@ -29,7 +29,7 @@ Wheel::SpinEnt::SpinEnt(const WheelInit &initStructRef) :
 	float fRotationOffset = 0.0f;
 	for(uint32 i = 0; i < uiNumWedges; ++i)
 	{
-		HyEntityLeaf2d<HySprite2d> *pNewWedge = HY_NEW HyEntityLeaf2d<HySprite2d>(initStructRef.wedges.m_sPrefix.c_str(), initStructRef.wedges.m_sName.c_str());
+		HyEntityWrapper2d<HySprite2d> *pNewWedge = HY_NEW HyEntityWrapper2d<HySprite2d>(initStructRef.wedges.m_sPrefix.c_str(), initStructRef.wedges.m_sName.c_str());
 		ChildAppend(*pNewWedge);
 		pNewWedge->rot.Set(fRotationOffset);
 
@@ -156,7 +156,7 @@ void Wheel::NudgeClockwise(float fDegrees)
 		m_SpinEnt.rot.Offset(-fDegrees);
 }
 
-HyEntityLeaf2d<HySprite2d> &Wheel::GetWedge(uint32 uiWedgeIndex)
+HyEntityWrapper2d<HySprite2d> &Wheel::GetWedge(uint32 uiWedgeIndex)
 {
 	HyAssert(uiWedgeIndex < static_cast<uint32>(m_SpinEnt.m_WedgeList.size()), "Wheel::GetWedge was passed an invalid index : " << uiWedgeIndex);
 	return *m_SpinEnt.m_WedgeList[uiWedgeIndex];
@@ -168,7 +168,7 @@ HySprite2d &Wheel::GetWedgeDecal(uint32 uiWedgeIndex)
 	return *m_SpinEnt.m_WedgeDecalList[uiWedgeIndex];
 }
 
-HyEntityLeaf2d<HySprite2d> &Wheel::GetTicker()
+HyEntityWrapper2d<HySprite2d> &Wheel::GetTicker()
 {
 	return m_Ticker;
 }
@@ -229,7 +229,7 @@ std::vector<HyText2d *> Wheel::SetTextOnWedge(uint32 uiWedgeIndex, std::string s
 		pText->scale.Set(fScale, fScale);
 		//pText->SetDisplayOrder(m_SpinEnt.m_Frame.GetDisplayOrder());
 		pText->SetAsLine();
-		pText->SetTextAlignment(HYALIGN_Center);
+		pText->SetAlignment(HYALIGN_Center);
 
 		newTextList.push_back(pText);
 	}

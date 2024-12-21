@@ -55,7 +55,7 @@ StreetFighter::StreetFighter(HyEntity2d *pParent /*= nullptr*/) :
 	m_AssignOverlayBG.pos.Offset(-105.0f, -120.0f);
 	m_AssignOverlayBG.SetVisible(false);
 	m_AssignOverlayText.SetVisible(false);
-	m_AssignOverlayText.SetTextAlignment(HYALIGN_Center);
+	m_AssignOverlayText.SetAlignment(HYALIGN_Center);
 	m_AssignOverlayText.pos.Offset(145.0f, 0.0f);
 
 	m_fpAssignControllerFunc = [this](IHyController *pController, bool bIsAxis, int32 iKey, HyControllerInputValue value)

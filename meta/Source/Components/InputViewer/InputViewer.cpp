@@ -17,13 +17,13 @@ InputViewer::InputViewer(HyEntity2d *pParent /*= nullptr*/) :
 {
 	m_CtrlPanel_CheckBox.SetText("Input Viewer");
 	m_CtrlPanel_CheckBox.SetCheckedChangedCallback(
-		[this](HyCheckBox *pCheckBox, void *pData)
+		[this](HyCheckBox *pCheckBox)
 		{
 			if(pCheckBox->IsChecked())
-				reinterpret_cast<IComponent *>(pData)->Show(0.5f);
+				Show(0.5f);
 			else
-				reinterpret_cast<IComponent *>(pData)->Hide(0.5f);
-		}, this);
+				Hide(0.5f);
+		});
 
 	for(int i = 0; i < NUM_INPUTCONTROLLERS; ++i)
 	{
@@ -39,26 +39,25 @@ InputViewer::InputViewer(HyEntity2d *pParent /*= nullptr*/) :
 	for(int i = 0; i < NUM_INPUTCONTROLLERS; ++i)
 	{
 		m_CtrlPanel_radController[i].SetCheckedChangedCallback(
-			[this](HyRadioButton *pRadio, void *pData)
+			[this](HyRadioButton *pRadio)
 			{
 				if(pRadio->IsChecked())
 				{
-					InputViewer *pThis = reinterpret_cast<InputViewer *>(pData);
-					pThis->m_Controllers[pThis->m_eActiveController]->SetVisible(false);
-					pThis->m_eActiveController = static_cast<InputController>(pRadio->GetTag());
-					pThis->m_Controllers[pThis->m_eActiveController]->SetVisible(true);
+					m_Controllers[m_eActiveController]->SetVisible(false);
+					m_eActiveController = static_cast<InputController>(pRadio->GetTag());
+					m_Controllers[m_eActiveController]->SetVisible(true);
 
-					if(pThis->m_eActiveController == INPUTCONTROLLER_NES)
+					if(m_eActiveController == INPUTCONTROLLER_NES)
 					{
-						static_cast<NESController *>(pThis->m_Controllers[INPUTCONTROLLER_NES])->Connect();
+						static_cast<NESController *>(m_Controllers[INPUTCONTROLLER_NES])->Connect();
 						if(m_bShowRetro)
-							pThis->RetroIntro();
+							RetroIntro();
 					}
 					else if(m_bShowRetro)
-						pThis->RetroOutro();
+						RetroOutro();
 
 				}
-			}, this);
+			});
 	}
 
 	// Assemble the controllers dynamically
@@ -94,11 +93,11 @@ InputViewer::InputViewer(HyEntity2d *pParent /*= nullptr*/) :
 
 /*virtual*/ void InputViewer::PopulateCtrlPanel(CtrlPanel &ctrlPanel) /*override*/
 {
-	HyLayoutHandle hRow = ctrlPanel.InsertLayout(HYORIEN_Horizontal);
+	HyLayoutHandle hRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
 	ctrlPanel.InsertWidget(m_CtrlPanel_CheckBox, hRow);
 	ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
 
-	hRow = ctrlPanel.InsertLayout(HYORIEN_Horizontal);
+	hRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
 	for(int i = 0; i < NUM_INPUTCONTROLLERS; ++i)
 		ctrlPanel.InsertWidget(m_CtrlPanel_radController[i], hRow);
 	ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);

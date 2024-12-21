@@ -47,34 +47,34 @@ Crt::Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewe
 
 	m_CtrlPanel_CheckBox.SetText("CRT");
 	m_CtrlPanel_CheckBox.SetCheckedChangedCallback(
-		[this](HyCheckBox *pCheckBox, void *pData)
+		[this](HyCheckBox *pCheckBox)
 		{
 			if(pCheckBox->IsChecked())
-				reinterpret_cast<IComponent *>(pData)->Show(0.5f);
+				Show(0.5f);
 			else
-				reinterpret_cast<IComponent *>(pData)->Hide(0.5f);
-		}, this);
+				Hide(0.5f);
+		});
 
 	m_CtrlPanel_btnGame.SetText("Gam");
 	m_CtrlPanel_btnGame.SetButtonClickedCallback(
-		[this](HyButton *pButton, void *pData)
+		[this](HyButton *pButton)
 		{
-			reinterpret_cast<Crt *>(pData)->SetChannel(CHANNELTYPE_Game);
-		}, this);
+			SetChannel(CHANNELTYPE_Game);
+		});
 
 	m_CtrlPanel_btnMusic.SetText("Mus");
 	m_CtrlPanel_btnMusic.SetButtonClickedCallback(
-		[this](HyButton *pButton, void *pData)
+		[this](HyButton *pButton)
 		{
-			reinterpret_cast<Crt *>(pData)->SetChannel(CHANNELTYPE_Music);
-		}, this);
+			SetChannel(CHANNELTYPE_Music);
+		});
 
 	m_CtrlPanel_btnStatic.SetText("Nul");
 	m_CtrlPanel_btnStatic.SetButtonClickedCallback(
-		[this](HyButton *pButton, void *pData)
+		[this](HyButton *pButton)
 		{
-			reinterpret_cast<Crt *>(pData)->SetChannel(CHANNELTYPE_Static);
-		}, this);
+			SetChannel(CHANNELTYPE_Static);
+		});
 
 	const int32 iScreenX = 148;
 	const int32 iScreenY = 263;
@@ -97,7 +97,7 @@ Crt::Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewe
 	
 	m_Nob.pos.Set(1120.0f, 730.0f);
 	m_VcrTimeHrs.pos.Set(620, 1050);
-	m_VcrTimeHrs.SetTextAlignment(HYALIGN_Right);
+	m_VcrTimeHrs.SetAlignment(HYALIGN_Right);
 	m_VcrTimeMins.pos.Set(640, 1050);
 
 	m_VolumeText.Init("CRT", "Volume", this);
@@ -133,7 +133,7 @@ Crt::Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewe
 
 /*virtual*/ void Crt::PopulateCtrlPanel(CtrlPanel &ctrlPanel) /*override*/
 {
-	HyLayoutHandle hRow = ctrlPanel.InsertLayout(HYORIEN_Horizontal);
+	HyLayoutHandle hRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
 	ctrlPanel.InsertWidget(m_CtrlPanel_CheckBox, hRow);
 	ctrlPanel.InsertWidget(m_CtrlPanel_btnGame, hRow);
 	ctrlPanel.InsertWidget(m_CtrlPanel_btnMusic, hRow);

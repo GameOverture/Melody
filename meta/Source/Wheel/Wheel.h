@@ -6,7 +6,7 @@
 #include "WheelInit.h"
 #include "WeightTable.h"
 
-typedef HyEntityLeaf2d<HySprite2d> Wedge;
+typedef HyEntityWrapper2d<HySprite2d> Wedge;
 
 class Wheel : public IComponent
 {
@@ -14,7 +14,7 @@ class Wheel : public IComponent
 	{
 	public:
 		HySprite2d									m_Frame;
-		std::vector<HyEntityLeaf2d<HySprite2d> *>	m_WedgeList;
+		std::vector<HyEntityWrapper2d<HySprite2d> *>	m_WedgeList;
 		std::vector<float>							m_WedgeAngleList;
 		std::vector<HySprite2d *>					m_WedgeDecalList;
 		std::map<uint32, std::vector<HyText2d *>>	m_WedgeTextMap;
@@ -26,7 +26,7 @@ class Wheel : public IComponent
 	HySprite2d										m_Base;
 	SpinEnt											m_SpinEnt;
 	HySprite2d										m_Hub;
-	HyEntityLeaf2d<HySprite2d>						m_Ticker;
+	HyEntityWrapper2d<HySprite2d>					m_Ticker;
 
 	float											m_fTickerNotchHalfWidthDegs;
 	float											m_fTickerTiltAmtDeg;
@@ -96,7 +96,7 @@ public:
 
 	Wedge &GetWedge(uint32 uiWedgeIndex);
 	HySprite2d &GetWedgeDecal(uint32 uiWedgeIndex);
-	HyEntityLeaf2d<HySprite2d> &GetTicker();
+	HyEntityWrapper2d<HySprite2d> &GetTicker();
 	HySprite2d &GetNotches();
 	HySprite2d &GetHub();
 	HySprite2d &GetFrame();

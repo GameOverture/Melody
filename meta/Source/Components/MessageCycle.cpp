@@ -18,13 +18,13 @@ MessageCycle::MessageCycle(Brb &brbRef, HyEntity2d *pParent /*= nullptr*/) :
 {
 	m_CtrlPanel_CheckBox.SetText("Messages");
 	m_CtrlPanel_CheckBox.SetCheckedChangedCallback(
-		[this](HyCheckBox *pCheckBox, void *pData)
+		[this](HyCheckBox *pCheckBox)
 		{
 			if(pCheckBox->IsChecked())
-				reinterpret_cast<IComponent *>(pData)->Show(0.5f);
+				Show(0.5f);
 			else
-				reinterpret_cast<IComponent *>(pData)->Hide(0.5f);
-		}, this);
+				Hide(0.5f);
+		});
 
 	m_CtrlPanel_LineEdit.SetOnSubmit([this](HyLineEdit *pThis)
 		{
@@ -32,7 +32,7 @@ MessageCycle::MessageCycle(Brb &brbRef, HyEntity2d *pParent /*= nullptr*/) :
 		});
 
 	m_CtrlPanel_AddBtn.SetText("ADD");
-	m_CtrlPanel_AddBtn.SetButtonClickedCallback([this](HyButton *pThis, void *pData)
+	m_CtrlPanel_AddBtn.SetButtonClickedCallback([this](HyButton *pThis)
 		{
 			Message *pMessage = HY_NEW Message(m_CtrlPanel_radLong.IsChecked());
 			
@@ -41,13 +41,12 @@ MessageCycle::MessageCycle(Brb &brbRef, HyEntity2d *pParent /*= nullptr*/) :
 
 			pMessage->m_Remove.SetText("*");
 			pMessage->m_Remove.SetButtonClickedCallback(
-				[this](HyButton *pThis, void *pData)
+				[this, pMessage](HyButton *pThis)
 				{
-					Message *pMessage = reinterpret_cast<Message *>(pData);
 					OnRemoveMessage(pMessage);
-				}, pMessage);
+				});
 
-			pMessage->m_hLayout = m_pCtrlPanel->InsertLayout(HYORIEN_Horizontal);
+			pMessage->m_hLayout = m_pCtrlPanel->InsertLayout(HYORIENT_Horizontal);
 			m_pCtrlPanel->InsertWidget(pMessage->m_Message, pMessage->m_hLayout);
 			m_pCtrlPanel->InsertWidget(pMessage->m_Remove, pMessage->m_hLayout);
 			m_pCtrlPanel->InsertSpacer(HYSIZEPOLICY_Expanding, 0, pMessage->m_hLayout);
@@ -63,7 +62,7 @@ MessageCycle::MessageCycle(Brb &brbRef, HyEntity2d *pParent /*= nullptr*/) :
 	m_CtrlPanel_radLong.SetText("Long");
 	m_CtrlPanel_radLong.SetChecked(true);
 
-	m_Text.SetTextAlignment(HYALIGN_Center);
+	m_Text.SetAlignment(HYALIGN_Center);
 	
 	SetXPosOffset(0.0f);
 	pos.Set(m_fXPos, MSGCYCLE_HIDE_YPOS);
@@ -85,16 +84,16 @@ void MessageCycle::SetXPosOffset(float fXPosOffset)
 {
 	m_pCtrlPanel = &ctrlPanel;
 
-	HyLayoutHandle hRow = ctrlPanel.InsertLayout(HYORIEN_Horizontal);
+	HyLayoutHandle hRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
 	ctrlPanel.InsertWidget(m_CtrlPanel_CheckBox, hRow);
 	ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
 
-	hRow = ctrlPanel.InsertLayout(HYORIEN_Horizontal);
+	hRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
 	ctrlPanel.InsertWidget(m_CtrlPanel_LineEdit, hRow);
 	ctrlPanel.InsertWidget(m_CtrlPanel_AddBtn, hRow);
 	ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
 
-	hRow = ctrlPanel.InsertLayout(HYORIEN_Horizontal);
+	hRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
 	ctrlPanel.InsertWidget(m_CtrlPanel_radLong, hRow);
 	ctrlPanel.InsertWidget(m_CtrlPanel_radShort, hRow);
 	ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);

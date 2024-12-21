@@ -1,5 +1,5 @@
 {
-    "$fileVersion": 16,
+    "$fileVersion": 17,
     "Audio": {
     },
     "Entities": {
@@ -657,5 +657,7 @@
                 }
             ]
         }
+    },
+    "TileMaps": {
     }
 }

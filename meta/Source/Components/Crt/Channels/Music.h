@@ -16,7 +16,7 @@ enum DanceState
 	DANCESTATE_DanceAlt,
 };
 
-class Dancer : public HyEntityLeaf2d<HySprite2d>
+class Dancer : public HyEntityWrapper2d<HySprite2d>
 {
 	DanceState			m_eDanceState;
 	float				m_fElapsedTime;

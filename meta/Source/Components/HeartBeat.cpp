@@ -8,13 +8,13 @@ HeartBeat::HeartBeat(HyEntity2d *pParent /*= nullptr*/) :
 {
 	m_CtrlPanel_CheckBox.SetText("Heart Beat");
 	m_CtrlPanel_CheckBox.SetCheckedChangedCallback(
-		[this](HyCheckBox *pCheckBox, void *pData)
+		[this](HyCheckBox *pCheckBox)
 		{
 			if(pCheckBox->IsChecked())
-				reinterpret_cast<IComponent *>(pData)->Show(0.5f);
+				Show(0.5f);
 			else
-				reinterpret_cast<IComponent *>(pData)->Hide(0.5f);
-		}, this);
+				Hide(0.5f);
+		});
 
 	//if(SimpleBLE::Adapter::bluetooth_enabled() == false)
 	//{
@@ -44,7 +44,7 @@ HeartBeat::HeartBeat(HyEntity2d *pParent /*= nullptr*/) :
 
 /*virtual*/ void HeartBeat::PopulateCtrlPanel(CtrlPanel &ctrlPanel) /*override*/
 {
-	HyLayoutHandle hRow = ctrlPanel.InsertLayout(HYORIEN_Horizontal);
+	HyLayoutHandle hRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
 	ctrlPanel.InsertWidget(m_CtrlPanel_CheckBox, hRow);
 	ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
 }

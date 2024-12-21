@@ -1,5 +1,5 @@
 {
-    "$fileVersion": 16,
+    "$fileVersion": 17,
     "Audio": {
     },
     "Entities": {
@@ -9339,5 +9339,7 @@
             "subAtlasHeight": 610,
             "subAtlasWidth": 610
         }
+    },
+    "TileMaps": {
     }
 }
