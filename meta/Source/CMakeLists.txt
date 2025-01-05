@@ -55,7 +55,9 @@ set(GAME_SRCFILES
 	"Components/InputViewer/Controllers/IController.cpp"
 	"Components/InputViewer/Controllers/IController.h"
 	"Components/InputViewer/Controllers/StarCitizen.cpp"
-	"Components/InputViewer/Controllers/StarCitizen.h")
+	"Components/InputViewer/Controllers/StarCitizen.h"
+	"Twitch/TwitchApi.cpp"
+	"Twitch/TwitchApi.h")
 
 set(GAME_INCLUDE_DIRS "")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}")
@@ -65,6 +67,7 @@ list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt/Channe
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/InputViewer")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/InputViewer/Controllers")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Scenes")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Twitch")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Wheel")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/_hy_")
 
@@ -189,8 +192,17 @@ else()
 endif()
 
 add_subdirectory("${REL_HARMONY_DIR}/Engine" "HyEngine")
+
 add_subdirectory("../../lib/NESController" "NESController")
 set_target_properties("NESController" PROPERTIES FOLDER "Melody Libs")
+
+option(BUILD_CURL_EXE "" OFF)
+option(BUILD_EXAMPLES "" OFF)
+option(BUILD_TESTING "" OFF)
+option(SHARE_LIB_OBJECT "" OFF)
+add_subdirectory("../../lib/curl-8.11.1" "libcurl_static")
+set_target_properties("libcurl_static" PROPERTIES FOLDER "Melody Libs")
+
 
 add_executable(${PROJECT_NAME} WIN32 ${GAME_SRCFILES})
 set_target_properties(${PROJECT_NAME} PROPERTIES
@@ -203,7 +215,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE "$<BUILD_INTERFACE:${GAME_INC
 if(NOT "${CMAKE_SYSTEM_NAME}" STREQUAL "Emscripten")
 	target_precompile_headers(${PROJECT_NAME} PRIVATE "pch.h")
 endif()
-target_link_libraries(${PROJECT_NAME} PUBLIC HyEngine "NESController" )
+target_link_libraries(${PROJECT_NAME} PUBLIC HyEngine "NESController" "libcurl_static" )
 
 
 if(TARGET uninstall)

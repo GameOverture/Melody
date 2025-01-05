@@ -6,8 +6,8 @@
 #define CRT_UNZOOM_POS 548.0f, 0.0f
 #define CRT_UNZOOM_SCALE 1.0f, 1.0f
 
-#define CRT_ZOOM_POS 475.0f, -216.0f
-#define CRT_ZOOM_SCALE 1.31f, 1.42f
+#define CRT_ZOOM_POS 370.0f, -250.0f
+#define CRT_ZOOM_SCALE 1.5f, 1.5f
 
 #define CRT_SHRINK_AMT 0.01f
 #define CRT_SHUTOFF_DUR 0.2f
@@ -76,8 +76,8 @@ Crt::Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewe
 			SetChannel(CHANNELTYPE_Static);
 		});
 
-	const int32 iScreenX = 148;
-	const int32 iScreenY = 263;
+	const int32 iScreenX = 150;
+	const int32 iScreenY = 280;
 	
 	m_Screen.pos.Set(iScreenX, iScreenY);
 	m_ScreenOverlay.pos.Set(iScreenX, iScreenY);
@@ -87,7 +87,7 @@ Crt::Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewe
 	m_Static.SetDisplayOrder(DISPLAYORDER_CrtStatic);
 	m_Static.SetVisible(false);
 
-	m_ChannelStack.pos.Set(iScreenX + 24, iScreenY + 6);
+	m_ChannelStack.pos.Set(iScreenX, iScreenY);
 	m_ChannelStack.scale_pivot.Set(CRT_SCREEN_WIDTH * 0.5f, CRT_SCREEN_HEIGHT * 0.5f);
 	m_ChannelStack.scale.Set(CRT_SHRINK_AMT, CRT_SHRINK_AMT);
 	m_ChannelStack.SetVisible(false);

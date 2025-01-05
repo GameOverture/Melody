@@ -490,6 +490,26 @@
             "filter": "Components/InputViewer/Controllers",
             "itemType": "Header",
             "name": "StarCitizen.h"
+        },
+        {
+            "assetUUID": "9f20a64d-d354-400e-8f9a-eae197c48322",
+            "bankId": 0,
+            "baseClass": "HyEntity2d",
+            "checksum": 1354189257,
+            "errors": 0,
+            "filter": "Twitch",
+            "itemType": "Source",
+            "name": "TwitchApi.cpp"
+        },
+        {
+            "assetUUID": "64068205-5fff-4266-9d76-4177c21057c8",
+            "bankId": 0,
+            "baseClass": "HyEntity2d",
+            "checksum": 2010092334,
+            "errors": 0,
+            "filter": "Twitch",
+            "itemType": "Header",
+            "name": "TwitchApi.h"
         }
     ],
     "banks": [
@@ -498,8 +518,14 @@
             "OutputName": "Melody",
             "SrcDepends": [
                 {
+                    "Options": "",
                     "ProjectName": "NESController",
                     "RelPath": "../../lib/NESController"
+                },
+                {
+                    "Options": "option(BUILD_CURL_EXE \"\" OFF)\noption(BUILD_EXAMPLES \"\" OFF)\noption(BUILD_TESTING \"\" OFF)\noption(SHARE_LIB_OBJECT \"\" OFF)",
+                    "ProjectName": "libcurl_static",
+                    "RelPath": "../../lib/curl-8.11.1"
                 }
             ],
             "UseIcu": false,

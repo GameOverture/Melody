@@ -30,7 +30,7 @@ InputViewer::InputViewer(HyEntity2d *pParent /*= nullptr*/) :
 		m_CtrlPanel_radController[i].Setup(HyPanelInit(24, 24, 2), HyNodePath("", "CtrlPanel"));
 		m_CtrlPanel_radController[i].SetTag(i);
 		m_BtnGrp.AddButton(m_CtrlPanel_radController[i]);
-	}
+	} 
 	m_CtrlPanel_radController[INPUTCONTROLLER_StreetFighter].SetChecked(true);
 	m_CtrlPanel_radController[INPUTCONTROLLER_StarCitizen].SetText("SC");
 	m_CtrlPanel_radController[INPUTCONTROLLER_NES].SetText("NES");

@@ -2,6 +2,12 @@
 #include "Music.h"
 #include "VgMusic.h"
 
+#define LARGE_INTRO_TIME 20.0f
+#define LARGE_INTROSNAPSHOT_TIME 5.0f
+#define LARGE_INTRONOWPLAYING_TIME 5.0f
+
+#define LARGE_CYCLE_DUR 15.0f
+
 Dancer::Dancer(HyEntity2d *pParent /*= nullptr*/) :
 	HyEntityWrapper2d<HySprite2d>("GameSprites", "Dancer", pParent),
 	m_eDanceState(DANCESTATE_Stop),
@@ -121,17 +127,17 @@ Music::Music(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
 
 	m_NowPlayingSound.SetVisible(false);
 	m_NowPlayingSound.scale.Set(1.0f, 0.5f);
-	m_NowPlayingSound.pos.Set(LARGE_WIDTH, -10.0f);
+	m_NowPlayingSound.pos.Set(CRT_SCREEN_WIDTH, -10);
 
 	m_TitleText.SetVisible(false);
 	m_TitleText.SetAlignment(HYALIGN_Right);
-	m_TitleText.pos.Set(0.0f, 50.0f);
-	m_TitleText.SetAsScaleBox(LARGE_WIDTH, 50.0f);
+	m_TitleText.pos.Set(0.0f, 60.0f);
+	m_TitleText.SetAsScaleBox(CRT_SCREEN_WIDTH, 50.0f);
 
 	m_TrackText.SetVisible(false);
 	m_TrackText.SetAlignment(HYALIGN_Right);
-	m_TrackText.pos.Set(0.0f, 0.0f);
-	m_TrackText.SetAsScaleBox(LARGE_WIDTH, 50.0f);
+	m_TrackText.pos.Set(0.0f, 10.0f);
+	m_TrackText.SetAsScaleBox(CRT_SCREEN_WIDTH, 50.0f);
 
 	m_Snapshot.SetVisible(false);
 	m_Title.SetVisible(false);
@@ -143,12 +149,12 @@ Music::Music(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
 		m_Dancers[i].GetLeaf().SetState(i);
 		m_Dancers[i].Stop();
 	}
-	m_Dancers[0].pos.Set(100.0f, 25.0f);
-	m_Dancers[1].pos.Set(220.0f, 90.0f);
-	m_Dancers[2].pos.Set(340.0f, 25.0f);
-	m_Dancers[3].pos.Set(460.0f, 90.0f);
-	m_Dancers[4].pos.Set(580.0f, 25.0f);
-	m_Dancers[5].pos.Set(700.0f, 90.0f);
+	m_Dancers[0].pos.Set(130.0f, 25.0f);
+	m_Dancers[1].pos.Set(250.0f, 90.0f);
+	m_Dancers[2].pos.Set(370.0f, 25.0f);
+	m_Dancers[3].pos.Set(490.0f, 90.0f);
+	m_Dancers[4].pos.Set(610.0f, 25.0f);
+	m_Dancers[5].pos.Set(730.0f, 90.0f);
 
 	m_NowPlayingSound.Init("VgMusic", "NowPlayingSound", this);
 	m_TitleText.Init("", "MainText", this);
@@ -211,12 +217,12 @@ void Music::ShowVisualizer(float fFadeInTime)
 
 	// Center the texture, using the bottom left corner as the anchor. Fade it in from 0.0f alpha to 1.0f alpha
 	m_AudioVisualizer.scale.Set(1.0f, 1.0f);
-	if(m_AudioVisualizer.GetWidth() > LARGE_WIDTH || m_AudioVisualizer.GetHeight() > LARGE_HEIGHT - 100.0f)
+	if(m_AudioVisualizer.GetWidth() > CRT_SCREEN_WIDTH || m_AudioVisualizer.GetHeight() > CRT_SCREEN_HEIGHT - 100.0f)
 	{
-		float fScale = std::min(LARGE_WIDTH / m_AudioVisualizer.GetWidth(), (LARGE_HEIGHT - 100.0f) / m_AudioVisualizer.GetHeight());
+		float fScale = std::min(CRT_SCREEN_WIDTH / m_AudioVisualizer.GetWidth(), (CRT_SCREEN_HEIGHT - 100.0f) / m_AudioVisualizer.GetHeight());
 		m_AudioVisualizer.scale.Set(fScale, fScale);
 	}
-	m_AudioVisualizer.pos.Set(LARGE_WIDTH / 2.0f, 100.0f + (LARGE_HEIGHT / 2.0f));
+	m_AudioVisualizer.pos.Set(CRT_SCREEN_WIDTH / 2.0f, 100.0f + (CRT_SCREEN_HEIGHT / 2.0f));
 	m_AudioVisualizer.SetState(HyRand::Range(0u, m_AudioVisualizer.GetNumStates() - 1));
 
 	m_AudioVisualizer.alpha.Set(0.0f);
@@ -228,7 +234,7 @@ void Music::ShowIntroTitle(float fFadeInTime)
 {
 	FadeOut(fFadeInTime);
 
-	glm::ivec2 vMaxSize(LARGE_WIDTH, LARGE_HEIGHT - 100.0f);
+	glm::ivec2 vMaxSize(CRT_SCREEN_WIDTH, CRT_SCREEN_HEIGHT - 100.0f);
 	glm::vec2 ptCenter(vMaxSize.x * 0.5f, 100.0f + (vMaxSize.y * 0.5f));
 	TransformTexture(m_Title, vMaxSize, ptCenter);
 
@@ -259,7 +265,7 @@ void Music::CycleBoxArt(float fFadeInTime)
 	if(m_Title.IsVisible())
 		m_Title.alpha.Tween(0.0f, fFadeInTime, HyTween::Linear, 0.0f, [](IHyNode *pThis) { pThis->SetVisible(false); });
 
-	glm::ivec2 vMaxSize(LARGE_WIDTH, LARGE_HEIGHT - 100.0f);
+	glm::ivec2 vMaxSize(CRT_SCREEN_WIDTH, CRT_SCREEN_HEIGHT - 100.0f);
 	glm::vec2 ptCenter(vMaxSize.x * 0.5f, 100.0f + (vMaxSize.y * 0.5f));
 	TransformTexture(m_BoxArt, vMaxSize, ptCenter);
 
@@ -273,7 +279,7 @@ void Music::CycleTitleAndSnapshot(float fFadeInTime)
 	if(m_BoxArt.IsVisible())
 		m_BoxArt.alpha.Tween(0.0f, fFadeInTime, HyTween::Linear, 0.0f, [](IHyNode *pThis) { pThis->SetVisible(false); });
 
-	glm::ivec2 vMaxSize(LARGE_WIDTH * 0.5f, LARGE_HEIGHT - 100.0f);
+	glm::ivec2 vMaxSize(CRT_SCREEN_WIDTH * 0.5f, CRT_SCREEN_HEIGHT - 100.0f);
 	glm::vec2 ptCenter(vMaxSize.x * 0.5f, 100.0f + (vMaxSize.y * 0.5f));
 
 	TransformTexture(m_Title, vMaxSize, ptCenter);
@@ -281,7 +287,7 @@ void Music::CycleTitleAndSnapshot(float fFadeInTime)
 	m_Title.alpha.Tween(1.0f, fFadeInTime);
 	m_Title.SetVisible(true);
 
-	ptCenter.x += LARGE_WIDTH * 0.5f;
+	ptCenter.x += CRT_SCREEN_WIDTH * 0.5f;
 	TransformTexture(m_Snapshot, vMaxSize, ptCenter);
 	m_Snapshot.alpha.Set(0.0f);
 	m_Snapshot.alpha.Tween(1.0f, fFadeInTime);

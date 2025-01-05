@@ -131,6 +131,10 @@
             ],
             "CameraZoom": 0.33333298563957214,
             "UUID": "46ecf7b6-cce3-4894-bb64-73d23dd689e3",
+            "guideHorzArray": [
+            ],
+            "guideVertArray": [
+            ],
             "stateArray": [
                 {
                     "assetUUIDs": [
@@ -163,6 +167,10 @@
             ],
             "CameraZoom": 0.5,
             "UUID": "72748e2a-ab3f-49d2-961c-abb6d341418b",
+            "guideHorzArray": [
+            ],
+            "guideVertArray": [
+            ],
             "stateArray": [
                 {
                     "assetUUIDs": [
@@ -627,6 +635,10 @@
                 "additional": "",
                 "symbols": true
             },
+            "guideHorzArray": [
+            ],
+            "guideVertArray": [
+            ],
             "stateArray": [
                 {
                     "name": ""
