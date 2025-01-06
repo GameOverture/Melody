@@ -16,7 +16,6 @@ class InputViewer;
 
 class Crt : public IComponent
 {
-	Monitor &				m_MonitorRef;
 	MessageCycle &			m_MsgCycleRef;
 	InputViewer &			m_InputViewerRef;
 
@@ -64,7 +63,7 @@ class Crt : public IComponent
 	float					m_fElapsedTime;
 
 public:
-	Crt(VgMusic &vgMusicRef, Monitor &monitorRef, MessageCycle &msgCycleRef, InputViewer &inputViewerRef, HyEntity2d *pParent = nullptr);
+	Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewerRef, HyEntity2d *pParent = nullptr);
 	virtual ~Crt();
 
 	virtual void PopulateCtrlPanel(CtrlPanel &ctrlPanel) override;
@@ -75,6 +74,7 @@ public:
 	bool IsPowerOn() const;
 	void TogglePower(bool bPowerOn);
 
+	int32 GetChannel() const;
 	void SetChannel(int32 iChannelIndex);
 	void NudgeChannel(int32 iIndexOffset);
 

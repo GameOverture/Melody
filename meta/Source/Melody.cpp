@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Melody.h"
 
+/*static*/ Melody *Melody::sm_pThis = nullptr;
+
 Melody::Melody(HarmonyInit &initStruct) :
 	HyEngine(initStruct),
 	m_pCamera(HyEngine::Window().CreateCamera2d()),
@@ -10,9 +12,11 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_Monitor(),
 	m_MessageCycle(m_Monitor),
 	m_InputViewer(),
-	m_Crt(m_VgMusic, m_Monitor, m_MessageCycle, m_InputViewer),
+	m_Crt(m_VgMusic, m_MessageCycle, m_InputViewer),
 	m_CtrlPanel(m_Crt)
 {
+	sm_pThis = this;
+
 	m_pCameraCtrlPanel->pos.Set(0.0f, 2000.0f);
 
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_LK, HYPAD_A);
@@ -112,4 +116,23 @@ Melody::~Melody()
 	//return !HyEngine::Input().IsActionReleased(INPUT_ExitGame);
 
 	return true;
+}
+
+/*static*/ void Melody::RefreshCamera()
+{
+	if(sm_pThis->m_Crt.GetChannel() != CHANNELTYPE_Game)
+	{
+		if(sm_pThis->m_Monitor.IsDivider())
+		{
+			HyEngine::Window().GetCamera2d(0)->pos.Tween(CAMERA_DIVIDER_POS, 1.5f, HyTween::QuadInOut);
+			HyEngine::Window().GetCamera2d(0)->scale.Tween(CAMERA_DIVIDER_SCALE, 1.5f, HyTween::QuadInOut);
+			HyEngine::Window().GetCamera2d(0)->SetTag(CAMTAG_Divider);
+		}
+		else
+		{
+			HyEngine::Window().GetCamera2d(0)->pos.Tween(CAMERA_CENTER_POS, 1.5f, HyTween::QuadInOut);
+			HyEngine::Window().GetCamera2d(0)->scale.Tween(CAMERA_CENTER_SCALE, 1.5f, HyTween::QuadInOut);
+			HyEngine::Window().GetCamera2d(0)->SetTag(CAMTAG_Center);
+		}
+	}
 }

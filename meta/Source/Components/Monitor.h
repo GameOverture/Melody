@@ -7,8 +7,8 @@
 class Monitor : public IComponent
 {
 	HyCheckBox			m_CtrlPanel_CheckBox;
-	HyCheckBox			m_CtrlPanel_Brb;
 	HyCheckBox			m_CtrlPanel_LiveSplit;
+	HyCheckBox			m_CtrlPanel_Brb;
 
 	HyPrimitive2d		m_LiveSplitMask;
 	HySprite2d			m_Shadow;
@@ -29,6 +29,7 @@ public:
 	virtual void Show(float fDuration) override;
 	virtual void Hide(float fDuration) override;
 
+	bool IsDivider() const;
 	bool IsBrb() const;
 
 protected:

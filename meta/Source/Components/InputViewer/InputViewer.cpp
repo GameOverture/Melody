@@ -100,7 +100,7 @@ InputViewer::InputViewer(HyEntity2d *pParent /*= nullptr*/) :
 	hRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
 	for(int i = 0; i < NUM_INPUTCONTROLLERS; ++i)
 		ctrlPanel.InsertWidget(m_CtrlPanel_radController[i], hRow);
-	ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
+	//ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
 }
 
 /*virtual*/ void InputViewer::Show(float fDuration) /*override*/

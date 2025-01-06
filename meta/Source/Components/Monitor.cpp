@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Monitor.h"
 #include "CtrlPanel.h"
+#include "Melody.h"
 
 #define MONITOR_WIDTH 488
 #define MONITOR_HEIGHT 268
@@ -31,6 +32,32 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 				Hide(0.5f);
 		});
 
+	m_CtrlPanel_LiveSplit.SetText("LiveSplit");
+	m_CtrlPanel_LiveSplit.SetCheckedChangedCallback(
+		[this](HyCheckBox *pCheckBox)
+		{
+			if(pCheckBox->IsChecked())
+			{
+				m_Shadow.alpha.Tween(0.0f, 0.5f);
+
+				m_LiveSplitMask.alpha.Set(0.0f);
+				m_LiveSplitMask.alpha.Tween(1.0f, 1.0f);
+				m_LiveSplitMask.SetVisible(true);
+
+				Melody::RefreshCamera();
+			}
+			else
+			{
+				m_Shadow.alpha.Tween(SHADOW_ALPHA, 1.0f);
+				m_LiveSplitMask.alpha.Tween(0.0f, 1.0f, HyTween::Linear, 0.0f,
+					[](IHyNode *pThis)
+					{
+						pThis->SetVisible(false);
+						Melody::RefreshCamera();
+					});
+			}
+		});
+
 	m_CtrlPanel_Brb.SetText("BRB");
 	m_CtrlPanel_Brb.SetCheckedChangedCallback(
 		[this](HyCheckBox *pCheckBox)
@@ -51,27 +78,12 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 			}
 		});
 
-	m_CtrlPanel_LiveSplit.SetText("LS");
-	m_CtrlPanel_LiveSplit.SetCheckedChangedCallback(
-		[this](HyCheckBox *pCheckBox)
-		{
-			if(pCheckBox->IsChecked())
-			{
-				m_Shadow.alpha.Tween(0.0f, 0.5f);
-				m_LiveSplitMask.alpha.Tween(1.0f, 1.0f);
-			}
-			else
-			{
-				m_Shadow.alpha.Tween(SHADOW_ALPHA, 1.0f);
-				m_LiveSplitMask.alpha.Tween(0.0f, 1.0f);
-			}
-		});
-
 	m_LiveSplitMask.UseWindowCoordinates();
 	m_LiveSplitMask.SetAsBox(MISC_WIDTH + DIVIDER_WIDTH, HyEngine::Window(0).GetHeight());
 	m_LiveSplitMask.SetTint(HyColor::Orange);
 	m_LiveSplitMask.SetDisplayOrder(DISPLAYORDER_LiveSplitMask);
 	m_LiveSplitMask.alpha.Set(0.0f);
+	m_LiveSplitMask.SetVisible(false);
 
 	m_Shadow.SetTint(HyColor::Black);
 	m_Shadow.alpha.Set(SHADOW_ALPHA);
@@ -88,7 +100,6 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 	m_Brb.SetVisible(false);
 	m_Brb.scale.Set(0.5f, 0.5f);
 	m_Brb.pos.Set(SCREEN_OFFSET_X + (MONITOR_WIDTH * 0.5f), SCREEN_OFFSET_Y + (MONITOR_HEIGHT * 0.5f));
-	
 
 	m_ElapsedTimeText.pos.Set(SCREEN_OFFSET_X + (MONITOR_WIDTH * 0.5f), SCREEN_OFFSET_Y + 20.0f);
 	m_ElapsedTimeText.SetAlignment(HYALIGN_Center);
@@ -102,9 +113,11 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 {
 	HyLayoutHandle hRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
 	ctrlPanel.InsertWidget(m_CtrlPanel_CheckBox, hRow);
-	ctrlPanel.InsertWidget(m_CtrlPanel_Brb, hRow);
 	ctrlPanel.InsertWidget(m_CtrlPanel_LiveSplit, hRow);
 	ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
+	
+	HyLayoutHandle hRow2 = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
+	ctrlPanel.InsertWidget(m_CtrlPanel_Brb, hRow2);
 }
 
 /*virtual*/ void Monitor::Show(float fDuration) /*override*/
@@ -121,12 +134,7 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 	pos.Tween(0.0f, pos.GetY(), fDuration * 2.0f, HyTween::QuadInOut, 0.0f, 
 		[](IHyNode *pThis)
 		{
-			if(HyEngine::Window().GetCamera2d(0)->GetTag() != CAMTAG_Game)
-			{
-				HyEngine::Window().GetCamera2d(0)->pos.Tween(CAMERA_DIVIDER_POS, 1.5f, HyTween::QuadInOut);
-				HyEngine::Window().GetCamera2d(0)->scale.Tween(CAMERA_DIVIDER_SCALE, 1.5f, HyTween::QuadInOut);
-				HyEngine::Window().GetCamera2d(0)->SetTag(CAMTAG_Divider);
-			}
+			Melody::RefreshCamera();
 		});
 }
 
@@ -138,15 +146,13 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 		[this](IHyNode *pThis)
 		{
 			pThis->SetVisible(false);
-			
-		
-			if(HyEngine::Window().GetCamera2d(0)->GetTag() != CAMTAG_Game)
-			{
-				HyEngine::Window().GetCamera2d(0)->pos.Tween(CAMERA_CENTER_POS, 1.5f, HyTween::QuadInOut);
-				HyEngine::Window().GetCamera2d(0)->scale.Tween(CAMERA_CENTER_SCALE, 1.5f, HyTween::QuadInOut);
-				HyEngine::Window().GetCamera2d(0)->SetTag(CAMTAG_Center);
-			}
+			Melody::RefreshCamera();
 		});
+}
+
+bool Monitor::IsDivider() const
+{
+	return m_LiveSplitMask.IsVisible() || IsVisible();
 }
 
 bool Monitor::IsBrb() const

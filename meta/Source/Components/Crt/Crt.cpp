@@ -3,6 +3,7 @@
 #include "CtrlPanel.h"
 #include "Monitor.h"
 #include "InputViewer.h"
+#include "Melody.h"
 
 #define MESSAGECYCLE_POS_X 240.0f
 #define MESSAGECYCLE_GAMEPOS_X 325.0f
@@ -11,9 +12,8 @@
 #define CRT_SHUTOFF_DUR 0.2f
 
 
-Crt::Crt(VgMusic &vgMusicRef, Monitor &monitorRef, MessageCycle &msgCycleRef, InputViewer &inputViewerRef, HyEntity2d *pParent /*= nullptr*/) :
+Crt::Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewerRef, HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_Crt, pParent),
-	m_MonitorRef(monitorRef),
 	m_MsgCycleRef(msgCycleRef),
 	m_InputViewerRef(inputViewerRef),
 	m_CtrlPanel_CheckBox(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
@@ -181,6 +181,11 @@ void Crt::TogglePower(bool bPowerOn)
 	}
 }
 
+int32 Crt::GetChannel() const
+{
+	return m_iChannelIndex;
+}
+
 void Crt::SetChannel(int32 iChannelIndex)
 {
 	if(m_eChannelState != CRTSTATE_Idle && m_eChannelState != CRTSTATE_Off)
@@ -304,18 +309,7 @@ void Crt::SetVolume(float fVolume)
 			m_Screen.SetVisible(true);
 			m_ScreenOverlay.SetVisible(true);
 
-			if(m_MonitorRef.IsVisible())
-			{
-				HyEngine::Window().GetCamera2d(0)->pos.Tween(CAMERA_DIVIDER_POS, 1.5f, HyTween::QuadInOut);
-				HyEngine::Window().GetCamera2d(0)->scale.Tween(CAMERA_DIVIDER_SCALE, 1.5f, HyTween::QuadInOut);
-				HyEngine::Window().GetCamera2d(0)->SetTag(CAMTAG_Divider);
-			}
-			else
-			{
-				HyEngine::Window().GetCamera2d(0)->pos.Tween(CAMERA_CENTER_POS, 1.5f, HyTween::QuadInOut);
-				HyEngine::Window().GetCamera2d(0)->scale.Tween(CAMERA_CENTER_SCALE, 1.5f, HyTween::QuadInOut);
-				HyEngine::Window().GetCamera2d(0)->SetTag(CAMTAG_Center);
-			}
+			Melody::RefreshCamera();
 
 			m_InputViewerRef.RetroOutro();
 			m_MsgCycleRef.SetXPosOffset(MESSAGECYCLE_POS_X);

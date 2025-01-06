@@ -15,6 +15,8 @@ class IScene;
 
 class Melody : public HyEngine
 {
+	static Melody *	sm_pThis;
+
 	HyCamera2d *	m_pCamera;
 	HyCamera2d *	m_pCameraCtrlPanel;
 
@@ -38,6 +40,8 @@ public:
 	virtual ~Melody();
 
 	virtual bool OnUpdate() override;
+
+	static void RefreshCamera();
 };
 
 #endif // Melody_h__
