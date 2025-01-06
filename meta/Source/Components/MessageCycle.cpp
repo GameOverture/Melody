@@ -1,11 +1,11 @@
 #include "pch.h"
 #include "MessageCycle.h"
-#include "Brb.h"
+#include "Monitor.h"
 #include "CtrlPanel.h"
 
-MessageCycle::MessageCycle(Brb &brbRef, HyEntity2d *pParent /*= nullptr*/) :
+MessageCycle::MessageCycle(Monitor &monitorRef, HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_MessageCycle, pParent),
-	m_BrbRef(brbRef),
+	m_MonitorRef(monitorRef),
 	m_pCtrlPanel(nullptr),
 	m_fXPos(0.0f),
 	m_CtrlPanel_CheckBox(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
@@ -174,7 +174,7 @@ void MessageCycle::OnNextMsg()
 	m_iCurrMsgIndex = (m_iCurrMsgIndex + 1) % m_MessageList.size();
 	m_Text.SetText(m_MessageList[m_iCurrMsgIndex]->GetMsg());
 
-	if(m_BrbRef.IsVisible())
+	if(m_MonitorRef.IsBrb())
 		m_Timer.InitStart(MSGCYCLE_DURATION_SHORT);
 	else
 		m_Timer.InitStart(m_MessageList[m_iCurrMsgIndex]->GetDuration());

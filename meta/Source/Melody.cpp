@@ -7,12 +7,14 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_pCameraCtrlPanel(HyEngine::Window(1).CreateCamera2d()),
 	m_ColorKeyBg(),
 	m_VgMusic(),
-	m_Brb(),
-	m_MessageCycle(m_Brb),
+	m_Monitor(),
+	m_MessageCycle(m_Monitor),
 	m_InputViewer(),
-	m_Crt(m_VgMusic, m_MessageCycle, m_InputViewer),
+	m_Crt(m_VgMusic, m_Monitor, m_MessageCycle, m_InputViewer),
 	m_CtrlPanel(m_Crt)
 {
+	m_pCameraCtrlPanel->pos.Set(0.0f, 2000.0f);
+
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_LK, HYPAD_A);
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_MK, HYPAD_B);
 	//FIGHTSTICK_HK, // On Axis 'HYPADAXIS_TriggerRight'
@@ -32,46 +34,39 @@ Melody::Melody(HarmonyInit &initStruct) :
 
 	m_ColorKeyBg.UseWindowCoordinates();
 	m_ColorKeyBg.SetDisplayOrder(-999999);
-	m_ColorKeyBg.SetTint(HyColor::Orange/*HyColor::Magenta*/);
+	m_ColorKeyBg.SetTint(HyColor::Orange);
 	m_ColorKeyBg.SetAsBox(1920.0f, 1080.0f);
 	m_ColorKeyBg.pos.Set(0.0f, 0.0f);
 	//m_ColorKeyBg.SetAsBox(312.0f, 139.0f);	// Fight stick camera
 	//m_ColorKeyBg.pos.Set(804.0f, 0.0f);		// Fight stick camera
 
-	m_RetroLeftSide.UseWindowCoordinates();
-	//m_RetroLeftSide.SetWireframe(true);
-	//m_RetroLeftSide.SetAsBox(548.0f, 310.0f);
-	//m_RetroLeftSide.pos.Set(0.0f, HyEngine::Window(0).GetHeightF() - 310.0f);
-	m_RetroLeftSide.SetAsBox(548.0f, HyEngine::Window(0).GetHeightF());
-	m_RetroLeftSide.pos.Set(0.0f, 0.0f);
-	m_RetroLeftSide.SetVisible(false);
+	//m_LiveSplitMaskStroke.UseWindowCoordinates();
+	//m_LiveSplitMaskStroke.SetWireframe(true);
+	//m_LiveSplitMaskStroke.SetAsBox(MISC_WIDTH + DIVIDER_WIDTH, HyEngine::Window(0).GetHeight());
+	//m_LiveSplitMaskStroke.pos.Set(-(MISC_WIDTH + DIVIDER_WIDTH), 0);
+	//m_LiveSplitMaskStroke.SetTint(HyColor::Black);
+	//m_LiveSplitMaskStroke.SetDisplayOrder(DISPLAYORDER_LiveSplitMask + 1);
+	//m_LiveSplitMaskStroke.SetVisible(false);
 
-	m_RetroLeftSideStencil.AddMask(m_RetroLeftSide);
-	m_RetroLeftSideStencil.SetAsInvertedMask();
-
-	//m_RetroCaptureArea.UseWindowCoordinates();
-	//m_RetroCaptureArea.SetAsBox(1144.0f, 898.0f);
-	//m_RetroCaptureArea.SetWireframe(true);
-	//m_RetroCaptureArea.pos.Set(544.0f + 116.0f, 150.0f);
-	//m_RetroCaptureArea.SetDisplayOrder(DISPLAYORDER_DEBUG);
+	//m_LiveSplitStencil.AddMask(m_LiveSplitMask);
+	//m_LiveSplitStencil.SetAsInvertedMask();
 
 	m_CtrlPanel.UseWindowCoordinates(1);
 
 	m_VgMusic.Load();
 	m_VgMusic.PopulateCtrlPanel(m_CtrlPanel);
 
-	m_Brb.UseWindowCoordinates();
-	m_Brb.Load();
-	m_Brb.SetVisible(false);
-	m_Brb.scale.Set(0.5f, 0.5f);
-	m_Brb.pos.Set(-500.0f, HyEngine::Window(0).GetHeightF() - 264.0f);
-	m_Brb.PopulateCtrlPanel(m_CtrlPanel);
-
-	m_Crt.UseWindowCoordinates();
+	m_Crt.pos.Set(HyEngine::Window(0).GetWidthF(-0.5f), HyEngine::Window(0).GetHeightF(-0.5f));
 	m_Crt.Load();
 	m_Crt.SetVisible(false);
-	m_Crt.SetStencil(&m_RetroLeftSideStencil);
 	m_Crt.PopulateCtrlPanel(m_CtrlPanel);
+
+	m_Monitor.UseWindowCoordinates();
+	m_Monitor.SetDisplayOrder(DISPLAYORDER_MessageCycle);
+	m_Monitor.Load();
+	m_Monitor.SetVisible(false);
+	m_Monitor.pos.Set(-MISC_WIDTH - 100, HyEngine::Window(0).GetHeight() - MISC_HEIGHT);
+	m_Monitor.PopulateCtrlPanel(m_CtrlPanel);
 
 	m_InputViewer.UseWindowCoordinates();
 	m_InputViewer.Load();
@@ -89,6 +84,12 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_MessageCycle.PopulateCtrlPanel(m_CtrlPanel);
 
 	m_CtrlPanel.Load();
+
+	//m_DebugRetroCaptureArea.UseWindowCoordinates();
+	//m_DebugRetroCaptureArea.SetAsBox(1280.0f, 900.0f);
+	//m_DebugRetroCaptureArea.SetWireframe(true);
+	//m_DebugRetroCaptureArea.pos.Set(LIVESPLIT_WIDTH + DIVIDER_WIDTH + 48, LOWERTHIRD_HEIGHT);
+	//m_DebugRetroCaptureArea.SetDisplayOrder(DISPLAYORDER_DEBUG);
 }
 
 Melody::~Melody()

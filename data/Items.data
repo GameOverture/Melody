@@ -25,74 +25,6 @@
     "Spine": {
     },
     "Sprites": {
-        "BRB": {
-            "stateArray": [
-                {
-                    "bounce": false,
-                    "duration": 0.8000000715255737,
-                    "frames": [
-                        {
-                            "bankId": 0,
-                            "checksum": 386608943,
-                            "duration": 0.10000000149011612,
-                            "offsetX": 109,
-                            "offsetY": 61
-                        },
-                        {
-                            "bankId": 0,
-                            "checksum": 3243476540,
-                            "duration": 0.10000000149011612,
-                            "offsetX": 109,
-                            "offsetY": 61
-                        },
-                        {
-                            "bankId": 0,
-                            "checksum": 3821506137,
-                            "duration": 0.10000000149011612,
-                            "offsetX": 109,
-                            "offsetY": 61
-                        },
-                        {
-                            "bankId": 0,
-                            "checksum": 1543400257,
-                            "duration": 0.10000000149011612,
-                            "offsetX": 109,
-                            "offsetY": 61
-                        },
-                        {
-                            "bankId": 0,
-                            "checksum": 3879420584,
-                            "duration": 0.10000000149011612,
-                            "offsetX": 109,
-                            "offsetY": 61
-                        },
-                        {
-                            "bankId": 0,
-                            "checksum": 587920399,
-                            "duration": 0.10000000149011612,
-                            "offsetX": 109,
-                            "offsetY": 61
-                        },
-                        {
-                            "bankId": 0,
-                            "checksum": 1899004676,
-                            "duration": 0.10000000149011612,
-                            "offsetX": 109,
-                            "offsetY": 61
-                        },
-                        {
-                            "bankId": 0,
-                            "checksum": 330516932,
-                            "duration": 0.10000000149011612,
-                            "offsetX": 109,
-                            "offsetY": 61
-                        }
-                    ],
-                    "loop": true,
-                    "reverse": false
-                }
-            ]
-        },
         "CRT/Frame": {
             "stateArray": [
                 {
@@ -101,9 +33,9 @@
                     "frames": [
                         {
                             "bankId": 0,
-                            "checksum": 2131043124,
+                            "checksum": 973357396,
                             "duration": 0.01600000075995922,
-                            "offsetX": 0,
+                            "offsetX": -274,
                             "offsetY": 0
                         }
                     ],
@@ -1183,6 +1115,93 @@
                             "duration": 0.03333333507180214,
                             "offsetX": -91,
                             "offsetY": -93
+                        }
+                    ],
+                    "loop": false,
+                    "reverse": false
+                }
+            ]
+        },
+        "Monitor/BRB": {
+            "stateArray": [
+                {
+                    "bounce": false,
+                    "duration": 0.8000000715255737,
+                    "frames": [
+                        {
+                            "bankId": 0,
+                            "checksum": 386608943,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -141,
+                            "offsetY": -189
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 3243476540,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -141,
+                            "offsetY": -189
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 3821506137,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -141,
+                            "offsetY": -189
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 1543400257,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -141,
+                            "offsetY": -189
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 3879420584,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -141,
+                            "offsetY": -189
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 587920399,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -141,
+                            "offsetY": -189
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 1899004676,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -141,
+                            "offsetY": -189
+                        },
+                        {
+                            "bankId": 0,
+                            "checksum": 330516932,
+                            "duration": 0.10000000149011612,
+                            "offsetX": -141,
+                            "offsetY": -189
+                        }
+                    ],
+                    "loop": true,
+                    "reverse": false
+                }
+            ]
+        },
+        "Monitor/Frame": {
+            "stateArray": [
+                {
+                    "bounce": false,
+                    "duration": 0.03333333507180214,
+                    "frames": [
+                        {
+                            "bankId": 0,
+                            "checksum": 3216547617,
+                            "duration": 0.03333333507180214,
+                            "offsetX": 1,
+                            "offsetY": 0
                         }
                     ],
                     "loop": false,

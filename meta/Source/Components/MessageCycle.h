@@ -10,11 +10,11 @@
 #define MSGCYCLE_DURATION_LONG	20.0f
 #define MSGCYCLE_DURATION_SHORT	5.0f
 
-class Brb;
+class Monitor;
 
 class MessageCycle : public IComponent
 {
-	Brb &						m_BrbRef;
+	Monitor &					m_MonitorRef;
 	CtrlPanel *					m_pCtrlPanel;
 
 	float						m_fXPos;
@@ -59,7 +59,7 @@ class MessageCycle : public IComponent
 	std::vector<Message *> m_DeleteList;
 
 public:
-	MessageCycle(Brb &brbRef, HyEntity2d *pParent = nullptr);
+	MessageCycle(Monitor &monitorRef, HyEntity2d *pParent = nullptr);
 	virtual ~MessageCycle();
 
 	void SetXPosOffset(float fXPos);

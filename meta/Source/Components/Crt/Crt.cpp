@@ -1,22 +1,19 @@
 #include "pch.h"
 #include "Crt.h"
 #include "CtrlPanel.h"
+#include "Monitor.h"
 #include "InputViewer.h"
-
-#define CRT_UNZOOM_POS 548.0f, 0.0f
-#define CRT_UNZOOM_SCALE 1.0f, 1.0f
-
-#define CRT_ZOOM_POS 370.0f, -250.0f
-#define CRT_ZOOM_SCALE 1.5f, 1.5f
-
-#define CRT_SHRINK_AMT 0.01f
-#define CRT_SHUTOFF_DUR 0.2f
 
 #define MESSAGECYCLE_POS_X 240.0f
 #define MESSAGECYCLE_GAMEPOS_X 325.0f
 
-Crt::Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewerRef, HyEntity2d *pParent /*= nullptr*/) :
+#define CRT_SHRINK_AMT 0.01f
+#define CRT_SHUTOFF_DUR 0.2f
+
+
+Crt::Crt(VgMusic &vgMusicRef, Monitor &monitorRef, MessageCycle &msgCycleRef, InputViewer &inputViewerRef, HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_Crt, pParent),
+	m_MonitorRef(monitorRef),
 	m_MsgCycleRef(msgCycleRef),
 	m_InputViewerRef(inputViewerRef),
 	m_CtrlPanel_CheckBox(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
@@ -76,7 +73,7 @@ Crt::Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewe
 			SetChannel(CHANNELTYPE_Static);
 		});
 
-	const int32 iScreenX = 150;
+	const int32 iScreenX = RETRO_SIDES + 150;
 	const int32 iScreenY = 280;
 	
 	m_Screen.pos.Set(iScreenX, iScreenY);
@@ -95,10 +92,11 @@ Crt::Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewe
 	m_ChannelStack.ChildAppend(m_Static);
 	//m_ChannelStack.SetPostProcessing(
 	
-	m_Nob.pos.Set(1120.0f, 730.0f);
-	m_VcrTimeHrs.pos.Set(620, 1050);
+	m_Nob.pos.Set(RETRO_SIDES + 1120.0f, 730.0f);
+
+	m_VcrTimeHrs.pos.Set(RETRO_SIDES + 620, 1050);
 	m_VcrTimeHrs.SetAlignment(HYALIGN_Right);
-	m_VcrTimeMins.pos.Set(640, 1050);
+	m_VcrTimeMins.pos.Set(RETRO_SIDES + 640, 1050);
 
 	m_VolumeText.Init("CRT", "Volume", this);
 	m_VolumeText.SetText("VOLUME");
@@ -123,8 +121,6 @@ Crt::Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewe
 	m_ChannelText.SetVisible(false);
 
 	m_Stencil.AddMask(m_Screen);
-
-	pos.Set(548.0f, 0.0f);
 }
 
 /*virtual*/ Crt::~Crt()
@@ -278,15 +274,16 @@ void Crt::SetVolume(float fVolume)
 	case CRTSTATE_PreChangeChannel:
 		if(m_iChannelIndex == CHANNELTYPE_Game)
 		{
-			pos.Tween(CRT_ZOOM_POS, 1.5f, HyTween::QuadInOut);
-			scale.Tween(CRT_ZOOM_SCALE, 1.5f, HyTween::QuadInOut);
+			HyEngine::Window().GetCamera2d(0)->pos.Tween(CAMERA_GAME_POS, 1.5f, HyTween::QuadInOut);
+			HyEngine::Window().GetCamera2d(0)->scale.Tween(CAMERA_GAME_SCALE, 1.5f, HyTween::QuadInOut);
+			HyEngine::Window().GetCamera2d(0)->SetTag(CAMTAG_Game);
 		}
 
 		m_eChannelState = CRTSTATE_ChangingChannel;
 		break;
 
 	case CRTSTATE_ChangingChannel:
-		if(pos.IsAnimating() || scale.IsAnimating())
+		if(HyEngine::Window().GetCamera2d(0)->pos.IsAnimating() || HyEngine::Window().GetCamera2d(0)->scale.IsAnimating())
 			break;
 
 		// Channel actually changing now
@@ -307,8 +304,18 @@ void Crt::SetVolume(float fVolume)
 			m_Screen.SetVisible(true);
 			m_ScreenOverlay.SetVisible(true);
 
-			pos.Tween(CRT_UNZOOM_POS, 1.5f, HyTween::QuadInOut);
-			scale.Tween(CRT_UNZOOM_SCALE, 1.5f, HyTween::QuadInOut);
+			if(m_MonitorRef.IsVisible())
+			{
+				HyEngine::Window().GetCamera2d(0)->pos.Tween(CAMERA_DIVIDER_POS, 1.5f, HyTween::QuadInOut);
+				HyEngine::Window().GetCamera2d(0)->scale.Tween(CAMERA_DIVIDER_SCALE, 1.5f, HyTween::QuadInOut);
+				HyEngine::Window().GetCamera2d(0)->SetTag(CAMTAG_Divider);
+			}
+			else
+			{
+				HyEngine::Window().GetCamera2d(0)->pos.Tween(CAMERA_CENTER_POS, 1.5f, HyTween::QuadInOut);
+				HyEngine::Window().GetCamera2d(0)->scale.Tween(CAMERA_CENTER_SCALE, 1.5f, HyTween::QuadInOut);
+				HyEngine::Window().GetCamera2d(0)->SetTag(CAMTAG_Center);
+			}
 
 			m_InputViewerRef.RetroOutro();
 			m_MsgCycleRef.SetXPosOffset(MESSAGECYCLE_POS_X);
@@ -317,7 +324,7 @@ void Crt::SetVolume(float fVolume)
 		for(int i = 0; i < NUM_CHANNELTYPE; ++i)
 			m_ChannelList[i]->SetVisible(false);
 		m_Static.SetVisible(true);
-		m_Nob.rot.Tween((360.0f / NUM_CHANNELTYPE) * m_iChannelIndex, 0.2f, HyTween::QuadIn);
+		m_Nob.rot.Tween(/*(360.0f / NUM_CHANNELTYPE)*/180.0f + (32.0f * m_iChannelIndex), 0.2f, HyTween::QuadIn);
 
 		m_fElapsedTime = 0.0f;
 		m_eChannelState = CRTSTATE_PostChangeChannel;
