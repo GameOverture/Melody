@@ -2018,7 +2018,7 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 140,
+            "x": 0,
             "y": 315
         },
         {
@@ -2038,8 +2038,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 814,
-            "y": 342
+            "x": 927,
+            "y": 71
         },
         {
             "assetUUID": "bd380fb7-e149-4272-9c8e-51e52314b2c6",
@@ -2058,8 +2058,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 884,
-            "y": 342
+            "x": 350,
+            "y": 315
         },
         {
             "assetUUID": "18366f7e-c373-425d-8573-5557ccdfc73a",
@@ -2078,7 +2078,7 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 280,
+            "x": 140,
             "y": 315
         },
         {
@@ -2138,7 +2138,7 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 350,
+            "x": 70,
             "y": 315
         },
         {
@@ -2158,8 +2158,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 927,
-            "y": 0
+            "x": 280,
+            "y": 315
         },
         {
             "assetUUID": "659f4757-b6a6-4732-9f87-5398ddab9f15",
@@ -2178,7 +2178,7 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 210,
+            "x": 420,
             "y": 315
         },
         {
@@ -2198,8 +2198,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 0,
-            "y": 315
+            "x": 954,
+            "y": 342
         },
         {
             "assetUUID": "b5aabd17-254a-4877-8d3c-0ecbf5d1bc1b",
@@ -2218,8 +2218,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 70,
-            "y": 315
+            "x": 884,
+            "y": 342
         },
         {
             "assetUUID": "05e394e9-941f-408e-8e75-178753122139",
@@ -2238,8 +2238,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 954,
-            "y": 342
+            "x": 210,
+            "y": 315
         },
         {
             "assetUUID": "dd3c2c96-79cc-4370-b84b-e4586b2eb196",
@@ -2258,8 +2258,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 927,
-            "y": 71
+            "x": 814,
+            "y": 342
         },
         {
             "assetUUID": "42f59ce9-e580-4b46-9aeb-726d99a555e6",
@@ -2278,8 +2278,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 420,
-            "y": 315
+            "x": 927,
+            "y": 0
         },
         {
             "assetUUID": "eabd64a3-6166-4a96-8331-d77c5615ee47",
@@ -3382,26 +3382,6 @@
             "y": 0
         },
         {
-            "assetUUID": "d8736065-ffc7-4bb9-9805-ca0c02546353",
-            "bankId": 0,
-            "checksum": 3216547617,
-            "cropBottom": 0,
-            "cropLeft": 1,
-            "cropRight": 2,
-            "cropTop": 0,
-            "errors": 0,
-            "filter": "Monitor",
-            "height": 312,
-            "itemType": "AtlasFrame",
-            "name": "Monitor",
-            "subAtlasType": "",
-            "textureIndex": 1,
-            "textureInfo": 262147,
-            "width": 544,
-            "x": 0,
-            "y": 0
-        },
-        {
             "assetUUID": "b549213b-ba27-4a1e-b707-114456e146de",
             "bankId": 0,
             "checksum": 973357396,
@@ -3418,6 +3398,26 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 2194,
+            "x": 0,
+            "y": 0
+        },
+        {
+            "assetUUID": "d8736065-ffc7-4bb9-9805-ca0c02546353",
+            "bankId": 0,
+            "checksum": 37165363,
+            "cropBottom": 0,
+            "cropLeft": 2,
+            "cropRight": 1,
+            "cropTop": 0,
+            "errors": 0,
+            "filter": "Monitor",
+            "height": 312,
+            "itemType": "AtlasFrame",
+            "name": "Monitor",
+            "subAtlasType": "",
+            "textureIndex": 1,
+            "textureInfo": 262147,
+            "width": 544,
             "x": 0,
             "y": 0
         }

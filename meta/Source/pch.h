@@ -4,7 +4,8 @@
 #include "HyEngine.h"
 
 #define DISPLAYORDER_DEBUG			99999
-#define DISPLAYORDER_MessageCycle	9999
+#define DISPLAYORDER_MessageCycle	99999
+#define DISPLAYORDER_Monitor		9999
 #define DISPLAYORDER_LiveSplitMask	999
 #define DISPLAYORDER_CrtVolume		99
 #define DISPLAYORDER_Buttons		99

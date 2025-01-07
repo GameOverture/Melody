@@ -8,7 +8,28 @@ class Monitor : public IComponent
 {
 	HyCheckBox			m_CtrlPanel_CheckBox;
 	HyCheckBox			m_CtrlPanel_LiveSplit;
-	HyCheckBox			m_CtrlPanel_Brb;
+
+	enum MonitorChannel
+	{
+		MONITORCHANNEL_NoSignal = 0,
+		MONITORCHANNEL_ObsCams,
+		MONITORCHANNEL_Brb,
+
+		NUM_MONITORCHANNELS
+	};
+	HyRadioButton		m_CtrlPanel_radChannel[NUM_MONITORCHANNELS];
+	HyButtonGroup		m_BtnGrp;
+	int32				m_iChannelIndex;
+	float				m_fChannelShowTime;
+	enum MonitorState
+	{
+		MONITORSTATE_Idle,
+		MONITORSTATE_PreChangeChannel,
+		MONITORSTATE_ChangingChannel,
+		MONITORSTATE_PostChangeChannel,
+	};
+	MonitorState		m_eMonitorState;
+	float				m_fElapsedTime;
 
 	HyPrimitive2d		m_LiveSplitMask;
 	HySprite2d			m_Shadow;
@@ -19,6 +40,8 @@ class Monitor : public IComponent
 
 	HyStopwatch			m_ElapsedTime;
 	HyText2d			m_ElapsedTimeText;
+	
+	HyText2d			m_ChannelText;
 
 public:
 	Monitor(HyEntity2d *pParent = nullptr);
@@ -34,6 +57,8 @@ public:
 
 protected:
 	virtual void OnUpdate() override;
+
+	void SetChannel(int iChannelIndex);
 };
 
 #endif // Monitor_h__
