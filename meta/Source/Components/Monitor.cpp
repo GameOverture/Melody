@@ -19,8 +19,8 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 	m_eMonitorState(MONITORSTATE_Idle),
 	m_fElapsedTime(0.0f),
 	m_Shadow("Monitor", "Frame", this),
-	m_ColorKeyBg(this),
 	m_Background(this),
+	m_ObsMask(this),
 	m_Brb("Monitor", "BRB", this),
 	m_Frame("Monitor", "Frame", this),
 	m_ElapsedTimeText("", "MainText", this)
@@ -63,7 +63,7 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 
 	for(int iChannelIndex = 0; iChannelIndex < NUM_MONITORCHANNELS; ++iChannelIndex)
 	{
-		m_CtrlPanel_radChannel[iChannelIndex].Setup(HyPanelInit(24, 24, 2), HyNodePath("", "CtrlPanel"));
+		m_CtrlPanel_radChannel[iChannelIndex].Setup(HyPanelInit(20, 20, 2), HyNodePath("", "CtrlPanel"));
 		m_CtrlPanel_radChannel[iChannelIndex].SetTag(iChannelIndex);
 		m_CtrlPanel_radChannel[iChannelIndex].SetCheckedChangedCallback(
 			[this](HyRadioButton *pRadio)
@@ -75,7 +75,8 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 	}
 	m_CtrlPanel_radChannel[MONITORCHANNEL_NoSignal].SetChecked(true);
 	m_CtrlPanel_radChannel[MONITORCHANNEL_NoSignal].SetText("Null");
-	m_CtrlPanel_radChannel[MONITORCHANNEL_ObsCams].SetText("Cams");
+	m_CtrlPanel_radChannel[MONITORCHANNEL_ObsFull].SetText("Full");
+	m_CtrlPanel_radChannel[MONITORCHANNEL_ObsPartial].SetText("Partial");
 	m_CtrlPanel_radChannel[MONITORCHANNEL_Brb].SetText("BRB");
 
 	m_ChannelText.Init("CRT", "Volume", this);
@@ -95,9 +96,8 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 	m_Shadow.alpha.Set(SHADOW_ALPHA);
 	m_Shadow.pos.Set(12.0f, -20.0f);
 
-	m_ColorKeyBg.pos.Set(SCREEN_OFFSET_X, SCREEN_OFFSET_Y);
-	m_ColorKeyBg.SetAsBox(MONITOR_WIDTH, MONITOR_HEIGHT);
-	m_ColorKeyBg.SetTint(HyColor::Orange);
+	m_ObsMask.SetTint(HyColor::Orange);
+	m_ObsMask.SetVisible(false);
 
 	m_Background.pos.Set(SCREEN_OFFSET_X, SCREEN_OFFSET_Y);
 	m_Background.SetAsBox(MONITOR_WIDTH, MONITOR_HEIGHT);
@@ -187,15 +187,13 @@ bool Monitor::IsBrb() const
 		switch(m_iChannelIndex)
 		{
 		case MONITORCHANNEL_NoSignal:
+		case MONITORCHANNEL_ObsFull:
+		case MONITORCHANNEL_ObsPartial:
 			m_Brb.alpha.Tween(0.0f, 1.0f, HyTween::Linear, 0.0f, [](IHyNode *pThis) { pThis->SetVisible(false); });
 			m_ElapsedTimeText.alpha.Tween(0.0f, 1.0f, HyTween::Linear, 0.0f, [](IHyNode *pThis) { pThis->SetVisible(false); });
 			m_ElapsedTime.Pause();
 			break;
-		case MONITORCHANNEL_ObsCams:
-			m_Brb.alpha.Tween(0.0f, 1.0f, HyTween::Linear, 0.0f, [](IHyNode *pThis) { pThis->SetVisible(false); });
-			m_ElapsedTimeText.alpha.Tween(0.0f, 1.0f, HyTween::Linear, 0.0f, [](IHyNode *pThis) { pThis->SetVisible(false); });
-			m_ElapsedTime.Pause();
-			break;
+
 		case MONITORCHANNEL_Brb:
 			break;
 
@@ -211,15 +209,28 @@ bool Monitor::IsBrb() const
 		switch(m_iChannelIndex)
 		{
 		case MONITORCHANNEL_NoSignal:
-			m_ChannelText.SetText("NULL");
-			m_Background.SetVisible(true);
+			m_ChannelText.SetText("NO SIGNAL");
+			m_ObsMask.SetVisible(false);
 			break;
-		case MONITORCHANNEL_ObsCams:
-			m_ChannelText.SetText("CAMS");
-			m_Background.SetVisible(false);
+		case MONITORCHANNEL_ObsFull:
+			m_ChannelText.SetText("FULL");
+			m_ObsMask.SetVisible(true);
+			m_ObsMask.pos.Set(SCREEN_OFFSET_X, SCREEN_OFFSET_Y);
+			m_ObsMask.SetAsBox(MONITOR_WIDTH, MONITOR_HEIGHT);
 			break;
+
+		case MONITORCHANNEL_ObsPartial: {
+			m_ChannelText.SetText("CAM");
+			m_ObsMask.SetVisible(true);
+			const int32 iCamWidth = 242;
+			const int32 iCamHeight = 234;
+			m_ObsMask.pos.Set(SCREEN_OFFSET_X + MONITOR_WIDTH - iCamWidth, SCREEN_OFFSET_Y + MONITOR_HEIGHT - iCamHeight);
+			m_ObsMask.SetAsBox(iCamWidth, iCamHeight);
+			break; }
+
 		case MONITORCHANNEL_Brb:
-			m_Background.SetVisible(true);
+			m_ObsMask.SetVisible(false);
+
 			m_Brb.SetVisible(true);
 			m_Brb.alpha.Set(0.0f);
 			m_Brb.alpha.Tween(1.0f, 1.0f);

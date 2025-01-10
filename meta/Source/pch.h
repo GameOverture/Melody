@@ -7,6 +7,7 @@
 #define DISPLAYORDER_MessageCycle	99999
 #define DISPLAYORDER_Monitor		9999
 #define DISPLAYORDER_LiveSplitMask	999
+#define DISPLAYORDER_NowPlaying		799
 #define DISPLAYORDER_CrtVolume		99
 #define DISPLAYORDER_Buttons		99
 #define DISPLAYORDER_BallTop		85
@@ -75,6 +76,7 @@ enum ComponentType
 	COMPONENT_Brb = 0,
 	COMPONENT_InputViewer,
 	COMPONENT_Crt,
+	COMPONENT_NowPlaying,
 	COMPONENT_HeartBeat,
 	COMPONENT_Wheel,
 	COMPONENT_MessageCycle,

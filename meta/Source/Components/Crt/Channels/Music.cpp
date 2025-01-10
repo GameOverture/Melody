@@ -2,6 +2,10 @@
 #include "Music.h"
 #include "VgMusic.h"
 
+//#include <fileref.h>
+//#include <tag.h>
+//#include <ogg/oggfile.h>
+
 #define LARGE_INTRO_TIME 20.0f
 #define LARGE_INTROSNAPSHOT_TIME 5.0f
 #define LARGE_INTRONOWPLAYING_TIME 5.0f
@@ -127,17 +131,22 @@ Music::Music(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
 
 	m_NowPlayingSound.SetVisible(false);
 	m_NowPlayingSound.scale.Set(1.0f, 0.5f);
-	m_NowPlayingSound.pos.Set(CRT_SCREEN_WIDTH, -10);
+	m_NowPlayingSound.pos.Set(CRT_SCREEN_WIDTH, 20);
 
 	m_TitleText.SetVisible(false);
 	m_TitleText.SetAlignment(HYALIGN_Right);
-	m_TitleText.pos.Set(0.0f, 60.0f);
+	m_TitleText.pos.Set(0.0f, 80.0f);
 	m_TitleText.SetAsScaleBox(CRT_SCREEN_WIDTH, 50.0f);
 
 	m_TrackText.SetVisible(false);
 	m_TrackText.SetAlignment(HYALIGN_Right);
-	m_TrackText.pos.Set(0.0f, 10.0f);
+	m_TrackText.pos.Set(0.0f, 30.0f);
 	m_TrackText.SetAsScaleBox(CRT_SCREEN_WIDTH, 50.0f);
+
+	m_ComposerText.SetVisible(false);
+	m_ComposerText.SetAlignment(HYALIGN_Right);
+	m_ComposerText.pos.Set(0.0f, 5.0f);
+	m_ComposerText.SetAsScaleBox(CRT_SCREEN_WIDTH, 50.0f);
 
 	m_Snapshot.SetVisible(false);
 	m_Title.SetVisible(false);
@@ -159,6 +168,7 @@ Music::Music(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
 	m_NowPlayingSound.Init("VgMusic", "NowPlayingSound", this);
 	m_TitleText.Init("", "MainText", this);
 	m_TrackText.Init("", "MainText", this);
+	m_ComposerText.Init("", "CtrlPanel", this);
 
 	//m_Debugbox.SetParent(this);
 	//m_Debugbox.SetWireframe(true);
@@ -196,6 +206,18 @@ void Music::InitNextTrack(const std::string &sMusicFile)
 	m_TitleText.SetText(sBaseFileName);
 	m_TrackText.SetText(sMusicTrack);
 
+	//// Load the .ogg file using TagLib's FileRef
+	//TagLib::FileRef f(sMusicFile.c_str());
+
+	//// Check if the file was loaded successfully
+	//if(!f.isNull() && f.tag())
+	//{
+	//	TagLib::Tag *tag = f.tag();
+	//	m_ComposerText.SetText(tag->artist());
+	//}
+	//else
+	//	m_ComposerText.SetText("");
+
 	m_BoxArt.Init(sBoxartFile, HyTextureInfo(), this);
 	m_Title.Init(sTitleFile, HyTextureInfo(), this);
 	m_Snapshot.Init(sSnapshotFile, HyTextureInfo(), this);
@@ -204,6 +226,7 @@ void Music::InitNextTrack(const std::string &sMusicFile)
 	m_NowPlayingSound.SetVisible(false);
 	m_TitleText.SetVisible(false);
 	m_TrackText.SetVisible(false);
+	m_ComposerText.SetVisible(false);
 	m_Snapshot.SetVisible(false);
 	m_Title.SetVisible(false);
 	m_BoxArt.SetVisible(false);
@@ -256,6 +279,10 @@ void Music::ShowNowPlaying(float fFadeInTime)
 	m_TrackText.alpha.Set(0.0f);
 	m_TrackText.alpha.Tween(1.0f, fFadeInTime);
 	m_TrackText.SetVisible(true);
+
+	m_ComposerText.alpha.Set(0.0f);
+	m_ComposerText.alpha.Tween(1.0f, fFadeInTime);
+	m_ComposerText.SetVisible(true);
 }
 
 void Music::CycleBoxArt(float fFadeInTime)
@@ -304,6 +331,8 @@ void Music::FadeOut(float fFadeOutTime)
 		m_TitleText.alpha.Tween(0.0f, fFadeOutTime, HyTween::Linear, 0.0f, [](IHyNode *pThis) { pThis->SetVisible(false); });
 	if(m_TrackText.IsVisible())
 		m_TrackText.alpha.Tween(0.0f, fFadeOutTime, HyTween::Linear, 0.0f, [](IHyNode *pThis) { pThis->SetVisible(false); });
+	if(m_ComposerText.IsVisible())
+		m_ComposerText.alpha.Tween(0.0f, fFadeOutTime, HyTween::Linear, 0.0f, [](IHyNode *pThis) { pThis->SetVisible(false); });
 	if(m_Snapshot.IsVisible())
 		m_Snapshot.alpha.Tween(0.0f, fFadeOutTime, HyTween::Linear, 0.0f, [](IHyNode *pThis) { pThis->SetVisible(false); });
 	if(m_Title.IsVisible())

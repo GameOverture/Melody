@@ -510,6 +510,26 @@
             "filter": "Twitch",
             "itemType": "Header",
             "name": "TwitchApi.h"
+        },
+        {
+            "assetUUID": "53c70c87-b8ba-4374-b658-b66ef69434d4",
+            "bankId": 0,
+            "baseClass": "IComponent",
+            "checksum": 1356203216,
+            "errors": 0,
+            "filter": "Components/NowPlaying",
+            "itemType": "Source",
+            "name": "NowPlaying.cpp"
+        },
+        {
+            "assetUUID": "9e3b3433-2d61-4b5f-a7f7-f4765c66a1b3",
+            "bankId": 0,
+            "baseClass": "IComponent",
+            "checksum": 1361658096,
+            "errors": 0,
+            "filter": "Components/NowPlaying",
+            "itemType": "Header",
+            "name": "NowPlaying.h"
         }
     ],
     "banks": [

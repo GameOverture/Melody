@@ -692,6 +692,31 @@
                     "name": ""
                 }
             ]
+        },
+        "NowPlaying/NowPlaying": {
+            "CameraPos": [
+                0,
+                0
+            ],
+            "CameraZoom": 0.75,
+            "UUID": "8b576ce2-fcea-42af-a16b-07098f9f34ee",
+            "assetUUID": "4b73fff9-48ee-4f53-8107-f5e2a0adb34d",
+            "availableGlyphs": {
+                "0-9": true,
+                "A-Z": true,
+                "a-z": true,
+                "additional": "",
+                "symbols": true
+            },
+            "guideHorzArray": [
+            ],
+            "guideVertArray": [
+            ],
+            "stateArray": [
+                {
+                    "name": ""
+                }
+            ]
         }
     },
     "TileMaps": {

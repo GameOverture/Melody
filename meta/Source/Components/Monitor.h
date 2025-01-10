@@ -12,7 +12,8 @@ class Monitor : public IComponent
 	enum MonitorChannel
 	{
 		MONITORCHANNEL_NoSignal = 0,
-		MONITORCHANNEL_ObsCams,
+		MONITORCHANNEL_ObsFull,
+		MONITORCHANNEL_ObsPartial,
 		MONITORCHANNEL_Brb,
 
 		NUM_MONITORCHANNELS
@@ -33,8 +34,8 @@ class Monitor : public IComponent
 
 	HyPrimitive2d		m_LiveSplitMask;
 	HySprite2d			m_Shadow;
-	HyPrimitive2d		m_ColorKeyBg;
 	HyPrimitive2d		m_Background;
+	HyPrimitive2d		m_ObsMask;
 	HySprite2d			m_Brb;
 	HySprite2d			m_Frame;
 

@@ -8,6 +8,7 @@
 #include "Monitor.h"
 #include "Wheel.h"
 #include "Crt.h"
+#include "NowPlaying.h"
 #include "HeartBeat.h"
 #include "MessageCycle.h"
 
@@ -30,6 +31,7 @@ class Melody : public HyEngine
 	MessageCycle	m_MessageCycle;
 	InputViewer		m_InputViewer;
 	Crt				m_Crt;
+	NowPlaying		m_NowPlaying;
 	HeartBeat		m_HeartBeat;
 
 	// Debug

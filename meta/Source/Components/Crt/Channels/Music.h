@@ -54,6 +54,7 @@ class Music : public Channel
 	HySprite2d					m_NowPlayingSound;
 	HyText2d					m_TitleText;
 	HyText2d					m_TrackText;
+	HyText2d					m_ComposerText;
 
 	enum LargeState
 	{

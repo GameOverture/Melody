@@ -2018,8 +2018,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 0,
-            "y": 315
+            "x": 1746,
+            "y": 224
         },
         {
             "assetUUID": "c9f80ba4-5f00-4dee-bbd7-f0837209af1d",
@@ -2038,8 +2038,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 927,
-            "y": 71
+            "x": 1908,
+            "y": 260
         },
         {
             "assetUUID": "bd380fb7-e149-4272-9c8e-51e52314b2c6",
@@ -2058,8 +2058,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 350,
-            "y": 315
+            "x": 1978,
+            "y": 260
         },
         {
             "assetUUID": "18366f7e-c373-425d-8573-5557ccdfc73a",
@@ -2078,8 +2078,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 140,
-            "y": 315
+            "x": 1978,
+            "y": 189
         },
         {
             "assetUUID": "17f6a765-1beb-40b6-bbcb-ab9d0aa201c2",
@@ -2098,8 +2098,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 50,
-            "x": 962,
-            "y": 142
+            "x": 898,
+            "y": 315
         },
         {
             "assetUUID": "7827b2e6-333e-4f81-961b-f81f985351b1",
@@ -2118,8 +2118,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 181,
-            "x": 778,
-            "y": 153
+            "x": 1825,
+            "y": 0
         },
         {
             "assetUUID": "169a4016-8464-4f13-a2ee-7c1b74d50349",
@@ -2138,8 +2138,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 70,
-            "y": 315
+            "x": 1676,
+            "y": 153
         },
         {
             "assetUUID": "cfef32af-c661-4ba1-a9a2-e9f678ab8549",
@@ -2158,8 +2158,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 280,
-            "y": 315
+            "x": 1838,
+            "y": 260
         },
         {
             "assetUUID": "659f4757-b6a6-4732-9f87-5398ddab9f15",
@@ -2178,8 +2178,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 420,
-            "y": 315
+            "x": 1746,
+            "y": 295
         },
         {
             "assetUUID": "b22034d7-2f3a-40b7-8d55-43ea41527492",
@@ -2198,8 +2198,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 954,
-            "y": 342
+            "x": 1908,
+            "y": 189
         },
         {
             "assetUUID": "b5aabd17-254a-4877-8d3c-0ecbf5d1bc1b",
@@ -2218,8 +2218,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 884,
-            "y": 342
+            "x": 1676,
+            "y": 224
         },
         {
             "assetUUID": "05e394e9-941f-408e-8e75-178753122139",
@@ -2238,8 +2238,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 210,
-            "y": 315
+            "x": 1838,
+            "y": 189
         },
         {
             "assetUUID": "dd3c2c96-79cc-4370-b84b-e4586b2eb196",
@@ -2258,8 +2258,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 814,
-            "y": 342
+            "x": 1746,
+            "y": 153
         },
         {
             "assetUUID": "42f59ce9-e580-4b46-9aeb-726d99a555e6",
@@ -2278,8 +2278,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 927,
-            "y": 0
+            "x": 1676,
+            "y": 295
         },
         {
             "assetUUID": "eabd64a3-6166-4a96-8331-d77c5615ee47",
@@ -3238,8 +3238,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 48,
-            "x": 962,
-            "y": 247
+            "x": 951,
+            "y": 315
         },
         {
             "assetUUID": "3cc1ffb3-ce88-4cbf-8ddf-2708c0a1c7c0",
@@ -3258,8 +3258,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 48,
-            "x": 962,
-            "y": 195
+            "x": 1002,
+            "y": 315
         },
         {
             "assetUUID": "c8722fd8-572b-466f-82fa-c13457032d79",
@@ -3278,7 +3278,7 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 380,
-            "x": 544,
+            "x": 1442,
             "y": 0
         },
         {
@@ -3298,7 +3298,7 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 45,
-            "x": 490,
+            "x": 1102,
             "y": 315
         },
         {
@@ -3318,8 +3318,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 46,
-            "x": 962,
-            "y": 299
+            "x": 1053,
+            "y": 315
         },
         {
             "assetUUID": "442d8df8-e7dd-4ab8-a0a9-cfd950d915f5",
@@ -3338,8 +3338,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 32,
-            "x": 490,
-            "y": 332
+            "x": 2009,
+            "y": 0
         },
         {
             "assetUUID": "388f179c-0af2-4282-b70e-222318f6c3a7",
@@ -3358,7 +3358,7 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 231,
-            "x": 544,
+            "x": 1442,
             "y": 153
         },
         {
@@ -3418,6 +3418,26 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 544,
+            "x": 898,
+            "y": 0
+        },
+        {
+            "assetUUID": "4b73fff9-48ee-4f53-8107-f5e2a0adb34d",
+            "bankId": 0,
+            "checksum": 3692183283,
+            "cropBottom": 0,
+            "cropLeft": 0,
+            "cropRight": 0,
+            "cropTop": 0,
+            "errors": 1,
+            "filter": "",
+            "height": 895,
+            "itemType": "AtlasFrame",
+            "name": "NowPlaying",
+            "subAtlasType": "Text",
+            "textureIndex": 1,
+            "textureInfo": 262147,
+            "width": 895,
             "x": 0,
             "y": 0
         }
@@ -3444,8 +3464,8 @@
                     4096
                 ],
                 [
-                    1024,
-                    512
+                    2048,
+                    1024
                 ],
                 [
                     2048,

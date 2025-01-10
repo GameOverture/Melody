@@ -3,5 +3,6 @@ build/
 temp/
 art/
 curl-8.11.1/
+taglib/
 
 *.user
