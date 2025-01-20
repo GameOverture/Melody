@@ -669,14 +669,14 @@
                 }
             ]
         },
-        "MainText": {
+        "Description": {
             "CameraPos": [
-                -113,
-                -111
+                -80.6672134399414,
+                0
             ],
             "CameraZoom": 1,
-            "UUID": "58595296-c5db-4f52-9091-98fb0cb2030e",
-            "assetUUID": "3973d981-5aa7-4252-9e46-deff934d06ba",
+            "UUID": "d493dd32-84f7-4963-aafb-6cfa1ddeb542",
+            "assetUUID": "619f407e-c3d6-4f13-8191-c56ca0bcace8",
             "availableGlyphs": {
                 "0-9": true,
                 "A-Z": true,
@@ -684,16 +684,35 @@
                 "additional": "",
                 "symbols": true
             },
+            "guideHorzArray": [
+            ],
+            "guideVertArray": [
+            ],
             "stateArray": [
                 {
-                    "name": ""
+                    "name": "pt12"
                 },
                 {
-                    "name": ""
+                    "name": "pt15"
+                },
+                {
+                    "name": "pt18"
+                },
+                {
+                    "name": "pt21"
+                },
+                {
+                    "name": "pt24"
+                },
+                {
+                    "name": "pt27"
+                },
+                {
+                    "name": "pt30"
                 }
             ]
         },
-        "NowPlaying/NowPlaying": {
+        "Label": {
             "CameraPos": [
                 0,
                 0
@@ -713,6 +732,30 @@
             "guideVertArray": [
             ],
             "stateArray": [
+                {
+                    "name": ""
+                }
+            ]
+        },
+        "MainText": {
+            "CameraPos": [
+                -113,
+                -111
+            ],
+            "CameraZoom": 1,
+            "UUID": "58595296-c5db-4f52-9091-98fb0cb2030e",
+            "assetUUID": "3973d981-5aa7-4252-9e46-deff934d06ba",
+            "availableGlyphs": {
+                "0-9": true,
+                "A-Z": true,
+                "a-z": true,
+                "additional": "",
+                "symbols": true
+            },
+            "stateArray": [
+                {
+                    "name": ""
+                },
                 {
                     "name": ""
                 }

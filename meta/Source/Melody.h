@@ -3,6 +3,7 @@
 
 #include "pch.h"
 #include "CtrlPanel.h"
+#include "Compositorium.h"
 #include "InputViewer.h"
 #include "VgMusic.h"
 #include "Monitor.h"
@@ -20,6 +21,8 @@ class Melody : public HyEngine
 
 	HyCamera2d *	m_pCamera;
 	HyCamera2d *	m_pCameraCtrlPanel;
+
+	Compositorium	m_Compositorium;
 
 	HyPrimitive2d	m_ColorKeyBg;
 
@@ -45,5 +48,7 @@ public:
 
 	static void RefreshCamera();
 };
+
+void TransformTexture(HyTexturedQuad2d &quadRef, glm::ivec2 vMaxSize, glm::vec2 ptCenter);
 
 #endif // Melody_h__

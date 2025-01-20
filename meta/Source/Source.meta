@@ -530,6 +530,46 @@
             "filter": "Components/NowPlaying",
             "itemType": "Header",
             "name": "NowPlaying.h"
+        },
+        {
+            "assetUUID": "bee85877-dad2-4f73-8859-58cae309656e",
+            "bankId": 0,
+            "baseClass": "HyEntity2d",
+            "checksum": 848074516,
+            "errors": 0,
+            "filter": "Components/LowerThird",
+            "itemType": "Source",
+            "name": "LowerThird.cpp"
+        },
+        {
+            "assetUUID": "753942cd-eb44-41d4-af46-bafce91e1802",
+            "bankId": 0,
+            "baseClass": "HyEntity2d",
+            "checksum": 3616656993,
+            "errors": 0,
+            "filter": "Components/LowerThird",
+            "itemType": "Header",
+            "name": "LowerThird.h"
+        },
+        {
+            "assetUUID": "d47a6492-7611-4c7c-aa23-60bdbac9ea01",
+            "bankId": 0,
+            "baseClass": "",
+            "checksum": 2558663054,
+            "errors": 0,
+            "filter": "",
+            "itemType": "Source",
+            "name": "Compositorium.cpp"
+        },
+        {
+            "assetUUID": "e30c3a9d-a3ff-4e6c-848f-ffbac5b53b1c",
+            "bankId": 0,
+            "baseClass": "",
+            "checksum": 3463624167,
+            "errors": 0,
+            "filter": "",
+            "itemType": "Header",
+            "name": "Compositorium.h"
         }
     ],
     "banks": [

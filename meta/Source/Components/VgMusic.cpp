@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "Compositorium.h"
 #include "VgMusic.h"
 #include "CtrlPanel.h"
 
@@ -33,28 +34,7 @@ VgMusic::VgMusic(HyEntity2d *pParent /*= nullptr*/) :
 			Stop();
 		});
 
-	std::vector<std::string> tempDirFileList;
-	// Nintendo Entertainment System
-	tempDirFileList = HyIO::GetFileList("\\\\IronMountain/Documents/Video Games Meta-Scrape/NES/media/Named_Ost", ".ogg", false);
-	m_MusicFileList.insert(std::end(m_MusicFileList), std::begin(tempDirFileList), std::end(tempDirFileList));
-
-	// Super Nintendo
-	tempDirFileList = HyIO::GetFileList("\\\\IronMountain/Documents/Video Games Meta-Scrape/SNES/media/Named_Ost", ".ogg", false);
-	m_MusicFileList.insert(std::end(m_MusicFileList), std::begin(tempDirFileList), std::end(tempDirFileList));
-
-	// Genesis
-	tempDirFileList = HyIO::GetFileList("\\\\IronMountain/Documents/Video Games Meta-Scrape/Genesis/media/Named_Ost", ".ogg", false);
-	m_MusicFileList.insert(std::end(m_MusicFileList), std::begin(tempDirFileList), std::end(tempDirFileList));
-
-	// N64
-	tempDirFileList = HyIO::GetFileList("\\\\IronMountain/Documents/Video Games Meta-Scrape/N64/media/Named_Ost", ".ogg", false);
-	m_MusicFileList.insert(std::end(m_MusicFileList), std::begin(tempDirFileList), std::end(tempDirFileList));
-
-	// Dreamcast
-	tempDirFileList = HyIO::GetFileList("\\\\IronMountain/Documents/Video Games Meta-Scrape/Dreamcast/media/Named_Ost", ".ogg", false);
-	m_MusicFileList.insert(std::end(m_MusicFileList), std::begin(tempDirFileList), std::end(tempDirFileList));
-
-	HyRand::Shuffle(m_MusicFileList);
+	m_MusicTrackList = Compositorium::Get()->GetMusicPlayList(CONSOLE_NES | CONSOLE_SNES | CONSOLE_Genesis | CONSOLE_N64 | CONSOLE_Dreamcast);
 }
 
 /*virtual*/ VgMusic::~VgMusic()
@@ -69,7 +49,7 @@ void VgMusic::PopulateCtrlPanel(CtrlPanel &ctrlPanel)
 	ctrlPanel.InsertWidget(m_CtrlPanel_StopBtn, hCurRow);
 }
 
-void VgMusic::SetOnTrackChangeCallback(std::function<void(const std::string &)> fpOnTrackChange)
+void VgMusic::SetOnTrackChangeCallback(std::function<void(MusicTrack &)> fpOnTrackChange)
 {
 	m_fpOnTrackChange = fpOnTrackChange;
 }
@@ -94,7 +74,7 @@ void VgMusic::Prev()
 	if(m_iCurrTrackIndex > 0)
 		m_iCurrTrackIndex--;
 	else
-		m_iCurrTrackIndex = static_cast<int>(m_MusicFileList.size()) - 1;
+		m_iCurrTrackIndex = static_cast<int>(m_MusicTrackList.size()) - 1;
 	
 	Play();
 }
@@ -144,16 +124,16 @@ void VgMusic::Stop()
 	case PLAYSTATE_FadeOutToNext:
 		if(m_AudioTrack.volume.IsAnimating() == false)
 		{
-			m_iCurrTrackIndex = (m_iCurrTrackIndex + 1) % m_MusicFileList.size();
-			const std::string sMusicFile = m_MusicFileList[m_iCurrTrackIndex];
+			m_iCurrTrackIndex = (m_iCurrTrackIndex + 1) % m_MusicTrackList.size();
+			MusicTrack musicTrack = m_MusicTrackList[m_iCurrTrackIndex];
 
-			m_AudioTrack.Init(sMusicFile, true, 0, 0, this);
+			m_AudioTrack.Init(musicTrack.m_sFilePath, true, 0, 0, this);
 			m_AudioTrack.volume.Set(1.0f);
 			m_AudioTrack.Play();
 			m_AudioTrack.Load();
 
 			if(m_fpOnTrackChange)
-				m_fpOnTrackChange(sMusicFile);
+				m_fpOnTrackChange(musicTrack);
 
 			m_ePlayState = PLAYSTATE_Starting;
 		}

@@ -35,9 +35,10 @@ class Monitor : public IComponent
 	HyPrimitive2d		m_LiveSplitMask;
 	HySprite2d			m_Shadow;
 	HyPrimitive2d		m_Background;
-	HyPrimitive2d		m_ObsMask;
 	HySprite2d			m_Brb;
 	HySprite2d			m_Frame;
+	HyPrimitive2d		m_NoSignal;
+	HyPrimitive2d		m_ObsMask;
 
 	HyStopwatch			m_ElapsedTime;
 	HyText2d			m_ElapsedTimeText;

@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Music.h"
 #include "VgMusic.h"
+#include "Melody.h"
 
 //#include <fileref.h>
 //#include <tag.h>
@@ -117,7 +118,7 @@ Music::Music(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
 	m_BoxArt(this),
 	m_eLargeState(LARGESTATE_Stopped)
 {
-	m_VgMusicRef.SetOnTrackChangeCallback([this](const std::string sMusicPath) { InitNextTrack(sMusicPath); });
+	m_VgMusicRef.SetOnTrackChangeCallback([this](MusicTrack &musicTrackRef) { InitNextTrack(musicTrackRef); });
 	m_VgMusicRef.SetOnFadeOutCallback([this](float fFadeOutDuration)
 		{
 			FadeOut(fFadeOutDuration);
@@ -179,48 +180,24 @@ Music::Music(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
 {
 }
 
-void Music::InitNextTrack(const std::string &sMusicFile)
+void Music::InitNextTrack(const MusicTrack &musicTrack)
 {
-	std::string sMediaDirectory = HyIO::GetDirectoryFromPath(sMusicFile); // First strip the file name
-	sMediaDirectory = HyIO::GetDirectoryFromPath(sMediaDirectory); // Then go back one directory
+	GameConsole eConsole;
+	std::string sGameName, sSongName, sComposerName;
+	Compositorium::Get()->GetMusicInfo(musicTrack, eConsole, sGameName, sSongName, sComposerName);
+	m_TitleText.SetText(sGameName);
+	m_TrackText.SetText(sSongName);
+	m_ComposerText.SetText(sComposerName);
 
-	std::string sMusicTrack = HyIO::GetFileNameWithoutExtension(HyIO::GetFileNameFromPath(sMusicFile));
-
-	size_t uiDelimIndex = sMusicTrack.rfind('[', std::string::npos);
-	if(uiDelimIndex == std::string::npos)
-		return; // This shouldn't happen. There should always be a [...] at the end of the file name
-
-	std::string sBaseFileName = sMusicTrack.substr(0, uiDelimIndex);
-	sMusicTrack = sMusicTrack.substr(uiDelimIndex + 1, sMusicTrack.size() - uiDelimIndex - 2);
-
-	std::string sBoxartFile = sMediaDirectory + "/Named_Boxarts/" + sBaseFileName + ".png";
-	std::string sTitleFile = sMediaDirectory + "/Named_Titles/" + sBaseFileName + ".png";
-	std::string sSnapshotFile = sMediaDirectory + "/Named_Snaps/" + sBaseFileName + ".png";
-
-	// Strip any () from the end of the base file name
-	size_t uiDelim = sBaseFileName.rfind('(', std::string::npos);
-	if(uiDelim != std::string::npos)
-		sBaseFileName = sBaseFileName.substr(0, uiDelim);
-	HyIO::TrimWhitespace(sBaseFileName);
-	HyIO::TrimWhitespace(sMusicTrack);
-	m_TitleText.SetText(sBaseFileName);
-	m_TrackText.SetText(sMusicTrack);
-
-	//// Load the .ogg file using TagLib's FileRef
-	//TagLib::FileRef f(sMusicFile.c_str());
-
-	//// Check if the file was loaded successfully
-	//if(!f.isNull() && f.tag())
-	//{
-	//	TagLib::Tag *tag = f.tag();
-	//	m_ComposerText.SetText(tag->artist());
-	//}
-	//else
-	//	m_ComposerText.SetText("");
-
-	m_BoxArt.Init(sBoxartFile, HyTextureInfo(), this);
-	m_Title.Init(sTitleFile, HyTextureInfo(), this);
-	m_Snapshot.Init(sSnapshotFile, HyTextureInfo(), this);
+	std::string sBoxartFile = Compositorium::Get()->GetBestMedia(eConsole, musicTrack.m_sGameId, MEDIATYPE_Boxarts);
+	if(sBoxartFile.empty() == false)
+		m_BoxArt.Init(sBoxartFile, HyTextureInfo(), this);
+	std::string sTitleFile = Compositorium::Get()->GetBestMedia(eConsole, musicTrack.m_sGameId, MEDIATYPE_Titles);
+	if(sTitleFile.empty() == false)
+		m_Title.Init(sTitleFile, HyTextureInfo(), this);
+	std::string sSnapshotFile = Compositorium::Get()->GetBestMedia(eConsole, musicTrack.m_sGameId, MEDIATYPE_Snaps);
+	if(sSnapshotFile.empty() == false)
+		m_Snapshot.Init(sSnapshotFile, HyTextureInfo(), this);
 
 	m_AudioVisualizer.SetVisible(false);
 	m_NowPlayingSound.SetVisible(false);
@@ -442,17 +419,3 @@ void Music::FadeOut(float fFadeOutTime)
 	}
 }
 
-void Music::TransformTexture(HyTexturedQuad2d &quadRef, glm::ivec2 vMaxSize, glm::vec2 ptCenter)
-{
-	// Scale the texture to fit within the max width and height
-	quadRef.scale.SetAll(1.0f);
-	//if(quadRef.GetWidth() > vMaxSize.x || quadRef.GetHeight() > vMaxSize.y)
-	{
-		float fScale = std::min(vMaxSize.x / quadRef.GetWidth(), vMaxSize.y / quadRef.GetHeight());
-		quadRef.scale.SetAll(fScale);
-	}
-
-	// Find center of desired position, then offset by half the width and height of the texture
-	quadRef.pos.Set(ptCenter);
-	quadRef.pos.Offset(quadRef.GetWidth(quadRef.scale.GetX()) * -0.5f, quadRef.GetHeight(quadRef.scale.GetY()) * -0.5f);
-}

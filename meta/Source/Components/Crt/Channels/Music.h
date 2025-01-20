@@ -75,7 +75,7 @@ public:
 	Music(VgMusic &vgMusicRef, HyEntity2d *pParent = nullptr);
 	virtual ~Music();
 
-	void InitNextTrack(const std::string &sMusicFile);
+	void InitNextTrack(const MusicTrack &musicTrack);
 
 	void ShowVisualizer(float fFadeInTime);
 	void ShowIntroTitle(float fFadeInTime);
@@ -86,8 +86,6 @@ public:
 
 protected:
 	virtual void OnUpdate() override;
-
-	void TransformTexture(HyTexturedQuad2d &quadRef, glm::ivec2 vMaxSize, glm::vec2 ptCenter);
 };
 
 #endif // Music_h__

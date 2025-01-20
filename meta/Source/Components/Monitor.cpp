@@ -20,9 +20,10 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 	m_fElapsedTime(0.0f),
 	m_Shadow("Monitor", "Frame", this),
 	m_Background(this),
-	m_ObsMask(this),
 	m_Brb("Monitor", "BRB", this),
 	m_Frame("Monitor", "Frame", this),
+	m_NoSignal(this),
+	m_ObsMask(this),
 	m_ElapsedTimeText("", "MainText", this)
 {
 	m_CtrlPanel_CheckBox.SetText("Monitor");
@@ -81,7 +82,9 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 
 	m_ChannelText.Init("CRT", "Volume", this);
 	m_ChannelText.SetText("NULL");
-	m_ChannelText.pos.Set(SCREEN_OFFSET_X + 350, SCREEN_OFFSET_Y + 225);
+	m_ChannelText.SetAlignment(HYALIGN_Right);
+
+	m_ChannelText.pos.Set(SCREEN_OFFSET_X + MONITOR_WIDTH - 25, SCREEN_OFFSET_Y + 225);
 	m_ChannelText.scale.Set(0.5f, 0.5f);
 	m_ChannelText.SetVisible(false);
 
@@ -101,11 +104,15 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 
 	m_Background.pos.Set(SCREEN_OFFSET_X, SCREEN_OFFSET_Y);
 	m_Background.SetAsBox(MONITOR_WIDTH, MONITOR_HEIGHT);
-	m_Background.SetTint(HyColor::Black);
+	m_Background.SetTint(HyColor::DarkGray);
 
 	m_Brb.SetVisible(false);
 	m_Brb.scale.Set(0.5f, 0.5f);
 	m_Brb.pos.Set(SCREEN_OFFSET_X + (MONITOR_WIDTH * 0.5f), SCREEN_OFFSET_Y + (MONITOR_HEIGHT * 0.5f));
+
+	m_NoSignal.pos.Set(SCREEN_OFFSET_X, SCREEN_OFFSET_Y);
+	m_NoSignal.SetAsBox(MONITOR_WIDTH, MONITOR_HEIGHT);
+	m_NoSignal.SetTint(HyColor::Black);
 
 	m_ElapsedTimeText.pos.Set(SCREEN_OFFSET_X + (MONITOR_WIDTH * 0.5f), SCREEN_OFFSET_Y + 20.0f);
 	m_ElapsedTimeText.SetAlignment(HYALIGN_Center);
@@ -129,20 +136,30 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 
 /*virtual*/ void Monitor::Show(float fDuration) /*override*/
 {
+	SetChannel(MONITORCHANNEL_NoSignal);
 	SetVisible(true);
 	scale.Set(0.5f, 0.5f);
 	scale.Tween(1.0f, 1.0f, fDuration * 2.0f, HyTween::QuadIn);
 	rot.Set(-20.0f);
 	rot.Tween(0.0f, fDuration * 2.0f, HyTween::BounceOut);
 	pos.Tween(0.0f, pos.GetY(), fDuration * 2.0f, HyTween::QuadInOut, 0.0f, 
-		[](IHyNode *pThis)
+		[this](IHyNode *pThis)
 		{
+			for(int iChn = 0; iChn < NUM_MONITORCHANNELS; ++iChn)
+			{
+				if(m_CtrlPanel_radChannel[iChn].IsChecked())
+				{
+					SetChannel(static_cast<MonitorChannel>(iChn));
+					break;
+				}
+			}
 			Melody::RefreshCamera();
 		});
 }
 
 /*virtual*/ void Monitor::Hide(float fDuration) /*override*/
 {
+	SetChannel(MONITORCHANNEL_NoSignal);
 	//IComponent::Hide(fDuration);
 	rot.Tween(25.0f, fDuration, HyTween::QuadInOut);
 	pos.Tween(-MISC_WIDTH - 100, static_cast<int>(pos.GetY()), fDuration, HyTween::QuadInOut, 0.0f,
@@ -276,5 +293,7 @@ void Monitor::SetChannel(int iChannelIndex)
 		return;
 
 	m_iChannelIndex = iChannelIndex;
+	m_NoSignal.SetVisible(m_iChannelIndex == MONITORCHANNEL_NoSignal);
+
 	m_eMonitorState = MONITORSTATE_PreChangeChannel;
 }

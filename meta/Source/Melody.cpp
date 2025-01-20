@@ -7,6 +7,7 @@ Melody::Melody(HarmonyInit &initStruct) :
 	HyEngine(initStruct),
 	m_pCamera(HyEngine::Window().CreateCamera2d()),
 	m_pCameraCtrlPanel(HyEngine::Window(1).CreateCamera2d()),
+	m_Compositorium("\\\\IronMountain/Documents/RetroCompositorium/"),
 	m_ColorKeyBg(),
 	m_VgMusic(),
 	m_Monitor(),
@@ -141,4 +142,19 @@ Melody::~Melody()
 			HyEngine::Window().GetCamera2d(0)->SetTag(CAMTAG_Center);
 		}
 	}
+}
+
+void TransformTexture(HyTexturedQuad2d &quadRef, glm::ivec2 vMaxSize, glm::vec2 ptCenter)
+{
+	// Scale the texture to fit within the max width and height
+	quadRef.scale.SetAll(1.0f);
+	//if(quadRef.GetWidth() > vMaxSize.x || quadRef.GetHeight() > vMaxSize.y)
+	{
+		float fScale = std::min(vMaxSize.x / quadRef.GetWidth(), vMaxSize.y / quadRef.GetHeight());
+		quadRef.scale.SetAll(fScale);
+	}
+
+	// Find center of desired position, then offset by half the width and height of the texture
+	quadRef.pos.Set(ptCenter);
+	quadRef.pos.Offset(quadRef.GetWidth(quadRef.scale.GetX()) * -0.5f, quadRef.GetHeight(quadRef.scale.GetY()) * -0.5f);
 }

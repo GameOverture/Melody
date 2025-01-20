@@ -26,13 +26,13 @@ class VgMusic : public HyEntity2d
 	HyButton									m_CtrlPanel_StopBtn;
 
 	HyAudio2d									m_AudioTrack;
-
-	std::vector<std::string>					m_MusicFileList;
+public:
+	std::vector<MusicTrack>						m_MusicTrackList;
 	int32										m_iCurrTrackIndex;
 
 	PlayState									m_ePlayState;
 
-	std::function<void(const std::string &)>	m_fpOnTrackChange;
+	std::function<void(MusicTrack &)>			m_fpOnTrackChange;
 	std::function<void(float)>					m_fpOnFadeOut;
 
 public:
@@ -41,7 +41,7 @@ public:
 
 	void PopulateCtrlPanel(CtrlPanel &ctrlPanel);
 
-	void SetOnTrackChangeCallback(std::function<void(const std::string &)> fpOnTrackChange);
+	void SetOnTrackChangeCallback(std::function<void(MusicTrack &)> fpOnTrackChange);
 	void SetOnFadeOutCallback(std::function<void(float)> fpOnFadeOut);
 
 	PlayState GetPlayState() const;

@@ -59,7 +59,11 @@ set(GAME_SRCFILES
 	"Twitch/TwitchApi.cpp"
 	"Twitch/TwitchApi.h"
 	"Components/NowPlaying/NowPlaying.cpp"
-	"Components/NowPlaying/NowPlaying.h")
+	"Components/NowPlaying/NowPlaying.h"
+	"Components/LowerThird/LowerThird.cpp"
+	"Components/LowerThird/LowerThird.h"
+	"Compositorium.cpp"
+	"Compositorium.h")
 
 set(GAME_INCLUDE_DIRS "")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}")
@@ -68,6 +72,7 @@ list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt/Channels")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/InputViewer")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/InputViewer/Controllers")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/LowerThird")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/NowPlaying")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Scenes")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Twitch")

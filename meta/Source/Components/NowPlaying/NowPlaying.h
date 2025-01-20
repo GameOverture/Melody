@@ -6,12 +6,20 @@
 
 class NowPlaying : public IComponent
 {
-	HyCheckBox				m_CtrlPanel_CheckBox;
-	HyButton				m_CtrlPanel_BrowseBtn;
+	HyCheckBox						m_CtrlPanel_CheckBox;
+	HyButton						m_CtrlPanel_BrowseBtn;
 
-	HyText2d				m_Title;
-	HyTexturedQuad2d		m_BoxArt;
-	HyRichLabel				m_Description;
+	std::vector<HyTexturedQuad2d *>	m_BoxArtList;
+	int32							m_iBoxArtIndex;
+	std::vector<HyTexturedQuad2d *>	m_TitleArtList;
+	int32							m_iTitleArtIndex;
+	
+	HyTexturedQuad2d				m_Logo;
+	HyText2d						m_NowPlayingText;
+
+	HyText2d						m_Description;
+
+	bool							m_bReloading;
 
 public:
 	NowPlaying(HyEntity2d *pParent = nullptr);
