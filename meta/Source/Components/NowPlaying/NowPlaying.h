@@ -8,13 +8,27 @@ class NowPlaying : public IComponent
 {
 	HyCheckBox						m_CtrlPanel_CheckBox;
 	HyButton						m_CtrlPanel_BrowseBtn;
+	HyCheckBox						m_CtrlPanel_StopwatchCheckBox;
+	HyButton						m_CtrlPanel_StopwatchResetBtn;
+	HyButton						m_CtrlPanel_StopwatchHrBck;
+	HyButton						m_CtrlPanel_StopwatchMinBck;
+	HyButton						m_CtrlPanel_StopwatchStartPause;
+	HyButton						m_CtrlPanel_StopwatchMinFwd;
+	HyButton						m_CtrlPanel_StopwatchHrFwd;
 
 	HyEntity2d						m_InfoEnt;
-	std::vector<HyTexturedQuad2d *>	m_BoxArtList;
-	int32							m_iBoxArtIndex;
-	std::vector<HyTexturedQuad2d *>	m_TitleArtList;
-	int32							m_iTitleArtIndex;
+	std::vector<HyTexturedQuad2d *>	m_SlideShowList;
+	int32							m_iSlideShowIndex;
+	HyTimer							m_SlideShowTimer;
+	HyPrimitive2d					m_DescriptionArea;
 	HyText2d						m_DescriptionText;
+	HyUiContainer					m_Details;
+	HyLabel							m_ReleaseLabel;
+	HyLabel							m_ReleaseText;
+	HyLabel							m_DevLabel;
+	HyLabel							m_DevText;
+	HyLabel							m_PubLabel;
+	HyLabel							m_PubText;
 	
 	HyEntity2d						m_NowPlayingEnt;
 	HyTexturedQuad2d				m_Logo;

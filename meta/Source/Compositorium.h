@@ -48,6 +48,9 @@ public:
 	std::string GetGameName(GameConsole eConsole, std::string sGameId);
 	std::string GetGameDescription(GameObj gameObj);
 	std::string GetGameDescription(GameConsole eConsole, std::string sGameId);
+	std::string GetGameRelease(GameObj gameObj);
+	std::string GetGameDeveloper(GameObj gameObj);
+	std::string GetGamePublisher(GameObj gameObj);
 
 	std::vector<std::string> GetMediaList(GameObj gameObj, MediaType eMediaType);
 	std::vector<std::string> GetMediaList(GameConsole eConsole, std::string sGameId, MediaType eMediaType);

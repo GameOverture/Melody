@@ -66,18 +66,18 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_Crt.SetVisible(false);
 	m_Crt.PopulateCtrlPanel(m_CtrlPanel);
 
-	m_NowPlaying.UseWindowCoordinates();
-	m_NowPlaying.SetDisplayOrder(DISPLAYORDER_NowPlaying);
-	m_NowPlaying.Load();
-	m_NowPlaying.SetVisible(false);
-	m_NowPlaying.PopulateCtrlPanel(m_CtrlPanel);
-
 	m_Monitor.UseWindowCoordinates();
 	m_Monitor.SetDisplayOrder(DISPLAYORDER_Monitor);
 	m_Monitor.Load();
 	m_Monitor.SetVisible(false);
 	m_Monitor.pos.Set(-MISC_WIDTH - 100, HyEngine::Window(0).GetHeight() - MISC_HEIGHT);
 	m_Monitor.PopulateCtrlPanel(m_CtrlPanel);
+
+	m_NowPlaying.UseWindowCoordinates();
+	m_NowPlaying.SetDisplayOrder(DISPLAYORDER_NowPlaying);
+	m_NowPlaying.Load();
+	m_NowPlaying.SetVisible(false);
+	m_NowPlaying.PopulateCtrlPanel(m_CtrlPanel);
 
 	m_InputViewer.UseWindowCoordinates();
 	m_InputViewer.Load();

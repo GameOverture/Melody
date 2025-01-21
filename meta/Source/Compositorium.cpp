@@ -122,6 +122,27 @@ std::string Compositorium::GetGameDescription(GameConsole eConsole, std::string 
 	return GetGameDescription(GetGame(eConsole, sGameId));
 }
 
+std::string Compositorium::GetGameRelease(GameObj gameObj)
+{
+	if(gameObj.IsValid() == false)
+		return "";
+	return gameObj.m_JsonObj["release"].GetString();
+}
+
+std::string Compositorium::GetGameDeveloper(GameObj gameObj)
+{
+	if(gameObj.IsValid() == false)
+		return "";
+	return gameObj.m_JsonObj["developer"].GetString();
+}
+
+std::string Compositorium::GetGamePublisher(GameObj gameObj)
+{
+	if(gameObj.IsValid() == false)
+		return "";
+	return gameObj.m_JsonObj["publisher"].GetString();
+}
+
 std::vector<std::string> Compositorium::GetMediaList(GameObj gameObj, MediaType eMediaType)
 {
 	std::string sMediaName;
