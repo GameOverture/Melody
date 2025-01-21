@@ -9,17 +9,31 @@ class NowPlaying : public IComponent
 	HyCheckBox						m_CtrlPanel_CheckBox;
 	HyButton						m_CtrlPanel_BrowseBtn;
 
+	HyEntity2d						m_InfoEnt;
 	std::vector<HyTexturedQuad2d *>	m_BoxArtList;
 	int32							m_iBoxArtIndex;
 	std::vector<HyTexturedQuad2d *>	m_TitleArtList;
 	int32							m_iTitleArtIndex;
+	HyText2d						m_DescriptionText;
 	
+	HyEntity2d						m_NowPlayingEnt;
 	HyTexturedQuad2d				m_Logo;
 	HyText2d						m_NowPlayingText;
+	HyText2d						m_GameNameText;
 
-	HyText2d						m_Description;
+	HyEntity2d						m_TimeEnt;
+	HyStopwatch						m_Stopwatch;
+	HyLabel							m_TimeLabel;
+	HyText2d						m_GameTimeText;
 
-	bool							m_bReloading;
+	enum ReloadState
+	{
+		RELOADSTATE_Idle,
+		RELOADSTATE_FadingOut,
+		RELOADSTATE_Reload,
+	};
+	ReloadState						m_eReloadState;
+	std::string						m_sHtmlFilePath;
 
 public:
 	NowPlaying(HyEntity2d *pParent = nullptr);
