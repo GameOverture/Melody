@@ -35,7 +35,7 @@ class NESController : public IController
 	};
 
 	// USB Serial
-	const char *			m_szPORTNAME = "\\\\.\\COM5";
+	const char *			m_szPORTNAME = "\\\\.\\COM3";
 	SerialPort *			m_pArduino;
 	char					m_TempReadBuffer[NESCONTROLLER_BUFFER_LENGTH];
 	std::vector<uint8>		m_ReadBuffer;

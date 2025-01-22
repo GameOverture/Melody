@@ -3,7 +3,7 @@
 
 #include "pch.h"
 
-#include <curl/curl.h>
+//#include <curl/curl.h>
 
 class TwitchApi : public HyEntity2d
 {

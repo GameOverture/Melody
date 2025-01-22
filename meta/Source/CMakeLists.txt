@@ -3,7 +3,7 @@ project(Melody)
 
 set(REL_PROJ_PATH "../../")
 set(REL_DATA_DIR "../../data")
-set(REL_HARMONY_DIR "../../../../../LG/_GameFramework/HarmonyEngine")
+set(REL_HARMONY_DIR "../../../HarmonyEngine")
 set(EXE_OUTPUT_NAME "Melody")
 
 set(GAME_SRCFILES
@@ -204,13 +204,6 @@ add_subdirectory("${REL_HARMONY_DIR}/Engine" "HyEngine")
 add_subdirectory("../../lib/NESController" "NESController")
 set_target_properties("NESController" PROPERTIES FOLDER "Melody Libs")
 
-option(BUILD_CURL_EXE "" OFF)
-option(BUILD_EXAMPLES "" OFF)
-option(BUILD_TESTING "" OFF)
-option(SHARE_LIB_OBJECT "" OFF)
-add_subdirectory("../../lib/curl-8.11.1" "libcurl_static")
-set_target_properties("libcurl_static" PROPERTIES FOLDER "Melody Libs")
-
 
 add_executable(${PROJECT_NAME} WIN32 ${GAME_SRCFILES})
 set_target_properties(${PROJECT_NAME} PROPERTIES
@@ -223,7 +216,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE "$<BUILD_INTERFACE:${GAME_INC
 if(NOT "${CMAKE_SYSTEM_NAME}" STREQUAL "Emscripten")
 	target_precompile_headers(${PROJECT_NAME} PRIVATE "pch.h")
 endif()
-target_link_libraries(${PROJECT_NAME} PUBLIC HyEngine "NESController" "libcurl_static" )
+target_link_libraries(${PROJECT_NAME} PUBLIC HyEngine "NESController" )
 
 
 if(TARGET uninstall)

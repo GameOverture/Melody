@@ -581,11 +581,6 @@
                     "Options": "",
                     "ProjectName": "NESController",
                     "RelPath": "../../lib/NESController"
-                },
-                {
-                    "Options": "option(BUILD_CURL_EXE \"\" OFF)\noption(BUILD_EXAMPLES \"\" OFF)\noption(BUILD_TESTING \"\" OFF)\noption(SHARE_LIB_OBJECT \"\" OFF)",
-                    "ProjectName": "libcurl_static",
-                    "RelPath": "../../lib/curl-8.11.1"
                 }
             ],
             "UseIcu": false,
