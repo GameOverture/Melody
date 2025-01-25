@@ -55,6 +55,9 @@ public:
 
 	virtual void PopulateCtrlPanel(CtrlPanel &ctrlPanel) override;
 
+	virtual void Show(float fDuration) override;
+	virtual void Hide(float fDuration) override;
+
 protected:
 	virtual void OnUpdate() override;
 };

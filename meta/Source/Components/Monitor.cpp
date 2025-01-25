@@ -8,12 +8,9 @@
 #define SCREEN_OFFSET_X 33
 #define SCREEN_OFFSET_Y 27
 
-#define SHADOW_ALPHA 0.42f
-
 Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_Brb, pParent),
 	m_CtrlPanel_CheckBox(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
-	m_CtrlPanel_LiveSplit(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
 	m_iChannelIndex(MONITORCHANNEL_NoSignal),
 	m_fChannelShowTime(0.0f),
 	m_eMonitorState(MONITORSTATE_Idle),
@@ -34,32 +31,6 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 				Show(0.5f);
 			else
 				Hide(0.5f);
-		});
-
-	m_CtrlPanel_LiveSplit.SetText("LiveSplit");
-	m_CtrlPanel_LiveSplit.SetCheckedChangedCallback(
-		[this](HyCheckBox *pCheckBox)
-		{
-			if(pCheckBox->IsChecked())
-			{
-				m_Shadow.alpha.Tween(0.0f, 0.5f);
-
-				m_LiveSplitMask.alpha.Set(0.0f);
-				m_LiveSplitMask.alpha.Tween(1.0f, 1.0f);
-				m_LiveSplitMask.SetVisible(true);
-
-				Melody::RefreshCamera();
-			}
-			else
-			{
-				m_Shadow.alpha.Tween(SHADOW_ALPHA, 1.0f);
-				m_LiveSplitMask.alpha.Tween(0.0f, 1.0f, HyTween::Linear, 0.0f,
-					[](IHyNode *pThis)
-					{
-						pThis->SetVisible(false);
-						Melody::RefreshCamera();
-					});
-			}
 		});
 
 	for(int iChannelIndex = 0; iChannelIndex < NUM_MONITORCHANNELS; ++iChannelIndex)
@@ -88,13 +59,6 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 	m_ChannelText.scale.Set(0.5f, 0.5f);
 	m_ChannelText.SetVisible(false);
 
-	m_LiveSplitMask.UseWindowCoordinates();
-	m_LiveSplitMask.SetAsBox(MISC_WIDTH + DIVIDER_WIDTH, HyEngine::Window(0).GetHeight());
-	m_LiveSplitMask.SetTint(HyColor::Orange);
-	m_LiveSplitMask.SetDisplayOrder(DISPLAYORDER_LiveSplitMask);
-	m_LiveSplitMask.alpha.Set(0.0f);
-	m_LiveSplitMask.SetVisible(false);
-
 	m_Shadow.SetTint(HyColor::Black);
 	m_Shadow.alpha.Set(SHADOW_ALPHA);
 	m_Shadow.pos.Set(12.0f, -20.0f);
@@ -122,11 +86,15 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 {
 }
 
+HySprite2d &Monitor::GetShadow()
+{
+	return m_Shadow;
+}
+
 /*virtual*/ void Monitor::PopulateCtrlPanel(CtrlPanel &ctrlPanel) /*override*/
 {
 	HyLayoutHandle hRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
 	ctrlPanel.InsertWidget(m_CtrlPanel_CheckBox, hRow);
-	ctrlPanel.InsertWidget(m_CtrlPanel_LiveSplit, hRow);
 	ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
 	
 	HyLayoutHandle hRow2 = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
@@ -168,11 +136,6 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 			pThis->SetVisible(false);
 			Melody::RefreshCamera();
 		});
-}
-
-bool Monitor::IsDivider() const
-{
-	return m_LiveSplitMask.IsVisible() || IsVisible();
 }
 
 bool Monitor::IsBrb() const

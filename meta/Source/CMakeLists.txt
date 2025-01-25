@@ -65,7 +65,9 @@ set(GAME_SRCFILES
 	"Compositorium.cpp"
 	"Compositorium.h"
 	"Components/InputViewer/Controllers/SerialPort.cpp"
-	"Components/InputViewer/Controllers/SerialPort.h")
+	"Components/InputViewer/Controllers/SerialPort.h"
+	"Components/LiveSplit.cpp"
+	"Components/LiveSplit.h")
 
 set(GAME_INCLUDE_DIRS "")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}")

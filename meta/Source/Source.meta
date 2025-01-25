@@ -590,6 +590,26 @@
             "filter": "Components/InputViewer/Controllers",
             "itemType": "Header",
             "name": "SerialPort.h"
+        },
+        {
+            "assetUUID": "854e1b75-0a8d-4e69-9ae0-c054e6ee8ddd",
+            "bankId": 0,
+            "baseClass": "IComponent",
+            "checksum": 1880674568,
+            "errors": 0,
+            "filter": "Components",
+            "itemType": "Source",
+            "name": "LiveSplit.cpp"
+        },
+        {
+            "assetUUID": "602bdf41-e906-4327-9a51-2efb1046d21e",
+            "bankId": 0,
+            "baseClass": "IComponent",
+            "checksum": 3503377233,
+            "errors": 0,
+            "filter": "Components",
+            "itemType": "Header",
+            "name": "LiveSplit.h"
         }
     ],
     "banks": [

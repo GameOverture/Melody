@@ -4,10 +4,11 @@
 #include "pch.h"
 #include "IComponent.h"
 
+#define SHADOW_ALPHA 0.42f
+
 class Monitor : public IComponent
 {
 	HyCheckBox			m_CtrlPanel_CheckBox;
-	HyCheckBox			m_CtrlPanel_LiveSplit;
 
 	enum MonitorChannel
 	{
@@ -32,7 +33,6 @@ class Monitor : public IComponent
 	MonitorState		m_eMonitorState;
 	float				m_fElapsedTime;
 
-	HyPrimitive2d		m_LiveSplitMask;
 	HySprite2d			m_Shadow;
 	HyPrimitive2d		m_Background;
 	HySprite2d			m_Brb;
@@ -49,12 +49,13 @@ public:
 	Monitor(HyEntity2d *pParent = nullptr);
 	virtual ~Monitor();
 
+	HySprite2d &GetShadow();
+
 	virtual void PopulateCtrlPanel(CtrlPanel &ctrlPanel) override;
 
 	virtual void Show(float fDuration) override;
 	virtual void Hide(float fDuration) override;
 
-	bool IsDivider() const;
 	bool IsBrb() const;
 
 protected:

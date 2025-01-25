@@ -11,6 +11,7 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_ColorKeyBg(),
 	m_VgMusic(),
 	m_Monitor(),
+	m_LiveSplit(m_Monitor),
 	m_MessageCycle(m_Monitor),
 	m_InputViewer(),
 	m_Crt(m_VgMusic, m_MessageCycle, m_InputViewer),
@@ -79,6 +80,12 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_NowPlaying.SetVisible(false);
 	m_NowPlaying.PopulateCtrlPanel(m_CtrlPanel);
 
+	m_LiveSplit.UseWindowCoordinates();
+	m_LiveSplit.SetDisplayOrder(DISPLAYORDER_LiveSplitMask);
+	m_LiveSplit.Load();
+	m_LiveSplit.SetVisible(false);
+	m_LiveSplit.PopulateCtrlPanel(m_CtrlPanel);
+
 	m_InputViewer.UseWindowCoordinates();
 	m_InputViewer.Load();
 	m_InputViewer.SetVisible(false);
@@ -129,7 +136,7 @@ Melody::~Melody()
 {
 	if(sm_pThis->m_Crt.GetChannel() != CHANNELTYPE_Game)
 	{
-		if(sm_pThis->m_Monitor.IsDivider())
+		if(sm_pThis->m_Monitor.IsVisible() || sm_pThis->m_LiveSplit.IsVisible() || sm_pThis->m_NowPlaying.IsVisible())
 		{
 			HyEngine::Window().GetCamera2d(0)->pos.Tween(CAMERA_DIVIDER_POS, 1.5f, HyTween::QuadInOut);
 			HyEngine::Window().GetCamera2d(0)->scale.Tween(CAMERA_DIVIDER_SCALE, 1.5f, HyTween::QuadInOut);

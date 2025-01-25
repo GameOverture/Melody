@@ -7,6 +7,7 @@
 #include "InputViewer.h"
 #include "VgMusic.h"
 #include "Monitor.h"
+#include "LiveSplit.h"
 #include "Wheel.h"
 #include "Crt.h"
 #include "NowPlaying.h"
@@ -31,6 +32,7 @@ class Melody : public HyEngine
 	// Components
 	VgMusic			m_VgMusic;
 	Monitor			m_Monitor;
+	LiveSplit		m_LiveSplit;
 	MessageCycle	m_MessageCycle;
 	InputViewer		m_InputViewer;
 	Crt				m_Crt;

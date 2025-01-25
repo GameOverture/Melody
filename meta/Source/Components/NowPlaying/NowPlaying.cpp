@@ -203,6 +203,21 @@ NowPlaying::NowPlaying(HyEntity2d *pParent /*= nullptr*/) :
 	ctrlPanel.InsertWidget(m_CtrlPanel_StopwatchHrFwd, hTimeRow);
 }
 
+/*virtual*/ void NowPlaying::Show(float fDuration) /*override*/
+{
+	alpha.Set(0.0f);
+	alpha.Tween(1.0f, fDuration);
+	SetVisible(true);
+
+	Melody::RefreshCamera();
+}
+
+/*virtual*/ void NowPlaying::Hide(float fDuration) /*override*/
+{
+	alpha.Tween(0.0f, fDuration, HyTween::Linear, 0.0f, [this](IHyNode *pThis) { pThis->SetVisible(false); });
+	Melody::RefreshCamera();
+}
+
 /*virtual*/ void NowPlaying::OnUpdate() /*override*/
 {
 	if(m_NowPlayingText.pos.IsAnimating() == false)
@@ -388,16 +403,25 @@ NowPlaying::NowPlaying(HyEntity2d *pParent /*= nullptr*/) :
 			}
 			if(m_DescriptionText.GetHeight() > NOWPLAYING_DESC_HEIGHT)
 			{
-				m_DescriptionArea.SetAsBox(LIVESPLIT_WIDTH /*NOWPLAYING_DESC_WIDTH*/, NOWPLAYING_DESC_HEIGHT + m_DescriptionText.GetLineBreakHeight());
+				m_DescriptionArea.SetAsBox(LIVESPLIT_WIDTH, NOWPLAYING_DESC_HEIGHT + m_DescriptionText.GetLineBreakHeight());
 				m_DescriptionArea.pos.Set(0, NOWPLAYING_TIMER_HEIGHT);
 				
 				m_DescriptionText.SetScissor(HyRect(0.0f, -m_DescriptionArea.GetHeight() + m_DescriptionText.GetLineBreakHeight(), NOWPLAYING_DESC_WIDTH, m_DescriptionArea.GetHeight()));
 			}
 			else
 			{
+				float fDetailsHeight = m_Details.GetSize().y - m_PubText.pos.GetY();
 				float fDescender = fabs(m_DescriptionText.GetLineDescender());
-				m_DescriptionArea.SetAsBox(LIVESPLIT_WIDTH /*NOWPLAYING_DESC_WIDTH*/, m_DescriptionText.GetHeight() + fDescender);
-				m_DescriptionArea.pos.Set(0.0f, m_DescriptionText.pos.GetY() - m_DescriptionText.GetHeight() + m_DescriptionText.GetLineBreakHeight() - fDescender);
+				if(m_DescriptionText.GetHeight() + fDescender < fDetailsHeight)
+				{
+					m_DescriptionArea.SetAsBox(LIVESPLIT_WIDTH, fDetailsHeight);
+					m_DescriptionArea.pos.Set(0.0f, m_DescriptionText.pos.GetY() - fDetailsHeight + m_DescriptionText.GetLineBreakHeight());
+				}
+				else
+				{
+					m_DescriptionArea.SetAsBox(LIVESPLIT_WIDTH, m_DescriptionText.GetHeight() + fDescender);
+					m_DescriptionArea.pos.Set(0.0f, m_DescriptionText.pos.GetY() - m_DescriptionText.GetHeight() + m_DescriptionText.GetLineBreakHeight() - fDescender);
+				}
 
 				m_DescriptionText.ClearScissor(true);
 			}
