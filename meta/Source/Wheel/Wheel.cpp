@@ -29,7 +29,7 @@ Wheel::SpinEnt::SpinEnt(const WheelInit &initStructRef) :
 	float fRotationOffset = 0.0f;
 	for(uint32 i = 0; i < uiNumWedges; ++i)
 	{
-		HyEntityWrapper2d<HySprite2d> *pNewWedge = HY_NEW HyEntityWrapper2d<HySprite2d>(initStructRef.wedges.m_sPrefix.c_str(), initStructRef.wedges.m_sName.c_str());
+		HyEntityWrapper2d<HySprite2d> *pNewWedge = HY_NEW HyEntityWrapper2d<HySprite2d>(initStructRef.wedges.m_sPrefix.c_str(), initStructRef.wedges.m_sName.c_str(), nullptr);
 		ChildAppend(*pNewWedge);
 		pNewWedge->rot.Set(fRotationOffset);
 
@@ -82,7 +82,7 @@ Wheel::SpinEnt::SpinEnt(const WheelInit &initStructRef) :
 Wheel::Wheel(const WheelInit &initStructRef, HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_Wheel, pParent),
 	m_SpinEnt(initStructRef),
-	m_Ticker(initStructRef.ticker.m_sPrefix.c_str(), initStructRef.ticker.m_sName.c_str()),
+	m_Ticker(initStructRef.ticker.m_sPrefix.c_str(), initStructRef.ticker.m_sName.c_str(), nullptr),
 	m_pWeightTable(initStructRef.pWedgeWeightTable),
 	m_bSpinClockwise(true),
 	m_bIsClockwise(m_bSpinClockwise),

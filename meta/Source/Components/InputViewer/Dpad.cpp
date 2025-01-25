@@ -8,6 +8,7 @@ Dpad::Dpad(const HyNodePath &gatePath, const HyNodePath &pressPath, const HyNode
 	m_Gate(gatePath, this),
 	m_BallFollow(pressPath, this),
 	m_Ball(pressPath, this),
+	m_NonPressedButtons(this),
 	m_eOldBallPos(JSGATE_Neutral)
 {
 	HySetVec(m_GatePositions[JSGATE_Neutral], 0.0f, 0.0f);
@@ -26,17 +27,21 @@ Dpad::Dpad(const HyNodePath &gatePath, const HyNodePath &pressPath, const HyNode
 	m_BallFollow.SetDisplayOrder(DISPLAYORDER_BallTop - 1);
 	m_Ball.SetDisplayOrder(DISPLAYORDER_BallTop);
 
-	for(int i = 0; i < NUM_JSGATES; ++i)
+	// Dynamically allocate the first button, to get the number of states it has (which is also the number of buttons)
+	m_ButtonOverlayList.push_back(HY_NEW HySprite2d(buttonsPath, &m_NonPressedButtons));
+	for(int iIndex = 1; iIndex < m_ButtonOverlayList[0]->GetNumStates(); ++iIndex)
 	{
-		m_ButtonOverlays[i].Init(buttonsPath, this);
-		m_ButtonOverlays[i].pos.Set(m_GatePositions[i]);
-		m_ButtonOverlays[i].SetVisible(false);
-		m_ButtonOverlays[i].SetDisplayOrder(DISPLAYORDER_Buttons);
+		HySprite2d *pNewSprite = HY_NEW HySprite2d(buttonsPath, &m_NonPressedButtons);
+		pNewSprite->SetState(iIndex);
+		m_ButtonOverlayList.push_back(pNewSprite);
 	}
+	m_NonPressedButtons.SetVisible(false);
 }
 
 /*virtual*/ Dpad::~Dpad()
 {
+	for(int iIndex = 0; iIndex < m_ButtonOverlayList.size(); ++iIndex)
+		delete m_ButtonOverlayList[iIndex];
 }
 
 void Dpad::ApplyInput(uint32 uiDPadFlags)
@@ -75,29 +80,28 @@ void Dpad::ApplyInput(uint32 uiDPadFlags)
 
 		m_PathList.push_back(HY_NEW GatePath(m_GatePositions[m_eOldBallPos], m_GatePositions[eCurBallPos], m_PathColor, m_fPathRadius, this));
 
-		if(m_ButtonOverlays[m_eOldBallPos].IsVisible())
-			SetButtonPress(m_ButtonOverlays[m_eOldBallPos].GetState(), false);
-
 		m_eOldBallPos = eCurBallPos;
 	}
 }
 
 void Dpad::SetButtonPress(int iButtonState, bool bPressed)
 {
-	m_ButtonOverlays[m_eOldBallPos].SetVisible(true);
-	m_ButtonOverlays[m_eOldBallPos].SetState(iButtonState);
-
-	m_ButtonOverlays[m_eOldBallPos].alpha.Set(1.0f);
 	if(bPressed)
 	{
-		m_ButtonOverlays[m_eOldBallPos].scale.SetAll(0.9f);
-		m_ButtonOverlays[m_eOldBallPos].scale.Tween(1.0f, 1.0f, 0.1f, HyTween::QuadOut);
+		m_Ball.ChildAppend(*m_ButtonOverlayList[iButtonState]);
+		m_ButtonOverlayList[iButtonState]->alpha.Set(1.0f);
+		m_ButtonOverlayList[iButtonState]->scale.SetAll(0.9f);
+		m_ButtonOverlayList[iButtonState]->scale.Tween(1.0f, 1.0f, 0.1f, HyTween::QuadOut);
 	}
 	else
 	{
-		float fRemainingDur = m_ButtonOverlays[m_eOldBallPos].scale.GetAnimRemainingDuration();
-		m_ButtonOverlays[m_eOldBallPos].scale.Tween(0.8f, 0.8f, 0.1f, HyTween::QuadOut, fRemainingDur);
-		m_ButtonOverlays[m_eOldBallPos].alpha.Tween(0.0f, 0.1f, HyTween::Linear, fRemainingDur, [](IHyNode *pThis) { pThis->SetVisible(false); });
+		float fRemainingDur = m_ButtonOverlayList[iButtonState]->scale.GetAnimRemainingDuration();
+		m_ButtonOverlayList[iButtonState]->scale.Tween(0.8f, 0.8f, 0.1f, HyTween::QuadOut, fRemainingDur);
+		m_ButtonOverlayList[iButtonState]->alpha.Tween(0.0f, 0.1f, HyTween::Linear, fRemainingDur,
+			[this](IHyNode *pThis)
+			{
+				m_NonPressedButtons.ChildAppend(*static_cast<HySprite2d *>(pThis));
+			});
 	}
 }
 

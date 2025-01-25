@@ -4,8 +4,7 @@
 #include "pch.h"
 #include "IController.h"
 #include "Dpad.h"
-
-#include "../../lib/NESController/pch.h"
+#include "SerialPort.h"
 
 #define NESCONTROLLER_BUFFER_LENGTH 255
 

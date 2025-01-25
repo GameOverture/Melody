@@ -3,7 +3,7 @@ project(Melody)
 
 set(REL_PROJ_PATH "../../")
 set(REL_DATA_DIR "../../data")
-set(REL_HARMONY_DIR "../../../HarmonyEngine")
+set(REL_HARMONY_DIR "../../../../../LG/_GameFramework/HarmonyEngine")
 set(EXE_OUTPUT_NAME "Melody")
 
 set(GAME_SRCFILES
@@ -63,7 +63,9 @@ set(GAME_SRCFILES
 	"Components/LowerThird/LowerThird.cpp"
 	"Components/LowerThird/LowerThird.h"
 	"Compositorium.cpp"
-	"Compositorium.h")
+	"Compositorium.h"
+	"Components/InputViewer/Controllers/SerialPort.cpp"
+	"Components/InputViewer/Controllers/SerialPort.h")
 
 set(GAME_INCLUDE_DIRS "")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}")
@@ -201,10 +203,6 @@ endif()
 
 add_subdirectory("${REL_HARMONY_DIR}/Engine" "HyEngine")
 
-add_subdirectory("../../lib/NESController" "NESController")
-set_target_properties("NESController" PROPERTIES FOLDER "Melody Libs")
-
-
 add_executable(${PROJECT_NAME} WIN32 ${GAME_SRCFILES})
 set_target_properties(${PROJECT_NAME} PROPERTIES
 	CXX_STANDARD 17
@@ -216,7 +214,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE "$<BUILD_INTERFACE:${GAME_INC
 if(NOT "${CMAKE_SYSTEM_NAME}" STREQUAL "Emscripten")
 	target_precompile_headers(${PROJECT_NAME} PRIVATE "pch.h")
 endif()
-target_link_libraries(${PROJECT_NAME} PUBLIC HyEngine "NESController" )
+target_link_libraries(${PROJECT_NAME} PUBLIC HyEngine )
 
 
 if(TARGET uninstall)

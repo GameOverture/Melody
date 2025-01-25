@@ -63,12 +63,14 @@ class Dpad : public HyEntity2d
 		}
 	};
 	// Joystick
-	std::deque<GatePath *>		m_PathList;
-	HySprite2d					m_Gate;
-	HySprite2d					m_BallFollow;
-	HySprite2d					m_Ball;
-	HySprite2d					m_ButtonOverlays[NUM_JSGATES];
-	JSGatePoint					m_eOldBallPos;
+	std::deque<GatePath *>			m_PathList;
+	HySprite2d						m_Gate;
+	HySprite2d						m_BallFollow;
+	HyEntityWrapper2d<HySprite2d>	m_Ball;
+	HyEntity2d						m_NonPressedButtons; // This is a hidden entity that contains all the buttons that are not pressed. Otherwise they are attached to m_Ball
+	std::vector<HySprite2d *>		m_ButtonOverlayList;
+	JSGatePoint						m_eOldBallPos;
+	
 
 public:
 	Dpad(const HyNodePath &gatePath, const HyNodePath &pressPath, const HyNodePath &buttonsPath, float fOrthoDist, float fDiagDist, HyColor pathColor, float fPathRadius, HyEntity2d *pParent = nullptr);

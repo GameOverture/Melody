@@ -570,6 +570,26 @@
             "filter": "",
             "itemType": "Header",
             "name": "Compositorium.h"
+        },
+        {
+            "assetUUID": "e9f8ba3c-d2cc-496d-8b63-509a47c29bd0",
+            "bankId": 0,
+            "baseClass": "",
+            "checksum": 3718500059,
+            "errors": 0,
+            "filter": "Components/InputViewer/Controllers",
+            "itemType": "Source",
+            "name": "SerialPort.cpp"
+        },
+        {
+            "assetUUID": "86cb4b32-6134-43e3-8a02-80ffcf358d09",
+            "bankId": 0,
+            "baseClass": "",
+            "checksum": 2437541503,
+            "errors": 0,
+            "filter": "Components/InputViewer/Controllers",
+            "itemType": "Header",
+            "name": "SerialPort.h"
         }
     ],
     "banks": [
@@ -577,11 +597,6 @@
             "EmscriptenCcall": "",
             "OutputName": "Melody",
             "SrcDepends": [
-                {
-                    "Options": "",
-                    "ProjectName": "NESController",
-                    "RelPath": "../../lib/NESController"
-                }
             ],
             "UseIcu": false,
             "UseSdl2": false,
