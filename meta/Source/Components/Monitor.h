@@ -6,19 +6,18 @@
 
 #define SHADOW_ALPHA 0.42f
 
+enum MonitorChannel
+{
+	MONITORCHANNEL_NoSignal = 0,
+	MONITORCHANNEL_ObsFull,
+	//MONITORCHANNEL_ObsPartial,
+	MONITORCHANNEL_Brb,
+
+	NUM_MONITORCHANNELS
+};
+
 class Monitor : public IComponent
 {
-	HyCheckBox			m_CtrlPanel_CheckBox;
-
-	enum MonitorChannel
-	{
-		MONITORCHANNEL_NoSignal = 0,
-		MONITORCHANNEL_ObsFull,
-		MONITORCHANNEL_ObsPartial,
-		MONITORCHANNEL_Brb,
-
-		NUM_MONITORCHANNELS
-	};
 	HyRadioButton		m_CtrlPanel_radChannel[NUM_MONITORCHANNELS];
 	HyButtonGroup		m_BtnGrp;
 	int32				m_iChannelIndex;
@@ -49,6 +48,8 @@ public:
 	Monitor(HyEntity2d *pParent = nullptr);
 	virtual ~Monitor();
 
+	void SetChannel(MonitorChannel eChannel);
+
 	HySprite2d &GetShadow();
 
 	virtual void PopulateCtrlPanel(CtrlPanel &ctrlPanel) override;
@@ -61,7 +62,7 @@ public:
 protected:
 	virtual void OnUpdate() override;
 
-	void SetChannel(int iChannelIndex);
+	void OnChannelChange(int iChannelIndex);
 };
 
 #endif // Monitor_h__

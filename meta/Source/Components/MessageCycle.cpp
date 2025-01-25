@@ -8,7 +8,6 @@ MessageCycle::MessageCycle(Monitor &monitorRef, HyEntity2d *pParent /*= nullptr*
 	m_MonitorRef(monitorRef),
 	m_pCtrlPanel(nullptr),
 	m_fXPos(0.0f),
-	m_CtrlPanel_CheckBox(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
 	m_CtrlPanel_LineEdit(HyPanelInit(225, 50, 2, HyColor::Blue), HyNodePath("", "CtrlPanel"), this),
 	m_CtrlPanel_AddBtn(HyPanelInit(50, 50, 2, HyColor::Green), HyNodePath("", "CtrlPanel"), this),
 	m_CtrlPanel_radLong(HyPanelInit(24, 24, 2), HyNodePath("", "CtrlPanel"), this),
@@ -34,27 +33,7 @@ MessageCycle::MessageCycle(Monitor &monitorRef, HyEntity2d *pParent /*= nullptr*
 	m_CtrlPanel_AddBtn.SetText("ADD");
 	m_CtrlPanel_AddBtn.SetButtonClickedCallback([this](HyButton *pThis)
 		{
-			Message *pMessage = HY_NEW Message(m_CtrlPanel_radLong.IsChecked());
-			
-			pMessage->m_Message.SetText(m_CtrlPanel_LineEdit.GetUtf8String());
-			m_CtrlPanel_LineEdit.SetText("");
-
-			pMessage->m_Remove.SetText("*");
-			pMessage->m_Remove.SetButtonClickedCallback(
-				[this, pMessage](HyButton *pThis)
-				{
-					OnRemoveMessage(pMessage);
-				});
-
-			pMessage->m_hLayout = m_pCtrlPanel->InsertLayout(HYORIENT_Horizontal);
-			m_pCtrlPanel->InsertWidget(pMessage->m_Message, pMessage->m_hLayout);
-			m_pCtrlPanel->InsertWidget(pMessage->m_Remove, pMessage->m_hLayout);
-			m_pCtrlPanel->InsertSpacer(HYSIZEPOLICY_Expanding, 0, pMessage->m_hLayout);
-
-			m_pCtrlPanel->Load();
-
-			m_MessageList.push_back(pMessage);
-			OnNextMsg();
+			AddMessage(m_CtrlPanel_LineEdit.GetUtf8String(), m_CtrlPanel_radLong.IsChecked());
 		});
 
 
@@ -77,7 +56,54 @@ MessageCycle::MessageCycle(Monitor &monitorRef, HyEntity2d *pParent /*= nullptr*
 void MessageCycle::SetXPosOffset(float fXPosOffset)
 {
 	m_fXPos = HyEngine::Window(0).GetWidthF(0.5f) + fXPosOffset;
-	pos.Set(m_fXPos, pos.GetAnimFloat(1).GetAnimDestination());
+	pos.Tween(m_fXPos, pos.GetAnimFloat(1).GetAnimDestination(), 2.5f, HyTween::QuadInOut);
+}
+
+void MessageCycle::AddMessage(const std::string &sMessage, bool bLongDur)
+{
+	Message *pMessage = HY_NEW Message(bLongDur);
+
+	pMessage->m_Message.SetText(sMessage);
+	m_CtrlPanel_LineEdit.SetText("");
+
+	pMessage->m_Remove.SetText("*");
+	pMessage->m_Remove.SetButtonClickedCallback(
+		[this, pMessage](HyButton *pThis)
+		{
+			OnRemoveMessage(pMessage);
+		});
+
+	pMessage->m_hLayout = m_pCtrlPanel->InsertLayout(HYORIENT_Horizontal);
+	m_pCtrlPanel->InsertWidget(pMessage->m_Message, pMessage->m_hLayout);
+	m_pCtrlPanel->InsertWidget(pMessage->m_Remove, pMessage->m_hLayout);
+	m_pCtrlPanel->InsertSpacer(HYSIZEPOLICY_Expanding, 0, pMessage->m_hLayout);
+
+	m_pCtrlPanel->Load();
+
+	m_MessageList.push_back(pMessage);
+	OnNextMsg();
+}
+
+void MessageCycle::RemoveMessage(const std::string &sMessage)
+{
+	Message *pMessage = nullptr;
+	for(auto pMsg : m_MessageList)
+	{
+		if(pMsg->m_Message.GetUtf8String() == sMessage)
+		{
+			pMessage = pMsg;
+			break;
+		}
+	}
+	if(pMessage)
+		OnRemoveMessage(pMessage);
+}
+
+void MessageCycle::ClearMessages()
+{
+	for(auto pMessage : m_MessageList)
+		m_DeleteList.push_back(pMessage);
+	m_MessageList.clear();
 }
 
 /*virtual*/ void MessageCycle::PopulateCtrlPanel(CtrlPanel &ctrlPanel) /*override*/

@@ -7,7 +7,6 @@
 LiveSplit::LiveSplit(Monitor &monitorRef, HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_LiveSplit, pParent),
 	m_MonitorRef(monitorRef),
-	m_CtrlPanel_CheckBox(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
 	m_LiveSplitMask(this)
 {
 	m_CtrlPanel_CheckBox.SetText("LiveSplit");

@@ -39,6 +39,13 @@ class Melody : public HyEngine
 	NowPlaying		m_NowPlaying;
 	HeartBeat		m_HeartBeat;
 
+	// Presets
+	HyButton		m_PresetStartingBtn;
+	HyButton		m_PresetLiveBtn;
+	HyButton		m_PresetBrbOnBtn;
+	HyButton		m_PresetBrbOffBtn;
+	HyButton		m_PresetEndingBtn;
+
 	// Debug
 	//HyPrimitive2d	m_DebugRetroCaptureArea;
 

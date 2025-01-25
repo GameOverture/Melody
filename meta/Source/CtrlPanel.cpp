@@ -4,9 +4,9 @@
 #include "Crt.h"
 #include "MessageCycle.h"
 
-CtrlPanel::CtrlPanel(Crt &crtRef, HyEntity2d *pParent /*= nullptr*/) :
+CtrlPanel::CtrlPanel(HyEntity2d *pParent /*= nullptr*/) :
 	HyUiContainer(HYORIENT_Vertical, HyPanelInit(), pParent),
-	m_CrtRef(crtRef),
+	m_pCrtRef(nullptr),
 	m_btnVolume_Down(HyPanelInit(120, 50, 2), HyNodePath("", "CtrlPanel"), this),
 	m_btnVolume_Up(HyPanelInit(120, 50, 2), HyNodePath("", "CtrlPanel"), this)
 {
@@ -15,7 +15,7 @@ CtrlPanel::CtrlPanel(Crt &crtRef, HyEntity2d *pParent /*= nullptr*/) :
 	m_btnVolume_Down.SetButtonClickedCallback([this](HyButton *pThis)
 	{
 		HyEngine::Audio().SetGlobalVolume(HyMath::Clamp(HyEngine::Audio().GetGlobalVolume() - 0.05f, 0.0f, 1.0f));
-		m_CrtRef.SetVolume(HyEngine::Audio().GetGlobalVolume());
+		m_pCrtRef->SetVolume(HyEngine::Audio().GetGlobalVolume());
 	});
 
 	m_btnVolume_Up.SetAsBox(HYALIGN_Center);
@@ -23,7 +23,7 @@ CtrlPanel::CtrlPanel(Crt &crtRef, HyEntity2d *pParent /*= nullptr*/) :
 	m_btnVolume_Up.SetButtonClickedCallback([this](HyButton *pThis)
 	{
 		HyEngine::Audio().SetGlobalVolume(HyMath::Clamp(HyEngine::Audio().GetGlobalVolume() + 0.05f, 0.0f, 1.0f));
-		m_CrtRef.SetVolume(HyEngine::Audio().GetGlobalVolume());
+		m_pCrtRef->SetVolume(HyEngine::Audio().GetGlobalVolume());
 	});
 
 	SetSize(HyEngine::Window(1).GetWidth(), HyEngine::Window(1).GetHeight());
@@ -35,4 +35,9 @@ CtrlPanel::CtrlPanel(Crt &crtRef, HyEntity2d *pParent /*= nullptr*/) :
 
 /*virtual*/ CtrlPanel::~CtrlPanel()
 {
+}
+
+void CtrlPanel::SetCrtRef(Crt *pCrtRef)
+{
+	m_pCrtRef = pCrtRef;
 }

@@ -19,7 +19,6 @@ class MessageCycle : public IComponent
 
 	float						m_fXPos;
 
-	HyCheckBox					m_CtrlPanel_CheckBox;
 	HyLineEdit					m_CtrlPanel_LineEdit;
 	HyButton					m_CtrlPanel_AddBtn;
 
@@ -63,6 +62,10 @@ public:
 	virtual ~MessageCycle();
 
 	void SetXPosOffset(float fXPos);
+
+	void AddMessage(const std::string &sMessage, bool bLongDur);
+	void RemoveMessage(const std::string &sMessage);
+	void ClearMessages();
 
 	virtual void PopulateCtrlPanel(CtrlPanel &ctrlPanel) override;
 

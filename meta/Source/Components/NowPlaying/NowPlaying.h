@@ -6,7 +6,6 @@
 
 class NowPlaying : public IComponent
 {
-	HyCheckBox						m_CtrlPanel_CheckBox;
 	HyButton						m_CtrlPanel_BrowseBtn;
 	HyCheckBox						m_CtrlPanel_StopwatchCheckBox;
 	HyButton						m_CtrlPanel_StopwatchResetBtn;
@@ -54,6 +53,8 @@ public:
 	virtual ~NowPlaying();
 
 	virtual void PopulateCtrlPanel(CtrlPanel &ctrlPanel) override;
+
+	void ShowGameTime(bool bShow);
 
 	virtual void Show(float fDuration) override;
 	virtual void Hide(float fDuration) override;

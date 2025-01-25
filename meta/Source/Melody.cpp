@@ -9,16 +9,24 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_pCameraCtrlPanel(HyEngine::Window(1).CreateCamera2d()),
 	m_Compositorium("\\\\IronMountain/Documents/RetroCompositorium/"),
 	m_ColorKeyBg(),
+	m_CtrlPanel(),
 	m_VgMusic(),
 	m_Monitor(),
 	m_LiveSplit(m_Monitor),
 	m_MessageCycle(m_Monitor),
 	m_InputViewer(),
 	m_Crt(m_VgMusic, m_MessageCycle, m_InputViewer),
-	m_CtrlPanel(m_Crt)
+	m_NowPlaying(),
+	m_HeartBeat(),
+	m_PresetStartingBtn(HyPanelInit(64, 32, 2), HyNodePath("", "CtrlPanel")),
+	m_PresetLiveBtn(HyPanelInit(64, 32, 2), HyNodePath("", "CtrlPanel")),
+	m_PresetBrbOnBtn(HyPanelInit(64, 32, 2), HyNodePath("", "CtrlPanel")),
+	m_PresetBrbOffBtn(HyPanelInit(64, 32, 2), HyNodePath("", "CtrlPanel")),
+	m_PresetEndingBtn(HyPanelInit(64, 32, 2), HyNodePath("", "CtrlPanel"))
 {
 	sm_pThis = this;
 
+	m_CtrlPanel.SetCrtRef(&m_Crt);
 	m_pCameraCtrlPanel->pos.Set(0.0f, 2000.0f);
 
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_LK, HYPAD_A);
@@ -45,17 +53,6 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_ColorKeyBg.pos.Set(0.0f, 0.0f);
 	//m_ColorKeyBg.SetAsBox(312.0f, 139.0f);	// Fight stick camera
 	//m_ColorKeyBg.pos.Set(804.0f, 0.0f);		// Fight stick camera
-
-	//m_LiveSplitMaskStroke.UseWindowCoordinates();
-	//m_LiveSplitMaskStroke.SetWireframe(true);
-	//m_LiveSplitMaskStroke.SetAsBox(MISC_WIDTH + DIVIDER_WIDTH, HyEngine::Window(0).GetHeight());
-	//m_LiveSplitMaskStroke.pos.Set(-(MISC_WIDTH + DIVIDER_WIDTH), 0);
-	//m_LiveSplitMaskStroke.SetTint(HyColor::Black);
-	//m_LiveSplitMaskStroke.SetDisplayOrder(DISPLAYORDER_LiveSplitMask + 1);
-	//m_LiveSplitMaskStroke.SetVisible(false);
-
-	//m_LiveSplitStencil.AddMask(m_LiveSplitMask);
-	//m_LiveSplitStencil.SetAsInvertedMask();
 
 	m_CtrlPanel.UseWindowCoordinates(1);
 
@@ -101,6 +98,75 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_MessageCycle.SetDisplayOrder(DISPLAYORDER_MessageCycle);
 	m_MessageCycle.PopulateCtrlPanel(m_CtrlPanel);
 
+	// Presets
+	m_PresetStartingBtn.SetText("Start");
+	m_PresetStartingBtn.SetButtonClickedCallback(
+		[this](HyButton *pButton)
+		{
+			m_Crt.GetCtrlPanelCheckBox().SetChecked(true);
+			m_Monitor.GetCtrlPanelCheckBox().SetChecked(false);
+			m_NowPlaying.GetCtrlPanelCheckBox().SetChecked(false);
+			m_LiveSplit.GetCtrlPanelCheckBox().SetChecked(false);
+			m_MessageCycle.GetCtrlPanelCheckBox().SetChecked(true);
+			m_MessageCycle.AddMessage("Welcome! Stream Starting Soon", false);
+		}
+	);
+	m_PresetLiveBtn.SetText("Live");
+	m_PresetLiveBtn.SetButtonClickedCallback(
+		[this](HyButton *pButton)
+		{
+			m_Crt.GetCtrlPanelCheckBox().SetChecked(true);
+			m_Monitor.GetCtrlPanelCheckBox().SetChecked(true);
+			m_Monitor.SetChannel(MONITORCHANNEL_ObsFull);
+			m_MessageCycle.RemoveMessage("Welcome! Stream Starting Soon");
+		}
+	);
+	m_PresetBrbOnBtn.SetText("BRB On");
+	m_PresetBrbOnBtn.SetButtonClickedCallback(
+		[this](HyButton *pButton)
+		{
+			m_Crt.GetCtrlPanelCheckBox().SetChecked(true);
+			m_Monitor.GetCtrlPanelCheckBox().SetChecked(true);
+			m_Monitor.SetChannel(MONITORCHANNEL_Brb);
+			m_NowPlaying.ShowGameTime(false);
+			m_MessageCycle.GetCtrlPanelCheckBox().SetChecked(true);
+			m_MessageCycle.AddMessage("BRB 5 Minutes!", false);
+		}
+	);
+	m_PresetBrbOffBtn.SetText("BRB Off");
+	m_PresetBrbOffBtn.SetButtonClickedCallback(
+		[this](HyButton *pButton)
+		{
+			m_Crt.GetCtrlPanelCheckBox().SetChecked(true);
+			m_Monitor.GetCtrlPanelCheckBox().SetChecked(true);
+			m_Monitor.SetChannel(MONITORCHANNEL_ObsFull);
+			m_MessageCycle.RemoveMessage("BRB 5 Minutes!");
+		}
+	);
+	m_PresetEndingBtn.SetText("End");
+	m_PresetEndingBtn.SetButtonClickedCallback(
+		[this](HyButton *pButton)
+		{
+			m_Crt.GetCtrlPanelCheckBox().SetChecked(true);
+			m_Monitor.GetCtrlPanelCheckBox().SetChecked(false);
+			m_NowPlaying.GetCtrlPanelCheckBox().SetChecked(false);
+			m_LiveSplit.GetCtrlPanelCheckBox().SetChecked(false);
+			m_MessageCycle.ClearMessages();
+			m_MessageCycle.GetCtrlPanelCheckBox().SetChecked(true);
+			m_MessageCycle.AddMessage("Stream Ending! Thanks for watching", true);
+		}
+	);
+
+	HyLayoutHandle hRow = m_CtrlPanel.InsertLayout(HYORIENT_Horizontal);
+	m_CtrlPanel.InsertWidget(m_PresetBrbOnBtn, hRow);
+	m_CtrlPanel.InsertWidget(m_PresetBrbOffBtn, hRow);
+	m_CtrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
+	HyLayoutHandle hRow2 = m_CtrlPanel.InsertLayout(HYORIENT_Horizontal);
+	m_CtrlPanel.InsertWidget(m_PresetStartingBtn, hRow2);
+	m_CtrlPanel.InsertWidget(m_PresetLiveBtn, hRow2);
+	m_CtrlPanel.InsertWidget(m_PresetEndingBtn, hRow2);
+	m_CtrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow2);
+
 	m_CtrlPanel.Load();
 
 	//m_DebugRetroCaptureArea.UseWindowCoordinates();
@@ -141,12 +207,16 @@ Melody::~Melody()
 			HyEngine::Window().GetCamera2d(0)->pos.Tween(CAMERA_DIVIDER_POS, 1.5f, HyTween::QuadInOut);
 			HyEngine::Window().GetCamera2d(0)->scale.Tween(CAMERA_DIVIDER_SCALE, 1.5f, HyTween::QuadInOut);
 			HyEngine::Window().GetCamera2d(0)->SetTag(CAMTAG_Divider);
+
+			sm_pThis->m_MessageCycle.SetXPosOffset(MESSAGECYCLE_POS_X);
 		}
 		else
 		{
 			HyEngine::Window().GetCamera2d(0)->pos.Tween(CAMERA_CENTER_POS, 1.5f, HyTween::QuadInOut);
 			HyEngine::Window().GetCamera2d(0)->scale.Tween(CAMERA_CENTER_SCALE, 1.5f, HyTween::QuadInOut);
 			HyEngine::Window().GetCamera2d(0)->SetTag(CAMTAG_Center);
+
+			sm_pThis->m_MessageCycle.SetXPosOffset(0.0f);
 		}
 	}
 }

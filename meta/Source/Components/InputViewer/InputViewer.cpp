@@ -11,7 +11,6 @@
 
 InputViewer::InputViewer(HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_InputViewer, pParent),
-	m_CtrlPanel_CheckBox(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
 	m_eActiveController(INPUTCONTROLLER_StreetFighter),
 	m_bShowRetro(false)
 {

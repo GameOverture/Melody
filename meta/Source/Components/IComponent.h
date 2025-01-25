@@ -7,11 +7,15 @@ class CtrlPanel;
 
 class IComponent : public HyEntity2d
 {
+protected:
 	const ComponentType		m_eCOMPONENT_TYPE;
+	HyCheckBox				m_CtrlPanel_CheckBox;
 
 public:
 	IComponent(ComponentType eType, HyEntity2d *pParent = nullptr);
 	virtual ~IComponent();
+
+	HyCheckBox &GetCtrlPanelCheckBox();
 
 	ComponentType GetComponentType() const;
 	

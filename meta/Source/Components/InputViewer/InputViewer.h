@@ -7,7 +7,6 @@
 
 class InputViewer : public IComponent
 {
-	HyCheckBox				m_CtrlPanel_CheckBox;
 	HyRadioButton			m_CtrlPanel_radController[NUM_INPUTCONTROLLERS];
 	HyButtonGroup			m_BtnGrp;
 

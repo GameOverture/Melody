@@ -4,12 +4,18 @@
 
 IComponent::IComponent(ComponentType eType, HyEntity2d *pParent /*= nullptr*/) :
 	HyEntity2d(pParent),
-	m_eCOMPONENT_TYPE(eType)
+	m_eCOMPONENT_TYPE(eType),
+	m_CtrlPanel_CheckBox(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel"))
 {
 }
 
 /*virtual*/ IComponent::~IComponent()
 {
+}
+
+HyCheckBox &IComponent::GetCtrlPanelCheckBox()
+{
+	return m_CtrlPanel_CheckBox;
 }
 
 ComponentType IComponent::GetComponentType() const

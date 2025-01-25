@@ -10,8 +10,6 @@ class LiveSplit : public IComponent
 {
 	Monitor &			m_MonitorRef;
 
-	HyCheckBox			m_CtrlPanel_CheckBox;
-
 	HyPrimitive2d		m_LiveSplitMask;
 
 public:

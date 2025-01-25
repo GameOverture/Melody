@@ -10,7 +10,6 @@
 
 Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_Brb, pParent),
-	m_CtrlPanel_CheckBox(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
 	m_iChannelIndex(MONITORCHANNEL_NoSignal),
 	m_fChannelShowTime(0.0f),
 	m_eMonitorState(MONITORSTATE_Idle),
@@ -40,15 +39,15 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 		m_CtrlPanel_radChannel[iChannelIndex].SetCheckedChangedCallback(
 			[this](HyRadioButton *pRadio)
 			{
-				SetChannel(pRadio->GetTag());
+				OnChannelChange(pRadio->GetTag());
 			});
 
 		m_BtnGrp.AddButton(m_CtrlPanel_radChannel[iChannelIndex]);
 	}
 	m_CtrlPanel_radChannel[MONITORCHANNEL_NoSignal].SetChecked(true);
 	m_CtrlPanel_radChannel[MONITORCHANNEL_NoSignal].SetText("Null");
-	m_CtrlPanel_radChannel[MONITORCHANNEL_ObsFull].SetText("Full");
-	m_CtrlPanel_radChannel[MONITORCHANNEL_ObsPartial].SetText("Partial");
+	m_CtrlPanel_radChannel[MONITORCHANNEL_ObsFull].SetText("CAMS");
+	//m_CtrlPanel_radChannel[MONITORCHANNEL_ObsPartial].SetText("Partial");
 	m_CtrlPanel_radChannel[MONITORCHANNEL_Brb].SetText("BRB");
 
 	m_ChannelText.Init("CRT", "Volume", this);
@@ -86,6 +85,11 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 {
 }
 
+void Monitor::SetChannel(MonitorChannel eChannel)
+{
+	m_CtrlPanel_radChannel[eChannel].SetChecked(true);
+}
+
 HySprite2d &Monitor::GetShadow()
 {
 	return m_Shadow;
@@ -104,7 +108,7 @@ HySprite2d &Monitor::GetShadow()
 
 /*virtual*/ void Monitor::Show(float fDuration) /*override*/
 {
-	SetChannel(MONITORCHANNEL_NoSignal);
+	OnChannelChange(MONITORCHANNEL_NoSignal);
 	SetVisible(true);
 	scale.Set(0.5f, 0.5f);
 	scale.Tween(1.0f, 1.0f, fDuration * 2.0f, HyTween::QuadIn);
@@ -117,7 +121,7 @@ HySprite2d &Monitor::GetShadow()
 			{
 				if(m_CtrlPanel_radChannel[iChn].IsChecked())
 				{
-					SetChannel(static_cast<MonitorChannel>(iChn));
+					OnChannelChange(static_cast<MonitorChannel>(iChn));
 					break;
 				}
 			}
@@ -127,7 +131,7 @@ HySprite2d &Monitor::GetShadow()
 
 /*virtual*/ void Monitor::Hide(float fDuration) /*override*/
 {
-	SetChannel(MONITORCHANNEL_NoSignal);
+	OnChannelChange(MONITORCHANNEL_NoSignal);
 	//IComponent::Hide(fDuration);
 	rot.Tween(25.0f, fDuration, HyTween::QuadInOut);
 	pos.Tween(-MISC_WIDTH - 100, static_cast<int>(pos.GetY()), fDuration, HyTween::QuadInOut, 0.0f,
@@ -168,7 +172,7 @@ bool Monitor::IsBrb() const
 		{
 		case MONITORCHANNEL_NoSignal:
 		case MONITORCHANNEL_ObsFull:
-		case MONITORCHANNEL_ObsPartial:
+		//case MONITORCHANNEL_ObsPartial:
 			m_Brb.alpha.Tween(0.0f, 1.0f, HyTween::Linear, 0.0f, [](IHyNode *pThis) { pThis->SetVisible(false); });
 			m_ElapsedTimeText.alpha.Tween(0.0f, 1.0f, HyTween::Linear, 0.0f, [](IHyNode *pThis) { pThis->SetVisible(false); });
 			m_ElapsedTime.Pause();
@@ -199,14 +203,14 @@ bool Monitor::IsBrb() const
 			m_ObsMask.SetAsBox(MONITOR_WIDTH, MONITOR_HEIGHT);
 			break;
 
-		case MONITORCHANNEL_ObsPartial: {
-			m_ChannelText.SetText("CAM");
-			m_ObsMask.SetVisible(true);
-			const int32 iCamWidth = 242;
-			const int32 iCamHeight = 234;
-			m_ObsMask.pos.Set(SCREEN_OFFSET_X + MONITOR_WIDTH - iCamWidth, SCREEN_OFFSET_Y + MONITOR_HEIGHT - iCamHeight);
-			m_ObsMask.SetAsBox(iCamWidth, iCamHeight);
-			break; }
+		//case MONITORCHANNEL_ObsPartial: {
+		//	m_ChannelText.SetText("CAM");
+		//	m_ObsMask.SetVisible(true);
+		//	const int32 iCamWidth = 242;
+		//	const int32 iCamHeight = 234;
+		//	m_ObsMask.pos.Set(SCREEN_OFFSET_X + MONITOR_WIDTH - iCamWidth, SCREEN_OFFSET_Y + MONITOR_HEIGHT - iCamHeight);
+		//	m_ObsMask.SetAsBox(iCamWidth, iCamHeight);
+		//	break; }
 
 		case MONITORCHANNEL_Brb:
 			m_ObsMask.SetVisible(false);
@@ -248,7 +252,7 @@ bool Monitor::IsBrb() const
 	}
 }
 
-void Monitor::SetChannel(int iChannelIndex)
+void Monitor::OnChannelChange(int iChannelIndex)
 {
 	iChannelIndex %= NUM_MONITORCHANNELS;
 	iChannelIndex = fabs(iChannelIndex);

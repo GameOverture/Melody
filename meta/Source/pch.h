@@ -38,13 +38,15 @@ enum CameraTag
 
 #define LOWERTHIRD_HEIGHT 172
 
-
 #define CAMERA_CENTER_POS 0.0f, 0.0f
 #define CAMERA_CENTER_SCALE 1.0f, 1.0f
 #define CAMERA_DIVIDER_POS -RETRO_SIDES, 0
 #define CAMERA_DIVIDER_SCALE 1.0f, 1.0f
 #define CAMERA_GAME_POS -293.0f, -13.0f
 #define CAMERA_GAME_SCALE 0.67f, 0.67f
+
+#define MESSAGECYCLE_POS_X 240.0f
+#define MESSAGECYCLE_GAMEPOS_X 325.0f
 
 enum GameConsole
 {

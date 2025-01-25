@@ -3,8 +3,7 @@
 #include "CtrlPanel.h"
 
 HeartBeat::HeartBeat(HyEntity2d *pParent /*= nullptr*/) :
-	IComponent(COMPONENT_HeartBeat, pParent),
-	m_CtrlPanel_CheckBox(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel"))
+	IComponent(COMPONENT_HeartBeat, pParent)
 {
 	m_CtrlPanel_CheckBox.SetText("Heart Beat");
 	m_CtrlPanel_CheckBox.SetCheckedChangedCallback(

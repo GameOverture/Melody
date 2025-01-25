@@ -5,18 +5,13 @@
 #include "InputViewer.h"
 #include "Melody.h"
 
-#define MESSAGECYCLE_POS_X 240.0f
-#define MESSAGECYCLE_GAMEPOS_X 325.0f
-
 #define CRT_SHRINK_AMT 0.01f
 #define CRT_SHUTOFF_DUR 0.2f
-
 
 Crt::Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewerRef, HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_Crt, pParent),
 	m_MsgCycleRef(msgCycleRef),
 	m_InputViewerRef(inputViewerRef),
-	m_CtrlPanel_CheckBox(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
 	m_CtrlPanel_btnGame(HyPanelInit(64, 32, 2), HyNodePath("", "CtrlPanel")),
 	m_CtrlPanel_btnMusic(HyPanelInit(64, 32, 2), HyNodePath("", "CtrlPanel")),
 	m_CtrlPanel_btnStatic(HyPanelInit(64, 32, 2), HyNodePath("", "CtrlPanel")),
@@ -139,8 +134,6 @@ Crt::Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewe
 
 /*virtual*/ void Crt::Show(float fDuration) /*override*/
 {
-	m_MsgCycleRef.SetXPosOffset(MESSAGECYCLE_POS_X);
-
 	alpha.Set(0.0f);
 	alpha.Tween(1.0f, fDuration, HyTween::Linear, 0.0f, [this](IHyNode *pThis) { TogglePower(true); });
 	SetVisible(true);
@@ -148,8 +141,6 @@ Crt::Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewe
 
 /*virtual*/ void Crt::Hide(float fDuration) /*override*/
 {
-	m_MsgCycleRef.SetXPosOffset(0.0f);
-
 	TogglePower(false);
 	alpha.Tween(0.0f, fDuration, HyTween::Linear, CRT_SHUTOFF_DUR + 1.0f, [this](IHyNode *pThis) { pThis->SetVisible(false); });
 }
@@ -312,7 +303,6 @@ void Crt::SetVolume(float fVolume)
 			Melody::RefreshCamera();
 
 			m_InputViewerRef.RetroOutro();
-			m_MsgCycleRef.SetXPosOffset(MESSAGECYCLE_POS_X);
 		}
 
 		for(int i = 0; i < NUM_CHANNELTYPE; ++i)

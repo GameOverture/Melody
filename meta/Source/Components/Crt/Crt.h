@@ -19,7 +19,6 @@ class Crt : public IComponent
 	MessageCycle &			m_MsgCycleRef;
 	InputViewer &			m_InputViewerRef;
 
-	HyCheckBox				m_CtrlPanel_CheckBox;
 	HyButton				m_CtrlPanel_btnGame;
 	HyButton				m_CtrlPanel_btnMusic;
 	HyButton				m_CtrlPanel_btnStatic;

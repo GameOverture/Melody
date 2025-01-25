@@ -16,7 +16,6 @@
 
 NowPlaying::NowPlaying(HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_NowPlaying, pParent),
-	m_CtrlPanel_CheckBox(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
 	m_CtrlPanel_BrowseBtn(HyPanelInit(100, 32, 2), HyNodePath("", "CtrlPanel")),
 	m_CtrlPanel_StopwatchCheckBox(HyPanelInit(25, 25, 2), HyNodePath("", "CtrlPanel")),
 	m_CtrlPanel_StopwatchResetBtn(HyPanelInit(15, 15, 2), HyNodePath("", "CtrlPanel")),
@@ -203,6 +202,11 @@ NowPlaying::NowPlaying(HyEntity2d *pParent /*= nullptr*/) :
 	ctrlPanel.InsertWidget(m_CtrlPanel_StopwatchHrFwd, hTimeRow);
 }
 
+void NowPlaying::ShowGameTime(bool bShow)
+{
+	m_CtrlPanel_StopwatchCheckBox.SetChecked(bShow);
+}
+
 /*virtual*/ void NowPlaying::Show(float fDuration) /*override*/
 {
 	alpha.Set(0.0f);
@@ -214,8 +218,12 @@ NowPlaying::NowPlaying(HyEntity2d *pParent /*= nullptr*/) :
 
 /*virtual*/ void NowPlaying::Hide(float fDuration) /*override*/
 {
-	alpha.Tween(0.0f, fDuration, HyTween::Linear, 0.0f, [this](IHyNode *pThis) { pThis->SetVisible(false); });
-	Melody::RefreshCamera();
+	alpha.Tween(0.0f, fDuration, HyTween::Linear, 0.0f,
+		[this](IHyNode *pThis)
+		{
+			pThis->SetVisible(false);
+			Melody::RefreshCamera();
+		});
 }
 
 /*virtual*/ void NowPlaying::OnUpdate() /*override*/

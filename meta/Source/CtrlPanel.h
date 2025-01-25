@@ -9,14 +9,16 @@ class MessageCycle;
 
 class CtrlPanel : public HyUiContainer
 {
-	Crt &				m_CrtRef;
+	Crt *				m_pCrtRef;
 	
 	HyButton			m_btnVolume_Down;
 	HyButton			m_btnVolume_Up;
 
 public:
-	CtrlPanel(Crt &crtRef, HyEntity2d *pParent = nullptr);
+	CtrlPanel(HyEntity2d *pParent = nullptr);
 	virtual ~CtrlPanel();
+
+	void SetCrtRef(Crt *pCrtRef);
 };
 
 #endif // CtrlPanel_h__
