@@ -28,8 +28,8 @@ set(GAME_SRCFILES
 	"Scenes/Break.h"
 	"Components/Crt/Crt.cpp"
 	"Components/Crt/Crt.h"
-	"Components/MessageCycle.cpp"
-	"Components/MessageCycle.h"
+	"Components/LowerThird/MessageCycle.cpp"
+	"Components/LowerThird/MessageCycle.h"
 	"CtrlPanel.cpp"
 	"CtrlPanel.h"
 	"Components/Crt/Channels/Channel.cpp"
@@ -67,7 +67,9 @@ set(GAME_SRCFILES
 	"Components/InputViewer/Controllers/SerialPort.cpp"
 	"Components/InputViewer/Controllers/SerialPort.h"
 	"Components/LiveSplit.cpp"
-	"Components/LiveSplit.h")
+	"Components/LiveSplit.h"
+	"Components/NowPlaying/Docket.cpp"
+	"Components/NowPlaying/Docket.h")
 
 set(GAME_INCLUDE_DIRS "")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}")

@@ -110,6 +110,7 @@ enum ComponentType
 	COMPONENT_InputViewer,
 	COMPONENT_Crt,
 	COMPONENT_NowPlaying,
+	COMPONENT_Docket,
 	COMPONENT_LiveSplit,
 	COMPONENT_HeartBeat,
 	COMPONENT_Wheel,

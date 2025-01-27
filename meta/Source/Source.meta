@@ -217,7 +217,7 @@
             "baseClass": "",
             "checksum": 394584903,
             "errors": 0,
-            "filter": "Components",
+            "filter": "Components/LowerThird",
             "itemType": "Source",
             "name": "MessageCycle.cpp"
         },
@@ -227,7 +227,7 @@
             "baseClass": "",
             "checksum": 2888347898,
             "errors": 0,
-            "filter": "Components",
+            "filter": "Components/LowerThird",
             "itemType": "Header",
             "name": "MessageCycle.h"
         },
@@ -610,6 +610,26 @@
             "filter": "Components",
             "itemType": "Header",
             "name": "LiveSplit.h"
+        },
+        {
+            "assetUUID": "de4a8090-17aa-4bb3-ab8d-6e2c529a003f",
+            "bankId": 0,
+            "baseClass": "IComponent",
+            "checksum": 3685930591,
+            "errors": 0,
+            "filter": "Components/NowPlaying",
+            "itemType": "Source",
+            "name": "Docket.cpp"
+        },
+        {
+            "assetUUID": "4de604b8-e5c2-40bd-be6f-b3c7c101f937",
+            "bankId": 0,
+            "baseClass": "IComponent",
+            "checksum": 1542769307,
+            "errors": 0,
+            "filter": "Components/NowPlaying",
+            "itemType": "Header",
+            "name": "Docket.h"
         }
     ],
     "banks": [
