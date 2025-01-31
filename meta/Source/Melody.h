@@ -11,6 +11,7 @@
 #include "Wheel.h"
 #include "Crt.h"
 #include "NowPlaying.h"
+#include "Docket.h"
 #include "HeartBeat.h"
 #include "MessageCycle.h"
 
@@ -37,6 +38,7 @@ class Melody : public HyEngine
 	InputViewer		m_InputViewer;
 	Crt				m_Crt;
 	NowPlaying		m_NowPlaying;
+	Docket			m_Docket;
 	HeartBeat		m_HeartBeat;
 
 	// Presets

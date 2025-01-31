@@ -674,14 +674,14 @@
                 -80.6672134399414,
                 0
             ],
-            "CameraZoom": 1,
+            "CameraZoom": 2,
             "UUID": "d493dd32-84f7-4963-aafb-6cfa1ddeb542",
             "assetUUID": "619f407e-c3d6-4f13-8191-c56ca0bcace8",
             "availableGlyphs": {
                 "0-9": true,
                 "A-Z": true,
                 "a-z": true,
-                "additional": "",
+                "additional": "é™®©",
                 "symbols": true
             },
             "guideHorzArray": [

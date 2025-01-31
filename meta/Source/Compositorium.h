@@ -33,39 +33,46 @@ class Compositorium
 	const std::string		m_sMediaPaths[NUM_MEDIATYPES];
 
 	HyJsonDoc				m_MetaDocs[NUM_CONSOLES];
+	HyJsonDoc				m_CollectionDocs[NUM_CONSOLES];
 
 public:
 	Compositorium(std::string sRootPath);
 	virtual ~Compositorium();
 	static Compositorium *Get() { return sm_pInstance; }
 
+	std::string GetRootPath() const;
+
 	std::vector<MusicTrack> GetMusicPlayList(uint32_t uiConsoleFlags);
 	void GetMusicInfo(MusicTrack musicTrack, GameConsole &eConsoleOut, std::string &sGameOut, std::string &sSongOut, std::string &sComposerOut);
 
-	GameObj GetGame(GameConsole eConsole, std::string sGameId);
+	GameInfo GetGame(GameConsole eConsole, std::string sGameId);
 
-	std::string GetGameName(GameObj gameObj);
+	std::string GetGameName(GameInfo gameObj);
 	std::string GetGameName(GameConsole eConsole, std::string sGameId);
-	std::string GetGameDescription(GameObj gameObj);
+	std::string GetGameDescription(GameInfo gameObj);
 	std::string GetGameDescription(GameConsole eConsole, std::string sGameId);
-	std::string GetGameRelease(GameObj gameObj);
-	std::string GetGameDeveloper(GameObj gameObj);
-	std::string GetGamePublisher(GameObj gameObj);
+	std::string GetGameRelease(GameInfo gameObj);
+	std::string GetGameDeveloper(GameInfo gameObj);
+	std::string GetGamePublisher(GameInfo gameObj);
 
-	std::vector<std::string> GetMediaList(GameObj gameObj, MediaType eMediaType);
+	std::vector<std::string> GetMediaList(GameInfo gameObj, MediaType eMediaType);
 	std::vector<std::string> GetMediaList(GameConsole eConsole, std::string sGameId, MediaType eMediaType);
 	std::string GetBestMedia(std::vector<std::string> mediaList);
-	std::string GetBestMedia(GameObj gameObj, MediaType eMediaType);
+	std::string GetBestMedia(GameInfo gameObj, MediaType eMediaType);
 	std::string GetBestMedia(GameConsole eConsole, std::string sGameId, MediaType eMediaType);
 
 	GameConsole GetConsoleFromPath(std::string sPath);
+	std::string GetConsoleName(GameConsole eConsole);
+	GameConsole GetConsoleFromName(std::string sConsoleName);
+
+	std::string OpenHtmlFileDlg();
 
 private:
 	GameConsoleIndex ToIndex(GameConsole eConsole);
 	GameConsole ToEnum(int iIndex);
 	GameConsole ToEnum(GameConsoleIndex eIndex);
 
-	std::vector<std::string> GetEntireMediaList(MediaType eMediaType);
+	//std::vector<std::string> GetEntireMediaList(MediaType eMediaType);
 
 	//std::string GetBaseMediaName(std::string sMediaName);
 };

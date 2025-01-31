@@ -2,7 +2,7 @@
 #include "NowPlaying.h"
 #include "CtrlPanel.h"
 #include "Melody.h"
-#include <commdlg.h>
+
 #include <fstream>
 
 #define NOWPLAYING_BOUNCE_AMT 25
@@ -58,29 +58,12 @@ NowPlaying::NowPlaying(HyEntity2d *pParent /*= nullptr*/) :
 	m_CtrlPanel_BrowseBtn.SetButtonClickedCallback(
 		[this](HyButton *pButton)
 		{
-			// Browse for a file
-			OPENFILENAME ofn;       // Common dialog box structure
-			char szFile[260];       // Buffer for file name
-
-			// Initialize OPENFILENAME
-			ZeroMemory(&ofn, sizeof(ofn));
-			ofn.lStructSize = sizeof(ofn);
-			ofn.hwndOwner = GetConsoleWindow();  // Use the console window as parent
-			ofn.lpstrFile = szFile;
-			ofn.lpstrFile[0] = '\0';
-			ofn.nMaxFile = sizeof(szFile);
-			ofn.lpstrFilter = "HTML files\0*.HTML;*.HTM\0All files\0*.*\0";  // Filter for .html and .htm files
-			ofn.nFilterIndex = 1;
-			ofn.lpstrFileTitle = nullptr;
-			ofn.nMaxFileTitle = 0;
-			ofn.lpstrInitialDir = nullptr;
-			ofn.lpstrTitle = "Select an HTML file";
-			ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+			std::string sHtmlFilePath = Compositorium::Get()->OpenHtmlFileDlg();
 
 			// Display the Open File dialog box
-			if(GetOpenFileName(&ofn) == TRUE)
+			if(sHtmlFilePath.empty() == false)
 			{
-				m_sHtmlFilePath = ofn.lpstrFile;
+				m_sHtmlFilePath = sHtmlFilePath;
 				
 				m_NowPlayingEnt.SetVisible(true);
 				m_NowPlayingEnt.alpha.Set(1.0f);
@@ -257,7 +240,7 @@ void NowPlaying::ShowGameTime(bool bShow)
 			sUrlKey.erase(std::remove_if(sUrlKey.begin(), sUrlKey.end(), [](char c) { return std::isspace(c); }), sUrlKey.end()); // Remove whitespace and newline characters
 			sUrlKey.erase(0, 30); // Remove the first portion of the sUrlKey "https://gamefaqs.gamespot.com/"
 
-			GameObj gameObj = Compositorium::Get()->GetGame(Compositorium::Get()->GetConsoleFromPath(m_sHtmlFilePath), sUrlKey);
+			GameInfo gameObj = Compositorium::Get()->GetGame(Compositorium::Get()->GetConsoleFromPath(m_sHtmlFilePath), sUrlKey);
 
 			m_GameNameText.SetText(Compositorium::Get()->GetGameName(gameObj));
 

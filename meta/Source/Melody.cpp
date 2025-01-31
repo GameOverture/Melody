@@ -77,6 +77,12 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_NowPlaying.SetVisible(false);
 	m_NowPlaying.PopulateCtrlPanel(m_CtrlPanel);
 
+	m_Docket.UseWindowCoordinates();
+	m_Docket.SetDisplayOrder(DISPLAYORDER_Docket);
+	m_Docket.Load();
+	m_Docket.SetVisible(false);
+	m_Docket.PopulateCtrlPanel(m_CtrlPanel);
+
 	m_LiveSplit.UseWindowCoordinates();
 	m_LiveSplit.SetDisplayOrder(DISPLAYORDER_LiveSplitMask);
 	m_LiveSplit.Load();

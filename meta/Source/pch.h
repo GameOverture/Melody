@@ -8,6 +8,7 @@
 #define DISPLAYORDER_AboveMonitor	9999
 #define DISPLAYORDER_Monitor		9000
 #define DISPLAYORDER_LiveSplitMask	999
+#define DISPLAYORDER_Docket			899
 #define DISPLAYORDER_NowPlaying		799
 #define DISPLAYORDER_CrtVolume		99
 #define DISPLAYORDER_Buttons		99
@@ -119,18 +120,65 @@ enum ComponentType
 	NUM_COMPONENTS
 };
 
-class GameObj
+enum StatusFlags
+{
+	STATUS_Blind = 1 << 0,
+	STATUS_Owned = 1 << 1,
+	STATUS_Wishlist = 1 << 2,
+	STATUS_Played = 1 << 3,
+	STATUS_Interested = 1 << 4,
+	STATUS_Evergreen = 1 << 5,
+	STATUS_Beaten = 1 << 6,
+	STATUS_100Percent = 1 << 7,
+	STATUS_Speedrunning = 1 << 8,
+};
+
+class GameInfo
 {
 	friend class Compositorium;
 	GameConsole		m_eConsole;
 	std::string		m_sGameId;
 	HyJsonObj		m_JsonObj;
-	GameObj(GameConsole eConsole, const std::string &sGameId, const HyJsonObj &jsonObj) : m_eConsole(eConsole), m_sGameId(sGameId), m_JsonObj(jsonObj)
-	{ }
-	GameObj() : m_eConsole(CONSOLE_None), m_sGameId(""), m_JsonObj(HyJsonDoc(rapidjson::kObjectType).GetObject())
+	GameInfo(GameConsole eConsole, const std::string &sGameId, const HyJsonObj &jsonObj) : m_eConsole(eConsole), m_sGameId(sGameId), m_JsonObj(jsonObj)
 	{ }
 public:
+	GameInfo() : m_eConsole(CONSOLE_None), m_sGameId(""), m_JsonObj(HyJsonDoc(rapidjson::kObjectType).GetObject())
+	{ }
+	GameInfo &operator=(const GameInfo &copy)
+	{
+		m_eConsole = copy.m_eConsole;
+		m_sGameId = copy.m_sGameId;
+		m_JsonObj = copy.m_JsonObj;
+		return *this;
+	}
 	bool IsValid() const { return m_eConsole != CONSOLE_None && m_sGameId.empty() == false; }
+	GameConsole GetConsole() const { return m_eConsole; }
+	const std::string &GetGameId() const { return m_sGameId; }
+};
+
+struct GameStats
+{
+	GameConsole		m_eConsole;
+	std::string		m_sGameId;
+
+	uint32			m_uiStatusFlags;
+	std::string		m_sDateTime_FirstPlayedOnStream;
+	double			m_dElapsedPlayTime;
+	std::string		m_sDateTime_BeatenOnStream;
+	std::string		m_sNotes;
+
+	void Serialize(HyJsonDoc &jsonDoc)
+	{
+		rapidjson::Value o(rapidjson::kObjectType);
+		o.AddMember("StatusFlags", rapidjson::Value(m_uiStatusFlags), jsonDoc.GetAllocator());  // deep clone contacts (may be with lots of allocations)
+		o.AddMember("FirstPlayedOnStream", rapidjson::Value(m_sDateTime_FirstPlayedOnStream.c_str(), jsonDoc.GetAllocator()), jsonDoc.GetAllocator());
+		o.AddMember("ElapsedPlayTime", rapidjson::Value(m_dElapsedPlayTime), jsonDoc.GetAllocator());
+		o.AddMember("BeatenOnStream", rapidjson::Value(m_sDateTime_BeatenOnStream.c_str(), jsonDoc.GetAllocator()), jsonDoc.GetAllocator());
+		o.AddMember("Notes", rapidjson::Value(m_sNotes.c_str(), jsonDoc.GetAllocator()), jsonDoc.GetAllocator());
+		
+		rapidjson::Value key(m_sGameId.c_str(), jsonDoc.GetAllocator());
+		jsonDoc.AddMember(key, o, jsonDoc.GetAllocator());
+	}
 };
 
 struct MusicTrack
@@ -140,6 +188,5 @@ struct MusicTrack
 	MusicTrack(const std::string &sFilePath, const std::string &sGameId) : m_sFilePath(sFilePath), m_sGameId(sGameId)
 	{ }
 };
-
 
 #endif // pch_h__

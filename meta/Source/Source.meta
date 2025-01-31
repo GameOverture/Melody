@@ -630,6 +630,26 @@
             "filter": "Components/NowPlaying",
             "itemType": "Header",
             "name": "Docket.h"
+        },
+        {
+            "assetUUID": "1a7ba1d1-5e7d-47a7-bd35-461ff8404440",
+            "bankId": 0,
+            "baseClass": "",
+            "checksum": 2984299580,
+            "errors": 0,
+            "filter": "Collection",
+            "itemType": "Source",
+            "name": "Collection.cpp"
+        },
+        {
+            "assetUUID": "f73eff47-5361-434c-859c-f29abf08d9b0",
+            "bankId": 0,
+            "baseClass": "",
+            "checksum": 3642740562,
+            "errors": 0,
+            "filter": "Collection",
+            "itemType": "Header",
+            "name": "Collection.h"
         }
     ],
     "banks": [

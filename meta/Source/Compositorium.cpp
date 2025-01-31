@@ -1,6 +1,9 @@
 #include "pch.h"
 #include "Compositorium.h"
 
+#include <fstream>
+#include <commdlg.h>
+
 Compositorium *Compositorium::sm_pInstance = nullptr;
 
 Compositorium::Compositorium(std::string sRootPath) :
@@ -19,8 +22,22 @@ Compositorium::Compositorium(std::string sRootPath) :
 		std::vector<char> sMetaFileContents;
 		HyIO::ReadTextFile(sMetaFilePath.c_str(), sMetaFileContents);
 		if(m_MetaDocs[i].Parse(sMetaFileContents.data()).HasParseError())
-			HyError("HyAssets::ParseManifestFile - Manifest had JSON parsing error: " << rapidjson::GetParseErrorFunc(m_MetaDocs[i].GetParseError()));
+			HyError("Compositorium::Compositorium - JSON parsing error: " << rapidjson::GetParseErrorFunc(m_MetaDocs[i].GetParseError()));
 		HyAssert(m_MetaDocs[i].IsObject(), "Compositorium - " << m_sConsolePaths[i] << " Meta json file wasn't an object");
+
+		std::string sCollectionFilePath = m_sROOT_PATH + m_sConsolePaths[i] + "collection.json";
+		if(HyIO::FileExists(sCollectionFilePath) == false)
+		{
+			std::ofstream file(sCollectionFilePath);
+			file << "{}";
+			file.close();
+		}
+
+		std::vector<char> sCollectionFileContents;
+		HyIO::ReadTextFile(sCollectionFilePath.c_str(), sCollectionFileContents);
+		if(m_CollectionDocs[i].Parse(sCollectionFileContents.data()).HasParseError())
+			HyError("Compositorium::Compositorium - JSON parsing error: " << rapidjson::GetParseErrorFunc(m_CollectionDocs[i].GetParseError()));
+		HyAssert(m_CollectionDocs[i].IsObject(), "Compositorium - " << m_sConsolePaths[i] << " Collection json file wasn't an object");
 	}
 
 	sm_pInstance = this;
@@ -29,6 +46,11 @@ Compositorium::Compositorium(std::string sRootPath) :
 /*virtual*/ Compositorium::~Compositorium()
 {
 	sm_pInstance = nullptr;
+}
+
+std::string Compositorium::GetRootPath() const
+{
+	return m_sROOT_PATH;
 }
 
 std::vector<MusicTrack> Compositorium::GetMusicPlayList(uint32_t uiConsoleFlags)
@@ -88,19 +110,19 @@ void Compositorium::GetMusicInfo(MusicTrack musicTrack, GameConsole &eConsoleOut
 	sComposerOut = "";
 }
 
-GameObj Compositorium::GetGame(GameConsole eConsole, std::string sGameId)
+GameInfo Compositorium::GetGame(GameConsole eConsole, std::string sGameId)
 {
 	HyJsonObj consoleObj = m_MetaDocs[ToIndex(eConsole)].GetObject();
 	if(consoleObj.HasMember(sGameId.c_str()) == false)
 	{
 		HyLogError("Compositorium::GetGame() - " << sGameId << " not found in " << m_sConsolePaths[ToIndex(eConsole)] << " meta.json");
-		return GameObj();
+		return GameInfo();
 	}
-	GameObj returnObj(eConsole, sGameId, consoleObj[sGameId.c_str()].GetObject());
+	GameInfo returnObj(eConsole, sGameId, consoleObj[sGameId.c_str()].GetObject());
 	return returnObj;
 }
 
-std::string Compositorium::GetGameName(GameObj gameObj)
+std::string Compositorium::GetGameName(GameInfo gameObj)
 {
 	if(gameObj.IsValid() == false)
 		return "";
@@ -111,7 +133,7 @@ std::string Compositorium::GetGameName(GameConsole eConsole, std::string sGameId
 	return GetGameName(GetGame(eConsole, sGameId));
 }
 
-std::string Compositorium::GetGameDescription(GameObj gameObj)
+std::string Compositorium::GetGameDescription(GameInfo gameObj)
 {
 	if(gameObj.IsValid() == false)
 		return "";
@@ -122,28 +144,28 @@ std::string Compositorium::GetGameDescription(GameConsole eConsole, std::string 
 	return GetGameDescription(GetGame(eConsole, sGameId));
 }
 
-std::string Compositorium::GetGameRelease(GameObj gameObj)
+std::string Compositorium::GetGameRelease(GameInfo gameObj)
 {
 	if(gameObj.IsValid() == false)
 		return "";
 	return gameObj.m_JsonObj["release"].GetString();
 }
 
-std::string Compositorium::GetGameDeveloper(GameObj gameObj)
+std::string Compositorium::GetGameDeveloper(GameInfo gameObj)
 {
 	if(gameObj.IsValid() == false)
 		return "";
 	return gameObj.m_JsonObj["developer"].GetString();
 }
 
-std::string Compositorium::GetGamePublisher(GameObj gameObj)
+std::string Compositorium::GetGamePublisher(GameInfo gameObj)
 {
 	if(gameObj.IsValid() == false)
 		return "";
 	return gameObj.m_JsonObj["publisher"].GetString();
 }
 
-std::vector<std::string> Compositorium::GetMediaList(GameObj gameObj, MediaType eMediaType)
+std::vector<std::string> Compositorium::GetMediaList(GameInfo gameObj, MediaType eMediaType)
 {
 	std::string sMediaName;
 	switch(eMediaType)
@@ -203,7 +225,7 @@ std::string Compositorium::GetBestMedia(std::vector<std::string> mediaList)
 		return mediaList[0];
 	return sBestMedia;
 }
-std::string Compositorium::GetBestMedia(GameObj gameObj, MediaType eMediaType)
+std::string Compositorium::GetBestMedia(GameInfo gameObj, MediaType eMediaType)
 {
 	return GetBestMedia(GetMediaList(gameObj, eMediaType));
 }
@@ -223,6 +245,55 @@ GameConsole Compositorium::GetConsoleFromPath(std::string sPath)
 	}
 
 	return CONSOLE_None;
+}
+
+std::string Compositorium::GetConsoleName(GameConsole eConsole)
+{
+	std::string sConsoleName = m_sConsolePaths[ToIndex(eConsole)];
+	if(sConsoleName.back() == '/') // Remove the trailing slash
+		sConsoleName.pop_back();
+	return sConsoleName;
+}
+
+GameConsole Compositorium::GetConsoleFromName(std::string sConsoleName)
+{
+	for(uint32_t i = 0; i < NUM_CONSOLES; ++i)
+	{
+		GameConsole eConsole = ToEnum(i);
+		if(GetConsoleName(eConsole) == sConsoleName)
+			return eConsole;
+	}
+	return CONSOLE_None;
+}
+
+std::string Compositorium::OpenHtmlFileDlg()
+{
+	// Browse for a file
+	OPENFILENAME ofn;       // Common dialog box structure
+	char szFile[260];       // Buffer for file name
+
+	// Initialize OPENFILENAME
+	ZeroMemory(&ofn, sizeof(ofn));
+	ofn.lStructSize = sizeof(ofn);
+	ofn.hwndOwner = GetConsoleWindow();  // Use the console window as parent
+	ofn.lpstrFile = szFile;
+	ofn.lpstrFile[0] = '\0';
+	ofn.nMaxFile = sizeof(szFile);
+	ofn.lpstrFilter = "HTML files\0*.HTML;*.HTM\0All files\0*.*\0";  // Filter for .html and .htm files
+	ofn.nFilterIndex = 1;
+	ofn.lpstrFileTitle = nullptr;
+	ofn.nMaxFileTitle = 0;
+	ofn.lpstrInitialDir = nullptr;
+	ofn.lpstrTitle = "Select an HTML file";
+	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+
+	// Display the Open File dialog box
+	if(GetOpenFileName(&ofn) == TRUE)
+	{
+		return ofn.lpstrFile;
+	}
+
+	return "";
 }
 
 Compositorium::GameConsoleIndex Compositorium::ToIndex(GameConsole eConsole)

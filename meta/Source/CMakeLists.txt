@@ -69,10 +69,13 @@ set(GAME_SRCFILES
 	"Components/LiveSplit.cpp"
 	"Components/LiveSplit.h"
 	"Components/NowPlaying/Docket.cpp"
-	"Components/NowPlaying/Docket.h")
+	"Components/NowPlaying/Docket.h"
+	"Collection/Collection.cpp"
+	"Collection/Collection.h")
 
 set(GAME_INCLUDE_DIRS "")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Collection")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt/Channels")
