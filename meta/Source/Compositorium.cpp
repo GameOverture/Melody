@@ -25,19 +25,19 @@ Compositorium::Compositorium(std::string sRootPath) :
 			HyError("Compositorium::Compositorium - JSON parsing error: " << rapidjson::GetParseErrorFunc(m_MetaDocs[i].GetParseError()));
 		HyAssert(m_MetaDocs[i].IsObject(), "Compositorium - " << m_sConsolePaths[i] << " Meta json file wasn't an object");
 
-		std::string sCollectionFilePath = m_sROOT_PATH + m_sConsolePaths[i] + "collection.json";
-		if(HyIO::FileExists(sCollectionFilePath) == false)
+		std::string sStatFilePath = m_sROOT_PATH + m_sConsolePaths[i] + "stats.json";
+		if(HyIO::FileExists(sStatFilePath) == false)
 		{
-			std::ofstream file(sCollectionFilePath);
+			std::ofstream file(sStatFilePath);
 			file << "{}";
 			file.close();
 		}
 
-		std::vector<char> sCollectionFileContents;
-		HyIO::ReadTextFile(sCollectionFilePath.c_str(), sCollectionFileContents);
-		if(m_CollectionDocs[i].Parse(sCollectionFileContents.data()).HasParseError())
-			HyError("Compositorium::Compositorium - JSON parsing error: " << rapidjson::GetParseErrorFunc(m_CollectionDocs[i].GetParseError()));
-		HyAssert(m_CollectionDocs[i].IsObject(), "Compositorium - " << m_sConsolePaths[i] << " Collection json file wasn't an object");
+		std::vector<char> sStatFileContents;
+		HyIO::ReadTextFile(sStatFilePath.c_str(), sStatFileContents);
+		if(m_StatDocs[i].Parse(sStatFileContents.data()).HasParseError())
+			HyError("Compositorium::Compositorium - JSON parsing error: " << rapidjson::GetParseErrorFunc(m_StatDocs[i].GetParseError()));
+		HyAssert(m_StatDocs[i].IsObject(), "Compositorium - " << m_sConsolePaths[i] << " Stats json file wasn't an object");
 	}
 
 	sm_pInstance = this;
@@ -120,6 +120,15 @@ GameInfo Compositorium::GetGame(GameConsole eConsole, std::string sGameId)
 	}
 	GameInfo returnObj(eConsole, sGameId, consoleObj[sGameId.c_str()].GetObject());
 	return returnObj;
+}
+
+GameStats Compositorium::GetGameStats(GameInfo gameObj)
+{
+	HyJsonObj consoleObj = m_StatDocs[ToIndex(gameObj.m_eConsole)].GetObject();
+	if(consoleObj.HasMember(gameObj.GetGameId().c_str()) == false)
+		return GameStats(gameObj.GetConsole(), gameObj.GetGameId());
+
+	return GameStats(gameObj.GetConsole(), gameObj.GetGameId(), consoleObj[gameObj.GetGameId().c_str()].GetObject());
 }
 
 std::string Compositorium::GetGameName(GameInfo gameObj)

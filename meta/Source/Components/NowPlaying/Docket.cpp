@@ -2,13 +2,15 @@
 #include "Docket.h"
 #include "CtrlPanel.h"
 #include "Compositorium.h"
+#include "Collection.h"
 
 #include <fstream>
 
 Docket::Docket(HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_Docket, pParent),
 	m_CtrlPanel_AddGameBtn(HyPanelInit(20, 20, 2), HyNodePath("", "CtrlPanel")),
-	m_CtrlPanel_SaveBtn(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel"))
+	m_CtrlPanel_SaveBtn(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
+	m_CtrlPanel_ShowCollection(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel"))
 {
 	m_CtrlPanel_CheckBox.SetText("Docket");
 	m_CtrlPanel_CheckBox.SetCheckedChangedCallback(
@@ -34,7 +36,12 @@ Docket::Docket(HyEntity2d *pParent /*= nullptr*/) :
 			SaveFile();
 		});
 
-	
+	m_CtrlPanel_ShowCollection.SetText("Open");
+	m_CtrlPanel_ShowCollection.SetCheckedChangedCallback(
+		[this](HyCheckBox *pCheckBox)
+		{
+			Collection::Get()->SetVisible(pCheckBox->IsChecked());
+		});
 }
 
 /*virtual*/ Docket::~Docket()
@@ -47,6 +54,7 @@ Docket::Docket(HyEntity2d *pParent /*= nullptr*/) :
 	ctrlPanel.InsertWidget(m_CtrlPanel_CheckBox, hRow);
 	ctrlPanel.InsertWidget(m_CtrlPanel_AddGameBtn, hRow);
 	ctrlPanel.InsertWidget(m_CtrlPanel_SaveBtn, hRow);
+	ctrlPanel.InsertWidget(m_CtrlPanel_ShowCollection, hRow);
 	ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
 }
 
@@ -78,7 +86,8 @@ void Docket::LoadFile()
 		std::getline(issLine, sGameId, ';');
 		issLine >> dElapsedTime;
 		//GameStats game;
-		//game.m_eConsole = Compositorium::Get()->GetConsoleFromName(sConsole);
+		GameConsole eConsole = Compositorium::Get()->GetConsoleFromName(sConsole);
+		//std::string sGameId = 
 		//game.m_sGameId = sGameId;
 		//game.m_dElapsedPlayTime = dElapsedTime;
 		//m_GameList.push_back(game);
@@ -90,8 +99,8 @@ void Docket::SaveFile()
 	std::string sFilePath = Compositorium::Get()->GetRootPath() + "Docket.txt";
 
 	std::string sFileContents;
-	for(auto &game : m_GameList)
-		sFileContents += Compositorium::Get()->GetConsoleName(game.m_eConsole) + ";" + game.m_sGameId + ";" + std::to_string(game.m_dElapsedPlayTime) + "\n";
+	//for(auto &game : m_GameList)
+	//	sFileContents += Compositorium::Get()->GetConsoleName(game.m_eConsole) + ";" + game.m_sGameId + ";" + std::to_string(game.m_dElapsedPlayTime) + "\n";
 
 	HyIO::WriteTextFile(sFilePath.c_str(), sFileContents.c_str());
 }
@@ -110,7 +119,10 @@ void Docket::SaveFile()
 		sUrlKey.erase(std::remove_if(sUrlKey.begin(), sUrlKey.end(), [](char c) { return std::isspace(c); }), sUrlKey.end()); // Remove whitespace and newline characters
 		sUrlKey.erase(0, 30); // Remove the first portion of the sUrlKey "https://gamefaqs.gamespot.com/"
 
-		GameInfo obj = Compositorium::Get()->GetGame(Compositorium::Get()->GetConsoleFromPath(m_sHtmlFilePath), sUrlKey);
+		GameInfo gameInfo = Compositorium::Get()->GetGame(Compositorium::Get()->GetConsoleFromPath(m_sHtmlFilePath), sUrlKey);
+		GameStats gameStats = Compositorium::Get()->GetGameStats(gameInfo);
+
+		Collection::Get()->ShowEditPage(gameStats);
 
 		//GameStats game;
 		//game.m_eConsole = obj.GetConsole();

@@ -175,6 +175,13 @@ Melody::Melody(HarmonyInit &initStruct) :
 
 	m_CtrlPanel.Load();
 
+	m_Collection.UseWindowCoordinates();
+	m_Collection.pos.Set(25, 25);
+	m_Collection.SetDisplayOrder(DISPLAYORDER_GameStats);
+	m_Collection.Load();
+	m_Collection.SetVisible(false);
+
+
 	//m_DebugRetroCaptureArea.UseWindowCoordinates();
 	//m_DebugRetroCaptureArea.SetAsBox(1280.0f, 900.0f);
 	//m_DebugRetroCaptureArea.SetWireframe(true);

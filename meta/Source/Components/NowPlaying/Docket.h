@@ -9,6 +9,8 @@ class Docket : public IComponent
 	HyButton				m_CtrlPanel_AddGameBtn;
 	HyButton				m_CtrlPanel_SaveBtn;
 
+	HyCheckBox				m_CtrlPanel_ShowCollection;
+
 	enum ReloadState
 	{
 		RELOADSTATE_Idle,

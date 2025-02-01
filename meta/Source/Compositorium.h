@@ -33,7 +33,7 @@ class Compositorium
 	const std::string		m_sMediaPaths[NUM_MEDIATYPES];
 
 	HyJsonDoc				m_MetaDocs[NUM_CONSOLES];
-	HyJsonDoc				m_CollectionDocs[NUM_CONSOLES];
+	HyJsonDoc				m_StatDocs[NUM_CONSOLES];
 
 public:
 	Compositorium(std::string sRootPath);
@@ -46,6 +46,7 @@ public:
 	void GetMusicInfo(MusicTrack musicTrack, GameConsole &eConsoleOut, std::string &sGameOut, std::string &sSongOut, std::string &sComposerOut);
 
 	GameInfo GetGame(GameConsole eConsole, std::string sGameId);
+	GameStats GetGameStats(GameInfo gameObj);
 
 	std::string GetGameName(GameInfo gameObj);
 	std::string GetGameName(GameConsole eConsole, std::string sGameId);

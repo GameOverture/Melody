@@ -21,6 +21,7 @@ class EditPage : public HyUiContainer
 	HyCheckBox		m_GameSpeedrunningCheckBox;
 
 	HyLabel			m_GameFirstPlayedOnStreamLabel;
+	HyLabel			m_GameFirstPlayedOnStreamValue;
 	HyButton		m_GameFirstPlayedOnStreamBtn;
 	
 	HyLabel			m_GameElapsedPlayTimeLabel;
@@ -31,6 +32,7 @@ class EditPage : public HyUiContainer
 	HyButton		m_GameElapsedPlayTimeHrFwdBtn;
 
 	HyLabel			m_GameBeatenOnStreamLabel;
+	HyLabel			m_GameBeatenOnStreamValue;
 	HyButton		m_GameBeatenOnStreamBtn;
 
 	HyLineEdit		m_NotesLineEdit;
@@ -50,11 +52,16 @@ protected:
 
 class Collection : public HyEntity2d
 {
-	EditPage		m_EditPage;
+	static Collection *	sm_pInstance;
+
+	EditPage			m_EditPage;
 
 public:
-	Collection(HyEntity2d *pParent);
+	Collection(HyEntity2d *pParent = nullptr);
 	virtual ~Collection();
+	static Collection *Get() { return sm_pInstance; }
+
+	void ShowEditPage(GameStats &gameStats);
 };
 
 #endif // Collection_h__

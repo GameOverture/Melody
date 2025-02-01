@@ -3,7 +3,8 @@
 
 #include "HyEngine.h"
 
-#define DISPLAYORDER_DEBUG			99999
+#define DISPLAYORDER_DEBUG			9999999
+#define DISPLAYORDER_GameStats		999999
 #define DISPLAYORDER_MessageCycle	99999
 #define DISPLAYORDER_AboveMonitor	9999
 #define DISPLAYORDER_Monitor		9000
@@ -120,7 +121,7 @@ enum ComponentType
 	NUM_COMPONENTS
 };
 
-enum StatusFlags
+enum StatusFlag
 {
 	STATUS_Blind = 1 << 0,
 	STATUS_Owned = 1 << 1,
@@ -156,8 +157,9 @@ public:
 	const std::string &GetGameId() const { return m_sGameId; }
 };
 
-struct GameStats
+class GameStats
 {
+	friend class Compositorium;
 	GameConsole		m_eConsole;
 	std::string		m_sGameId;
 
@@ -166,6 +168,47 @@ struct GameStats
 	double			m_dElapsedPlayTime;
 	std::string		m_sDateTime_BeatenOnStream;
 	std::string		m_sNotes;
+
+	GameStats(GameConsole eConsole, const std::string &sGameId) : m_eConsole(eConsole), m_sGameId(sGameId)
+	{
+		m_uiStatusFlags = 0;
+		m_uiStatusFlags |= STATUS_Blind;
+		m_dElapsedPlayTime = 0.0;
+	}
+
+	GameStats(GameConsole eConsole, const std::string &sGameId, const HyJsonObj &jsonObj) : 
+		m_eConsole(eConsole),
+		m_sGameId(sGameId)
+	{
+		m_uiStatusFlags = jsonObj["StatusFlags"].GetUint();
+		m_sDateTime_FirstPlayedOnStream = jsonObj["FirstPlayedOnStream"].GetString();
+		m_dElapsedPlayTime = jsonObj["ElapsedPlayTime"].GetDouble();
+		m_sDateTime_BeatenOnStream = jsonObj["BeatenOnStream"].GetString();
+		m_sNotes = jsonObj["Notes"].GetString();
+	}
+public:
+	GameStats() : m_eConsole(CONSOLE_None), m_sGameId(""), m_uiStatusFlags(0), m_dElapsedPlayTime(0.0)
+	{ }
+	GameStats &operator=(const GameStats &copy)
+	{
+		m_eConsole = copy.m_eConsole;
+		m_sGameId = copy.m_sGameId;
+		m_uiStatusFlags = copy.m_uiStatusFlags;
+		m_sDateTime_FirstPlayedOnStream = copy.m_sDateTime_FirstPlayedOnStream;
+		m_dElapsedPlayTime = copy.m_dElapsedPlayTime;
+		m_sDateTime_BeatenOnStream = copy.m_sDateTime_BeatenOnStream;
+		m_sNotes = copy.m_sNotes;
+		return *this;
+	}
+
+	bool IsValid() const { return m_eConsole != CONSOLE_None && m_sGameId.empty() == false; }
+	GameConsole GetConsole() const { return m_eConsole; }
+	const std::string &GetGameId() const { return m_sGameId; }
+	bool IsStatusFlagSet(StatusFlag eFlag) const { return (m_uiStatusFlags & eFlag) != 0; }
+	const std::string &GetFirstPlayedOnStream() const { return m_sDateTime_FirstPlayedOnStream; }
+	double GetElapsedPlayTime() const { return m_dElapsedPlayTime; }
+	const std::string &GetBeatenOnStream() const { return m_sDateTime_BeatenOnStream; }
+	const std::string &GetNotes() const { return m_sNotes; }
 
 	void Serialize(HyJsonDoc &jsonDoc)
 	{
