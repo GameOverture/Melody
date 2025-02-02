@@ -5,14 +5,23 @@
 
 VgMusic::VgMusic(HyEntity2d *pParent /*= nullptr*/) :
 	HyEntity2d(pParent),
-	m_CtrlPanel_PrevBtn(HyPanelInit(95, 50, 2), HyNodePath("", "MainText"), this),
-	m_CtrlPanel_PlayBtn(HyPanelInit(95, 50, 2), HyNodePath("", "MainText"), this),
-	m_CtrlPanel_StopBtn(HyPanelInit(95, 50, 2), HyNodePath("", "MainText"), this),
+	m_CtrlPanel_LoadCheckBox(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel"), this),
+	m_CtrlPanel_PrevBtn(HyPanelInit(75, 32, 2), HyNodePath("", "MainText"), this),
+	m_CtrlPanel_PlayBtn(HyPanelInit(75, 32, 2), HyNodePath("", "MainText"), this),
+	m_CtrlPanel_StopBtn(HyPanelInit(75, 32, 2), HyNodePath("", "MainText"), this),
 	m_iCurrTrackIndex(-1),
 	m_ePlayState(PLAYSTATE_Stopped),
 	m_fpOnTrackChange(nullptr),
 	m_fpOnFadeOut(nullptr)
 {
+	m_CtrlPanel_LoadCheckBox.SetText("VgMusic");
+	m_CtrlPanel_LoadCheckBox.SetCheckedChangedCallback(
+		[this](HyCheckBox *pThis)
+		{
+			if(pThis->IsChecked() && m_MusicTrackList.empty())
+				m_MusicTrackList = Compositorium::Get()->GetMusicPlayList(CONSOLE_NES | CONSOLE_SNES | CONSOLE_Genesis | CONSOLE_N64 | CONSOLE_Dreamcast);
+		});
+
 	m_CtrlPanel_PrevBtn.SetAsBox(HYALIGN_Center);
 	m_CtrlPanel_PrevBtn.SetText("<");
 	m_CtrlPanel_PrevBtn.SetButtonClickedCallback([this](HyButton *pThis)
@@ -33,8 +42,6 @@ VgMusic::VgMusic(HyEntity2d *pParent /*= nullptr*/) :
 		{
 			Stop();
 		});
-
-	m_MusicTrackList = Compositorium::Get()->GetMusicPlayList(CONSOLE_NES | CONSOLE_SNES | CONSOLE_Genesis | CONSOLE_N64 | CONSOLE_Dreamcast);
 }
 
 /*virtual*/ VgMusic::~VgMusic()
@@ -44,6 +51,7 @@ VgMusic::VgMusic(HyEntity2d *pParent /*= nullptr*/) :
 void VgMusic::PopulateCtrlPanel(CtrlPanel &ctrlPanel)
 {
 	HyLayoutHandle hCurRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
+	ctrlPanel.InsertWidget(m_CtrlPanel_LoadCheckBox, hCurRow);
 	ctrlPanel.InsertWidget(m_CtrlPanel_PrevBtn, hCurRow);
 	ctrlPanel.InsertWidget(m_CtrlPanel_PlayBtn, hCurRow);
 	ctrlPanel.InsertWidget(m_CtrlPanel_StopBtn, hCurRow);
@@ -71,6 +79,9 @@ float VgMusic::GetElapsedPlayTime() const
 
 void VgMusic::Prev()
 {
+	if(m_MusicTrackList.empty())
+		return;
+
 	if(m_iCurrTrackIndex > 0)
 		m_iCurrTrackIndex--;
 	else
@@ -81,12 +92,18 @@ void VgMusic::Prev()
 
 void VgMusic::Play()
 {
+	if(m_MusicTrackList.empty())
+		return;
+
 	FadeOutTrack(0.5f);
 	m_ePlayState = PLAYSTATE_FadeOutToNext;
 }
 
 void VgMusic::Stop()
 {
+	if(m_MusicTrackList.empty())
+		return;
+
 	FadeOutTrack(VGMUSIC_STOP_FADEOUT_DUR);
 	m_ePlayState = PLAYSTATE_FadeOutToStop;
 }

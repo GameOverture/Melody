@@ -21,6 +21,7 @@ enum PlayState
 
 class VgMusic : public HyEntity2d
 {
+	HyCheckBox									m_CtrlPanel_LoadCheckBox;
 	HyButton									m_CtrlPanel_PrevBtn;
 	HyButton									m_CtrlPanel_PlayBtn;
 	HyButton									m_CtrlPanel_StopBtn;

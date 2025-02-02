@@ -62,27 +62,32 @@ set(GAME_SRCFILES
 	"Components/NowPlaying/NowPlaying.h"
 	"Components/LowerThird/LowerThird.cpp"
 	"Components/LowerThird/LowerThird.h"
-	"Compositorium.cpp"
-	"Compositorium.h"
+	"Compositorium/Compositorium.cpp"
+	"Compositorium/Compositorium.h"
 	"Components/InputViewer/Controllers/SerialPort.cpp"
 	"Components/InputViewer/Controllers/SerialPort.h"
 	"Components/LiveSplit.cpp"
 	"Components/LiveSplit.h"
 	"Components/NowPlaying/Docket.cpp"
 	"Components/NowPlaying/Docket.h"
-	"Collection/Collection.cpp"
-	"Collection/Collection.h")
+	"Components/GameBrowser/EditPage.cpp"
+	"Components/GameBrowser/EditPage.h"
+	"Components/GameBrowser/BrowsePage.cpp"
+	"Components/GameBrowser/BrowsePage.h"
+	"Components/GameBrowser/GameBrowser.cpp"
+	"Components/GameBrowser/GameBrowser.h")
 
 set(GAME_INCLUDE_DIRS "")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}")
-list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Collection")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt/Channels")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/GameBrowser")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/InputViewer")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/InputViewer/Controllers")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/LowerThird")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/NowPlaying")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Compositorium")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Scenes")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Twitch")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Wheel")

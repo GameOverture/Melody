@@ -197,7 +197,7 @@ bool Monitor::IsBrb() const
 			m_ObsMask.SetVisible(false);
 			break;
 		case MONITORCHANNEL_ObsFull:
-			m_ChannelText.SetText("FULL");
+			m_ChannelText.SetText("CAMS");
 			m_ObsMask.SetVisible(true);
 			m_ObsMask.pos.Set(SCREEN_OFFSET_X, SCREEN_OFFSET_Y);
 			m_ObsMask.SetAsBox(MONITOR_WIDTH, MONITOR_HEIGHT);

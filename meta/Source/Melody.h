@@ -4,9 +4,9 @@
 #include "pch.h"
 #include "CtrlPanel.h"
 #include "Compositorium.h"
-#include "Collection.h"
 #include "InputViewer.h"
 #include "VgMusic.h"
+#include "GameBrowser.h"
 #include "Monitor.h"
 #include "LiveSplit.h"
 #include "Wheel.h"
@@ -26,7 +26,6 @@ class Melody : public HyEngine
 	HyCamera2d *	m_pCameraCtrlPanel;
 
 	Compositorium	m_Compositorium;
-	Collection		m_Collection;
 
 	HyPrimitive2d	m_ColorKeyBg;
 
@@ -34,6 +33,7 @@ class Melody : public HyEngine
 
 	// Components
 	VgMusic			m_VgMusic;
+	GameBrowser		m_GameBrowser;
 	Monitor			m_Monitor;
 	LiveSplit		m_LiveSplit;
 	MessageCycle	m_MessageCycle;

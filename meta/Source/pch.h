@@ -4,7 +4,7 @@
 #include "HyEngine.h"
 
 #define DISPLAYORDER_DEBUG			9999999
-#define DISPLAYORDER_GameStats		999999
+#define DISPLAYORDER_GameBrowser	999999
 #define DISPLAYORDER_MessageCycle	99999
 #define DISPLAYORDER_AboveMonitor	9999
 #define DISPLAYORDER_Monitor		9000
@@ -25,6 +25,9 @@ enum CameraTag
 	CAMTAG_Divider,
 	CAMTAG_Game
 };
+
+#define GAMEBROWSER_WIDTH 1870
+#define GAMEBROWSER_HEIGHT 1030
 
 #define LIVESPLIT_WIDTH 544
 #define LIVESPLIT_HEIGHT 768
@@ -109,6 +112,7 @@ enum InputController
 enum ComponentType
 {
 	COMPONENT_Brb = 0,
+	COMPONENT_GameBrowser,
 	COMPONENT_InputViewer,
 	COMPONENT_Crt,
 	COMPONENT_NowPlaying,
@@ -137,24 +141,55 @@ enum StatusFlag
 class GameInfo
 {
 	friend class Compositorium;
-	GameConsole		m_eConsole;
-	std::string		m_sGameId;
-	HyJsonObj		m_JsonObj;
-	GameInfo(GameConsole eConsole, const std::string &sGameId, const HyJsonObj &jsonObj) : m_eConsole(eConsole), m_sGameId(sGameId), m_JsonObj(jsonObj)
-	{ }
-public:
-	GameInfo() : m_eConsole(CONSOLE_None), m_sGameId(""), m_JsonObj(HyJsonDoc(rapidjson::kObjectType).GetObject())
-	{ }
-	GameInfo &operator=(const GameInfo &copy)
+	GameConsole					m_eConsole;
+	std::string					m_sGameId;
+
+	std::string					m_sName;
+	std::string					m_sDescription;
+	std::string					m_sRelease;
+	std::string					m_sDeveloper;
+	std::string					m_sPublisher;
+	std::vector<std::string>	m_MediaLists[NUM_MEDIATYPES];
+
+	GameInfo(GameConsole eConsole, const std::string &sGameId, const HyJsonObj &jsonObj) : m_eConsole(eConsole), m_sGameId(sGameId)
 	{
-		m_eConsole = copy.m_eConsole;
-		m_sGameId = copy.m_sGameId;
-		m_JsonObj = copy.m_JsonObj;
-		return *this;
+		m_sName = jsonObj["name"].GetString();
+		m_sDescription = jsonObj["description"].GetString();
+		m_sRelease = jsonObj["release"].GetString();
+		m_sDeveloper = jsonObj["developer"].GetString();
+		m_sPublisher = jsonObj["publisher"].GetString();
+		for(int iMediaType = 0; iMediaType < NUM_MEDIATYPES; ++iMediaType)
+		{
+			std::string sMediaName;
+			switch(static_cast<MediaType>(iMediaType))
+			{
+			case MEDIATYPE_Boxarts:		sMediaName = "boxarts"; break;
+			case MEDIATYPE_Logos:		sMediaName = "logos"; break;
+			case MEDIATYPE_Music:		sMediaName = "music"; break;
+			case MEDIATYPE_Snaps:		sMediaName = "snaps"; break;
+			case MEDIATYPE_Titles:		sMediaName = "titles"; break;
+			}
+			if(jsonObj.HasMember(sMediaName.c_str()))
+			{
+				const HyJsonArray &mediaArray = jsonObj[sMediaName.c_str()].GetArray();
+				for(uint32_t i = 0; i < mediaArray.Size(); ++i)
+					m_MediaLists[iMediaType].push_back(std::string(mediaArray[i].GetString()));
+			}
+		}
 	}
+public:
+	GameInfo() : m_eConsole(CONSOLE_None), m_sGameId("")
+	{ }
+
 	bool IsValid() const { return m_eConsole != CONSOLE_None && m_sGameId.empty() == false; }
 	GameConsole GetConsole() const { return m_eConsole; }
 	const std::string &GetGameId() const { return m_sGameId; }
+	const std::string &GetName() const { return m_sName; }
+	const std::string &GetDescription() const { return m_sDescription; }
+	const std::string &GetRelease() const { return m_sRelease; }
+	const std::string &GetDeveloper() const { return m_sDeveloper; }
+	const std::string &GetPublisher() const { return m_sPublisher; }
+	const std::vector<std::string> &GetMediaList(MediaType eType) const { return m_MediaLists[eType]; }
 };
 
 class GameStats

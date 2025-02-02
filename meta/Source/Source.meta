@@ -557,7 +557,7 @@
             "baseClass": "",
             "checksum": 2558663054,
             "errors": 0,
-            "filter": "",
+            "filter": "Compositorium",
             "itemType": "Source",
             "name": "Compositorium.cpp"
         },
@@ -567,7 +567,7 @@
             "baseClass": "",
             "checksum": 3463624167,
             "errors": 0,
-            "filter": "",
+            "filter": "Compositorium",
             "itemType": "Header",
             "name": "Compositorium.h"
         },
@@ -632,24 +632,64 @@
             "name": "Docket.h"
         },
         {
-            "assetUUID": "1a7ba1d1-5e7d-47a7-bd35-461ff8404440",
+            "assetUUID": "203afac5-b611-4d32-b546-03f240684113",
             "bankId": 0,
-            "baseClass": "",
-            "checksum": 2984299580,
+            "baseClass": "HyUiContainer",
+            "checksum": 426727643,
             "errors": 0,
-            "filter": "Collection",
+            "filter": "Components/GameBrowser",
             "itemType": "Source",
-            "name": "Collection.cpp"
+            "name": "EditPage.cpp"
         },
         {
-            "assetUUID": "f73eff47-5361-434c-859c-f29abf08d9b0",
+            "assetUUID": "63d2ec6b-8585-4b80-a072-32f0f598b227",
+            "bankId": 0,
+            "baseClass": "HyUiContainer",
+            "checksum": 712593685,
+            "errors": 0,
+            "filter": "Components/GameBrowser",
+            "itemType": "Header",
+            "name": "EditPage.h"
+        },
+        {
+            "assetUUID": "ceb10747-c24d-4607-a9ad-c0a410a4b47f",
+            "bankId": 0,
+            "baseClass": "HyUiContainer",
+            "checksum": 2552294396,
+            "errors": 0,
+            "filter": "Components/GameBrowser",
+            "itemType": "Source",
+            "name": "BrowsePage.cpp"
+        },
+        {
+            "assetUUID": "79d42c45-6592-44df-91c5-cdf376574138",
+            "bankId": 0,
+            "baseClass": "HyUiContainer",
+            "checksum": 1534183364,
+            "errors": 0,
+            "filter": "Components/GameBrowser",
+            "itemType": "Header",
+            "name": "BrowsePage.h"
+        },
+        {
+            "assetUUID": "f0da74cd-8f28-43e0-8975-ca4aac174c9a",
             "bankId": 0,
             "baseClass": "",
-            "checksum": 3642740562,
+            "checksum": 3849605681,
             "errors": 0,
-            "filter": "Collection",
+            "filter": "Components/GameBrowser",
+            "itemType": "Source",
+            "name": "GameBrowser.cpp"
+        },
+        {
+            "assetUUID": "e28c6f6b-bdc8-4a99-bb1a-601ee0bb30bd",
+            "bankId": 0,
+            "baseClass": "",
+            "checksum": 3483269174,
+            "errors": 0,
+            "filter": "Components/GameBrowser",
             "itemType": "Header",
-            "name": "Collection.h"
+            "name": "GameBrowser.h"
         }
     ],
     "banks": [

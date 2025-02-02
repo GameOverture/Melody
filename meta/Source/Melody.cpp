@@ -11,6 +11,7 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_ColorKeyBg(),
 	m_CtrlPanel(),
 	m_VgMusic(),
+	m_GameBrowser(),
 	m_Monitor(),
 	m_LiveSplit(m_Monitor),
 	m_MessageCycle(m_Monitor),
@@ -59,6 +60,13 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_VgMusic.Load();
 	m_VgMusic.PopulateCtrlPanel(m_CtrlPanel);
 
+	m_GameBrowser.UseWindowCoordinates();
+	m_GameBrowser.Load();
+	m_GameBrowser.SetVisible(false);
+	m_GameBrowser.pos.Set(25, 25);
+	m_GameBrowser.SetDisplayOrder(DISPLAYORDER_GameBrowser);
+	m_GameBrowser.PopulateCtrlPanel(m_CtrlPanel);
+
 	m_Crt.pos.Set(HyEngine::Window(0).GetWidthF(-0.5f), HyEngine::Window(0).GetHeightF(-0.5f));
 	m_Crt.Load();
 	m_Crt.SetVisible(false);
@@ -71,17 +79,17 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_Monitor.pos.Set(-MISC_WIDTH - 100, HyEngine::Window(0).GetHeight() - MISC_HEIGHT);
 	m_Monitor.PopulateCtrlPanel(m_CtrlPanel);
 
-	m_NowPlaying.UseWindowCoordinates();
-	m_NowPlaying.SetDisplayOrder(DISPLAYORDER_NowPlaying);
-	m_NowPlaying.Load();
-	m_NowPlaying.SetVisible(false);
-	m_NowPlaying.PopulateCtrlPanel(m_CtrlPanel);
-
 	m_Docket.UseWindowCoordinates();
 	m_Docket.SetDisplayOrder(DISPLAYORDER_Docket);
 	m_Docket.Load();
 	m_Docket.SetVisible(false);
 	m_Docket.PopulateCtrlPanel(m_CtrlPanel);
+
+	m_NowPlaying.UseWindowCoordinates();
+	m_NowPlaying.SetDisplayOrder(DISPLAYORDER_NowPlaying);
+	m_NowPlaying.Load();
+	m_NowPlaying.SetVisible(false);
+	m_NowPlaying.PopulateCtrlPanel(m_CtrlPanel);
 
 	m_LiveSplit.UseWindowCoordinates();
 	m_LiveSplit.SetDisplayOrder(DISPLAYORDER_LiveSplitMask);
@@ -174,12 +182,6 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_CtrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow2);
 
 	m_CtrlPanel.Load();
-
-	m_Collection.UseWindowCoordinates();
-	m_Collection.pos.Set(25, 25);
-	m_Collection.SetDisplayOrder(DISPLAYORDER_GameStats);
-	m_Collection.Load();
-	m_Collection.SetVisible(false);
 
 
 	//m_DebugRetroCaptureArea.UseWindowCoordinates();

@@ -183,21 +183,30 @@ Music::Music(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
 void Music::InitNextTrack(const MusicTrack &musicTrack)
 {
 	GameConsole eConsole;
-	std::string sGameName, sSongName, sComposerName;
-	Compositorium::Get()->GetMusicInfo(musicTrack, eConsole, sGameName, sSongName, sComposerName);
-	m_TitleText.SetText(sGameName);
+	std::string sSongName, sComposerName;
+	Compositorium::Get()->GetMusicInfo(musicTrack, eConsole, sSongName, sComposerName);
+	
 	m_TrackText.SetText(sSongName);
 	m_ComposerText.SetText(sComposerName);
 
-	std::string sBoxartFile = Compositorium::Get()->GetBestMedia(eConsole, musicTrack.m_sGameId, MEDIATYPE_Boxarts);
+	GameInfo gameInfo = Compositorium::Get()->GetGame(eConsole, musicTrack.m_sGameId);
+
+	m_TitleText.SetText(gameInfo.GetName());
+
+	std::string sMediaPath = Compositorium::Get()->GetMediaPath(gameInfo.GetConsole(), MEDIATYPE_Boxarts);
+	std::string sBoxartFile = Compositorium::Get()->GetBestMedia(gameInfo, MEDIATYPE_Boxarts);
 	if(sBoxartFile.empty() == false)
-		m_BoxArt.Init(sBoxartFile, HyTextureInfo(), this);
-	std::string sTitleFile = Compositorium::Get()->GetBestMedia(eConsole, musicTrack.m_sGameId, MEDIATYPE_Titles);
+		m_BoxArt.Init(sMediaPath + sBoxartFile, HyTextureInfo(), this);
+
+	sMediaPath = Compositorium::Get()->GetMediaPath(gameInfo.GetConsole(), MEDIATYPE_Titles);
+	std::string sTitleFile = Compositorium::Get()->GetBestMedia(gameInfo, MEDIATYPE_Titles);
 	if(sTitleFile.empty() == false)
-		m_Title.Init(sTitleFile, HyTextureInfo(), this);
-	std::string sSnapshotFile = Compositorium::Get()->GetBestMedia(eConsole, musicTrack.m_sGameId, MEDIATYPE_Snaps);
+		m_Title.Init(sMediaPath + sTitleFile, HyTextureInfo(), this);
+
+	sMediaPath = Compositorium::Get()->GetMediaPath(gameInfo.GetConsole(), MEDIATYPE_Snaps);
+	std::string sSnapshotFile = Compositorium::Get()->GetBestMedia(gameInfo, MEDIATYPE_Snaps);
 	if(sSnapshotFile.empty() == false)
-		m_Snapshot.Init(sSnapshotFile, HyTextureInfo(), this);
+		m_Snapshot.Init(sMediaPath + sSnapshotFile, HyTextureInfo(), this);
 
 	m_AudioVisualizer.SetVisible(false);
 	m_NowPlayingSound.SetVisible(false);

@@ -752,12 +752,16 @@
                 "additional": "",
                 "symbols": true
             },
+            "guideHorzArray": [
+            ],
+            "guideVertArray": [
+            ],
             "stateArray": [
                 {
-                    "name": ""
+                    "name": "48pt"
                 },
                 {
-                    "name": ""
+                    "name": "32pt"
                 }
             ]
         }

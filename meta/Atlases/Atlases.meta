@@ -18,8 +18,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 480,
-            "x": 1195,
-            "y": 1811
+            "x": 2164,
+            "y": 2084
         },
         {
             "assetUUID": "6f3069fe-2f2c-47d1-8b2f-00df39c3a19f",
@@ -38,8 +38,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 480,
-            "x": 229,
-            "y": 1911
+            "x": 2638,
+            "y": 1755
         },
         {
             "assetUUID": "ea1b6795-5097-47db-bc00-5a112d4d3f77",
@@ -58,8 +58,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 480,
-            "x": 2161,
-            "y": 1811
+            "x": 0,
+            "y": 1816
         },
         {
             "assetUUID": "47535dfb-ae80-4645-91d1-f2ee5e5e0079",
@@ -78,7 +78,7 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 480,
-            "x": 1681,
+            "x": 1198,
             "y": 2084
         },
         {
@@ -98,8 +98,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 480,
-            "x": 3127,
-            "y": 1755
+            "x": 1189,
+            "y": 1811
         },
         {
             "assetUUID": "6e3cc7dc-9dad-4580-b57e-cfc9265f8af7",
@@ -118,8 +118,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 480,
-            "x": 2644,
-            "y": 1755
+            "x": 3130,
+            "y": 1982
         },
         {
             "assetUUID": "2ee6ac86-fea8-4482-b762-39f9e573a0d5",
@@ -138,8 +138,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 480,
-            "x": 2164,
-            "y": 2084
+            "x": 2155,
+            "y": 1811
         },
         {
             "assetUUID": "dd9b97c3-31e3-48e5-93e8-7c3eacbd92be",
@@ -158,8 +158,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 480,
-            "x": 3613,
-            "y": 1956
+            "x": 2647,
+            "y": 2028
         },
         {
             "assetUUID": "8a9ed63d-0493-4256-848b-c73aa15210f5",
@@ -178,8 +178,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 480,
-            "x": 712,
-            "y": 1911
+            "x": 1672,
+            "y": 1811
         },
         {
             "assetUUID": "e8e6143c-63c5-41a4-9aa7-73dc387bacd2",
@@ -198,8 +198,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 480,
-            "x": 2647,
-            "y": 2028
+            "x": 483,
+            "y": 1911
         },
         {
             "assetUUID": "b9c0328b-e0a9-428a-9009-58aa2c9fd602",
@@ -218,8 +218,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 480,
-            "x": 3130,
-            "y": 2028
+            "x": 3613,
+            "y": 1944
         },
         {
             "assetUUID": "6ffe0adc-5efd-415a-9edb-52cf257d8eb9",
@@ -238,8 +238,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 480,
-            "x": 1678,
-            "y": 1811
+            "x": 1681,
+            "y": 2084
         },
         {
             "assetUUID": "edb4b732-ac7c-45a1-9708-2b1e677fd99f",
@@ -258,8 +258,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 1078,
-            "y": 1447
+            "x": 1191,
+            "y": 1083
         },
         {
             "assetUUID": "a1a5dd9d-5e7e-4566-946a-543d8f2b4c6e",
@@ -278,8 +278,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 1581,
-            "y": 1447
+            "x": 3593,
+            "y": 1338
         },
         {
             "assetUUID": "113c4cba-a919-42ce-8cd3-820480219b4b",
@@ -298,8 +298,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 2197,
-            "y": 1027
+            "x": 1581,
+            "y": 1447
         },
         {
             "assetUUID": "d7f9cd71-cc0d-49c4-b01c-5d0b86b4f616",
@@ -318,8 +318,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 1694,
-            "y": 1083
+            "x": 3090,
+            "y": 1391
         },
         {
             "assetUUID": "ecc8f05d-6132-4954-a91c-21a94d4ee6bd",
@@ -338,7 +338,7 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 185,
+            "x": 688,
             "y": 1083
         },
         {
@@ -358,8 +358,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 688,
-            "y": 1083
+            "x": 2084,
+            "y": 1447
         },
         {
             "assetUUID": "0fe87179-ef36-4fbe-a50f-c23cdb0f52a7",
@@ -378,8 +378,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 3593,
-            "y": 1218
+            "x": 1694,
+            "y": 1083
         },
         {
             "assetUUID": "023f44ce-7c3b-4308-827a-4f7c9c259ab7",
@@ -398,7 +398,7 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 2084,
+            "x": 1078,
             "y": 1447
         },
         {
@@ -418,8 +418,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 2587,
-            "y": 1391
+            "x": 2700,
+            "y": 1027
         },
         {
             "assetUUID": "7daaf8b2-4085-4aee-a484-a75758938abf",
@@ -438,8 +438,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 3090,
-            "y": 1391
+            "x": 185,
+            "y": 1083
         },
         {
             "assetUUID": "60d840c4-e719-406b-b9b4-ecf49833f82d",
@@ -458,7 +458,7 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 2700,
+            "x": 2197,
             "y": 1027
         },
         {
@@ -478,8 +478,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 1191,
-            "y": 1083
+            "x": 2587,
+            "y": 1391
         },
         {
             "assetUUID": "596d0c31-4ab8-471c-acf6-eea95e9319b2",
@@ -498,8 +498,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 71,
-            "x": 3488,
-            "y": 1218
+            "x": 992,
+            "y": 1847
         },
         {
             "assetUUID": "8addb20b-662b-4c57-bc07-da12a71b6dae",
@@ -518,8 +518,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 36,
-            "x": 3444,
-            "y": 605
+            "x": 3280,
+            "y": 897
         },
         {
             "assetUUID": "aea60ff9-c56d-4612-bd53-4f3c6b96b6e8",
@@ -538,8 +538,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 41,
-            "x": 3304,
-            "y": 706
+            "x": 3272,
+            "y": 803
         },
         {
             "assetUUID": "d6e412bf-c32d-4d18-a482-5ec3e5553ccd",
@@ -558,8 +558,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 27,
-            "x": 3356,
-            "y": 893
+            "x": 3270,
+            "y": 1084
         },
         {
             "assetUUID": "32845e60-8c70-40fb-9594-096b8a943c6b",
@@ -578,8 +578,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 40,
-            "x": 3297,
-            "y": 800
+            "x": 142,
+            "y": 1083
         },
         {
             "assetUUID": "03300088-72a9-42cd-b1c0-5aac9f45d693",
@@ -598,8 +598,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 43,
-            "x": 3386,
-            "y": 796
+            "x": 3266,
+            "y": 991
         },
         {
             "assetUUID": "b73d6a91-cf24-49dd-a5d8-a3410366bfb0",
@@ -618,8 +618,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 30,
-            "x": 3232,
-            "y": 706
+            "x": 3325,
+            "y": 605
         },
         {
             "assetUUID": "a6bd701e-5ede-46b8-8d32-69c89f8273b4",
@@ -638,8 +638,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 41,
-            "x": 3348,
-            "y": 702
+            "x": 3228,
+            "y": 800
         },
         {
             "assetUUID": "ee7170c9-2b2f-455e-bc3d-bbfc7ed8f6bc",
@@ -658,8 +658,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 36,
-            "x": 3265,
-            "y": 706
+            "x": 3241,
+            "y": 897
         },
         {
             "assetUUID": "8479233a-1d10-4bec-ac16-7f5389841912",
@@ -678,8 +678,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 41,
-            "x": 3348,
-            "y": 702
+            "x": 3228,
+            "y": 800
         },
         {
             "assetUUID": "681b2127-03c3-4909-b663-bb6140915540",
@@ -698,8 +698,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 33,
-            "x": 3261,
-            "y": 800
+            "x": 60,
+            "y": 1083
         },
         {
             "assetUUID": "0af09390-00b4-4e21-bdf6-fd84883a82c8",
@@ -718,8 +718,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 41,
-            "x": 3392,
-            "y": 699
+            "x": 3319,
+            "y": 897
         },
         {
             "assetUUID": "07a864cc-a5eb-45c9-869f-464e9cde5c5c",
@@ -738,8 +738,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 30,
-            "x": 3247,
-            "y": 893
+            "x": 63,
+            "y": 1176
         },
         {
             "assetUUID": "0a239674-e943-49b6-8ef6-df13891105bb",
@@ -758,8 +758,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 34,
-            "x": 148,
-            "y": 1173
+            "x": 1032,
+            "y": 1758
         },
         {
             "assetUUID": "cbacd5bd-4da0-4301-9611-813a4b32cca1",
@@ -778,8 +778,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 38,
-            "x": 3252,
-            "y": 1207
+            "x": 1066,
+            "y": 1847
         },
         {
             "assetUUID": "60afade3-c464-4c54-a887-c8f21b114d95",
@@ -798,8 +798,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 38,
-            "x": 3277,
-            "y": 1076
+            "x": 3273,
+            "y": 1268
         },
         {
             "assetUUID": "07916529-6636-4982-b8a7-a1656e16b25f",
@@ -818,8 +818,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 28,
-            "x": 3562,
-            "y": 1218
+            "x": 145,
+            "y": 1359
         },
         {
             "assetUUID": "c0f4a63d-1741-4924-ace4-d3557778629b",
@@ -838,8 +838,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 27,
-            "x": 3386,
-            "y": 889
+            "x": 3300,
+            "y": 1084
         },
         {
             "assetUUID": "607e8037-a34e-4b93-9c9b-4b3b49d2637e",
@@ -858,8 +858,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 34,
-            "x": 59,
-            "y": 1262
+            "x": 1152,
+            "y": 1987
         },
         {
             "assetUUID": "2db896d4-d8b8-44e8-88f6-42a2467d88d3",
@@ -878,8 +878,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 26,
-            "x": 3237,
-            "y": 1296
+            "x": 1037,
+            "y": 2019
         },
         {
             "assetUUID": "5a8ada62-f94a-4b0d-9e26-9e5492ed5caa",
@@ -898,8 +898,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 35,
-            "x": 3404,
-            "y": 1253
+            "x": 966,
+            "y": 1935
         },
         {
             "assetUUID": "64ee17fd-1a16-4e5e-bc6c-aa2b0c50cd65",
@@ -918,8 +918,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 43,
-            "x": 3442,
-            "y": 1253
+            "x": 1143,
+            "y": 1900
         },
         {
             "assetUUID": "37ce7453-df88-4046-afc6-75d235f018f4",
@@ -938,8 +938,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 29,
-            "x": 26,
-            "y": 1083
+            "x": 64,
+            "y": 1539
         },
         {
             "assetUUID": "a5e62de0-7878-4789-870f-96110ef2b33c",
@@ -958,8 +958,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 34,
-            "x": 148,
-            "y": 1345
+            "x": 1039,
+            "y": 2101
         },
         {
             "assetUUID": "a4ce1588-b8be-4e6a-aa47-ac0d8f893779",
@@ -978,8 +978,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 30,
-            "x": 63,
-            "y": 1345
+            "x": 1006,
+            "y": 2105
         },
         {
             "assetUUID": "a9d28ce7-8b4b-4459-981a-a1d386dec953",
@@ -998,8 +998,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 28,
-            "x": 0,
-            "y": 1344
+            "x": 1135,
+            "y": 2152
         },
         {
             "assetUUID": "10ecde3f-8eb7-4d20-87ee-1ac2b0af2ace",
@@ -1018,8 +1018,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 32,
-            "x": 3341,
-            "y": 1257
+            "x": 1004,
+            "y": 1935
         },
         {
             "assetUUID": "e55b6a51-6133-443f-8fae-cd3fb7adc561",
@@ -1038,8 +1038,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 34,
-            "x": 107,
-            "y": 1261
+            "x": 966,
+            "y": 2022
         },
         {
             "assetUUID": "c818572b-5a7c-4bae-9d39-985dd6d0e0b1",
@@ -1058,8 +1058,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 25,
-            "x": 3266,
-            "y": 1295
+            "x": 1066,
+            "y": 2019
         },
         {
             "assetUUID": "47293091-fb0e-4e70-8e13-8a796650343d",
@@ -1078,8 +1078,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 29,
-            "x": 31,
-            "y": 1345
+            "x": 974,
+            "y": 2105
         },
         {
             "assetUUID": "60809764-2d4c-4f11-a5ba-3908d6c12f69",
@@ -1098,8 +1098,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 29,
-            "x": 96,
-            "y": 1345
+            "x": 1166,
+            "y": 2149
         },
         {
             "assetUUID": "798ef9bc-a061-444c-be24-bdb23ac30f3f",
@@ -1118,8 +1118,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 32,
-            "x": 3306,
-            "y": 1256
+            "x": 1039,
+            "y": 1935
         },
         {
             "assetUUID": "a60d5a7c-fe5a-4e40-a176-e342f78acf6a",
@@ -1138,8 +1138,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 34,
-            "x": 22,
-            "y": 1261
+            "x": 1115,
+            "y": 1987
         },
         {
             "assetUUID": "be3052d6-c500-413e-ba8b-d6c56c5d31e6",
@@ -1158,8 +1158,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 25,
-            "x": 3565,
-            "y": 1306
+            "x": 1115,
+            "y": 2070
         },
         {
             "assetUUID": "632e90ee-53d8-42d1-ad03-aad893c703ee",
@@ -1178,8 +1178,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 44,
-            "x": 3436,
-            "y": 699
+            "x": 3316,
+            "y": 803
         },
         {
             "assetUUID": "a0af7cb3-a631-4c95-97b0-a5f4fe4c21ab",
@@ -1198,8 +1198,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 52,
-            "x": 3403,
-            "y": 1164
+            "x": 9,
+            "y": 1539
         },
         {
             "assetUUID": "a1b7dcef-dfc9-4169-947e-bea9b14aadc4",
@@ -1218,8 +1218,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 47,
-            "x": 96,
-            "y": 1173
+            "x": 3203,
+            "y": 1303
         },
         {
             "assetUUID": "4a13d71f-60b1-4666-a8f0-fe3a049fb967",
@@ -1238,8 +1238,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 33,
-            "x": 3225,
-            "y": 800
+            "x": 96,
+            "y": 1083
         },
         {
             "assetUUID": "8486b91d-7fc9-44ec-b9b6-d8dff6a80406",
@@ -1258,8 +1258,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 37,
-            "x": 3316,
-            "y": 893
+            "x": 3203,
+            "y": 1120
         },
         {
             "assetUUID": "847f7a77-5689-4acd-b9f8-41c41e724f5f",
@@ -1278,8 +1278,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 46,
-            "x": 3318,
-            "y": 1077
+            "x": 3314,
+            "y": 1268
         },
         {
             "assetUUID": "d9460090-32a9-4463-8448-e7d6963f1f16",
@@ -1298,8 +1298,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 36,
-            "x": 3235,
-            "y": 1118
+            "x": 1032,
+            "y": 1669
         },
         {
             "assetUUID": "3fac8ee5-37a5-4014-a341-f9ccd3e02a02",
@@ -1318,8 +1318,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 30,
-            "x": 3416,
-            "y": 889
+            "x": 3330,
+            "y": 1084
         },
         {
             "assetUUID": "49eef36b-5db1-40c3-9216-80da125bd14d",
@@ -1338,8 +1338,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 25,
-            "x": 3455,
-            "y": 979
+            "x": 96,
+            "y": 1176
         },
         {
             "assetUUID": "8ef3a530-c3f6-46ac-bca5-f28ed120c5c6",
@@ -1358,8 +1358,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 31,
-            "x": 3449,
-            "y": 886
+            "x": 26,
+            "y": 1083
         },
         {
             "assetUUID": "f3263c01-7bf5-49b1-b3dd-c9dc20c2cad0",
@@ -1378,8 +1378,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 43,
-            "x": 3340,
-            "y": 800
+            "x": 3203,
+            "y": 1027
         },
         {
             "assetUUID": "f7119e50-ee15-4795-915e-da88f54614ed",
@@ -1398,8 +1398,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 29,
-            "x": 3203,
-            "y": 1118
+            "x": 26,
+            "y": 1448
         },
         {
             "assetUUID": "4a8678ff-1d24-4a25-9620-de65cc166b0d",
@@ -1418,8 +1418,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 31,
-            "x": 3531,
-            "y": 1306
+            "x": 1143,
+            "y": 2070
         },
         {
             "assetUUID": "6a7a07de-748e-4d5b-8bc1-2e32f80242a0",
@@ -1438,8 +1438,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 35,
-            "x": 147,
-            "y": 1083
+            "x": 20,
+            "y": 1358
         },
         {
             "assetUUID": "5ee01a5b-b529-4786-a6bf-73f34344994a",
@@ -1458,8 +1458,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 38,
-            "x": 144,
-            "y": 1262
+            "x": 1074,
+            "y": 1935
         },
         {
             "assetUUID": "0c66c6ed-4da4-42e3-9978-41bfbea2cba8",
@@ -1479,7 +1479,7 @@
             "textureInfo": 262144,
             "width": 35,
             "x": 58,
-            "y": 1083
+            "y": 1359
         },
         {
             "assetUUID": "86cfe10c-e5cd-419c-a8cb-35f733f70c14",
@@ -1498,8 +1498,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 30,
-            "x": 63,
-            "y": 1173
+            "x": 1156,
+            "y": 1811
         },
         {
             "assetUUID": "c58c071f-8575-41fb-8918-bd96ebca0100",
@@ -1518,8 +1518,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 36,
-            "x": 3492,
-            "y": 1305
+            "x": 1076,
+            "y": 2101
         },
         {
             "assetUUID": "91c3a5bb-02da-4c4b-9b34-2bddfe2e9e45",
@@ -1538,8 +1538,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 35,
-            "x": 96,
-            "y": 1083
+            "x": 58,
+            "y": 1449
         },
         {
             "assetUUID": "391bebc0-2dc2-45e2-b472-c8a98eee21af",
@@ -1558,8 +1558,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 31,
-            "x": 3203,
-            "y": 1296
+            "x": 1003,
+            "y": 2022
         },
         {
             "assetUUID": "dc55893f-21b6-4280-84a8-f53a6eaaffec",
@@ -1578,8 +1578,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 25,
-            "x": 3376,
-            "y": 1257
+            "x": 1115,
+            "y": 1899
         },
         {
             "assetUUID": "8446c44e-f306-4794-bc52-5b9682983f4f",
@@ -1598,8 +1598,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 33,
-            "x": 3367,
-            "y": 1077
+            "x": 22,
+            "y": 1267
         },
         {
             "assetUUID": "0e6fb5a6-e92c-43c2-bb50-bf09c7e46b40",
@@ -1618,8 +1618,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 48,
-            "x": 3432,
-            "y": 793
+            "x": 3312,
+            "y": 991
         },
         {
             "assetUUID": "abb1e666-39a1-4a7a-84d7-5ab0a6d758bc",
@@ -1638,8 +1638,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 49,
-            "x": 3403,
-            "y": 982
+            "x": 11,
+            "y": 1176
         },
         {
             "assetUUID": "4a136f23-8e5d-4f03-a614-e5b3388fe7a1",
@@ -1658,8 +1658,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 49,
-            "x": 3299,
-            "y": 1167
+            "x": 980,
+            "y": 1758
         },
         {
             "assetUUID": "bb7ba2e2-4415-477e-a5b9-b156c89ddc5c",
@@ -1678,8 +1678,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 46,
-            "x": 3203,
-            "y": 1208
+            "x": 96,
+            "y": 1359
         },
         {
             "assetUUID": "855e9c1a-ba66-4f73-baf1-4e686eb452f2",
@@ -1698,8 +1698,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 41,
-            "x": 3203,
-            "y": 1027
+            "x": 141,
+            "y": 1268
         },
         {
             "assetUUID": "325c5da8-ad32-407e-964b-023dec4d4223",
@@ -1718,8 +1718,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 48,
-            "x": 3432,
-            "y": 793
+            "x": 3312,
+            "y": 991
         },
         {
             "assetUUID": "0f97ec1d-79df-4581-9b51-27f28b2780fb",
@@ -1738,8 +1738,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 49,
-            "x": 3351,
-            "y": 986
+            "x": 3311,
+            "y": 1177
         },
         {
             "assetUUID": "c685f914-b9b6-4693-9323-c9060de49425",
@@ -1758,8 +1758,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 49,
-            "x": 3351,
-            "y": 1168
+            "x": 980,
+            "y": 1669
         },
         {
             "assetUUID": "ccd35e49-7c4c-4625-adbb-d1e6ec37ffff",
@@ -1778,8 +1778,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 46,
-            "x": 14,
-            "y": 1173
+            "x": 1107,
+            "y": 1811
         },
         {
             "assetUUID": "f83a0ff9-fc3d-4e21-9dd4-b2b2abe42d86",
@@ -1798,8 +1798,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 41,
-            "x": 3203,
-            "y": 1027
+            "x": 141,
+            "y": 1268
         },
         {
             "assetUUID": "1c370022-6942-42c7-bf70-f74b7e7b5d68",
@@ -1818,8 +1818,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 58,
-            "x": 3325,
-            "y": 605
+            "x": 3302,
+            "y": 706
         },
         {
             "assetUUID": "e00342ec-d7f7-4d9a-8cb2-574abebcf7c6",
@@ -1838,8 +1838,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 42,
-            "x": 3306,
-            "y": 985
+            "x": 3266,
+            "y": 1177
         },
         {
             "assetUUID": "b354f453-157e-49c6-acb2-6e9d7c11320c",
@@ -1858,8 +1858,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 35,
-            "x": 3441,
-            "y": 1073
+            "x": 58,
+            "y": 1268
         },
         {
             "assetUUID": "a2e3fa1d-6465-4df1-80d9-219543d3f99b",
@@ -1878,8 +1878,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 33,
-            "x": 3280,
-            "y": 893
+            "x": 149,
+            "y": 1176
         },
         {
             "assetUUID": "60487211-cde1-43a2-b0ed-498d56e16f72",
@@ -1898,8 +1898,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 35,
-            "x": 3403,
-            "y": 1073
+            "x": 96,
+            "y": 1268
         },
         {
             "assetUUID": "6ed1ecc2-ee00-4c4c-a1d3-58705610ff51",
@@ -1918,8 +1918,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 42,
-            "x": 3261,
-            "y": 985
+            "x": 3203,
+            "y": 1212
         },
         {
             "assetUUID": "8881c594-35e1-461a-a8f9-3516611683e1",
@@ -1938,8 +1938,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 55,
-            "x": 3386,
-            "y": 605
+            "x": 3244,
+            "y": 706
         },
         {
             "assetUUID": "a5724c90-4b4f-4543-908c-4cb6999d5aab",
@@ -1959,7 +1959,7 @@
             "textureInfo": 262144,
             "width": 16,
             "x": 3224,
-            "y": 893
+            "y": 706
         },
         {
             "assetUUID": "d2c81d48-3012-4ce8-adba-a8e463c511f6",
@@ -1978,8 +1978,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 39,
-            "x": 3294,
-            "y": 1340
+            "x": 3551,
+            "y": 1338
         },
         {
             "assetUUID": "8e03dbe4-6f90-43dd-b8f6-8ce1882e9836",
@@ -1999,7 +1999,7 @@
             "textureInfo": 262144,
             "width": 30,
             "x": 3224,
-            "y": 985
+            "y": 991
         },
         {
             "assetUUID": "e464eea6-84e8-49bc-a771-aef2e17f8bae",
@@ -2018,7 +2018,7 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 1908,
+            "x": 1978,
             "y": 342
         },
         {
@@ -2038,8 +2038,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 1722,
-            "y": 387
+            "x": 1965,
+            "y": 0
         },
         {
             "assetUUID": "bd380fb7-e149-4272-9c8e-51e52314b2c6",
@@ -2058,7 +2058,7 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 1932,
+            "x": 1862,
             "y": 413
         },
         {
@@ -2078,8 +2078,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 1582,
-            "y": 387
+            "x": 1965,
+            "y": 71
         },
         {
             "assetUUID": "17f6a765-1beb-40b6-bbcb-ab9d0aa201c2",
@@ -2158,8 +2158,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 1838,
-            "y": 342
+            "x": 1932,
+            "y": 413
         },
         {
             "assetUUID": "659f4757-b6a6-4732-9f87-5398ddab9f15",
@@ -2178,8 +2178,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 1978,
-            "y": 342
+            "x": 1582,
+            "y": 387
         },
         {
             "assetUUID": "b22034d7-2f3a-40b7-8d55-43ea41527492",
@@ -2198,8 +2198,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 1862,
-            "y": 413
+            "x": 1722,
+            "y": 387
         },
         {
             "assetUUID": "b5aabd17-254a-4877-8d3c-0ecbf5d1bc1b",
@@ -2238,8 +2238,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 1652,
-            "y": 387
+            "x": 1838,
+            "y": 342
         },
         {
             "assetUUID": "dd3c2c96-79cc-4370-b84b-e4586b2eb196",
@@ -2258,8 +2258,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 1965,
-            "y": 71
+            "x": 1908,
+            "y": 342
         },
         {
             "assetUUID": "42f59ce9-e580-4b46-9aeb-726d99a555e6",
@@ -2278,8 +2278,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 67,
-            "x": 1965,
-            "y": 0
+            "x": 1652,
+            "y": 387
         },
         {
             "assetUUID": "eabd64a3-6166-4a96-8331-d77c5615ee47",
@@ -2298,8 +2298,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 2226,
-            "y": 3040
+            "x": 593,
+            "y": 3090
         },
         {
             "assetUUID": "a1570de4-009f-4ae3-857c-81edcb947f44",
@@ -2318,8 +2318,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 2231,
-            "y": 2792
+            "x": 321,
+            "y": 2842
         },
         {
             "assetUUID": "72db8e47-8d34-4bc0-8ea4-035a6dd08853",
@@ -2338,8 +2338,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 74,
-            "y": 2842
+            "x": 1772,
+            "y": 2790
         },
         {
             "assetUUID": "b1449732-4241-4fed-af4e-17a3faa73ccc",
@@ -2358,8 +2358,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 1435,
-            "y": 2792
+            "x": 1772,
+            "y": 3038
         },
         {
             "assetUUID": "e3883b2e-4cf5-4b73-b72d-7ad2a021d571",
@@ -2378,7 +2378,7 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 1833,
+            "x": 976,
             "y": 2792
         },
         {
@@ -2398,8 +2398,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 1435,
-            "y": 3040
+            "x": 1374,
+            "y": 2792
         },
         {
             "assetUUID": "3762819d-f91a-4427-85cf-e093192029fc",
@@ -2418,8 +2418,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 472,
-            "y": 3066
+            "x": 1379,
+            "y": 3040
         },
         {
             "assetUUID": "4e657fb5-ea01-40bc-bdc6-9dd1b344056c",
@@ -2438,8 +2438,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 79,
-            "y": 3090
+            "x": 986,
+            "y": 3040
         },
         {
             "assetUUID": "46b3c3a0-145f-4d95-b9aa-c3c2364eae14",
@@ -2458,8 +2458,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 1833,
-            "y": 3040
+            "x": 3703,
+            "y": 3133
         },
         {
             "assetUUID": "7762ebd6-ab2e-4b28-8d4c-f03492560709",
@@ -2478,8 +2478,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 865,
-            "y": 3162
+            "x": 205,
+            "y": 3161
         },
         {
             "assetUUID": "cf00f094-0de1-4300-bd82-880a4971b678",
@@ -2498,8 +2498,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 2619,
-            "y": 3157
+            "x": 3315,
+            "y": 3167
         },
         {
             "assetUUID": "98c78465-12a9-4f47-a870-65fb42be36bf",
@@ -2518,8 +2518,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 489,
-            "y": 1669
+            "x": 3607,
+            "y": 1702
         },
         {
             "assetUUID": "e32b59e5-3dc5-440f-a97d-693ebc4126ca",
@@ -2538,7 +2538,7 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 0,
+            "x": 491,
             "y": 1669
         },
         {
@@ -2558,8 +2558,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 3605,
-            "y": 1582
+            "x": 0,
+            "y": 1669
         },
         {
             "assetUUID": "6f834142-9f70-4fb0-a11e-1f5822923550",
@@ -2578,8 +2578,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 1203,
-            "y": 2084
+            "x": 0,
+            "y": 2089
         },
         {
             "assetUUID": "ade22790-e4d6-4a73-ba9a-aca4ec089064",
@@ -2598,8 +2598,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 2665,
-            "y": 2301
+            "x": 0,
+            "y": 2307
         },
         {
             "assetUUID": "9e7e0b3c-d653-4d49-82c6-29d5a546158e",
@@ -2618,8 +2618,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 3619,
-            "y": 2229
+            "x": 2665,
+            "y": 2301
         },
         {
             "assetUUID": "395e4449-74d9-4ec5-9904-d6141c77b25c",
@@ -2638,8 +2638,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 249,
-            "y": 2184
+            "x": 3619,
+            "y": 2217
         },
         {
             "assetUUID": "3a23754f-29db-43d0-a166-bea8c6c6ca79",
@@ -2658,7 +2658,7 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 726,
+            "x": 478,
             "y": 2184
         },
         {
@@ -2678,8 +2678,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 1203,
-            "y": 2521
+            "x": 2205,
+            "y": 2576
         },
         {
             "assetUUID": "7a92c7e3-85da-46e7-b237-7b3bff41db09",
@@ -2698,7 +2698,7 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 2147,
+            "x": 1261,
             "y": 2578
         },
         {
@@ -2718,7 +2718,7 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 0,
+            "x": 472,
             "y": 2628
         },
         {
@@ -2738,8 +2738,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 2678,
-            "y": 2523
+            "x": 0,
+            "y": 2527
         },
         {
             "assetUUID": "2e7a4802-7198-4a89-8b8a-51133e36b8ad",
@@ -2758,8 +2758,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 1675,
-            "y": 2578
+            "x": 1733,
+            "y": 2576
         },
         {
             "assetUUID": "6e31b4bb-f1eb-4f7d-9082-93027e399199",
@@ -2779,7 +2779,7 @@
             "textureInfo": 262144,
             "width": 500,
             "x": 3623,
-            "y": 2451
+            "y": 2439
         },
         {
             "assetUUID": "b54eae20-5947-47f7-8f9c-d35263bdcaa5",
@@ -2798,8 +2798,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 257,
-            "y": 2409
+            "x": 3150,
+            "y": 2477
         },
         {
             "assetUUID": "1c42ed6a-78d8-48f1-b3e6-cc7f7c066670",
@@ -2818,7 +2818,7 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 3150,
+            "x": 2677,
             "y": 2523
         },
         {
@@ -2838,7 +2838,7 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 2157,
+            "x": 1238,
             "y": 2357
         },
         {
@@ -2858,7 +2858,7 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 730,
+            "x": 477,
             "y": 2409
         },
         {
@@ -2879,7 +2879,7 @@
             "textureInfo": 262144,
             "width": 500,
             "x": 3142,
-            "y": 2301
+            "y": 2255
         },
         {
             "assetUUID": "d3337a9d-c5e6-470e-b62e-490723699a43",
@@ -2898,7 +2898,7 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 1680,
+            "x": 1711,
             "y": 2357
         },
         {
@@ -2918,8 +2918,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 1203,
-            "y": 2302
+            "x": 2188,
+            "y": 2357
         },
         {
             "assetUUID": "0db44157-e320-4d49-a456-c0c788419183",
@@ -2938,8 +2938,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 3610,
-            "y": 1729
+            "x": 3121,
+            "y": 1755
         },
         {
             "assetUUID": "8ad6845d-308a-4d5f-a9f6-367906169bab",
@@ -2958,7 +2958,7 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 587,
+            "x": 96,
             "y": 1447
         },
         {
@@ -2978,7 +2978,7 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 96,
+            "x": 587,
             "y": 1447
         },
         {
@@ -2998,8 +2998,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 3454,
-            "y": 2741
+            "x": 2491,
+            "y": 2791
         },
         {
             "assetUUID": "6cda09b6-389d-4122-97b6-0014c7428861",
@@ -3018,8 +3018,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 2812,
-            "y": 2739
+            "x": 2170,
+            "y": 2791
         },
         {
             "assetUUID": "cfb6d8ff-8334-484b-b748-5ce731c929c2",
@@ -3038,8 +3038,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 3775,
-            "y": 2670
+            "x": 2812,
+            "y": 2741
         },
         {
             "assetUUID": "3616afd9-214e-4c30-84c9-8199a23b8fb4",
@@ -3058,8 +3058,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 472,
-            "y": 2628
+            "x": 3775,
+            "y": 2658
         },
         {
             "assetUUID": "217bc381-b259-4688-a6c9-5a79e1f5f120",
@@ -3078,8 +3078,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 3133,
-            "y": 2741
+            "x": 0,
+            "y": 2743
         },
         {
             "assetUUID": "83ee2432-8293-482f-a782-bca503f1675a",
@@ -3098,8 +3098,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 1114,
-            "y": 2736
+            "x": 3133,
+            "y": 2741
         },
         {
             "assetUUID": "d1fa3257-ef0d-41cd-b0dd-d40dd310f477",
@@ -3118,8 +3118,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 793,
-            "y": 2628
+            "x": 3454,
+            "y": 2696
         },
         {
             "assetUUID": "76e29102-38ee-4bf9-93d6-97538ff94bac",
@@ -3138,8 +3138,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 500,
-            "x": 3775,
-            "y": 3096
+            "x": 2994,
+            "y": 3167
         },
         {
             "assetUUID": "8c02b27e-ab0d-439b-b3f2-424ad27c6cf2",
@@ -3160,26 +3160,6 @@
             "width": 1024,
             "x": 2197,
             "y": 0
-        },
-        {
-            "assetUUID": "3973d981-5aa7-4252-9e46-deff934d06ba",
-            "bankId": 0,
-            "checksum": 2861808397,
-            "cropBottom": 0,
-            "cropLeft": 0,
-            "cropRight": 0,
-            "cropTop": 0,
-            "errors": 0,
-            "filter": "CRT",
-            "height": 610,
-            "itemType": "AtlasFrame",
-            "name": "MainText",
-            "subAtlasType": "Text",
-            "textureIndex": 0,
-            "textureInfo": 262144,
-            "width": 610,
-            "x": 3483,
-            "y": 605
         },
         {
             "assetUUID": "5c0435fa-dd14-4b87-8ede-85db740353be",
@@ -3218,8 +3198,8 @@
             "textureIndex": 0,
             "textureInfo": 262144,
             "width": 852,
-            "x": 3007,
-            "y": 3159
+            "x": 2674,
+            "y": 3209
         },
         {
             "assetUUID": "e6a03228-d46e-4381-bb3d-46cda0c45a61",
@@ -3238,8 +3218,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 48,
-            "x": 1705,
-            "y": 458
+            "x": 1997,
+            "y": 484
         },
         {
             "assetUUID": "3cc1ffb3-ce88-4cbf-8ddf-2708c0a1c7c0",
@@ -3258,8 +3238,8 @@
             "textureIndex": 1,
             "textureInfo": 262147,
             "width": 48,
-            "x": 1997,
-            "y": 484
+            "x": 1705,
+            "y": 458
         },
         {
             "assetUUID": "c8722fd8-572b-466f-82fa-c13457032d79",
@@ -3460,6 +3440,26 @@
             "width": 681,
             "x": 898,
             "y": 0
+        },
+        {
+            "assetUUID": "3973d981-5aa7-4252-9e46-deff934d06ba",
+            "bankId": 0,
+            "checksum": 4184239122,
+            "cropBottom": 0,
+            "cropLeft": 0,
+            "cropRight": 0,
+            "cropTop": 0,
+            "errors": 0,
+            "filter": "CRT",
+            "height": 730,
+            "itemType": "AtlasFrame",
+            "name": "MainText",
+            "subAtlasType": "Text",
+            "textureIndex": 0,
+            "textureInfo": 262144,
+            "width": 730,
+            "x": 3363,
+            "y": 605
         }
     ],
     "banks": [

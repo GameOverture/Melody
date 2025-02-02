@@ -242,7 +242,7 @@ void NowPlaying::ShowGameTime(bool bShow)
 
 			GameInfo gameObj = Compositorium::Get()->GetGame(Compositorium::Get()->GetConsoleFromPath(m_sHtmlFilePath), sUrlKey);
 
-			m_GameNameText.SetText(Compositorium::Get()->GetGameName(gameObj));
+			m_GameNameText.SetText(gameObj.GetName());
 
 			std::string sBestMatchingLogoFile = Compositorium::Get()->GetBestMedia(gameObj, MEDIATYPE_Logos);
 			m_Logo.Uninit();
@@ -252,28 +252,31 @@ void NowPlaying::ShowGameTime(bool bShow)
 			for(int i = 0; i < m_SlideShowList.size(); ++i)
 				delete m_SlideShowList[i];
 			m_SlideShowList.clear();
-			std::vector<std::string> boxartsFilePathList = Compositorium::Get()->GetMediaList(gameObj, MEDIATYPE_Boxarts);
+
+			std::string sMediaPath = Compositorium::Get()->GetMediaPath(gameObj.GetConsole(), MEDIATYPE_Boxarts);
+			std::vector<std::string> boxartsFilePathList = gameObj.GetMediaList(MEDIATYPE_Boxarts);
 			for(int i = 0; i < boxartsFilePathList.size(); ++i)
 			{
-				HyTexturedQuad2d *pNewBoxArt = HY_NEW HyTexturedQuad2d(boxartsFilePathList[i], HyTextureInfo(), &m_InfoEnt);
+				HyTexturedQuad2d *pNewBoxArt = HY_NEW HyTexturedQuad2d(sMediaPath + boxartsFilePathList[i], HyTextureInfo(), &m_InfoEnt);
 				m_SlideShowList.push_back(pNewBoxArt);
 			}
-			std::vector<std::string> titleartsFilePathList = Compositorium::Get()->GetMediaList(gameObj, MEDIATYPE_Titles);
+			sMediaPath = Compositorium::Get()->GetMediaPath(gameObj.GetConsole(), MEDIATYPE_Titles);
+			std::vector<std::string> titleartsFilePathList = gameObj.GetMediaList(MEDIATYPE_Titles);
 			for(int i = 0; i < titleartsFilePathList.size(); ++i)
 			{
-				HyTexturedQuad2d *pNewTitleArt = HY_NEW HyTexturedQuad2d(titleartsFilePathList[i], HyTextureInfo(), &m_InfoEnt);
+				HyTexturedQuad2d *pNewTitleArt = HY_NEW HyTexturedQuad2d(sMediaPath + titleartsFilePathList[i], HyTextureInfo(), &m_InfoEnt);
 				m_SlideShowList.push_back(pNewTitleArt);
 			}
 			HyRand::Shuffle(m_SlideShowList);
 			m_iSlideShowIndex = 0;
 
-			m_DescriptionText.SetText(Compositorium::Get()->GetGameDescription(gameObj));
+			m_DescriptionText.SetText(gameObj.GetDescription());
 			m_DescriptionText.ParentDetach();
 			m_InfoEnt.ChildAppend(m_DescriptionText);
 
-			m_ReleaseText.SetText(Compositorium::Get()->GetGameRelease(gameObj));
-			m_DevText.SetText(Compositorium::Get()->GetGameDeveloper(gameObj));
-			m_PubText.SetText(Compositorium::Get()->GetGamePublisher(gameObj));
+			m_ReleaseText.SetText(gameObj.GetRelease());
+			m_DevText.SetText(gameObj.GetDeveloper());
+			m_PubText.SetText(gameObj.GetPublisher());
 
 			m_Details.ClearItems();
 			bool bFirstDetail = true;

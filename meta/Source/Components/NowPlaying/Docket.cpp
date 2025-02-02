@@ -2,7 +2,6 @@
 #include "Docket.h"
 #include "CtrlPanel.h"
 #include "Compositorium.h"
-#include "Collection.h"
 
 #include <fstream>
 
@@ -40,7 +39,6 @@ Docket::Docket(HyEntity2d *pParent /*= nullptr*/) :
 	m_CtrlPanel_ShowCollection.SetCheckedChangedCallback(
 		[this](HyCheckBox *pCheckBox)
 		{
-			Collection::Get()->SetVisible(pCheckBox->IsChecked());
 		});
 }
 
@@ -122,7 +120,6 @@ void Docket::SaveFile()
 		GameInfo gameInfo = Compositorium::Get()->GetGame(Compositorium::Get()->GetConsoleFromPath(m_sHtmlFilePath), sUrlKey);
 		GameStats gameStats = Compositorium::Get()->GetGameStats(gameInfo);
 
-		Collection::Get()->ShowEditPage(gameStats);
 
 		//GameStats game;
 		//game.m_eConsole = obj.GetConsole();
