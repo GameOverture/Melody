@@ -30,6 +30,8 @@ public:
 	virtual void Show(float fDuration) override;
 	virtual void Hide(float fDuration) override;
 
+	void SetGame(GameStats &gameStats);
+
 protected:
 	virtual void OnUpdate() override;
 };

@@ -123,7 +123,7 @@ GameInfo Compositorium::GetGame(GameConsole eConsole, std::string sGameId)
 
 GameInfo Compositorium::GetAlphaJumpGame(GameConsole eConsole, std::string sAlphaJumpChar)
 {
-	HyJsonObj consoleObj = m_MetaDocs[ToIndex(eConsole)].GetObject();
+	const HyJsonObj &consoleObj = m_MetaDocs[ToIndex(eConsole)].GetObject();
 	for(auto iter = consoleObj.MemberBegin(); iter != consoleObj.MemberEnd(); ++iter)
 	{
 		if(iter->value["name"].GetString()[0] == sAlphaJumpChar[0])

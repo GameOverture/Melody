@@ -63,6 +63,16 @@ GameBrowser::GameBrowser(HyEntity2d *pParent /*= nullptr*/) :
 	IComponent::Hide(fDuration);
 }
 
+void GameBrowser::SetGame(GameStats &gameStats)
+{
+	m_EditPage.SetGame(gameStats);
+
+	m_BrowsePage.SetVisible(false);
+	m_EditPage.SetVisible(true);
+
+	m_ePageState = PAGE_Edit;
+}
+
 /*virtual*/ void GameBrowser::OnUpdate() /*override*/
 {
 	if(m_sHtmlFilePath.empty() == false)
@@ -80,7 +90,7 @@ GameBrowser::GameBrowser(HyEntity2d *pParent /*= nullptr*/) :
 		GameInfo gameInfo = Compositorium::Get()->GetGame(Compositorium::Get()->GetConsoleFromPath(m_sHtmlFilePath), sUrlKey);
 		GameStats gameStats = Compositorium::Get()->GetGameStats(gameInfo);
 
-		m_BrowsePage.SetGame(gameInfo);
+		m_BrowsePage.BrowseAtGame(gameInfo);
 		m_ePageState = PAGE_Browse;
 
 		m_sHtmlFilePath.clear();

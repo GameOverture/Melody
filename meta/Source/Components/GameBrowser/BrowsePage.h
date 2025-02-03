@@ -12,8 +12,9 @@ class BrowsePage : public HyUiContainer
 	HyButton				m_PrevBtn;
 	GameInfo				m_hPrevGame;
 	HyLabel					m_GameTitleLabels[NUM_GAMES_PER_PAGE];
-	HyLabel					m_GameDescLabels[NUM_GAMES_PER_PAGE];
+	HyButton				m_GameBtns[NUM_GAMES_PER_PAGE];
 	HyTexturedQuad2d		m_GameBoxarts[NUM_GAMES_PER_PAGE];
+	int32					m_iHoverGameIndex;
 	HyButton				m_NextBtn;
 	GameInfo				m_hNextGame;
 
@@ -35,7 +36,7 @@ public:
 	BrowsePage(HyEntity2d *pParent = nullptr);
 	virtual ~BrowsePage();
 
-	void SetGame(GameInfo gameInfo);
+	void BrowseAtGame(GameInfo gameInfo);
 
 	void SetList(std::vector<GameInfo> &gameList);
 

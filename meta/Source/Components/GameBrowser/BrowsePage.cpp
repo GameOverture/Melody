@@ -9,6 +9,7 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 	HyUiContainer(HYORIENT_Vertical, HyPanelInit(GAMEBROWSER_WIDTH, GAMEBROWSER_HEIGHT, 0, HyColor(0.0f, 0.0f, 0.0f, 0.5f)), pParent),
 	m_TitleLabel(HyPanelInit(GAMEBROWSER_WIDTH, 64), "MainText", this),
 	m_PrevBtn(HyPanelInit(50, 420, 2), "MainText"),
+	m_iHoverGameIndex(-1),
 	m_NextBtn(HyPanelInit(50, 420, 2), "MainText"),
 	m_eReloadState(RELOADSTATE_Idle)
 {
@@ -20,8 +21,17 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 		m_GameTitleLabels[iGameIndex].Setup(HyPanelInit(iGameWidth, 42/*, 2, HyColor(0.0f, 0.0f, 0.0f, 1.0f)*/), "Description");
 		m_GameTitleLabels[iGameIndex].SetAsBox();
 		m_GameTitleLabels[iGameIndex].SetTextState(2);
-		m_GameDescLabels[iGameIndex].Setup(HyPanelInit(iGameWidth, (GAMEBROWSER_HEIGHT / 2) - 110/*, 2, HyColor(0.0f, 0.0f, 0.0f, 1.0f)*/));
-		m_GameDescLabels[iGameIndex].ChildAppend(m_GameBoxarts[iGameIndex]);
+		m_GameBtns[iGameIndex].Setup(HyPanelInit(iGameWidth, (GAMEBROWSER_HEIGHT / 2) - 110, 0, HyColor(0.0f, 0.0f, 0.0f, 0.2f)));
+		m_GameBtns[iGameIndex].ChildAppend(m_GameBoxarts[iGameIndex]);
+
+		m_GameBtns[iGameIndex].SetButtonClickedCallback(
+			[this, iGameIndex](HyButton *pThis)
+			{
+				if(m_QueuedGameList.empty())
+					return;
+				
+				static_cast<GameBrowser *>(ParentGet())->SetGame(Compositorium::Get()->GetGameStats(m_QueuedGameList[iGameIndex]));
+			});
 	}
 
 	m_PrevBtn.SetText("<");
@@ -49,7 +59,7 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 				if(m_QueuedGameList.empty())
 					return;
 				GameInfo gameInfo = Compositorium::Get()->GetAlphaJumpGame(m_QueuedGameList[0].GetConsole(), pThis->GetUtf8String());
-				SetGame(gameInfo);
+				BrowseAtGame(gameInfo);
 			});
 	}
 
@@ -68,13 +78,13 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 		{
 			HyLayoutHandle hGame = InsertLayout(HYORIENT_Vertical, hTopRow);
 			InsertWidget(m_GameTitleLabels[iGameIndex], hGame);
-			InsertWidget(m_GameDescLabels[iGameIndex], hGame);
+			InsertWidget(m_GameBtns[iGameIndex], hGame);
 		}
 		else
 		{
 			HyLayoutHandle hGame = InsertLayout(HYORIENT_Vertical, hBotRow);
 			InsertWidget(m_GameTitleLabels[iGameIndex], hGame);
-			InsertWidget(m_GameDescLabels[iGameIndex], hGame);
+			InsertWidget(m_GameBtns[iGameIndex], hGame);
 		}
 	}
 
@@ -88,7 +98,7 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 {
 }
 
-void BrowsePage::SetGame(GameInfo gameInfo)
+void BrowsePage::BrowseAtGame(GameInfo gameInfo)
 {
 	std::vector<GameInfo> gameList;
 	//if(bNext)
@@ -105,11 +115,12 @@ void BrowsePage::SetList(std::vector<GameInfo> &gameList)
 		return;
 
 	m_QueuedGameList = gameList;
+	m_iHoverGameIndex = -1;
 
-	m_hPrevGame = Compositorium::Get()->GetPrevGames(m_QueuedGameList[0], 2)[1];
+	m_hPrevGame = m_QueuedGameList[0];
 	for(int i = 0; i < m_QueuedGameList.size(); ++i)
 		m_GameTitleLabels[i].SetText(m_QueuedGameList[i].GetName());
-	m_hNextGame = Compositorium::Get()->GetNextGames(m_QueuedGameList[m_QueuedGameList.size() - 1], 2)[0];
+	m_hNextGame = m_QueuedGameList[m_QueuedGameList.size() - 1];
 
 	if(m_ReloadCooldownTimer.IsRunning() && m_ReloadCooldownTimer.IsExpired() == false)
 		m_ReloadCooldownTimer.InitStart(BROWSEPAGE_LOAD_COOLDOWN);
@@ -136,7 +147,7 @@ void BrowsePage::OnContainerUpdate() /*override*/
 				m_GameBoxarts[i].Uninit();
 				m_GameBoxarts[i].SetVisible(false);
 				if(sBestMatchingLogoFile.empty() == false)
-					m_GameBoxarts[i].Init(Compositorium::Get()->GetMediaPath(m_QueuedGameList[i].GetConsole(), MEDIATYPE_Boxarts) + sBestMatchingLogoFile, HyTextureInfo(), &m_GameDescLabels[i]);
+					m_GameBoxarts[i].Init(Compositorium::Get()->GetMediaPath(m_QueuedGameList[i].GetConsole(), MEDIATYPE_Boxarts) + sBestMatchingLogoFile, HyTextureInfo(), &m_GameBtns[i]);
 			}
 
 			m_ReloadCooldownTimer.InitStart(BROWSEPAGE_LOAD_COOLDOWN);
@@ -153,7 +164,7 @@ void BrowsePage::OnContainerUpdate() /*override*/
 			{
 				if(m_GameBoxarts[i].IsVisible() == false)
 				{
-					glm::vec2 vSize(m_GameDescLabels[i].GetWidth(), m_GameDescLabels[i].GetHeight());
+					glm::vec2 vSize(m_GameBtns[i].GetWidth(), m_GameBtns[i].GetHeight());
 					TransformTexture(m_GameBoxarts[i], vSize, vSize * 0.5f);
 
 					float fGapSize = m_GameTitleLabels[i].pos.GetY();
@@ -164,6 +175,10 @@ void BrowsePage::OnContainerUpdate() /*override*/
 					m_GameBoxarts[i].SetVisible(true);
 					m_GameBoxarts[i].alpha.Set(0.0f);
 					m_GameBoxarts[i].alpha.Tween(1.0f, 0.32f);
+
+					HyRand::Boolean() ? m_GameBtns[i].scale.Set(1.01f, 1.01f) : m_GameBtns[i].scale.Set(0.99f, 0.99f);
+					//m_GameBoxarts[i].scale.Set(0.001f, 0.001f);
+					//m_GameBoxarts[i].scale.Tween(1.0f, 1.0f, 0.32f, HyTween::QuadOut);
 				}
 			}
 			else
@@ -177,11 +192,54 @@ void BrowsePage::OnContainerUpdate() /*override*/
 		break; }
 
 	case RELOADSTATE_NextPage:
-		SetList(Compositorium::Get()->GetNextGames(m_hNextGame, NUM_GAMES_PER_PAGE));
+		if(m_hNextGame.IsValid())
+			SetList(Compositorium::Get()->GetNextGames(m_hNextGame, NUM_GAMES_PER_PAGE));
 		break;
 
 	case RELOADSTATE_PrevPage:
-		SetList(Compositorium::Get()->GetNextGames(m_hPrevGame, NUM_GAMES_PER_PAGE));
+		if(m_hPrevGame.IsValid())
+			SetList(Compositorium::Get()->GetNextGames(m_hPrevGame, NUM_GAMES_PER_PAGE));
 		break;
+	}
+
+	if(IsVisible())
+	{
+		for(int i = 0; i < NUM_GAMES_PER_PAGE; ++i)
+		{
+			if(m_GameBtns[i].IsMouseHover())
+			{
+				if(m_iHoverGameIndex != i)
+				{
+					if(m_iHoverGameIndex != -1)
+						m_GameBtns[m_iHoverGameIndex].SetTint(HyColor::White);
+
+					m_iHoverGameIndex = i;
+					m_GameBtns[m_iHoverGameIndex].SetTint(HyColor::LightGray);
+
+					float fSize = 1.02f;
+					float fDur = HyRand::Range(0.5f, 1.0f);
+					m_GameBtns[i].scale.Tween(fSize, fSize, fDur, HyTween::QuadInOut);
+					m_GameBtns[i].pos.Tween(0.0f, 0.0f, fDur, HyTween::QuadInOut);
+				}
+			}
+			
+			if(m_iHoverGameIndex != i && m_GameBoxarts[i].IsLoaded() && m_GameBoxarts[i].IsVisible() && m_GameBtns[i].scale.IsAnimating() == false)
+			{
+				if(m_GameBtns[i].scale.X() >= 1.0f)
+				{
+					float fSize = 0.98f;// HyRand::Range(0.95f, 0.98f);
+					float fDur = HyRand::Range(9.0f, 10.0f);
+					m_GameBtns[i].scale.Tween(fSize, fSize, fDur, HyTween::QuadInOut);
+					m_GameBtns[i].pos.Tween(0.0f, HyRand::Range(-8.0f, 0.0f), fDur, HyTween::QuadInOut);
+				}
+				else
+				{
+					float fSize = 0.95f;
+					float fDur = HyRand::Range(9.0f, 10.0f);
+					m_GameBtns[i].scale.Tween(fSize, fSize, fDur, HyTween::QuadInOut);
+					m_GameBtns[i].pos.Tween(0.0f, HyRand::Range(0.0f, 8.0f), fDur, HyTween::QuadInOut);
+				}
+			}
+		}
 	}
 }
