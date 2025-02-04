@@ -14,6 +14,11 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 	m_eReloadState(RELOADSTATE_Idle)
 {
 	m_TitleLabel.SetTextState(1);
+	m_TitleLabel.SetButtonClickedCallback(
+		[this](HyButton *pThis)
+		{
+			static_cast<GameBrowser *>(ParentGet())->ShowConsoles();
+		});
 
 	for(int iGameIndex = 0; iGameIndex < NUM_GAMES_PER_PAGE; ++iGameIndex)
 	{

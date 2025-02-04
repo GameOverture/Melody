@@ -57,18 +57,19 @@ enum GameConsole
 {
 	CONSOLE_None = 0,
 
-	CONSOLE_NES = 1 << 0,
-	CONSOLE_SNES = 1 << 1,
-	CONSOLE_N64 = 1 << 2,
-	CONSOLE_GameCube = 1 << 3,
-	CONSOLE_Wii = 1 << 4,
-	CONSOLE_SMS = 1 << 5,
-	CONSOLE_Genesis = 1 << 6,
-	CONSOLE_Saturn = 1 << 7,
-	CONSOLE_Dreamcast = 1 << 8,
-	CONSOLE_PS1 = 1 << 9,
-	CONSOLE_PS2 = 1 << 10,
-	CONSOLE_Xbox = 1 << 11
+	CONSOLE_NES				= 1 << 0,
+	CONSOLE_SNES			= 1 << 1,
+	CONSOLE_N64				= 1 << 2,
+	CONSOLE_GameCube		= 1 << 3,
+	CONSOLE_Wii				= 1 << 4,
+	CONSOLE_SMS				= 1 << 5,
+	CONSOLE_Genesis			= 1 << 6,
+	CONSOLE_SegaCD			= 1 << 7,
+	CONSOLE_Saturn			= 1 << 8,
+	CONSOLE_Dreamcast		= 1 << 9,
+	CONSOLE_PS1				= 1 << 10,
+	CONSOLE_PS2				= 1 << 11,
+	CONSOLE_Xbox			= 1 << 12
 };
 
 enum MediaType

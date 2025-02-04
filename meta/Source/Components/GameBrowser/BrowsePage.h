@@ -7,7 +7,7 @@
 
 class BrowsePage : public HyUiContainer
 {
-	HyLabel					m_TitleLabel;
+	HyButton				m_TitleLabel;
 
 	HyButton				m_PrevBtn;
 	GameInfo				m_hPrevGame;

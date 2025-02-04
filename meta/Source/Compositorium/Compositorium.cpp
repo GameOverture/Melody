@@ -8,7 +8,7 @@ Compositorium *Compositorium::sm_pInstance = nullptr;
 
 Compositorium::Compositorium(std::string sRootPath) :
 	m_sROOT_PATH(HyIO::CleanPath(sRootPath, "/")),
-	m_sConsolePaths{ "NES/", "SNES/", "N64/", "GameCube/", "Wii/", "SMS/", "Genesis/", "Saturn/", "Dreamcast/", "PS1/", "PS2/", "Xbox/" },
+	m_sConsolePaths{ "NES/", "SNES/", "N64/", "GameCube/", "Wii/", "SMS/", "Genesis/", "SegaCD/", "Saturn/", "Dreamcast/", "PS1/", "PS2/", "Xbox/" },
 	m_sMediaPaths{ "media/boxarts/", "media/logos/", "media/music/", "media/snaps/", "media/titles/" }
 {
 	HyAssert(sm_pInstance == nullptr, "Compositorium::Compositorium() - Only one instance of Compositorium allowed");
@@ -51,6 +51,15 @@ Compositorium::Compositorium(std::string sRootPath) :
 std::string Compositorium::GetRootPath() const
 {
 	return m_sROOT_PATH;
+}
+
+std::vector<GameConsole> Compositorium::GetConsoleList()
+{
+	std::vector<GameConsole> consoleList;
+	for(uint32_t i = 0; i < NUM_CONSOLES; ++i)
+		consoleList.push_back(static_cast<GameConsole>(1 << i));
+
+	return consoleList;
 }
 
 std::vector<MusicTrack> Compositorium::GetMusicPlayList(uint32_t uiConsoleFlags)
@@ -329,6 +338,11 @@ GameConsole Compositorium::GetConsoleFromName(std::string sConsoleName)
 	return CONSOLE_None;
 }
 
+std::string Compositorium::GetConsoleMediaPath(GameConsole eConsole, bool bLogo)
+{
+	return m_sROOT_PATH + m_sConsolePaths[ToIndex(eConsole)] + "media/" + (bLogo ? "console_logo.png" : "console.png");
+}
+
 std::string Compositorium::OpenHtmlFileDlg()
 {
 	// Browse for a file
@@ -371,6 +385,7 @@ Compositorium::GameConsoleIndex Compositorium::ToIndex(GameConsole eConsole)
 	case CONSOLE_Wii:		return CONSOLEINDEX_Wii;
 	case CONSOLE_SMS:		return CONSOLEINDEX_SMS;
 	case CONSOLE_Genesis:	return CONSOLEINDEX_Genesis;
+	case CONSOLE_SegaCD:	return CONSOLEINDEX_SegaCD;
 	case CONSOLE_Saturn:	return CONSOLEINDEX_Saturn;
 	case CONSOLE_Dreamcast:	return CONSOLEINDEX_Dreamcast;
 	case CONSOLE_PS1:		return CONSOLEINDEX_PS1;
@@ -392,18 +407,19 @@ GameConsole Compositorium::ToEnum(GameConsoleIndex eIndex)
 {
 	switch(eIndex)
 	{
-	case CONSOLEINDEX_NES:		return CONSOLE_NES;
-	case CONSOLEINDEX_SNES:		return CONSOLE_SNES;
-	case CONSOLEINDEX_N64:		return CONSOLE_N64;
-	case CONSOLEINDEX_GameCube:	return CONSOLE_GameCube;
-	case CONSOLEINDEX_Wii:		return CONSOLE_Wii;
-	case CONSOLEINDEX_SMS:		return CONSOLE_SMS;
-	case CONSOLEINDEX_Genesis:	return CONSOLE_Genesis;
-	case CONSOLEINDEX_Saturn:	return CONSOLE_Saturn;
+	case CONSOLEINDEX_NES:			return CONSOLE_NES;
+	case CONSOLEINDEX_SNES:			return CONSOLE_SNES;
+	case CONSOLEINDEX_N64:			return CONSOLE_N64;
+	case CONSOLEINDEX_GameCube:		return CONSOLE_GameCube;
+	case CONSOLEINDEX_Wii:			return CONSOLE_Wii;
+	case CONSOLEINDEX_SMS:			return CONSOLE_SMS;
+	case CONSOLEINDEX_Genesis:		return CONSOLE_Genesis;
+	case CONSOLEINDEX_SegaCD:		return CONSOLE_SegaCD;
+	case CONSOLEINDEX_Saturn:		return CONSOLE_Saturn;
 	case CONSOLEINDEX_Dreamcast:	return CONSOLE_Dreamcast;
-	case CONSOLEINDEX_PS1:		return CONSOLE_PS1;
-	case CONSOLEINDEX_PS2:		return CONSOLE_PS2;
-	case CONSOLEINDEX_Xbox:		return CONSOLE_Xbox;
+	case CONSOLEINDEX_PS1:			return CONSOLE_PS1;
+	case CONSOLEINDEX_PS2:			return CONSOLE_PS2;
+	case CONSOLEINDEX_Xbox:			return CONSOLE_Xbox;
 	default:
 		HyError("Compositorium::ToEnum() - Invalid GameConsoleIndex");
 		break;

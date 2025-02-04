@@ -690,6 +690,26 @@
             "filter": "Components/GameBrowser",
             "itemType": "Header",
             "name": "GameBrowser.h"
+        },
+        {
+            "assetUUID": "ba8d9be7-6ea2-4367-ac5d-afc70369f906",
+            "bankId": 0,
+            "baseClass": "HyEntity2d",
+            "checksum": 1475306499,
+            "errors": 0,
+            "filter": "Components/GameBrowser",
+            "itemType": "Source",
+            "name": "ConsolePage.cpp"
+        },
+        {
+            "assetUUID": "abe4611d-46e2-40cc-9dba-307f49ae4b4f",
+            "bankId": 0,
+            "baseClass": "HyEntity2d",
+            "checksum": 733244678,
+            "errors": 0,
+            "filter": "Components/GameBrowser",
+            "itemType": "Header",
+            "name": "ConsolePage.h"
         }
     ],
     "banks": [

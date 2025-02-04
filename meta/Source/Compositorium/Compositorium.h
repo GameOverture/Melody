@@ -20,15 +20,17 @@ class Compositorium
 		CONSOLEINDEX_Wii		= 4,
 		CONSOLEINDEX_SMS		= 5,
 		CONSOLEINDEX_Genesis	= 6,
-		CONSOLEINDEX_Saturn		= 7,
-		CONSOLEINDEX_Dreamcast	= 8,
-		CONSOLEINDEX_PS1		= 9,
-		CONSOLEINDEX_PS2		= 10,
-		CONSOLEINDEX_Xbox		= 11,
+		CONSOLEINDEX_SegaCD		= 7,
+		CONSOLEINDEX_Saturn		= 8,
+		CONSOLEINDEX_Dreamcast	= 9,
+		CONSOLEINDEX_PS1		= 10,
+		CONSOLEINDEX_PS2		= 11,
+		CONSOLEINDEX_Xbox		= 12,
 
 		NUM_CONSOLES
 	};
 	static_assert(NUM_CONSOLES < 32, "Compositorium::GameConsoleIndex - Too many consoles, increase all bitmasks to 64bits");
+	static_assert(NUM_CONSOLES - 1 == CONSOLEINDEX_Xbox && CONSOLE_Xbox == 1 << CONSOLEINDEX_Xbox, "Compositorium::GameConsoleIndex - Console enum mismatch");
 	const std::string			m_sConsolePaths[NUM_CONSOLES];
 	const std::string			m_sMediaPaths[NUM_MEDIATYPES];
 
@@ -41,6 +43,7 @@ public:
 	static Compositorium *Get() { return sm_pInstance; }
 
 	std::string GetRootPath() const;
+	std::vector<GameConsole> GetConsoleList();
 
 	std::vector<MusicTrack> GetMusicPlayList(uint32_t uiConsoleFlags);
 	void GetMusicInfo(MusicTrack musicTrack, GameConsole &eConsoleOut, std::string &sSongOut, std::string &sComposerOut);
@@ -69,6 +72,7 @@ public:
 	GameConsole GetConsoleFromPath(std::string sPath);
 	std::string GetConsoleName(GameConsole eConsole);
 	GameConsole GetConsoleFromName(std::string sConsoleName);
+	std::string GetConsoleMediaPath(GameConsole eConsole, bool bLogo);
 
 	std::string OpenHtmlFileDlg();
 

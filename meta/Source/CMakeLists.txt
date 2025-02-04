@@ -75,7 +75,9 @@ set(GAME_SRCFILES
 	"Components/GameBrowser/BrowsePage.cpp"
 	"Components/GameBrowser/BrowsePage.h"
 	"Components/GameBrowser/GameBrowser.cpp"
-	"Components/GameBrowser/GameBrowser.h")
+	"Components/GameBrowser/GameBrowser.h"
+	"Components/GameBrowser/ConsolePage.cpp"
+	"Components/GameBrowser/ConsolePage.h")
 
 set(GAME_INCLUDE_DIRS "")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}")

@@ -9,7 +9,8 @@ GameBrowser::GameBrowser(HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_GameBrowser, pParent),
 	m_CtrlPanel_SetGameBtn(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
 	m_CtrlPanel_SaveBtn(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
-	m_ePageState(PAGE_Browse),
+	m_ePageState(PAGE_Consoles),
+	m_ConsolePage(this),
 	m_BrowsePage(this),
 	m_EditPage(this)
 {
@@ -37,7 +38,7 @@ GameBrowser::GameBrowser(HyEntity2d *pParent /*= nullptr*/) :
 			//SaveFile();
 		});
 
-	m_EditPage.SetVisible(false);
+	ShowConsoles();
 }
 
 /*virtual*/ GameBrowser::~GameBrowser()
@@ -63,12 +64,48 @@ GameBrowser::GameBrowser(HyEntity2d *pParent /*= nullptr*/) :
 	IComponent::Hide(fDuration);
 }
 
+void GameBrowser::ShowConsoles()
+{
+	m_ConsolePage.SetVisible(true);
+	m_ConsolePage.SetInputAllowed(true);
+
+	m_BrowsePage.SetVisible(false);
+	m_BrowsePage.SetInputAllowed(false);
+
+	m_EditPage.SetVisible(false);
+	m_EditPage.SetInputAllowed(false);
+	
+	m_ePageState = PAGE_Consoles;
+}
+
+void GameBrowser::BrowseAtGame(GameInfo gameInfo)
+{
+	m_BrowsePage.BrowseAtGame(gameInfo);
+
+	m_ConsolePage.SetVisible(false);
+	m_ConsolePage.SetInputAllowed(false);
+
+	m_BrowsePage.SetVisible(true);
+	m_BrowsePage.SetInputAllowed(true);
+
+	m_EditPage.SetVisible(false);
+	m_EditPage.SetInputAllowed(false);
+
+	m_ePageState = PAGE_Browse;
+}
+
 void GameBrowser::SetGame(GameStats &gameStats)
 {
 	m_EditPage.SetGame(gameStats);
 
+	m_ConsolePage.SetVisible(false);
+	m_ConsolePage.SetInputAllowed(false);
+
 	m_BrowsePage.SetVisible(false);
+	m_BrowsePage.SetInputAllowed(false);
+
 	m_EditPage.SetVisible(true);
+	m_EditPage.SetInputAllowed(true);
 
 	m_ePageState = PAGE_Edit;
 }

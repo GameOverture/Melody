@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "EditPage.h"
+#include "GameBrowser.h"
 #include "Compositorium.h"
 
 #define CHECKBOX_SIZE 32
@@ -35,6 +36,11 @@ EditPage::EditPage(HyEntity2d *pParent) :
 {
 	m_GameTitleLabel.SetTextState(1);
 	m_GameTitleLabel.SetText("<No Game>");
+	m_GameTitleLabel.SetButtonClickedCallback(
+		[this](HyButton *pThis)
+		{
+			static_cast<GameBrowser *>(ParentGet())->BrowseAtGame(m_GameInfo);
+		});
 	InsertWidget(m_GameTitleLabel);
 
 	HyLayoutHandle hMainRow = InsertLayout(HYORIENT_Horizontal);
@@ -112,9 +118,9 @@ EditPage::EditPage(HyEntity2d *pParent) :
 
 void EditPage::SetGame(GameStats &gameStats)
 {
-	GameInfo gameInfo = Compositorium::Get()->GetGame(gameStats.GetConsole(), gameStats.GetGameId());
+	m_GameInfo = Compositorium::Get()->GetGame(gameStats.GetConsole(), gameStats.GetGameId());
 
-	m_GameTitleLabel.SetText(gameInfo.GetName());
+	m_GameTitleLabel.SetText(m_GameInfo.GetName());
 	m_GameBlindCheckBox.SetChecked(gameStats.IsStatusFlagSet(STATUS_Blind));
 	m_GameOwnedCheckBox.SetChecked(gameStats.IsStatusFlagSet(STATUS_Owned));
 	m_GameWishlistCheckBox.SetChecked(gameStats.IsStatusFlagSet(STATUS_Wishlist));

@@ -217,6 +217,190 @@
                 }
             ]
         },
+        "Consoles/Console": {
+            "CameraPos": [
+                0,
+                0
+            ],
+            "CameraZoom": 1,
+            "UUID": "f5b42cf2-e483-47c6-a930-80c824fb9a3d",
+            "guideHorzArray": [
+            ],
+            "guideVertArray": [
+            ],
+            "stateArray": [
+                {
+                    "assetUUIDs": [
+                        "7dd9d015-1bbf-409f-bb23-ee61361d45dd"
+                    ],
+                    "name": "NES"
+                },
+                {
+                    "assetUUIDs": [
+                        "4f75080b-7833-4ae3-a278-777c34e26624"
+                    ],
+                    "name": "SNES"
+                },
+                {
+                    "assetUUIDs": [
+                        "3ffdb0f2-6326-411c-bc65-1e3d2d295450"
+                    ],
+                    "name": "N64"
+                },
+                {
+                    "assetUUIDs": [
+                        "1a64df94-15e3-485d-8198-e2eddb891ac1"
+                    ],
+                    "name": "GameCube"
+                },
+                {
+                    "assetUUIDs": [
+                        "57ce0d5c-0667-4ec9-8c1e-f1e78bf4e6ed"
+                    ],
+                    "name": "Wii"
+                },
+                {
+                    "assetUUIDs": [
+                        "684d5870-bff5-45a2-94a8-d806000083d5"
+                    ],
+                    "name": "SMS"
+                },
+                {
+                    "assetUUIDs": [
+                        "ea49956c-6ed0-4642-b4d2-587766d48eae"
+                    ],
+                    "name": "Genesis"
+                },
+                {
+                    "assetUUIDs": [
+                        "213701ea-5a97-486e-9bd2-4e907a5b334b"
+                    ],
+                    "name": "SegaCD"
+                },
+                {
+                    "assetUUIDs": [
+                        "1ddfc979-7f64-4da4-b4a6-55dc695a974c"
+                    ],
+                    "name": "Saturn"
+                },
+                {
+                    "assetUUIDs": [
+                        "03f31207-fcda-4920-a00a-724b47181a47"
+                    ],
+                    "name": "Dreamcast"
+                },
+                {
+                    "assetUUIDs": [
+                        "ad187e41-6615-484a-bad1-72108b9c4681"
+                    ],
+                    "name": "PS1"
+                },
+                {
+                    "assetUUIDs": [
+                        "5f3c7d09-49f8-454f-a7ae-97c5de1134f9"
+                    ],
+                    "name": "PS2"
+                },
+                {
+                    "assetUUIDs": [
+                        "f93f3a10-6234-428d-8c53-b6b9208a8582"
+                    ],
+                    "name": "Xbox"
+                }
+            ]
+        },
+        "Consoles/Logo": {
+            "CameraPos": [
+                0,
+                0
+            ],
+            "CameraZoom": 1,
+            "UUID": "ac490933-c4c0-4b1f-9791-419bf0299a24",
+            "guideHorzArray": [
+            ],
+            "guideVertArray": [
+            ],
+            "stateArray": [
+                {
+                    "assetUUIDs": [
+                        "b489103d-a2f7-4645-8d68-a8428de363ac"
+                    ],
+                    "name": "NES"
+                },
+                {
+                    "assetUUIDs": [
+                        "f6f95c2e-ba80-46b1-87ff-0608876cc72d"
+                    ],
+                    "name": "SNES"
+                },
+                {
+                    "assetUUIDs": [
+                        "2a3175bf-537d-48b0-a944-9ec2a9c805f1"
+                    ],
+                    "name": "N64"
+                },
+                {
+                    "assetUUIDs": [
+                        "2478a407-c3bc-495d-bd6c-2edc2bebe153"
+                    ],
+                    "name": "GameCube"
+                },
+                {
+                    "assetUUIDs": [
+                        "ebc087c1-da25-41fe-936f-5c0323854489"
+                    ],
+                    "name": "Wii"
+                },
+                {
+                    "assetUUIDs": [
+                        "70441db4-dd56-4e5c-a7f6-d83d98541cd3"
+                    ],
+                    "name": "SMS"
+                },
+                {
+                    "assetUUIDs": [
+                        "ee8bb8e7-5dcd-4518-81d5-9cf096852425"
+                    ],
+                    "name": "Genesis"
+                },
+                {
+                    "assetUUIDs": [
+                        "0b3e66b4-11cd-41e4-b560-c24421ff4ca6"
+                    ],
+                    "name": "SegaCD"
+                },
+                {
+                    "assetUUIDs": [
+                        "86809976-a096-496a-bd98-b205c49618fa"
+                    ],
+                    "name": "Saturn"
+                },
+                {
+                    "assetUUIDs": [
+                        "74738ec1-9749-4db7-a531-76cb78162222"
+                    ],
+                    "name": "Dreamcast"
+                },
+                {
+                    "assetUUIDs": [
+                        "62faf51c-569e-4bc6-b70a-50e19be64928"
+                    ],
+                    "name": "PS1"
+                },
+                {
+                    "assetUUIDs": [
+                        "e97fe24e-6eef-41f0-adae-52d1e96c6b01"
+                    ],
+                    "name": "PS2"
+                },
+                {
+                    "assetUUIDs": [
+                        "e99596d9-da98-4ba2-b7fa-adb53496c783"
+                    ],
+                    "name": "Xbox"
+                }
+            ]
+        },
         "GameSprites/Dancer": {
             "CameraPos": [
                 0,

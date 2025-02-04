@@ -5,7 +5,10 @@
 
 class EditPage : public HyUiContainer
 {
-	HyLabel			m_GameTitleLabel;
+	GameInfo		m_GameInfo;
+
+	HyButton		m_GameTitleLabel;
+
 	HyButton		m_BackBtn;
 	HyLabel			m_BoxartLabel;
 	HyButton		m_ForwardBtn;
