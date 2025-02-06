@@ -66,46 +66,106 @@ GameBrowser::GameBrowser(HyEntity2d *pParent /*= nullptr*/) :
 
 void GameBrowser::ShowConsoles()
 {
-	m_ConsolePage.SetVisible(true);
-	m_ConsolePage.SetInputAllowed(true);
-
-	m_BrowsePage.SetVisible(false);
 	m_BrowsePage.SetInputAllowed(false);
-
-	m_EditPage.SetVisible(false);
 	m_EditPage.SetInputAllowed(false);
+
+	if(m_BrowsePage.IsVisible())
+	{
+		m_BrowsePage.alpha.Tween(0.0f, 0.75f, HyTween::Linear, 0.0f,
+			[this](IHyNode *pThis)
+			{
+				static_cast<BrowsePage *>(pThis)->SetVisible(false);
+			});
+	}
+	
+	if(m_EditPage.IsVisible())
+	{
+		m_EditPage.alpha.Tween(0.0f, 0.75f, HyTween::Linear, 0.0f,
+			[this](IHyNode *pThis)
+			{
+				static_cast<EditPage *>(pThis)->SetVisible(false);
+			});
+	}
+
+	m_ConsolePage.SetVisible(true);
+	m_ConsolePage.alpha.Tween(1.0f, 0.75f, HyTween::Linear, 0.0f,
+		[this](IHyNode *pThis)
+		{
+			m_ConsolePage.SetInputAllowed(true);
+		});
 	
 	m_ePageState = PAGE_Consoles;
 }
 
 void GameBrowser::BrowseAtGame(GameInfo gameInfo)
 {
-	m_BrowsePage.BrowseAtGame(gameInfo);
-
-	m_ConsolePage.SetVisible(false);
+	m_EditPage.SetInputAllowed(false);
 	m_ConsolePage.SetInputAllowed(false);
 
-	m_BrowsePage.SetVisible(true);
-	m_BrowsePage.SetInputAllowed(true);
+	if(m_EditPage.IsVisible())
+	{
+		HyTexturedQuad2d *pBoxart = m_EditPage.GetBoxart();
+		if(pBoxart)
+			m_BrowsePage.ReturnBoxart(*pBoxart);
+		
+		m_EditPage.alpha.Tween(0.0f, 0.75f, HyTween::Linear, 0.0f,
+			[this](IHyNode *pThis)
+			{
+				static_cast<EditPage *>(pThis)->SetVisible(false);
+			});
+	}
+	
+	if(m_ConsolePage.IsVisible())
+	{
+		m_ConsolePage.alpha.Tween(0.0f, 0.75f, HyTween::Linear, 0.0f,
+			[this](IHyNode *pThis)
+			{
+				static_cast<ConsolePage *>(pThis)->SetVisible(false);
+			});
+	}
 
-	m_EditPage.SetVisible(false);
-	m_EditPage.SetInputAllowed(false);
+	m_BrowsePage.BrowseAtGame(gameInfo);
+	m_BrowsePage.SetVisible(true);
+	m_BrowsePage.alpha.Set(0.0f);
+	m_BrowsePage.alpha.Tween(1.0f, 0.75f, HyTween::Linear, 0.0f,
+		[](IHyNode *pThis)
+		{
+			static_cast<BrowsePage *>(pThis)->SetInputAllowed(true);
+		});
 
 	m_ePageState = PAGE_Browse;
 }
 
-void GameBrowser::SetGame(GameStats &gameStats)
+void GameBrowser::SetGame(HyTexturedQuad2d &boxartRef, GameStats &gameStats)
 {
-	m_EditPage.SetGame(gameStats);
-
-	m_ConsolePage.SetVisible(false);
 	m_ConsolePage.SetInputAllowed(false);
-
-	m_BrowsePage.SetVisible(false);
 	m_BrowsePage.SetInputAllowed(false);
 
+	if(m_BrowsePage.IsVisible())
+	{
+		m_BrowsePage.alpha.Tween(0.0f, 0.75f, HyTween::Linear, 0.0f,
+			[this](IHyNode *pThis)
+			{
+				static_cast<BrowsePage *>(pThis)->SetVisible(false);
+			});
+	}
+	
+	if(m_ConsolePage.IsVisible())
+	{
+		m_ConsolePage.alpha.Tween(0.0f, 0.75f, HyTween::Linear, 0.0f,
+			[this](IHyNode *pThis)
+			{
+				static_cast<ConsolePage *>(pThis)->SetVisible(false);
+			});
+	}
+
+	m_EditPage.SetGame(boxartRef, gameStats);
 	m_EditPage.SetVisible(true);
-	m_EditPage.SetInputAllowed(true);
+	m_EditPage.alpha.Tween(1.0f, 0.75f, HyTween::Linear, 0.0f,
+		[](IHyNode *pThis)
+		{
+			static_cast<EditPage *>(pThis)->SetInputAllowed(true);
+		});
 
 	m_ePageState = PAGE_Edit;
 }

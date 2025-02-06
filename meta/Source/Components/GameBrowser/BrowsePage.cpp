@@ -32,10 +32,11 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 		m_GameBtns[iGameIndex].SetButtonClickedCallback(
 			[this, iGameIndex](HyButton *pThis)
 			{
-				if(m_QueuedGameList.empty())
+				if(IsInputAllowed() == false)
 					return;
-				
-				static_cast<GameBrowser *>(ParentGet())->SetGame(Compositorium::Get()->GetGameStats(m_QueuedGameList[iGameIndex]));
+
+				m_iHoverGameIndex = iGameIndex;
+				static_cast<GameBrowser *>(ParentGet())->SetGame(m_GameBoxarts[iGameIndex], Compositorium::Get()->GetGameStats(m_QueuedGamesArray[iGameIndex]));
 			});
 	}
 
@@ -43,6 +44,9 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 	m_PrevBtn.SetButtonClickedCallback(
 		[this](HyButton *pThis)
 		{
+			if(IsInputAllowed() == false)
+				return;
+
 			m_eReloadState = RELOADSTATE_PrevPage;
 		});
 
@@ -50,6 +54,9 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 	m_NextBtn.SetButtonClickedCallback(
 		[this](HyButton *pThis)
 		{
+			if(IsInputAllowed() == false)
+				return;
+
 			m_eReloadState = RELOADSTATE_NextPage;
 		});
 
@@ -61,9 +68,10 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 		m_AlphaJumpBtn[i].SetButtonClickedCallback(
 			[this](HyButton *pThis)
 			{
-				if(m_QueuedGameList.empty())
+				if(IsInputAllowed() == false)
 					return;
-				GameInfo gameInfo = Compositorium::Get()->GetAlphaJumpGame(m_QueuedGameList[0].GetConsole(), pThis->GetUtf8String());
+
+				GameInfo gameInfo = Compositorium::Get()->GetAlphaJumpGame(m_QueuedGamesArray[0].GetConsole(), pThis->GetUtf8String());
 				BrowseAtGame(gameInfo);
 			});
 	}
@@ -105,32 +113,35 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 
 void BrowsePage::BrowseAtGame(GameInfo gameInfo)
 {
-	std::vector<GameInfo> gameList;
-	//if(bNext)
-		gameList = Compositorium::Get()->GetNextGames(gameInfo, NUM_GAMES_PER_PAGE);
-	//else
-	//	gameList = Compositorium::Get()->GetPrevGames(gameInfo, NUM_GAMES_PER_PAGE);
+	std::vector<GameInfo> gameList = Compositorium::Get()->GetNextGames(gameInfo, NUM_GAMES_PER_PAGE);
+	HyAssert(gameList.size() == NUM_GAMES_PER_PAGE, "BrowsePage::BrowseAtGame() - gameList.size() != NUM_GAMES_PER_PAGE");
 
-	SetList(gameList);
+	std::array<GameInfo, NUM_GAMES_PER_PAGE> gameArray = { gameList[0], gameList[1], gameList[2], gameList[3], gameList[4], gameList[5], gameList[6], gameList[7], gameList[8], gameList[9] };
+	SetList(gameArray);
 }
 
-void BrowsePage::SetList(std::vector<GameInfo> &gameList)
+void BrowsePage::SetList(std::array<GameInfo, NUM_GAMES_PER_PAGE> &gameList)
 {
 	if(gameList.empty())
 		return;
 
-	m_QueuedGameList = gameList;
+	m_QueuedGamesArray = gameList;
 	m_iHoverGameIndex = -1;
 
-	m_hPrevGame = m_QueuedGameList[0];
-	for(int i = 0; i < m_QueuedGameList.size(); ++i)
-		m_GameTitleLabels[i].SetText(m_QueuedGameList[i].GetName());
-	m_hNextGame = m_QueuedGameList[m_QueuedGameList.size() - 1];
+	m_hPrevGame = m_QueuedGamesArray[0];
+	for(int i = 0; i < NUM_GAMES_PER_PAGE; ++i)
+		m_GameTitleLabels[i].SetText(m_QueuedGamesArray[i].GetName());
+	m_hNextGame = m_QueuedGamesArray[NUM_GAMES_PER_PAGE - 1];
 
 	if(m_ReloadCooldownTimer.IsRunning() && m_ReloadCooldownTimer.IsExpired() == false)
 		m_ReloadCooldownTimer.InitStart(BROWSEPAGE_LOAD_COOLDOWN);
 
 	m_eReloadState = RELOADSTATE_TryLoad;
+}
+
+void BrowsePage::ReturnBoxart(HyTexturedQuad2d &boxartRef)
+{
+	m_GameBtns[m_iHoverGameIndex].ChildAppend(boxartRef);
 }
 
 void BrowsePage::OnContainerUpdate() /*override*/
@@ -143,16 +154,16 @@ void BrowsePage::OnContainerUpdate() /*override*/
 	case RELOADSTATE_TryLoad:
 		if(m_ReloadCooldownTimer.IsExpired())
 		{
-			m_TitleLabel.SetText("Browsing " + Compositorium::Get()->GetConsoleName(m_QueuedGameList[0].GetConsole()) + " Games");
+			m_TitleLabel.SetText("Browsing " + Compositorium::Get()->GetConsoleName(m_QueuedGamesArray[0].GetConsole()) + " Games");
 
 			
-			for(int i = 0; i < m_QueuedGameList.size(); ++i)
+			for(int i = 0; i < NUM_GAMES_PER_PAGE; ++i)
 			{
-				std::string sBestMatchingLogoFile = Compositorium::Get()->GetBestMedia(m_QueuedGameList[i], MEDIATYPE_Boxarts);
+				std::string sBestMatchingLogoFile = Compositorium::Get()->GetBestMedia(m_QueuedGamesArray[i], MEDIATYPE_Boxarts);
 				m_GameBoxarts[i].Uninit();
 				m_GameBoxarts[i].SetVisible(false);
 				if(sBestMatchingLogoFile.empty() == false)
-					m_GameBoxarts[i].Init(Compositorium::Get()->GetMediaPath(m_QueuedGameList[i].GetConsole(), MEDIATYPE_Boxarts) + sBestMatchingLogoFile, HyTextureInfo(), &m_GameBtns[i]);
+					m_GameBoxarts[i].Init(Compositorium::Get()->GetMediaPath(m_QueuedGamesArray[i].GetConsole(), MEDIATYPE_Boxarts) + sBestMatchingLogoFile, HyTextureInfo(), &m_GameBtns[i]);
 			}
 
 			m_ReloadCooldownTimer.InitStart(BROWSEPAGE_LOAD_COOLDOWN);
@@ -198,12 +209,24 @@ void BrowsePage::OnContainerUpdate() /*override*/
 
 	case RELOADSTATE_NextPage:
 		if(m_hNextGame.IsValid())
-			SetList(Compositorium::Get()->GetNextGames(m_hNextGame, NUM_GAMES_PER_PAGE));
+		{
+			std::vector<GameInfo> gameList = Compositorium::Get()->GetNextGames(m_hNextGame, NUM_GAMES_PER_PAGE);
+			HyAssert(gameList.size() == NUM_GAMES_PER_PAGE, "BrowsePage::BrowseAtGame() - gameList.size() != NUM_GAMES_PER_PAGE");
+
+			std::array<GameInfo, NUM_GAMES_PER_PAGE> gameArray = { gameList[0], gameList[1], gameList[2], gameList[3], gameList[4], gameList[5], gameList[6], gameList[7], gameList[8], gameList[9] };
+			SetList(gameArray);
+		}
 		break;
 
 	case RELOADSTATE_PrevPage:
 		if(m_hPrevGame.IsValid())
-			SetList(Compositorium::Get()->GetNextGames(m_hPrevGame, NUM_GAMES_PER_PAGE));
+		{
+			std::vector<GameInfo> gameList = Compositorium::Get()->GetPrevGames(m_hPrevGame, NUM_GAMES_PER_PAGE);
+			HyAssert(gameList.size() == NUM_GAMES_PER_PAGE, "BrowsePage::BrowseAtGame() - gameList.size() != NUM_GAMES_PER_PAGE");
+
+			std::array<GameInfo, NUM_GAMES_PER_PAGE> gameArray = { gameList[0], gameList[1], gameList[2], gameList[3], gameList[4], gameList[5], gameList[6], gameList[7], gameList[8], gameList[9] };
+			SetList(gameArray);
+		}
 		break;
 	}
 

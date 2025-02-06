@@ -36,7 +36,7 @@ public:
 
 	void ShowConsoles();
 	void BrowseAtGame(GameInfo gameInfo);
-	void SetGame(GameStats &gameStats);
+	void SetGame(HyTexturedQuad2d &boxartRef, GameStats &gameStats);
 
 protected:
 	virtual void OnUpdate() override;

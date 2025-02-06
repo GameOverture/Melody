@@ -28,6 +28,9 @@ ConsolePage::ConsolePage(HyEntity2d *pParent /*= nullptr*/) :
 		pNewBtn->SetButtonClickedCallback(
 			[this, eConsole](HyButton *pThis)
 			{
+				if(IsInputAllowed() == false)
+					return;
+
 				static_cast<GameBrowser *>(ParentGet())->BrowseAtGame(Compositorium::Get()->GetAlphaJumpGame(eConsole, "A"));
 			});
 

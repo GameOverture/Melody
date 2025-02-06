@@ -149,16 +149,19 @@ std::vector<GameInfo> Compositorium::GetNextGames(GameInfo hGame, int iNumGames)
 
 	const HyJsonObj &consoleObj = m_MetaDocs[ToIndex(hGame.m_eConsole)].GetObject();
 	bool bFound = false;
-	for(auto iter = consoleObj.MemberBegin(); iter != consoleObj.MemberEnd(); ++iter)
+	for(auto iter = consoleObj.MemberBegin(); ; ++iter)
 	{
-		if(iter->name.GetString() == hGame.GetGameId())
-			bFound = true;
+		if(iter == consoleObj.MemberEnd())
+			iter = consoleObj.MemberBegin();
+
 		if(bFound)
 		{
 			sGameList.push_back(GameInfo(hGame.m_eConsole, iter->name.GetString(), iter->value.GetObject()));
 			if(sGameList.size() >= iNumGames)
 				break;
 		}
+		else if(iter->name.GetString() == hGame.GetGameId())
+			bFound = true;
 	}
 	return sGameList;
 }
@@ -176,13 +179,17 @@ std::vector<GameInfo> Compositorium::GetPrevGames(GameInfo hGame, int iNumGames)
 		if(iter->name.GetString() == hGame.GetGameId())
 			break;
 	}
-	for(; iter != consoleObj.MemberBegin(); --iter)
+	for(; ; --iter)
 	{
 		sGameList.push_back(GameInfo(hGame.m_eConsole, iter->name.GetString(), iter->value.GetObject()));
 		if(sGameList.size() >= iNumGames)
 			break;
+
+		if(iter == consoleObj.MemberBegin())
+			iter = consoleObj.MemberEnd();
 	}
 
+	std::reverse(sGameList.begin(), sGameList.end());
 	return sGameList;
 }
 

@@ -20,7 +20,7 @@ class BrowsePage : public HyUiContainer
 
 	HyButton				m_AlphaJumpBtn[26];
 
-	std::vector<GameInfo>	m_QueuedGameList;
+	std::array<GameInfo, NUM_GAMES_PER_PAGE>	m_QueuedGamesArray;
 	enum ReloadState
 	{
 		RELOADSTATE_Idle,
@@ -38,7 +38,9 @@ public:
 
 	void BrowseAtGame(GameInfo gameInfo);
 
-	void SetList(std::vector<GameInfo> &gameList);
+	void SetList(std::array<GameInfo, NUM_GAMES_PER_PAGE> &gameList);
+
+	void ReturnBoxart(HyTexturedQuad2d &boxartRef);
 
 protected:
 	void OnContainerUpdate() override;

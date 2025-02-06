@@ -7,6 +7,7 @@
 
 EditPage::EditPage(HyEntity2d *pParent) :
 	HyUiContainer(HYORIENT_Vertical, HyPanelInit(GAMEBROWSER_WIDTH, GAMEBROWSER_HEIGHT, 0, HyColor(0.0f, 0.0f, 0.0f, 0.5f), HyColor::Black), pParent),
+	m_pBoxartRef(nullptr),
 	m_GameTitleLabel(HyPanelInit(GAMEBROWSER_WIDTH, 64), "MainText", this),
 	m_BackBtn(HyPanelInit(200, 200, 3), "MainText", this),
 	m_BoxartLabel(HyPanelInit(1400, 500), this),
@@ -39,6 +40,9 @@ EditPage::EditPage(HyEntity2d *pParent) :
 	m_GameTitleLabel.SetButtonClickedCallback(
 		[this](HyButton *pThis)
 		{
+			if(IsInputAllowed() == false)
+				return;
+
 			static_cast<GameBrowser *>(ParentGet())->BrowseAtGame(m_GameInfo);
 		});
 	InsertWidget(m_GameTitleLabel);
@@ -116,9 +120,10 @@ EditPage::EditPage(HyEntity2d *pParent) :
 {
 }
 
-void EditPage::SetGame(GameStats &gameStats)
+void EditPage::SetGame(HyTexturedQuad2d &boxartRef, GameStats &gameStats)
 {
 	m_GameInfo = Compositorium::Get()->GetGame(gameStats.GetConsole(), gameStats.GetGameId());
+	m_pBoxartRef = &boxartRef;
 
 	m_GameTitleLabel.SetText(m_GameInfo.GetName());
 	m_GameBlindCheckBox.SetChecked(gameStats.IsStatusFlagSet(STATUS_Blind));
@@ -134,4 +139,9 @@ void EditPage::SetGame(GameStats &gameStats)
 	m_GameElapsedPlayTimeLabel.SetText(std::to_string(gameStats.GetElapsedPlayTime()));
 	m_GameBeatenOnStreamValue.SetText(gameStats.GetBeatenOnStream());
 	m_NotesLineEdit.SetText(gameStats.GetNotes());
+}
+
+HyTexturedQuad2d *EditPage::GetBoxart() const
+{
+	return m_pBoxartRef;
 }
