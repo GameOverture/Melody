@@ -3,22 +3,15 @@
 
 #include "pch.h"
 
-class IComponent;
-class Crt;
-class MessageCycle;
-
 class CtrlPanel : public HyUiContainer
 {
-	Crt *				m_pCrtRef;
-	
-	HyButton			m_btnVolume_Down;
-	HyButton			m_btnVolume_Up;
+	std::vector<HyDividerLine *>	m_DividerLineList;
 
 public:
 	CtrlPanel(HyEntity2d *pParent = nullptr);
 	virtual ~CtrlPanel();
 
-	void SetCrtRef(Crt *pCrtRef);
+	void InsertDividerLine();
 };
 
 #endif // CtrlPanel_h__

@@ -12,6 +12,7 @@ class EditPage : public HyUiContainer
 
 	HyButton			m_BackBtn;
 	HyLabel				m_BoxartLabel;
+	HyLabel				m_Label;
 	HyButton			m_ForwardBtn;
 
 	HyCheckBox			m_GameBlindCheckBox;

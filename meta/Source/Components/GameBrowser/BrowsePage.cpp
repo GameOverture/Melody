@@ -6,7 +6,7 @@
 #define BROWSEPAGE_LOAD_COOLDOWN 0.5f
 
 BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
-	HyUiContainer(HYORIENT_Vertical, HyPanelInit(GAMEBROWSER_WIDTH, GAMEBROWSER_HEIGHT, 0, HyColor(0.0f, 0.0f, 0.0f, 0.5f)), pParent),
+	HyUiContainer(HYORIENT_Vertical, HyPanelInit(GAMEBROWSER_WIDTH, GAMEBROWSER_HEIGHT), pParent),
 	m_TitleLabel(HyPanelInit(GAMEBROWSER_WIDTH, 64), "MainText", this),
 	m_PrevBtn(HyPanelInit(50, 420, 2), "MainText"),
 	m_iHoverGameIndex(-1),
@@ -17,7 +17,7 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 	m_TitleLabel.SetButtonClickedCallback(
 		[this](HyButton *pThis)
 		{
-			static_cast<GameBrowser *>(ParentGet())->ShowConsoles();
+			//static_cast<GameBrowser *>(ParentGet())->ShowConsoles();
 		});
 
 	for(int iGameIndex = 0; iGameIndex < NUM_GAMES_PER_PAGE; ++iGameIndex)
@@ -238,11 +238,16 @@ void BrowsePage::OnContainerUpdate() /*override*/
 			{
 				if(m_iHoverGameIndex != i)
 				{
+					int iGameWidth = GAMEBROWSER_WIDTH / (NUM_GAMES_PER_PAGE / 2) - 35;
 					if(m_iHoverGameIndex != -1)
-						m_GameBtns[m_iHoverGameIndex].SetTint(HyColor::White);
+					{
+						m_GameBtns[m_iHoverGameIndex].Setup(HyPanelInit(iGameWidth, (GAMEBROWSER_HEIGHT / 2) - 110, 0, HyColor(0.0f, 0.0f, 0.0f, 0.0f)));
+						//m_GameBtns[m_iHoverGameIndex].SetTint(HyColor::White);
+					}
 
 					m_iHoverGameIndex = i;
-					m_GameBtns[m_iHoverGameIndex].SetTint(HyColor::LightGray);
+					//m_GameBtns[m_iHoverGameIndex].SetTint(HyColor::LightGray);
+					m_GameBtns[m_iHoverGameIndex].Setup(HyPanelInit(iGameWidth, (GAMEBROWSER_HEIGHT / 2) - 110, 0, HyColor(0.0f, 0.0f, 0.0f, 0.7f)));
 
 					float fSize = 1.02f;
 					float fDur = HyRand::Range(0.5f, 1.0f);

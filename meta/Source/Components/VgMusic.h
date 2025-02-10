@@ -9,6 +9,7 @@
 #define VGMUSIC_MAX_SONG_LENGTH 90.0f//115.0f
 
 class CtrlPanel;
+class Crt;
 
 enum PlayState
 {
@@ -25,6 +26,10 @@ class VgMusic : public HyEntity2d
 	HyButton									m_CtrlPanel_PrevBtn;
 	HyButton									m_CtrlPanel_PlayBtn;
 	HyButton									m_CtrlPanel_StopBtn;
+	HyButton									m_btnVolume_Down;
+	HyButton									m_btnVolume_Up;
+	
+	Crt *										m_pCrtRef;
 
 	HyAudio2d									m_AudioTrack;
 public:
@@ -40,6 +45,7 @@ public:
 	VgMusic(HyEntity2d *pParent = nullptr);
 	virtual ~VgMusic();
 
+	void SetCrtRef(Crt *pCrtRef);
 	void PopulateCtrlPanel(CtrlPanel &ctrlPanel);
 
 	void SetOnTrackChangeCallback(std::function<void(MusicTrack &)> fpOnTrackChange);

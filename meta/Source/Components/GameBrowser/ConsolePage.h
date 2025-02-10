@@ -5,12 +5,9 @@
 
 class ConsolePage : public HyUiContainer
 {
-	HyLabel					m_TitleLabel;
-
-	std::vector<HyLabel *>	m_ConsoleTitleList;
-	std::vector<HyButton *>	m_ConsoleBtnList;
-
-	int32					m_iHoverIndex;
+	std::vector<HyButton *>		m_LogoBtnList;
+	std::vector<HySprite2d *>	m_LogoSpriteList;
+	int32						m_iHoverIndex;
 
 public:
 	ConsolePage(HyEntity2d *pParent = nullptr);
@@ -18,6 +15,11 @@ public:
 
 protected:
 	virtual void OnContainerUpdate() override;
+
+	virtual float OnBeginShow() override;	// Returns the duration (in seconds) of the show transition
+	virtual void OnShown() override;
+	virtual float OnBeginHide() override; // Returns the duration (in seconds) of the hide transition
+	virtual void OnHidden() override;
 };
 
 #endif // ConsolePage_h__

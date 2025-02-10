@@ -8,6 +8,7 @@ MessageCycle::MessageCycle(Monitor &monitorRef, HyEntity2d *pParent /*= nullptr*
 	m_MonitorRef(monitorRef),
 	m_pCtrlPanel(nullptr),
 	m_fXPos(0.0f),
+	m_CtrlPanel_GrayBg(HyPanelInit(50, 50, 2), this),
 	m_CtrlPanel_LineEdit(HyPanelInit(225, 50, 2, HyColor::Blue), HyNodePath("", "CtrlPanel"), this),
 	m_CtrlPanel_AddBtn(HyPanelInit(50, 50, 2, HyColor::Green), HyNodePath("", "CtrlPanel"), this),
 	m_CtrlPanel_radLong(HyPanelInit(24, 24, 2), HyNodePath("", "CtrlPanel"), this),
@@ -25,6 +26,16 @@ MessageCycle::MessageCycle(Monitor &monitorRef, HyEntity2d *pParent /*= nullptr*
 				Hide(0.5f);
 		});
 
+	m_CtrlPanel_GrayBg.SetText("Gray Bar");
+	m_CtrlPanel_GrayBg.SetCheckedChangedCallback(
+		[this](HyCheckBox *pCheckBox)
+		{
+			if(pCheckBox->IsChecked())
+				m_GrayBg.SetVisible(true);
+			else
+				m_GrayBg.SetVisible(false);
+		});
+
 	m_CtrlPanel_LineEdit.SetOnSubmit([this](HyLineEdit *pThis)
 		{
 			m_CtrlPanel_AddBtn.InvokeButtonClicked();
@@ -40,6 +51,11 @@ MessageCycle::MessageCycle(Monitor &monitorRef, HyEntity2d *pParent /*= nullptr*
 	m_CtrlPanel_radShort.SetText("Short");
 	m_CtrlPanel_radLong.SetText("Long");
 	m_CtrlPanel_radLong.SetChecked(true);
+
+	m_GrayBg.UseWindowCoordinates();
+	m_GrayBg.SetAsBox(1920, 208);
+	m_GrayBg.SetTint(HyColor(0x1F1F1F));
+	m_GrayBg.SetVisible(false);
 
 	m_Text.SetAlignment(HYALIGN_Center);
 	
@@ -113,6 +129,8 @@ void MessageCycle::ClearMessages()
 	HyLayoutHandle hRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
 	ctrlPanel.InsertWidget(m_CtrlPanel_CheckBox, hRow);
 	ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
+
+	ctrlPanel.InsertWidget(m_CtrlPanel_GrayBg);
 
 	hRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
 	ctrlPanel.InsertWidget(m_CtrlPanel_LineEdit, hRow);

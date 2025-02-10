@@ -14,13 +14,24 @@ class GameBrowser : public IComponent
 
 	std::string						m_sHtmlFilePath;
 
-	enum PageType
+	enum PixelBookState
 	{
-		PAGE_Consoles = 0,
-		PAGE_Browse,
-		PAGE_Edit,
+		PIXELBOOK_Closed = 0,
+		PIXELBOOK_Opening,
+		PIXELBOOK_PageFwd,
+		PIXELBOOK_PageBck,
 	};
-	PageType						m_ePageState;
+	HySprite2d						m_PixelBook;
+
+	enum State
+	{
+		STATE_Inactive = 0,
+		STATE_BookIntro,
+		STATE_Consoles,
+		STATE_Browse,
+		STATE_Edit,
+	};
+	State							m_eState;
 	
 	ConsolePage						m_ConsolePage;
 	BrowsePage						m_BrowsePage;
@@ -34,7 +45,6 @@ public:
 	virtual void Show(float fDuration) override;
 	virtual void Hide(float fDuration) override;
 
-	void ShowConsoles();
 	void BrowseAtGame(GameInfo gameInfo);
 	void SetGame(HyTexturedQuad2d &boxartRef, GameStats &gameStats);
 

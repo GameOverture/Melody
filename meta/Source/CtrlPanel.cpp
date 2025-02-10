@@ -5,39 +5,23 @@
 #include "MessageCycle.h"
 
 CtrlPanel::CtrlPanel(HyEntity2d *pParent /*= nullptr*/) :
-	HyUiContainer(HYORIENT_Vertical, HyPanelInit(), pParent),
-	m_pCrtRef(nullptr),
-	m_btnVolume_Down(HyPanelInit(120, 50, 2), HyNodePath("", "CtrlPanel"), this),
-	m_btnVolume_Up(HyPanelInit(120, 50, 2), HyNodePath("", "CtrlPanel"), this)
+	HyUiContainer(HYORIENT_Vertical, HyPanelInit(), pParent)
 {
-	m_btnVolume_Down.SetAsBox(HYALIGN_Center);
-	m_btnVolume_Down.SetText("VOL -");
-	m_btnVolume_Down.SetButtonClickedCallback([this](HyButton *pThis)
-	{
-		HyEngine::Audio().SetGlobalVolume(HyMath::Clamp(HyEngine::Audio().GetGlobalVolume() - 0.05f, 0.0f, 1.0f));
-		m_pCrtRef->SetVolume(HyEngine::Audio().GetGlobalVolume());
-	});
-
-	m_btnVolume_Up.SetAsBox(HYALIGN_Center);
-	m_btnVolume_Up.SetText("VOL +");
-	m_btnVolume_Up.SetButtonClickedCallback([this](HyButton *pThis)
-	{
-		HyEngine::Audio().SetGlobalVolume(HyMath::Clamp(HyEngine::Audio().GetGlobalVolume() + 0.05f, 0.0f, 1.0f));
-		m_pCrtRef->SetVolume(HyEngine::Audio().GetGlobalVolume());
-	});
-
 	SetSize(HyEngine::Window(1).GetWidth(), HyEngine::Window(1).GetHeight());
-
-	HyLayoutHandle hCurRow = InsertLayout(HYORIENT_Horizontal);
-	InsertWidget(m_btnVolume_Down, hCurRow);
-	InsertWidget(m_btnVolume_Up, hCurRow);
 }
 
 /*virtual*/ CtrlPanel::~CtrlPanel()
 {
+	for(HyDividerLine *pDivider : m_DividerLineList)
+		delete pDivider;
 }
 
-void CtrlPanel::SetCrtRef(Crt *pCrtRef)
+void CtrlPanel::InsertDividerLine()
 {
-	m_pCrtRef = pCrtRef;
+	InsertSpacer(HYSIZEPOLICY_Fixed, 10);
+
+	HyDividerLine *pNewDivider = HY_NEW HyDividerLine(HYORIENT_Horizontal, 2.0f, HyColor::White);
+	InsertWidget(*pNewDivider);
+
+	m_DividerLineList.push_back(pNewDivider);
 }

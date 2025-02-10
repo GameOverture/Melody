@@ -45,8 +45,8 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 		m_BtnGrp.AddButton(m_CtrlPanel_radChannel[iChannelIndex]);
 	}
 	m_CtrlPanel_radChannel[MONITORCHANNEL_NoSignal].SetChecked(true);
-	m_CtrlPanel_radChannel[MONITORCHANNEL_NoSignal].SetText("Null");
-	m_CtrlPanel_radChannel[MONITORCHANNEL_ObsFull].SetText("CAMS");
+	m_CtrlPanel_radChannel[MONITORCHANNEL_NoSignal].SetText("NUL");
+	m_CtrlPanel_radChannel[MONITORCHANNEL_ObsFull].SetText("CAM");
 	//m_CtrlPanel_radChannel[MONITORCHANNEL_ObsPartial].SetText("Partial");
 	m_CtrlPanel_radChannel[MONITORCHANNEL_Brb].SetText("BRB");
 
@@ -99,11 +99,12 @@ HySprite2d &Monitor::GetShadow()
 {
 	HyLayoutHandle hRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
 	ctrlPanel.InsertWidget(m_CtrlPanel_CheckBox, hRow);
-	ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
 	
-	HyLayoutHandle hRow2 = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
+	//HyLayoutHandle hRow2 = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
 	for(int i = 0; i < NUM_MONITORCHANNELS; ++i)
-		ctrlPanel.InsertWidget(m_CtrlPanel_radChannel[i], hRow2);
+		ctrlPanel.InsertWidget(m_CtrlPanel_radChannel[i], hRow);// , hRow2);
+
+	ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
 }
 
 /*virtual*/ void Monitor::Show(float fDuration) /*override*/

@@ -9,7 +9,8 @@ GameBrowser::GameBrowser(HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_GameBrowser, pParent),
 	m_CtrlPanel_SetGameBtn(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
 	m_CtrlPanel_SaveBtn(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
-	m_ePageState(PAGE_Consoles),
+	m_PixelBook("PixelBook", this),
+	m_eState(STATE_Inactive),
 	m_ConsolePage(this),
 	m_BrowsePage(this),
 	m_EditPage(this)
@@ -19,7 +20,7 @@ GameBrowser::GameBrowser(HyEntity2d *pParent /*= nullptr*/) :
 		[this](HyCheckBox *pCheckBox)
 		{
 			if(pCheckBox->IsChecked())
-				Show(0.5f);
+				Show(1.5f);
 			else
 				Hide(0.5f);
 		});
@@ -38,7 +39,16 @@ GameBrowser::GameBrowser(HyEntity2d *pParent /*= nullptr*/) :
 			//SaveFile();
 		});
 
-	ShowConsoles();
+	m_PixelBook.scale.Set(2.6f, 2.6f);
+
+	m_ConsolePage.Hide(true);
+	m_ConsolePage.pos.Set(GAMEBROWSER_WIDTH * -0.5f, GAMEBROWSER_HEIGHT * -0.5f);
+	
+	m_BrowsePage.Hide(true);
+	m_BrowsePage.pos.Set(GAMEBROWSER_WIDTH * -0.5f, GAMEBROWSER_HEIGHT * -0.5f);
+	
+	m_EditPage.Hide(true);
+	m_EditPage.pos.Set(GAMEBROWSER_WIDTH * -0.5f, GAMEBROWSER_HEIGHT * -0.5f);
 }
 
 /*virtual*/ GameBrowser::~GameBrowser()
@@ -56,45 +66,26 @@ GameBrowser::GameBrowser(HyEntity2d *pParent /*= nullptr*/) :
 
 /*virtual*/ void GameBrowser::Show(float fDuration) /*override*/
 {
-	IComponent::Show(fDuration);
+	SetVisible(true);
+
+	m_PixelBook.SetState(PIXELBOOK_Closed);
+	m_PixelBook.pos.Set(0.0f, -1500.0f);
+	m_PixelBook.pos.Tween(0.0f, 0.0f, fDuration, HyTween::QuadInOut);
+	m_PixelBook.rot.Set(-20.0f);
+	m_PixelBook.rot.Tween(.0f, fDuration, HyTween::QuadInOut);
+
+	Defer(fDuration - 0.5f,
+		[this](HyEntity2d *pThis)
+		{
+			m_PixelBook.SetState(PIXELBOOK_Opening);
+		});
+	
+	m_eState = STATE_BookIntro;
 }
 
 /*virtual*/ void GameBrowser::Hide(float fDuration) /*override*/
 {
-	IComponent::Hide(fDuration);
-}
-
-void GameBrowser::ShowConsoles()
-{
-	m_BrowsePage.SetInputAllowed(false);
-	m_EditPage.SetInputAllowed(false);
-
-	if(m_BrowsePage.IsVisible())
-	{
-		m_BrowsePage.alpha.Tween(0.0f, 0.75f, HyTween::Linear, 0.0f,
-			[this](IHyNode *pThis)
-			{
-				static_cast<BrowsePage *>(pThis)->SetVisible(false);
-			});
-	}
-	
-	if(m_EditPage.IsVisible())
-	{
-		m_EditPage.alpha.Tween(0.0f, 0.75f, HyTween::Linear, 0.0f,
-			[this](IHyNode *pThis)
-			{
-				static_cast<EditPage *>(pThis)->SetVisible(false);
-			});
-	}
-
-	m_ConsolePage.SetVisible(true);
-	m_ConsolePage.alpha.Tween(1.0f, 0.75f, HyTween::Linear, 0.0f,
-		[this](IHyNode *pThis)
-		{
-			m_ConsolePage.SetInputAllowed(true);
-		});
-	
-	m_ePageState = PAGE_Consoles;
+	SetVisible(false);
 }
 
 void GameBrowser::BrowseAtGame(GameInfo gameInfo)
@@ -133,7 +124,7 @@ void GameBrowser::BrowseAtGame(GameInfo gameInfo)
 			static_cast<BrowsePage *>(pThis)->SetInputAllowed(true);
 		});
 
-	m_ePageState = PAGE_Browse;
+	//m_ePageState = PAGE_Browse;
 }
 
 void GameBrowser::SetGame(HyTexturedQuad2d &boxartRef, GameStats &gameStats)
@@ -167,7 +158,7 @@ void GameBrowser::SetGame(HyTexturedQuad2d &boxartRef, GameStats &gameStats)
 			static_cast<EditPage *>(pThis)->SetInputAllowed(true);
 		});
 
-	m_ePageState = PAGE_Edit;
+	//m_ePageState = PAGE_Edit;
 }
 
 /*virtual*/ void GameBrowser::OnUpdate() /*override*/
@@ -188,8 +179,34 @@ void GameBrowser::SetGame(HyTexturedQuad2d &boxartRef, GameStats &gameStats)
 		GameStats gameStats = Compositorium::Get()->GetGameStats(gameInfo);
 
 		m_BrowsePage.BrowseAtGame(gameInfo);
-		m_ePageState = PAGE_Browse;
-
 		m_sHtmlFilePath.clear();
+	}
+
+	switch(m_eState)
+	{
+	case STATE_Inactive:
+		break;
+
+	case STATE_BookIntro:
+		if(m_PixelBook.pos.IsAnimating() == false)
+		{
+			m_ConsolePage.Show();
+			m_ConsolePage.alpha.Tween(1.0f, 0.75f, HyTween::Linear, 0.0f,
+				[this](IHyNode *pThis)
+				{
+					m_ConsolePage.SetInputAllowed(true);
+				});
+
+		}
+		break;
+			
+	case STATE_Consoles:
+		break;
+			
+	case STATE_Browse:
+		break;
+	
+	case STATE_Edit:
+		break;
 	}
 }

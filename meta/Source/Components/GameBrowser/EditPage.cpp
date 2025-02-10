@@ -2,25 +2,26 @@
 #include "EditPage.h"
 #include "GameBrowser.h"
 #include "Compositorium.h"
+#include "Melody.h"
 
-#define CHECKBOX_SIZE 32
+#define CHECKBOX_SIZE 20
 
 EditPage::EditPage(HyEntity2d *pParent) :
-	HyUiContainer(HYORIENT_Vertical, HyPanelInit(GAMEBROWSER_WIDTH, GAMEBROWSER_HEIGHT, 0, HyColor(0.0f, 0.0f, 0.0f, 0.5f), HyColor::Black), pParent),
+	HyUiContainer(HYORIENT_Vertical, HyPanelInit(GAMEBROWSER_WIDTH, GAMEBROWSER_HEIGHT), pParent),
 	m_pBoxartRef(nullptr),
 	m_GameTitleLabel(HyPanelInit(GAMEBROWSER_WIDTH, 64), "MainText", this),
 	m_BackBtn(HyPanelInit(200, 200, 3), "MainText", this),
 	m_BoxartLabel(HyPanelInit(1400, 500), this),
 	m_ForwardBtn(HyPanelInit(200, 200, 3), "MainText", this),
-	m_GameBlindCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1), "CtrlPanel", this),
-	m_GameOwnedCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1), "CtrlPanel", this),
-	m_GameWishlistCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1), "CtrlPanel", this),
-	m_GamePlayedCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1), "CtrlPanel", this),
-	m_GameInterestedCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1), "CtrlPanel", this),
-	m_GameEvergreenCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1), "CtrlPanel", this),
-	m_GameBeatenCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1), "CtrlPanel", this),
-	m_Game100PercentCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1), "CtrlPanel", this),
-	m_GameSpeedrunningCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1), "CtrlPanel", this),
+	m_GameBlindCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
+	m_GameOwnedCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
+	m_GameWishlistCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
+	m_GamePlayedCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
+	m_GameInterestedCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
+	m_GameEvergreenCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
+	m_GameBeatenCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
+	m_Game100PercentCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
+	m_GameSpeedrunningCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
 	m_GameFirstPlayedOnStreamLabel(HyPanelInit(200, 50), "CtrlPanel", this),
 	m_GameFirstPlayedOnStreamValue(HyPanelInit(200, 50, 1), "MainText", this),
 	m_GameFirstPlayedOnStreamBtn(HyPanelInit(100, 50, 1), "CtrlPanel", this),
@@ -35,6 +36,8 @@ EditPage::EditPage(HyEntity2d *pParent) :
 	m_GameBeatenOnStreamBtn(HyPanelInit(100, 50, 1), "CtrlPanel", this),
 	m_NotesLineEdit(HyPanelInit(800, 200, 1), "CtrlPanel", this)
 {
+	m_RootLayout.SetMargins(0, 0, 0, 0, 5);
+
 	m_GameTitleLabel.SetTextState(1);
 	m_GameTitleLabel.SetText("<No Game>");
 	m_GameTitleLabel.SetButtonClickedCallback(
@@ -51,6 +54,84 @@ EditPage::EditPage(HyEntity2d *pParent) :
 	m_BackBtn.SetText("<");
 	InsertWidget(m_BackBtn, hMainRow);
 	InsertWidget(m_BoxartLabel, hMainRow);
+
+
+
+
+	//m_DescriptionText.SetText(gameObj.GetDescription());
+	//m_DescriptionText.ParentDetach();
+	//m_InfoEnt.ChildAppend(m_DescriptionText);
+
+	//m_ReleaseText.SetText(gameObj.GetRelease());
+	//m_DevText.SetText(gameObj.GetDeveloper());
+	//m_PubText.SetText(gameObj.GetPublisher());
+
+	//m_Details.ClearItems();
+	//bool bFirstDetail = true;
+	//uint32 uiSpacingAmt = 0;
+	//if(m_ReleaseText.GetUtf8String().empty() == false)
+	//{
+	//	if(bFirstDetail == false)
+	//		m_Details.InsertSpacer(HYSIZEPOLICY_Fixed, uiSpacingAmt);
+	//	bFirstDetail = false;
+
+	//	HyLayoutHandle hRow = m_Details.InsertLayout(HYORIENT_Horizontal);
+	//	m_Details.InsertWidget(m_ReleaseLabel, hRow);
+	//	m_Details.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
+	//	m_Details.InsertWidget(m_ReleaseText);
+
+	//	m_ReleaseLabel.SetVisible(true);
+	//	m_ReleaseText.SetVisible(true);
+	//}
+	//else
+	//{
+	//	m_ReleaseLabel.SetVisible(false);
+	//	m_ReleaseText.SetVisible(false);
+	//}
+	//if(m_DevText.GetUtf8String().empty() == false)
+	//{
+	//	if(bFirstDetail == false)
+	//		m_Details.InsertSpacer(HYSIZEPOLICY_Fixed, uiSpacingAmt);
+	//	bFirstDetail = false;
+
+	//	HyLayoutHandle hRow = m_Details.InsertLayout(HYORIENT_Horizontal);
+	//	m_Details.InsertWidget(m_DevLabel, hRow);
+	//	m_Details.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
+	//	m_Details.InsertWidget(m_DevText);
+
+	//	m_DevLabel.SetVisible(true);
+	//	m_DevText.SetVisible(true);
+	//}
+	//else
+	//{
+	//	m_DevLabel.SetVisible(false);
+	//	m_DevText.SetVisible(false);
+	//}
+	//if(m_PubText.GetUtf8String().empty() == false)
+	//{
+	//	if(bFirstDetail == false)
+	//		m_Details.InsertSpacer(HYSIZEPOLICY_Fixed, uiSpacingAmt);
+	//	bFirstDetail = false;
+
+	//	HyLayoutHandle hRow = m_Details.InsertLayout(HYORIENT_Horizontal);
+	//	m_Details.InsertWidget(m_PubLabel, hRow);
+	//	m_Details.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
+	//	m_Details.InsertWidget(m_PubText);
+
+	//	m_PubLabel.SetVisible(true);
+	//	m_PubText.SetVisible(true);
+	//}
+	//else
+	//{
+	//	m_PubLabel.SetVisible(false);
+	//	m_PubText.SetVisible(false);
+	//}
+	//m_Details.InsertSpacer();
+
+
+
+
+
 	m_ForwardBtn.SetText(">");
 	InsertWidget(m_ForwardBtn, hMainRow);
 
@@ -124,6 +205,32 @@ void EditPage::SetGame(HyTexturedQuad2d &boxartRef, GameStats &gameStats)
 {
 	m_GameInfo = Compositorium::Get()->GetGame(gameStats.GetConsole(), gameStats.GetGameId());
 	m_pBoxartRef = &boxartRef;
+
+	const glm::mat4 &mtxSceneRef = m_pBoxartRef->GetSceneTransform(0.0f);
+	glm::vec3 vScale(1.0f);
+	glm::quat quatRot;
+	glm::vec3 ptTranslation;
+	glm::vec3 vSkew;
+	glm::vec4 vPerspective;
+	glm::decompose(mtxSceneRef, vScale, quatRot, ptTranslation, vSkew, vPerspective);
+
+	boxartRef.ParentDetach();
+
+	glm::vec2 ptPosStart = ptTranslation;
+	glm::vec2 vScaleStart = vScale;
+	TransformTexture(*m_pBoxartRef, glm::ivec2(1400, 900), glm::vec2(1920 / 2.0f, 1080 / 2));
+	glm::vec2 ptPosDest = m_pBoxartRef->pos.Get();
+	glm::vec2 vScaleDest = m_pBoxartRef->scale.Get();
+
+	m_pBoxartRef->pos.Set(ptPosStart);
+	m_pBoxartRef->scale.Set(vScaleStart);
+	m_pBoxartRef->pos.BezierQuick(ptPosDest, true, 0.64f, 1.0f, HyTween::QuadIn);
+	m_pBoxartRef->scale.Tween(vScaleDest.x, vScaleDest.y, 1.0f); //BezierQuick(vScaleDest, true, 0.64f, 1.0f, HyTween::QuadIn);
+	m_pBoxartRef->rot.Tween(8.0f * (HyRand::Boolean() ? -1.0f : 1.0f), 0.5f, HyTween::QuadInOut, 0.0f,
+		[](IHyNode *pThis)
+		{
+			static_cast<HyTexturedQuad2d *>(pThis)->rot.Tween(0.0f, 0.5f, HyTween::QuadInOut);
+		});
 
 	m_GameTitleLabel.SetText(m_GameInfo.GetName());
 	m_GameBlindCheckBox.SetChecked(gameStats.IsStatusFlagSet(STATUS_Blind));

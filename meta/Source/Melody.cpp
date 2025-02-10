@@ -27,7 +27,6 @@ Melody::Melody(HarmonyInit &initStruct) :
 {
 	sm_pThis = this;
 
-	m_CtrlPanel.SetCrtRef(&m_Crt);
 	m_pCameraCtrlPanel->pos.Set(0.0f, 2000.0f);
 
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_LK, HYPAD_A);
@@ -57,15 +56,16 @@ Melody::Melody(HarmonyInit &initStruct) :
 
 	m_CtrlPanel.UseWindowCoordinates(1);
 
-	m_VgMusic.Load();
-	m_VgMusic.PopulateCtrlPanel(m_CtrlPanel);
-
-	m_GameBrowser.UseWindowCoordinates();
 	m_GameBrowser.Load();
 	m_GameBrowser.SetVisible(false);
-	m_GameBrowser.pos.Set(25, 25);
 	m_GameBrowser.SetDisplayOrder(DISPLAYORDER_GameBrowser);
 	m_GameBrowser.PopulateCtrlPanel(m_CtrlPanel);
+	m_CtrlPanel.InsertDividerLine();
+
+	m_VgMusic.Load();
+	m_VgMusic.SetCrtRef(&m_Crt);
+	m_VgMusic.PopulateCtrlPanel(m_CtrlPanel);
+	m_CtrlPanel.InsertDividerLine();
 
 	m_Crt.pos.Set(HyEngine::Window(0).GetWidthF(-0.5f), HyEngine::Window(0).GetHeightF(-0.5f));
 	m_Crt.Load();
@@ -78,6 +78,7 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_Monitor.SetVisible(false);
 	m_Monitor.pos.Set(-MISC_WIDTH - 100, HyEngine::Window(0).GetHeight() - MISC_HEIGHT);
 	m_Monitor.PopulateCtrlPanel(m_CtrlPanel);
+	m_CtrlPanel.InsertDividerLine();
 
 	m_Docket.UseWindowCoordinates();
 	m_Docket.SetDisplayOrder(DISPLAYORDER_Docket);
@@ -96,11 +97,13 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_LiveSplit.Load();
 	m_LiveSplit.SetVisible(false);
 	m_LiveSplit.PopulateCtrlPanel(m_CtrlPanel);
+	m_CtrlPanel.InsertDividerLine();
 
 	m_InputViewer.UseWindowCoordinates();
 	m_InputViewer.Load();
 	m_InputViewer.SetVisible(false);
 	m_InputViewer.PopulateCtrlPanel(m_CtrlPanel);
+	m_CtrlPanel.InsertDividerLine();
 
 	m_HeartBeat.UseWindowCoordinates();
 	m_HeartBeat.Load();

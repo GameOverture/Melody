@@ -19,11 +19,14 @@ class MessageCycle : public IComponent
 
 	float						m_fXPos;
 
+	HyCheckBox					m_CtrlPanel_GrayBg;
 	HyLineEdit					m_CtrlPanel_LineEdit;
 	HyButton					m_CtrlPanel_AddBtn;
 
 	HyRadioButton				m_CtrlPanel_radLong;
 	HyRadioButton				m_CtrlPanel_radShort;
+
+	HyPrimitive2d				m_GrayBg;
 
 	int32						m_iCurrMsgIndex;
 	HyTimer						m_Timer;

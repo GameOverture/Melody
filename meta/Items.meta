@@ -714,6 +714,71 @@
                 }
             ]
         },
+        "PixelBook": {
+            "CameraPos": [
+                -15.72601318359375,
+                -70.67849731445312
+            ],
+            "CameraZoom": 0.5,
+            "UUID": "1d3f16e1-11c2-49c2-b66d-fc01b04e1229",
+            "guideHorzArray": [
+                -201
+            ],
+            "guideVertArray": [
+            ],
+            "stateArray": [
+                {
+                    "assetUUIDs": [
+                        "edd19bb9-68fd-4ba4-961f-d3ae5a8a3ee4"
+                    ],
+                    "name": "Closed"
+                },
+                {
+                    "assetUUIDs": [
+                        "edd19bb9-68fd-4ba4-961f-d3ae5a8a3ee4",
+                        "65cfaf0d-d9bc-4ca2-a0e9-027311cb8eb0",
+                        "f89c7cb4-0dd6-4e7b-9ac5-a17a66253ca7",
+                        "39233767-84f3-41c8-8eb5-86b874b1f4c4",
+                        "8e4ab9b5-a165-4659-9eb7-7ce60e087c33",
+                        "dd709a9d-d67a-4c93-9eb4-96bf5cfeb7b3",
+                        "5e0181fd-cb01-49a9-b7a1-71a4fd039d84",
+                        "a3d804ea-aa0f-4b52-9895-8e38d4365ead",
+                        "2cd155c0-60a9-4eaa-8584-cb18a25260df",
+                        "776b3a3a-dbef-4b45-9596-b899ac9203b6",
+                        "5e0181fd-cb01-49a9-b7a1-71a4fd039d84",
+                        "a3d804ea-aa0f-4b52-9895-8e38d4365ead",
+                        "2cd155c0-60a9-4eaa-8584-cb18a25260df",
+                        "776b3a3a-dbef-4b45-9596-b899ac9203b6",
+                        "5e0181fd-cb01-49a9-b7a1-71a4fd039d84",
+                        "a3d804ea-aa0f-4b52-9895-8e38d4365ead",
+                        "2cd155c0-60a9-4eaa-8584-cb18a25260df",
+                        "776b3a3a-dbef-4b45-9596-b899ac9203b6",
+                        "5e0181fd-cb01-49a9-b7a1-71a4fd039d84"
+                    ],
+                    "name": "Open"
+                },
+                {
+                    "assetUUIDs": [
+                        "5e0181fd-cb01-49a9-b7a1-71a4fd039d84",
+                        "a3d804ea-aa0f-4b52-9895-8e38d4365ead",
+                        "2cd155c0-60a9-4eaa-8584-cb18a25260df",
+                        "776b3a3a-dbef-4b45-9596-b899ac9203b6",
+                        "5e0181fd-cb01-49a9-b7a1-71a4fd039d84"
+                    ],
+                    "name": "PageFwd"
+                },
+                {
+                    "assetUUIDs": [
+                        "5e0181fd-cb01-49a9-b7a1-71a4fd039d84",
+                        "776b3a3a-dbef-4b45-9596-b899ac9203b6",
+                        "2cd155c0-60a9-4eaa-8584-cb18a25260df",
+                        "a3d804ea-aa0f-4b52-9895-8e38d4365ead",
+                        "5e0181fd-cb01-49a9-b7a1-71a4fd039d84"
+                    ],
+                    "name": "PageBck"
+                }
+            ]
+        },
         "VgMusic/NowPlayingSound": {
             "CameraPos": [
                 -338,
