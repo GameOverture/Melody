@@ -69,12 +69,22 @@ GameBrowser::GameBrowser(HyEntity2d *pParent /*= nullptr*/) :
 	SetVisible(true);
 
 	m_PixelBook.SetState(PIXELBOOK_Closed);
-	m_PixelBook.pos.Set(0.0f, -1500.0f);
-	m_PixelBook.pos.Tween(0.0f, 0.0f, fDuration, HyTween::QuadInOut);
-	m_PixelBook.rot.Set(-20.0f);
-	m_PixelBook.rot.Tween(.0f, fDuration, HyTween::QuadInOut);
+	pos.Set(0.0f, -1500.0f);
+	pos.Tween(0.0f, 100.0f, fDuration, HyTween::QuadInOut, 0.0f,
+		[](IHyNode *pThis)
+		{
+			static_cast<GameBrowser *>(pThis)->pos.Tween(0.0f, 0.0f, 0.5f, HyTween::QuadIn);
+		});
 
-	Defer(fDuration - 0.5f,
+
+	rot.Set(-20.0f);
+	rot.Tween(8.0f, fDuration, HyTween::QuadInOut, 0.0f,
+		[](IHyNode *pThis)
+		{
+			static_cast<GameBrowser *>(pThis)->rot.Tween(0.0f, 1.5f, HyTween::BounceOut);
+		});
+
+	Defer(fDuration - 0.25f,
 		[this](HyEntity2d *pThis)
 		{
 			m_PixelBook.SetState(PIXELBOOK_Opening);
@@ -188,7 +198,7 @@ void GameBrowser::SetGame(HyTexturedQuad2d &boxartRef, GameStats &gameStats)
 		break;
 
 	case STATE_BookIntro:
-		if(m_PixelBook.pos.IsAnimating() == false)
+		if(m_PixelBook.GetState() == PIXELBOOK_Opening)
 		{
 			m_ConsolePage.Show();
 			m_ConsolePage.alpha.Tween(1.0f, 0.75f, HyTween::Linear, 0.0f,
@@ -197,6 +207,7 @@ void GameBrowser::SetGame(HyTexturedQuad2d &boxartRef, GameStats &gameStats)
 					m_ConsolePage.SetInputAllowed(true);
 				});
 
+			m_eState = STATE_Consoles;
 		}
 		break;
 			
