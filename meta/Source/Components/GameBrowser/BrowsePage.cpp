@@ -5,6 +5,8 @@
 
 #define BROWSEPAGE_LOAD_COOLDOWN 0.5f
 
+#define BROWSEPAGE_GAME_HEIGHT ((GAMEBROWSER_HEIGHT / 2) - 210)
+
 BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 	HyUiContainer(HYORIENT_Vertical, HyPanelInit(GAMEBROWSER_WIDTH, GAMEBROWSER_HEIGHT), pParent),
 	m_TitleLabel(HyPanelInit(GAMEBROWSER_WIDTH, 64), "MainText", this),
@@ -13,11 +15,13 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 	m_NextBtn(HyPanelInit(50, 420, 2), "MainText"),
 	m_eReloadState(RELOADSTATE_Idle)
 {
+	m_RootLayout.SetMargins(GAMEBROWSER_MARGINS, 5);
+
 	m_TitleLabel.SetTextState(1);
 	m_TitleLabel.SetButtonClickedCallback(
 		[this](HyButton *pThis)
 		{
-			//static_cast<GameBrowser *>(ParentGet())->ShowConsoles();
+			static_cast<GameBrowser *>(ParentGet())->ShowConsoles();
 		});
 
 	for(int iGameIndex = 0; iGameIndex < NUM_GAMES_PER_PAGE; ++iGameIndex)
@@ -26,7 +30,7 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 		m_GameTitleLabels[iGameIndex].Setup(HyPanelInit(iGameWidth, 42/*, 2, HyColor(0.0f, 0.0f, 0.0f, 1.0f)*/), "Description");
 		m_GameTitleLabels[iGameIndex].SetAsBox();
 		m_GameTitleLabels[iGameIndex].SetTextState(2);
-		m_GameBtns[iGameIndex].Setup(HyPanelInit(iGameWidth, (GAMEBROWSER_HEIGHT / 2) - 110, 0, HyColor(0.0f, 0.0f, 0.0f, 0.2f)));
+		m_GameBtns[iGameIndex].Setup(HyPanelInit(iGameWidth, BROWSEPAGE_GAME_HEIGHT/*, 0, HyColor(0.0f, 0.0f, 0.0f, 0.2f)*/));
 		m_GameBtns[iGameIndex].ChildAppend(m_GameBoxarts[iGameIndex]);
 
 		m_GameBtns[iGameIndex].SetButtonClickedCallback(
@@ -44,6 +48,8 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 	m_PrevBtn.SetButtonClickedCallback(
 		[this](HyButton *pThis)
 		{
+			static_cast<GameBrowser *>(ParentGet())->PrevPage();
+
 			if(IsInputAllowed() == false)
 				return;
 
@@ -54,6 +60,8 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 	m_NextBtn.SetButtonClickedCallback(
 		[this](HyButton *pThis)
 		{
+			static_cast<GameBrowser *>(ParentGet())->NextPage();
+
 			if(IsInputAllowed() == false)
 				return;
 
@@ -116,7 +124,7 @@ void BrowsePage::BrowseAtGame(GameInfo gameInfo)
 	std::vector<GameInfo> gameList = Compositorium::Get()->GetNextGames(gameInfo, NUM_GAMES_PER_PAGE);
 	HyAssert(gameList.size() == NUM_GAMES_PER_PAGE, "BrowsePage::BrowseAtGame() - gameList.size() != NUM_GAMES_PER_PAGE");
 
-	std::array<GameInfo, NUM_GAMES_PER_PAGE> gameArray = { gameList[0], gameList[1], gameList[2], gameList[3], gameList[4], gameList[5], gameList[6], gameList[7], gameList[8], gameList[9] };
+	std::array<GameInfo, NUM_GAMES_PER_PAGE> gameArray = { gameList[0], gameList[1], gameList[2], gameList[3], gameList[4], gameList[5], gameList[6], gameList[7] };
 	SetList(gameArray);
 }
 
@@ -213,8 +221,10 @@ void BrowsePage::OnContainerUpdate() /*override*/
 			std::vector<GameInfo> gameList = Compositorium::Get()->GetNextGames(m_hNextGame, NUM_GAMES_PER_PAGE);
 			HyAssert(gameList.size() == NUM_GAMES_PER_PAGE, "BrowsePage::BrowseAtGame() - gameList.size() != NUM_GAMES_PER_PAGE");
 
-			std::array<GameInfo, NUM_GAMES_PER_PAGE> gameArray = { gameList[0], gameList[1], gameList[2], gameList[3], gameList[4], gameList[5], gameList[6], gameList[7], gameList[8], gameList[9] };
+			std::array<GameInfo, NUM_GAMES_PER_PAGE> gameArray = { gameList[0], gameList[1], gameList[2], gameList[3], gameList[4], gameList[5], gameList[6], gameList[7] };
 			SetList(gameArray);
+
+
 		}
 		break;
 
@@ -224,7 +234,7 @@ void BrowsePage::OnContainerUpdate() /*override*/
 			std::vector<GameInfo> gameList = Compositorium::Get()->GetPrevGames(m_hPrevGame, NUM_GAMES_PER_PAGE);
 			HyAssert(gameList.size() == NUM_GAMES_PER_PAGE, "BrowsePage::BrowseAtGame() - gameList.size() != NUM_GAMES_PER_PAGE");
 
-			std::array<GameInfo, NUM_GAMES_PER_PAGE> gameArray = { gameList[0], gameList[1], gameList[2], gameList[3], gameList[4], gameList[5], gameList[6], gameList[7], gameList[8], gameList[9] };
+			std::array<GameInfo, NUM_GAMES_PER_PAGE> gameArray = { gameList[0], gameList[1], gameList[2], gameList[3], gameList[4], gameList[5], gameList[6], gameList[7] };
 			SetList(gameArray);
 		}
 		break;
@@ -238,16 +248,16 @@ void BrowsePage::OnContainerUpdate() /*override*/
 			{
 				if(m_iHoverGameIndex != i)
 				{
-					int iGameWidth = GAMEBROWSER_WIDTH / (NUM_GAMES_PER_PAGE / 2) - 35;
-					if(m_iHoverGameIndex != -1)
-					{
-						m_GameBtns[m_iHoverGameIndex].Setup(HyPanelInit(iGameWidth, (GAMEBROWSER_HEIGHT / 2) - 110, 0, HyColor(0.0f, 0.0f, 0.0f, 0.0f)));
-						//m_GameBtns[m_iHoverGameIndex].SetTint(HyColor::White);
-					}
+					//int iGameWidth = GAMEBROWSER_WIDTH / (NUM_GAMES_PER_PAGE / 2) - 35;
+					//if(m_iHoverGameIndex != -1)
+					//{
+					//	m_GameBtns[m_iHoverGameIndex].Setup(HyPanelInit(iGameWidth, BROWSEPAGE_GAME_HEIGHT, 0, HyColor(0.0f, 0.0f, 0.0f, 0.0f)));
+					//	//m_GameBtns[m_iHoverGameIndex].SetTint(HyColor::White);
+					//}
 
 					m_iHoverGameIndex = i;
 					//m_GameBtns[m_iHoverGameIndex].SetTint(HyColor::LightGray);
-					m_GameBtns[m_iHoverGameIndex].Setup(HyPanelInit(iGameWidth, (GAMEBROWSER_HEIGHT / 2) - 110, 0, HyColor(0.0f, 0.0f, 0.0f, 0.7f)));
+					//m_GameBtns[m_iHoverGameIndex].Setup(HyPanelInit(iGameWidth, BROWSEPAGE_GAME_HEIGHT, 0, HyColor(0.0f, 0.0f, 0.0f, 0.7f)));
 
 					float fSize = 1.02f;
 					float fDur = HyRand::Range(0.5f, 1.0f);

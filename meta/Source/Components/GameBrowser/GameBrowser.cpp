@@ -98,8 +98,47 @@ GameBrowser::GameBrowser(HyEntity2d *pParent /*= nullptr*/) :
 	SetVisible(false);
 }
 
+void GameBrowser::ShowConsoles()
+{
+	m_PixelBook.SetState(PIXELBOOK_PageFwd);
+	m_PixelBook.SetAnimCtrl(HYANIMCTRL_ResetAndPlay);
+
+	m_BrowsePage.SetInputAllowed(false);
+	m_EditPage.SetInputAllowed(false);
+	if(m_BrowsePage.IsVisible())
+	{
+		m_BrowsePage.alpha.Tween(0.0f, 0.75f, HyTween::Linear, 0.0f,
+			[this](IHyNode *pThis)
+			{
+				static_cast<BrowsePage *>(pThis)->SetVisible(false);
+			});
+	}
+	if(m_EditPage.IsVisible())
+	{
+		HyTexturedQuad2d *pBoxart = m_EditPage.GetBoxart();
+		if(pBoxart)
+			m_BrowsePage.ReturnBoxart(*pBoxart);
+		
+		m_EditPage.alpha.Tween(0.0f, 0.75f, HyTween::Linear, 0.0f,
+			[this](IHyNode *pThis)
+			{
+				static_cast<EditPage *>(pThis)->SetVisible(false);
+			});
+	}
+	m_ConsolePage.SetVisible(true);
+	m_ConsolePage.alpha.Set(0.0f);
+	m_ConsolePage.alpha.Tween(1.0f, 0.75f, HyTween::Linear, 0.0f,
+		[](IHyNode *pThis)
+		{
+			static_cast<ConsolePage *>(pThis)->SetInputAllowed(true);
+		});
+}
+
 void GameBrowser::BrowseAtGame(GameInfo gameInfo)
 {
+	m_PixelBook.SetState(PIXELBOOK_PageFwd);
+	m_PixelBook.SetAnimCtrl(HYANIMCTRL_ResetAndPlay);
+
 	m_EditPage.SetInputAllowed(false);
 	m_ConsolePage.SetInputAllowed(false);
 
@@ -169,6 +208,23 @@ void GameBrowser::SetGame(HyTexturedQuad2d &boxartRef, GameStats &gameStats)
 		});
 
 	//m_ePageState = PAGE_Edit;
+}
+
+void GameBrowser::NextPage()
+{
+	m_PixelBook.SetState(PIXELBOOK_PageFwd);
+	m_PixelBook.SetAnimCtrl(HYANIMCTRL_ResetAndPlay);
+}
+
+void GameBrowser::PrevPage()
+{
+	m_PixelBook.SetState(PIXELBOOK_PageBck);
+	m_PixelBook.SetAnimCtrl(HYANIMCTRL_ResetAndPlay);
+}
+
+bool GameBrowser::IsShowing() const
+{
+	return m_eState > STATE_BookIntro;
 }
 
 /*virtual*/ void GameBrowser::OnUpdate() /*override*/

@@ -48,6 +48,11 @@ ConsolePage::ConsolePage(HyEntity2d *pParent /*= nullptr*/) :
 
 /*virtual*/ ConsolePage::~ConsolePage()
 {
+	for(int i = 0; i < m_LogoSpriteList.size(); ++i)
+		delete m_LogoSpriteList[i];
+
+	for(int i = 0; i < m_LogoBtnList.size(); ++i)
+		delete m_LogoBtnList[i];
 }
 
 /*virtual*/ void ConsolePage::OnContainerUpdate() /*override*/

@@ -45,8 +45,14 @@ public:
 	virtual void Show(float fDuration) override;
 	virtual void Hide(float fDuration) override;
 
+	void ShowConsoles();
 	void BrowseAtGame(GameInfo gameInfo);
 	void SetGame(HyTexturedQuad2d &boxartRef, GameStats &gameStats);
+
+	void NextPage();
+	void PrevPage();
+
+	bool IsShowing() const;
 
 protected:
 	virtual void OnUpdate() override;

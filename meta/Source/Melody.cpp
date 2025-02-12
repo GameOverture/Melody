@@ -200,6 +200,36 @@ Melody::~Melody()
 
 /*virtual*/ bool Melody::OnUpdate() /*override*/
 {
+	if(m_GameBrowser.IsShowing())
+	{
+		const float fScaleDuration = 15.0f;
+		if(m_GameBrowser.scale.IsAnimating() == false)
+		{
+			if(m_GameBrowser.scale.X() >= 1.0f)
+				m_GameBrowser.scale.Tween(0.98f, 0.98f, fScaleDuration, HyTween::QuadInOut);
+			else
+				m_GameBrowser.scale.Tween(1.02f, 1.02f, fScaleDuration, HyTween::QuadInOut);
+		}
+
+		const float fPosDuration = 12.0f;
+		if(m_GameBrowser.pos.IsAnimating() == false)
+		{
+			if(m_GameBrowser.pos.Y() >= 0.0f)
+				m_GameBrowser.pos.Tween(0.0f, -10.0f, fPosDuration, HyTween::QuadInOut);
+			else
+				m_GameBrowser.pos.Tween(0.0f, 10.0f, fPosDuration, HyTween::QuadInOut);
+		}
+
+		const float fRotDuration = 30.0f;
+		if(m_GameBrowser.rot.IsAnimating() == false)
+		{
+			if(m_GameBrowser.rot.Get() >= 0.0f)
+				m_GameBrowser.rot.Tween(-1.0f, fRotDuration);
+			else
+				m_GameBrowser.rot.Tween(1.0f, fRotDuration);
+		}
+	}
+
 	//if(HyEngine::Input().IsActionReleased(INPUT_GlobalVolumeDown))
 	//{
 	//	HyEngine::Audio().SetGlobalVolume(HyMath::Clamp(HyEngine::Audio().GetGlobalVolume() - 0.05f, 0.0f, 1.0f));
