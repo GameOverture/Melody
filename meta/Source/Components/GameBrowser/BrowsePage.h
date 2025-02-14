@@ -3,6 +3,8 @@
 
 #include "pch.h"
 
+#include <array>
+
 #define NUM_GAMES_PER_PAGE	8
 
 class BrowsePage : public HyUiContainer
