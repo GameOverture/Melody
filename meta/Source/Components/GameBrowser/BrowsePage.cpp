@@ -5,7 +5,7 @@
 
 #define BROWSEPAGE_LOAD_COOLDOWN 0.5f
 
-#define BROWSEPAGE_TOP_SPACER_HEIGHT 25
+//#define BROWSEPAGE_TOP_SPACER_HEIGHT 25
 #define BROWSEPAGE_PAGE_BTN_WIDTH 50
 #define BROWSEPAGE_SPINE_SPACER 75.0f
 #define BROWSEPAGE_BACKBTN_SIZE 100, 100
@@ -87,7 +87,7 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 			});
 	}
 
-	InsertSpacer(HYSIZEPOLICY_Fixed, BROWSEPAGE_TOP_SPACER_HEIGHT);
+	//InsertSpacer(HYSIZEPOLICY_Fixed, BROWSEPAGE_TOP_SPACER_HEIGHT);
 	HyLayoutHandle hBody = InsertLayout(HYORIENT_Horizontal);
 	InsertWidget(m_PrevBtn, hBody);
 	HyLayoutHandle hBodyMain = InsertLayout(HYORIENT_Vertical, hBody);
