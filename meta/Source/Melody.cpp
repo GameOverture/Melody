@@ -3,11 +3,13 @@
 
 /*static*/ Melody *Melody::sm_pThis = nullptr;
 
+#define GAMEBROWSE_MAX_SIZE 0.95f
+
 Melody::Melody(HarmonyInit &initStruct) :
 	HyEngine(initStruct),
 	m_pCamera(HyEngine::Window().CreateCamera2d()),
 	m_pCameraCtrlPanel(HyEngine::Window(1).CreateCamera2d()),
-	m_Compositorium("\\\\IronMountain/Documents/RetroCompositorium/"),
+	m_Compositorium("E:\\Soft\\Game_Overture\\RetroCompositorium\\data"),// "\\\\IronMountain/Documents/RetroCompositorium/"),
 	m_ColorKeyBg(),
 	m_CtrlPanel(),
 	m_VgMusic(),
@@ -59,6 +61,7 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_GameBrowser.Load();
 	m_GameBrowser.SetVisible(false);
 	m_GameBrowser.SetDisplayOrder(DISPLAYORDER_GameBrowser);
+	m_GameBrowser.scale.Set(GAMEBROWSE_MAX_SIZE, GAMEBROWSE_MAX_SIZE);
 	m_GameBrowser.PopulateCtrlPanel(m_CtrlPanel);
 	m_CtrlPanel.InsertDividerLine();
 
@@ -205,10 +208,10 @@ Melody::~Melody()
 		const float fScaleDuration = 15.0f;
 		if(m_GameBrowser.scale.IsAnimating() == false)
 		{
-			if(m_GameBrowser.scale.X() >= 1.0f)
-				m_GameBrowser.scale.Tween(0.98f, 0.98f, fScaleDuration, HyTween::QuadInOut);
+			if(m_GameBrowser.scale.X() >= GAMEBROWSE_MAX_SIZE)
+				m_GameBrowser.scale.Tween(GAMEBROWSE_MAX_SIZE - 0.03f, GAMEBROWSE_MAX_SIZE - 0.03f, fScaleDuration, HyTween::QuadInOut);
 			else
-				m_GameBrowser.scale.Tween(1.02f, 1.02f, fScaleDuration, HyTween::QuadInOut);
+				m_GameBrowser.scale.Tween(GAMEBROWSE_MAX_SIZE, GAMEBROWSE_MAX_SIZE, fScaleDuration, HyTween::QuadInOut);
 		}
 
 		const float fPosDuration = 12.0f;

@@ -44,6 +44,7 @@ public:
 
 	std::string GetRootPath() const;
 	std::vector<GameConsole> GetConsoleList();
+	int32_t GetConsoleIndex(GameConsole eConsole);
 
 	std::vector<MusicTrack> GetMusicPlayList(uint32_t uiConsoleFlags);
 	void GetMusicInfo(MusicTrack musicTrack, GameConsole &eConsoleOut, std::string &sSongOut, std::string &sComposerOut);

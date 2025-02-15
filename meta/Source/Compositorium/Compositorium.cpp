@@ -62,6 +62,16 @@ std::vector<GameConsole> Compositorium::GetConsoleList()
 	return consoleList;
 }
 
+int32_t Compositorium::GetConsoleIndex(GameConsole eConsole)
+{
+	for(uint32_t i = 0; i < NUM_CONSOLES; ++i)
+	{
+		if(eConsole == static_cast<GameConsole>(1 << i))
+			return i;
+	}
+	return -1;
+}
+
 std::vector<MusicTrack> Compositorium::GetMusicPlayList(uint32_t uiConsoleFlags)
 {
 	std::vector<MusicTrack> sMusicList;

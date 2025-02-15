@@ -5,32 +5,29 @@
 
 #define BROWSEPAGE_LOAD_COOLDOWN 0.5f
 
-#define BROWSEPAGE_GAME_HEIGHT ((GAMEBROWSER_HEIGHT / 2) - 210)
+#define BROWSEPAGE_TOP_SPACER_HEIGHT 25
+#define BROWSEPAGE_PAGE_BTN_WIDTH 50
+#define BROWSEPAGE_SPINE_SPACER 75.0f
+#define BROWSEPAGE_BACKBTN_SIZE 100, 100
+#define BROWSEPAGE_GAME_WIDTH ((GAMEBROWSER_LAYOUT_WIDTH - (BROWSEPAGE_PAGE_BTN_WIDTH*2) - BROWSEPAGE_SPINE_SPACER) / (NUM_GAMES_PER_PAGE / 2))
+#define BROWSEPAGE_GAME_HEIGHT ((GAMEBROWSER_LAYOUT_HEIGHT / 2) - 128)
 
 BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 	HyUiContainer(HYORIENT_Vertical, HyPanelInit(GAMEBROWSER_WIDTH, GAMEBROWSER_HEIGHT), pParent),
-	m_TitleLabel(HyPanelInit(GAMEBROWSER_WIDTH, 64), "MainText", this),
-	m_PrevBtn(HyPanelInit(50, 420, 2), "MainText"),
+	m_PrevBtn(HyPanelInit(BROWSEPAGE_PAGE_BTN_WIDTH, BROWSEPAGE_GAME_HEIGHT * 2), "MainText"),
 	m_iHoverGameIndex(-1),
-	m_NextBtn(HyPanelInit(50, 420, 2), "MainText"),
+	m_NextBtn(HyPanelInit(BROWSEPAGE_PAGE_BTN_WIDTH, BROWSEPAGE_GAME_HEIGHT * 2), "MainText"),
+	m_BackBtn(HyPanelInit(HYTYPE_Sprite, HyNodePath("Consoles/Console"), BROWSEPAGE_BACKBTN_SIZE), "MainText", this),
 	m_eReloadState(RELOADSTATE_Idle)
 {
 	m_RootLayout.SetMargins(GAMEBROWSER_MARGINS, 5);
 
-	m_TitleLabel.SetTextState(1);
-	m_TitleLabel.SetButtonClickedCallback(
-		[this](HyButton *pThis)
-		{
-			static_cast<GameBrowser *>(ParentGet())->ShowConsoles();
-		});
-
 	for(int iGameIndex = 0; iGameIndex < NUM_GAMES_PER_PAGE; ++iGameIndex)
 	{
-		int iGameWidth = GAMEBROWSER_WIDTH / (NUM_GAMES_PER_PAGE / 2) - 35;
-		m_GameTitleLabels[iGameIndex].Setup(HyPanelInit(iGameWidth, 42/*, 2, HyColor(0.0f, 0.0f, 0.0f, 1.0f)*/), "Description");
+		m_GameTitleLabels[iGameIndex].Setup(HyPanelInit(BROWSEPAGE_GAME_WIDTH, 42/*, 2, HyColor(0.0f, 0.0f, 0.0f, 1.0f)*/), "Description");
 		m_GameTitleLabels[iGameIndex].SetAsBox();
 		m_GameTitleLabels[iGameIndex].SetTextState(2);
-		m_GameBtns[iGameIndex].Setup(HyPanelInit(iGameWidth, BROWSEPAGE_GAME_HEIGHT/*, 0, HyColor(0.0f, 0.0f, 0.0f, 0.2f)*/));
+		m_GameBtns[iGameIndex].Setup(HyPanelInit(BROWSEPAGE_GAME_WIDTH, BROWSEPAGE_GAME_HEIGHT/*, 0, HyColor(0.0f, 0.0f, 0.0f, 0.2f)*/));
 		m_GameBtns[iGameIndex].ChildAppend(m_GameBoxarts[iGameIndex]);
 
 		m_GameBtns[iGameIndex].SetButtonClickedCallback(
@@ -68,6 +65,12 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 			m_eReloadState = RELOADSTATE_NextPage;
 		});
 
+	m_BackBtn.SetButtonClickedCallback(
+		[this](HyButton *pThis)
+		{
+			static_cast<GameBrowser *>(ParentGet())->ShowConsoles();
+		});
+
 	for(int i = 0; i < 26; ++i)
 	{
 		m_AlphaJumpBtn[i].Setup(HyPanelInit(32, 32, 2), "MainText");
@@ -84,7 +87,7 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 			});
 	}
 
-	InsertWidget(m_TitleLabel);
+	InsertSpacer(HYSIZEPOLICY_Fixed, BROWSEPAGE_TOP_SPACER_HEIGHT);
 	HyLayoutHandle hBody = InsertLayout(HYORIENT_Horizontal);
 	InsertWidget(m_PrevBtn, hBody);
 	HyLayoutHandle hBodyMain = InsertLayout(HYORIENT_Vertical, hBody);
@@ -97,12 +100,18 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 	{
 		if(iGameIndex < NUM_GAMES_PER_PAGE / 2) // Two rows per page
 		{
+			if(iGameIndex == NUM_GAMES_PER_PAGE / 4)
+				InsertSpacer(HYSIZEPOLICY_Fixed, BROWSEPAGE_SPINE_SPACER, hTopRow);
+
 			HyLayoutHandle hGame = InsertLayout(HYORIENT_Vertical, hTopRow);
 			InsertWidget(m_GameTitleLabels[iGameIndex], hGame);
 			InsertWidget(m_GameBtns[iGameIndex], hGame);
 		}
 		else
 		{
+			if(iGameIndex == NUM_GAMES_PER_PAGE / 4 * 3)
+				InsertSpacer(HYSIZEPOLICY_Fixed, BROWSEPAGE_SPINE_SPACER, hBotRow);
+
 			HyLayoutHandle hGame = InsertLayout(HYORIENT_Vertical, hBotRow);
 			InsertWidget(m_GameTitleLabels[iGameIndex], hGame);
 			InsertWidget(m_GameBtns[iGameIndex], hGame);
@@ -110,6 +119,7 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 	}
 
 	HyLayoutHandle hAlphaJump = InsertLayout(HYORIENT_Horizontal);
+	InsertWidget(m_BackBtn, hAlphaJump);
 	for(int i = 0; i < 26; ++i)
 		InsertWidget(m_AlphaJumpBtn[i], hAlphaJump);
 	InsertSpacer(HYSIZEPOLICY_Expanding);
@@ -162,9 +172,8 @@ void BrowsePage::OnContainerUpdate() /*override*/
 	case RELOADSTATE_TryLoad:
 		if(m_ReloadCooldownTimer.IsExpired())
 		{
-			m_TitleLabel.SetText("Browsing " + Compositorium::Get()->GetConsoleName(m_QueuedGamesArray[0].GetConsole()) + " Games");
+			m_BackBtn.SetState(Compositorium::Get()->GetConsoleIndex(m_QueuedGamesArray[0].GetConsole()));
 
-			
 			for(int i = 0; i < NUM_GAMES_PER_PAGE; ++i)
 			{
 				std::string sBestMatchingLogoFile = Compositorium::Get()->GetBestMedia(m_QueuedGamesArray[i], MEDIATYPE_Boxarts);

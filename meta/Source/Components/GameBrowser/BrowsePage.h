@@ -9,8 +9,6 @@
 
 class BrowsePage : public HyUiContainer
 {
-	HyButton				m_TitleLabel;
-
 	HyButton				m_PrevBtn;
 	GameInfo				m_hPrevGame;
 	HyLabel					m_GameTitleLabels[NUM_GAMES_PER_PAGE];
@@ -20,6 +18,7 @@ class BrowsePage : public HyUiContainer
 	HyButton				m_NextBtn;
 	GameInfo				m_hNextGame;
 
+	HyButton				m_BackBtn;
 	HyButton				m_AlphaJumpBtn[26];
 
 	std::array<GameInfo, NUM_GAMES_PER_PAGE>	m_QueuedGamesArray;
