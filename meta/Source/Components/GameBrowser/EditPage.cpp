@@ -22,7 +22,7 @@ EditPage::EditPage(HyEntity2d *pParent) :
 	m_GameBoxart(HyPanelInit(EDITPAGE_PAGE_WIDTH, EDITPAGE_BOXART_HEIGHT), this),
 	m_GameMedia(HyPanelInit(EDITPAGE_MEDIA_SIZE, EDITPAGE_MEDIA_SIZE), this),
 	m_Info(),
-	m_InfoDescription(HyPanelInit(EDITPAGE_PAGE_WIDTH - (EDITPAGE_WIDGET_SPACING * 3), GAMEBROWSER_LAYOUT_HEIGHT / 4), "Description", this),
+	m_InfoDescription(HyPanelInit(EDITPAGE_PAGE_WIDTH - (EDITPAGE_WIDGET_SPACING * 3), (GAMEBROWSER_LAYOUT_HEIGHT / 4) + 50), "Description", this),
 	m_InfoReleasedLabel(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN - (EDITPAGE_WIDGET_SPACING * 3), EDITPAGE_INFO_HEIGHT), "Label", this),
 	m_InfoReleasedText(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN - (EDITPAGE_WIDGET_SPACING * 3), EDITPAGE_INFO_HEIGHT), "CtrlPanel", this),
 	m_InfoGenreLabel(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN - (EDITPAGE_WIDGET_SPACING * 3), EDITPAGE_INFO_HEIGHT), "Label", this),
@@ -125,15 +125,20 @@ EditPage::EditPage(HyEntity2d *pParent) :
 	InsertWidget(m_DataOwnedCheckBox, hCheckBoxRow1);
 	InsertSpacer(HYSIZEPOLICY_Fixed, EDITPAGE_CHECKBOX_SPACING, hCheckBoxRow1);
 	InsertWidget(m_DataWishlistCheckBox, hCheckBoxRow1);
-	InsertSpacer(HYSIZEPOLICY_Expanding, 0, hCheckBoxRow1);
+	//InsertSpacer(HYSIZEPOLICY_Expanding, 0, hCheckBoxRow1);
 
-	HyLayoutHandle hCheckBoxRow2 = InsertLayout(HYORIENT_Horizontal, hDataMain);
-	InsertWidget(m_DataPlayedCheckBox, hCheckBoxRow2);
-	InsertSpacer(HYSIZEPOLICY_Fixed, EDITPAGE_CHECKBOX_SPACING, hCheckBoxRow2);
-	InsertWidget(m_DataInterestedCheckBox, hCheckBoxRow2);
-	InsertSpacer(HYSIZEPOLICY_Fixed, EDITPAGE_CHECKBOX_SPACING, hCheckBoxRow2);
-	InsertWidget(m_DataEvergreenCheckBox, hCheckBoxRow2);
-	InsertSpacer(HYSIZEPOLICY_Expanding, 0, hCheckBoxRow2);
+	//HyLayoutHandle hCheckBoxRow2 = InsertLayout(HYORIENT_Horizontal, hDataMain);
+	InsertWidget(m_DataPlayedCheckBox, hCheckBoxRow1);
+	InsertSpacer(HYSIZEPOLICY_Fixed, EDITPAGE_CHECKBOX_SPACING, hCheckBoxRow1);
+	InsertWidget(m_DataInterestedCheckBox, hCheckBoxRow1);
+	InsertSpacer(HYSIZEPOLICY_Fixed, EDITPAGE_CHECKBOX_SPACING, hCheckBoxRow1);
+	InsertWidget(m_DataEvergreenCheckBox, hCheckBoxRow1);
+	//InsertSpacer(HYSIZEPOLICY_Expanding, 0, hCheckBoxRow2);
+
+	HyLayoutHandle hFirstPlayedRow = InsertLayout(HYORIENT_Horizontal, hDataMain);
+	InsertWidget(m_DataFirstPlayedOnStreamLabel, hFirstPlayedRow);
+	InsertWidget(m_DataFirstPlayedOnStreamValue, hFirstPlayedRow);
+	InsertWidget(m_DataFirstPlayedOnStreamBtn, hFirstPlayedRow);
 
 	HyLayoutHandle hCheckBoxRow3 = InsertLayout(HYORIENT_Horizontal, hDataMain);
 	InsertWidget(m_DataBeatenCheckBox, hCheckBoxRow3);
@@ -141,12 +146,7 @@ EditPage::EditPage(HyEntity2d *pParent) :
 	InsertWidget(m_Data100PercentCheckBox, hCheckBoxRow3);
 	InsertSpacer(HYSIZEPOLICY_Fixed, EDITPAGE_CHECKBOX_SPACING, hCheckBoxRow3);
 	InsertWidget(m_DataSpeedrunningCheckBox, hCheckBoxRow3);
-	InsertSpacer(HYSIZEPOLICY_Expanding, 0, hCheckBoxRow3);
-
-	HyLayoutHandle hFirstPlayedRow = InsertLayout(HYORIENT_Horizontal, hDataMain);
-	InsertWidget(m_DataFirstPlayedOnStreamLabel, hFirstPlayedRow);
-	InsertWidget(m_DataFirstPlayedOnStreamValue, hFirstPlayedRow);
-	InsertWidget(m_DataFirstPlayedOnStreamBtn, hFirstPlayedRow);
+	//InsertSpacer(HYSIZEPOLICY_Expanding, 0, hCheckBoxRow3);
 
 	HyLayoutHandle hBeatenRow = InsertLayout(HYORIENT_Horizontal, hDataMain);
 	InsertWidget(m_DataBeatenOnStreamLabel, hBeatenRow);
@@ -191,6 +191,14 @@ void EditPage::SetGame(HyTexturedQuad2d &boxartRef, glm::vec2 ptBoxartPos, GameS
 	m_GameTitle.SetText(m_Info.GetName());
 
 	m_InfoDescription.SetText(m_Info.GetDescription());
+	for(int iDescTextState = m_InfoDescription.GetNumStates() - 3; iDescTextState >= 0; --iDescTextState)
+	{
+		m_InfoDescription.SetState(iDescTextState);
+		if(m_InfoDescription.GetTextHeight() <= m_InfoDescription.GetHeight())
+			break;
+	}
+
+
 	m_InfoReleasedText.SetText(m_Info.GetRelease());
 	m_InfoGenreText.SetText(m_Info.GetGenre());
 	m_InfoDeveloperText.SetText(m_Info.GetDeveloper());
