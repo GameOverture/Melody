@@ -5,42 +5,49 @@
 
 class EditPage : public HyUiContainer
 {
-	GameInfo			m_GameInfo;
 	HyTexturedQuad2d *	m_pBoxartRef;
 
-	HyButton			m_GameTitleLabel;
+	HyButton			m_GameTitle;
+	HyLabel				m_GameBoxart;
+	HyLabel				m_GameMedia;
 
-	HyButton			m_BackBtn;
-	HyLabel				m_BoxartLabel;
-	HyLabel				m_Label;
-	HyButton			m_ForwardBtn;
+	GameInfo			m_Info;
+	HyLabel				m_InfoDescription;
+	HyLabel				m_InfoReleasedLabel;
+	HyLabel				m_InfoReleasedText;
+	HyLabel 			m_InfoGenreLabel;
+	HyLabel 			m_InfoGenreText;
+	HyLabel				m_InfoDeveloperLabel;
+	HyLabel				m_InfoDeveloperText;
+	HyLabel				m_InfoPublisherLabel;
+	HyLabel				m_InfoPublisherText;
 
-	HyCheckBox			m_GameBlindCheckBox;
-	HyCheckBox			m_GameOwnedCheckBox;
-	HyCheckBox			m_GameWishlistCheckBox;
-	HyCheckBox			m_GamePlayedCheckBox;
-	HyCheckBox			m_GameInterestedCheckBox;
-	HyCheckBox			m_GameEvergreenCheckBox;
-	HyCheckBox			m_GameBeatenCheckBox;
-	HyCheckBox			m_Game100PercentCheckBox;
-	HyCheckBox			m_GameSpeedrunningCheckBox;
+	HyCheckBox			m_DataBlindCheckBox;
+	HyCheckBox			m_DataOwnedCheckBox;
+	HyCheckBox			m_DataWishlistCheckBox;
+	HyCheckBox			m_DataPlayedCheckBox;
+	HyCheckBox			m_DataInterestedCheckBox;
+	HyCheckBox			m_DataEvergreenCheckBox;
+	HyCheckBox			m_DataBeatenCheckBox;
+	HyCheckBox			m_Data100PercentCheckBox;
+	HyCheckBox			m_DataSpeedrunningCheckBox;
 
-	HyLabel				m_GameFirstPlayedOnStreamLabel;
-	HyLabel				m_GameFirstPlayedOnStreamValue;
-	HyButton			m_GameFirstPlayedOnStreamBtn;
+	HyLabel				m_DataFirstPlayedOnStreamLabel;
+	HyLabel				m_DataFirstPlayedOnStreamValue;
+	HyButton			m_DataFirstPlayedOnStreamBtn;
 
-	HyLabel				m_GameElapsedPlayTimeLabel;
-	HyButton			m_GameElapsedPlayTimeResetBtn;
-	HyButton			m_GameElapsedPlayTimeHrBckBtn;
-	HyButton			m_GameElapsedPlayTimeMinBckBtn;
-	HyButton			m_GameElapsedPlayTimeMinFwdBtn;
-	HyButton			m_GameElapsedPlayTimeHrFwdBtn;
+	HyLabel				m_DataElapsedPlayTimeLabel;
+	HyButton			m_DataElapsedPlayTimeResetBtn;
+	HyButton			m_DataElapsedPlayTimeHrBckBtn;
+	HyButton			m_DataElapsedPlayTimeMinBckBtn;
+	HyButton			m_DataElapsedPlayTimeMinFwdBtn;
+	HyButton			m_DataElapsedPlayTimeHrFwdBtn;
 
-	HyLabel				m_GameBeatenOnStreamLabel;
-	HyLabel				m_GameBeatenOnStreamValue;
-	HyButton			m_GameBeatenOnStreamBtn;
+	HyLabel				m_DataBeatenOnStreamLabel;
+	HyLabel				m_DataBeatenOnStreamValue;
+	HyButton			m_DataBeatenOnStreamBtn;
 
-	HyLineEdit			m_NotesLineEdit;
+	HyLineEdit			m_DataNotes;
 
 	//HyButton			m_SaveBtn;
 	//HyButton			m_ResetBtn;
@@ -49,7 +56,7 @@ public:
 	EditPage(HyEntity2d *pParent);
 	virtual ~EditPage();
 
-	void SetGame(HyTexturedQuad2d &boxartRef, GameStats &gameStats);
+	void SetGame(HyTexturedQuad2d &boxartRef, glm::vec2 ptBoxartPos, GameStats &gameStats);
 
 	HyTexturedQuad2d *GetBoxart() const;
 

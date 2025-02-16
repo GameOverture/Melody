@@ -28,7 +28,7 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 		m_GameTitleLabels[iGameIndex].SetAsBox();
 		m_GameTitleLabels[iGameIndex].SetTextState(2);
 		m_GameBtns[iGameIndex].Setup(HyPanelInit(BROWSEPAGE_GAME_WIDTH, BROWSEPAGE_GAME_HEIGHT/*, 0, HyColor(0.0f, 0.0f, 0.0f, 0.2f)*/));
-		m_GameBtns[iGameIndex].ChildAppend(m_GameBoxarts[iGameIndex]);
+		/*m_GameBtns[iGameIndex].*/ChildAppend(m_GameBoxarts[iGameIndex]);
 
 		m_GameBtns[iGameIndex].SetButtonClickedCallback(
 			[this, iGameIndex](HyButton *pThis)
@@ -37,7 +37,10 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 					return;
 
 				m_iHoverGameIndex = iGameIndex;
-				static_cast<GameBrowser *>(ParentGet())->SetGame(m_GameBoxarts[iGameIndex], Compositorium::Get()->GetGameStats(m_QueuedGamesArray[iGameIndex]));
+				static_cast<GameBrowser *>(ParentGet())->SetGame(
+					m_GameBoxarts[iGameIndex],
+					GetWidgetPos(m_GameBtns[iGameIndex]),
+					Compositorium::Get()->GetGameStats(m_QueuedGamesArray[iGameIndex]));
 			});
 	}
 

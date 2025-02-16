@@ -47,7 +47,7 @@ public:
 
 	void ShowConsoles();
 	void BrowseAtGame(GameInfo gameInfo);
-	void SetGame(HyTexturedQuad2d &boxartRef, GameStats &gameStats);
+	void SetGame(HyTexturedQuad2d &boxartRef, glm::vec2 ptBoxartPos, GameStats &gameStats);
 
 	void NextPage();
 	void PrevPage();

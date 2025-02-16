@@ -4,196 +4,163 @@
 #include "Compositorium.h"
 #include "Melody.h"
 
-#define CHECKBOX_SIZE 20
+#define EDITPAGE_SPINE_WIDTH 25//75
+#define EDITPAGE_PAGE_WIDTH ((GAMEBROWSER_LAYOUT_WIDTH - EDITPAGE_SPINE_WIDTH) / 2)
+#define EDITPAGE_BOXART_HEIGHT (GAMEBROWSER_LAYOUT_HEIGHT / 3)
+#define EDITPAGE_MEDIA_SIZE 100
+#define EDITPAGE_INFO_HEIGHT 32
+#define EDITPAGE_CENTER_MARGIN 10
+#define EDITPAGE_CHECKBOX_SIZE 20
+#define EDITPAGE_CHECKBOX_SPACING 5
+#define EDITPAGE_DATA_HEIGHT 50
 
 EditPage::EditPage(HyEntity2d *pParent) :
-	HyUiContainer(HYORIENT_Vertical, HyPanelInit(GAMEBROWSER_WIDTH, GAMEBROWSER_HEIGHT), pParent),
+	HyUiContainer(HYORIENT_Horizontal, HyPanelInit(GAMEBROWSER_WIDTH, GAMEBROWSER_HEIGHT), pParent),
 	m_pBoxartRef(nullptr),
-	m_GameTitleLabel(HyPanelInit(GAMEBROWSER_WIDTH, 64), "MainText", this),
-	m_BackBtn(HyPanelInit(200, 200, 3), "MainText", this),
-	m_BoxartLabel(HyPanelInit(1400, 500), this),
-	m_ForwardBtn(HyPanelInit(200, 200, 3), "MainText", this),
-	m_GameBlindCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
-	m_GameOwnedCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
-	m_GameWishlistCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
-	m_GamePlayedCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
-	m_GameInterestedCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
-	m_GameEvergreenCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
-	m_GameBeatenCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
-	m_Game100PercentCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
-	m_GameSpeedrunningCheckBox(HyPanelInit(CHECKBOX_SIZE, CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
-	m_GameFirstPlayedOnStreamLabel(HyPanelInit(200, 50), "CtrlPanel", this),
-	m_GameFirstPlayedOnStreamValue(HyPanelInit(200, 50, 1), "MainText", this),
-	m_GameFirstPlayedOnStreamBtn(HyPanelInit(100, 50, 1), "CtrlPanel", this),
-	m_GameElapsedPlayTimeLabel(HyPanelInit(200, 50, 1), "MainText", this),
-	m_GameElapsedPlayTimeResetBtn(HyPanelInit(50, 50, 1), "CtrlPanel", this),
-	m_GameElapsedPlayTimeHrBckBtn(HyPanelInit(50, 50, 1), "CtrlPanel", this),
-	m_GameElapsedPlayTimeMinBckBtn(HyPanelInit(50, 50, 1), "CtrlPanel", this),
-	m_GameElapsedPlayTimeMinFwdBtn(HyPanelInit(50, 50, 1), "CtrlPanel", this),
-	m_GameElapsedPlayTimeHrFwdBtn(HyPanelInit(50, 50, 1), "CtrlPanel", this),
-	m_GameBeatenOnStreamLabel(HyPanelInit(200, 50), "CtrlPanel", this),
-	m_GameBeatenOnStreamValue(HyPanelInit(200, 50, 1), "MainText", this),
-	m_GameBeatenOnStreamBtn(HyPanelInit(100, 50, 1), "CtrlPanel", this),
-	m_NotesLineEdit(HyPanelInit(800, 200, 1), "CtrlPanel", this)
+	m_GameTitle(HyPanelInit(EDITPAGE_PAGE_WIDTH, 64), "MainText", this),
+	m_GameBoxart(HyPanelInit(EDITPAGE_PAGE_WIDTH, EDITPAGE_BOXART_HEIGHT), this),
+	m_GameMedia(HyPanelInit(EDITPAGE_MEDIA_SIZE, EDITPAGE_MEDIA_SIZE), this),
+	m_Info(),
+	m_InfoDescription(HyPanelInit(EDITPAGE_PAGE_WIDTH, GAMEBROWSER_LAYOUT_HEIGHT / 4), "Description", this),
+	m_InfoReleasedLabel(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN, EDITPAGE_INFO_HEIGHT), "Label", this),
+	m_InfoReleasedText(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN, EDITPAGE_INFO_HEIGHT), "CtrlPanel", this),
+	m_InfoGenreLabel(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN, EDITPAGE_INFO_HEIGHT), "Label", this),
+	m_InfoGenreText(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN, EDITPAGE_INFO_HEIGHT), "CtrlPanel", this),
+	m_InfoDeveloperLabel(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN, EDITPAGE_INFO_HEIGHT), "Label", this),
+	m_InfoDeveloperText(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN, EDITPAGE_INFO_HEIGHT), "CtrlPanel", this),
+	m_InfoPublisherLabel(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN, EDITPAGE_INFO_HEIGHT), "Label", this),
+	m_InfoPublisherText(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN, EDITPAGE_INFO_HEIGHT), "CtrlPanel", this),
+	m_DataBlindCheckBox(HyPanelInit(EDITPAGE_CHECKBOX_SIZE, EDITPAGE_CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
+	m_DataOwnedCheckBox(HyPanelInit(EDITPAGE_CHECKBOX_SIZE, EDITPAGE_CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
+	m_DataWishlistCheckBox(HyPanelInit(EDITPAGE_CHECKBOX_SIZE, EDITPAGE_CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
+	m_DataPlayedCheckBox(HyPanelInit(EDITPAGE_CHECKBOX_SIZE, EDITPAGE_CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
+	m_DataInterestedCheckBox(HyPanelInit(EDITPAGE_CHECKBOX_SIZE, EDITPAGE_CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
+	m_DataEvergreenCheckBox(HyPanelInit(EDITPAGE_CHECKBOX_SIZE, EDITPAGE_CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
+	m_DataBeatenCheckBox(HyPanelInit(EDITPAGE_CHECKBOX_SIZE, EDITPAGE_CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
+	m_Data100PercentCheckBox(HyPanelInit(EDITPAGE_CHECKBOX_SIZE, EDITPAGE_CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
+	m_DataSpeedrunningCheckBox(HyPanelInit(EDITPAGE_CHECKBOX_SIZE, EDITPAGE_CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
+	m_DataFirstPlayedOnStreamLabel(HyPanelInit(200, EDITPAGE_DATA_HEIGHT), "CtrlPanel", this),
+	m_DataFirstPlayedOnStreamValue(HyPanelInit(200, EDITPAGE_DATA_HEIGHT, 1), "MainText", this),
+	m_DataFirstPlayedOnStreamBtn(HyPanelInit(100, EDITPAGE_DATA_HEIGHT, 1), "CtrlPanel", this),
+	m_DataElapsedPlayTimeLabel(HyPanelInit(200, EDITPAGE_DATA_HEIGHT, 1), "MainText", this),
+	m_DataElapsedPlayTimeResetBtn(HyPanelInit(50, EDITPAGE_DATA_HEIGHT, 1), "CtrlPanel", this),
+	m_DataElapsedPlayTimeHrBckBtn(HyPanelInit(50, EDITPAGE_DATA_HEIGHT, 1), "CtrlPanel", this),
+	m_DataElapsedPlayTimeMinBckBtn(HyPanelInit(50, EDITPAGE_DATA_HEIGHT, 1), "CtrlPanel", this),
+	m_DataElapsedPlayTimeMinFwdBtn(HyPanelInit(50, EDITPAGE_DATA_HEIGHT, 1), "CtrlPanel", this),
+	m_DataElapsedPlayTimeHrFwdBtn(HyPanelInit(50, EDITPAGE_DATA_HEIGHT, 1), "CtrlPanel", this),
+	m_DataBeatenOnStreamLabel(HyPanelInit(200, EDITPAGE_DATA_HEIGHT), "CtrlPanel", this),
+	m_DataBeatenOnStreamValue(HyPanelInit(200, EDITPAGE_DATA_HEIGHT, 1), "MainText", this),
+	m_DataBeatenOnStreamBtn(HyPanelInit(100, EDITPAGE_DATA_HEIGHT, 1), "CtrlPanel", this),
+	m_DataNotes(HyPanelInit(EDITPAGE_PAGE_WIDTH, 200, 1), "CtrlPanel", this)
 {
-	m_RootLayout.SetMargins(0, 0, 0, 0, 5);
+	m_RootLayout.SetMargins(GAMEBROWSER_MARGINS, 5);
+	SetDefaultWidgetSpacing(5, true);
 
-	m_GameTitleLabel.SetTextState(1);
-	m_GameTitleLabel.SetText("<No Game>");
-	m_GameTitleLabel.SetButtonClickedCallback(
+	m_GameTitle.SetTextState(1);
+	m_GameTitle.SetButtonClickedCallback(
 		[this](HyButton *pThis)
 		{
 			if(IsInputAllowed() == false)
 				return;
 
-			static_cast<GameBrowser *>(ParentGet())->BrowseAtGame(m_GameInfo);
+			static_cast<GameBrowser *>(ParentGet())->BrowseAtGame(m_Info);
 		});
-	InsertWidget(m_GameTitleLabel);
 
-	HyLayoutHandle hMainRow = InsertLayout(HYORIENT_Horizontal);
-	m_BackBtn.SetText("<");
-	InsertWidget(m_BackBtn, hMainRow);
-	InsertWidget(m_BoxartLabel, hMainRow);
+	m_GameTitle.SetText("<No Game>");
+	m_InfoDescription.SetTextState(1);
+	m_InfoDescription.SetAsColumn();
+	m_InfoReleasedLabel.SetText("Released");
+	m_InfoGenreLabel.SetText("Genre");
+	m_InfoDeveloperLabel.SetText("Developer");
+	m_InfoPublisherLabel.SetText("Publisher");
+	m_DataBlindCheckBox.SetText("Blind");
+	m_DataOwnedCheckBox.SetText("Owned");
+	m_DataWishlistCheckBox.SetText("Wishlist");
+	m_DataFirstPlayedOnStreamLabel.SetText("First Played On Stream");
+	m_DataFirstPlayedOnStreamBtn.SetText("TimeStamp");
+	m_DataPlayedCheckBox.SetText("Played");
+	m_DataInterestedCheckBox.SetText("Interest");
+	m_DataEvergreenCheckBox.SetText("Evergreen");
+	m_DataBeatenOnStreamLabel.SetText("Beaten On Stream");
+	m_DataBeatenOnStreamBtn.SetText("TimeStamp");
+	m_DataBeatenCheckBox.SetText("Beaten");
+	m_Data100PercentCheckBox.SetText("100%");
+	m_DataSpeedrunningCheckBox.SetText("Speedrunning");
+	m_DataElapsedPlayTimeResetBtn.SetText("R");
+	m_DataElapsedPlayTimeHrBckBtn.SetText("<|");
+	m_DataElapsedPlayTimeMinBckBtn.SetText("<");
+	m_DataElapsedPlayTimeMinFwdBtn.SetText(">");
+	m_DataElapsedPlayTimeHrFwdBtn.SetText("|>");
 
+	HyLayoutHandle hPage1 = InsertLayout(HYORIENT_Vertical);
+	InsertSpacer(HYSIZEPOLICY_Fixed, EDITPAGE_SPINE_WIDTH);
+	HyLayoutHandle hPage2 = InsertLayout(HYORIENT_Vertical);
 
+	// PAGE 1
+	InsertWidget(m_GameTitle, hPage1);
+	InsertWidget(m_GameBoxart, hPage1);
+	InsertWidget(m_GameMedia, hPage1);
 
+	// PAGE 2
+	InsertWidget(m_InfoDescription, hPage2);
+	//
+	HyLayoutHandle hInfoMain = InsertLayout(HYORIENT_Horizontal, hPage2);
+	HyLayoutHandle hInfoColumn1 = InsertLayout(HYORIENT_Vertical, hInfoMain);
+	//InsertSpacer(HYSIZEPOLICY_Fixed, EDITPAGE_CENTER_MARGIN, hInfoColumn1);
+	HyLayoutHandle hInfoColumn2 = InsertLayout(HYORIENT_Vertical, hInfoMain);
+	InsertWidget(m_InfoReleasedLabel, hInfoColumn1);
+	InsertWidget(m_InfoReleasedText, hInfoColumn1);
+	InsertWidget(m_InfoGenreLabel, hInfoColumn2);
+	InsertWidget(m_InfoGenreText, hInfoColumn2);
+	InsertWidget(m_InfoDeveloperLabel, hInfoColumn1);
+	InsertWidget(m_InfoDeveloperText, hInfoColumn1);
+	InsertWidget(m_InfoPublisherLabel, hInfoColumn2);
+	InsertWidget(m_InfoPublisherText, hInfoColumn2);
+	//
+	HyLayoutHandle hDataMain = InsertLayout(HYORIENT_Vertical, hPage2);
+	HyLayoutHandle hCheckBoxRow1 = InsertLayout(HYORIENT_Horizontal, hDataMain);
+	InsertWidget(m_DataBlindCheckBox, hCheckBoxRow1);
+	InsertSpacer(HYSIZEPOLICY_Fixed, EDITPAGE_CHECKBOX_SPACING, hCheckBoxRow1);
+	InsertWidget(m_DataOwnedCheckBox, hCheckBoxRow1);
+	InsertSpacer(HYSIZEPOLICY_Fixed, EDITPAGE_CHECKBOX_SPACING, hCheckBoxRow1);
+	InsertWidget(m_DataWishlistCheckBox, hCheckBoxRow1);
+	InsertSpacer(HYSIZEPOLICY_Expanding, 0, hCheckBoxRow1);
 
-	//m_DescriptionText.SetText(gameObj.GetDescription());
-	//m_DescriptionText.ParentDetach();
-	//m_InfoEnt.ChildAppend(m_DescriptionText);
+	HyLayoutHandle hCheckBoxRow2 = InsertLayout(HYORIENT_Horizontal, hDataMain);
+	InsertWidget(m_DataPlayedCheckBox, hCheckBoxRow2);
+	InsertSpacer(HYSIZEPOLICY_Fixed, EDITPAGE_CHECKBOX_SPACING, hCheckBoxRow2);
+	InsertWidget(m_DataInterestedCheckBox, hCheckBoxRow2);
+	InsertSpacer(HYSIZEPOLICY_Fixed, EDITPAGE_CHECKBOX_SPACING, hCheckBoxRow2);
+	InsertWidget(m_DataEvergreenCheckBox, hCheckBoxRow2);
+	InsertSpacer(HYSIZEPOLICY_Expanding, 0, hCheckBoxRow2);
 
-	//m_ReleaseText.SetText(gameObj.GetRelease());
-	//m_DevText.SetText(gameObj.GetDeveloper());
-	//m_PubText.SetText(gameObj.GetPublisher());
+	HyLayoutHandle hCheckBoxRow3 = InsertLayout(HYORIENT_Horizontal, hDataMain);
+	InsertWidget(m_DataBeatenCheckBox, hCheckBoxRow3);
+	InsertSpacer(HYSIZEPOLICY_Fixed, EDITPAGE_CHECKBOX_SPACING, hCheckBoxRow3);
+	InsertWidget(m_Data100PercentCheckBox, hCheckBoxRow3);
+	InsertSpacer(HYSIZEPOLICY_Fixed, EDITPAGE_CHECKBOX_SPACING, hCheckBoxRow3);
+	InsertWidget(m_DataSpeedrunningCheckBox, hCheckBoxRow3);
+	InsertSpacer(HYSIZEPOLICY_Expanding, 0, hCheckBoxRow3);
 
-	//m_Details.ClearItems();
-	//bool bFirstDetail = true;
-	//uint32 uiSpacingAmt = 0;
-	//if(m_ReleaseText.GetUtf8String().empty() == false)
-	//{
-	//	if(bFirstDetail == false)
-	//		m_Details.InsertSpacer(HYSIZEPOLICY_Fixed, uiSpacingAmt);
-	//	bFirstDetail = false;
+	HyLayoutHandle hFirstPlayedRow = InsertLayout(HYORIENT_Horizontal, hDataMain);
+	InsertWidget(m_DataFirstPlayedOnStreamLabel, hFirstPlayedRow);
+	InsertWidget(m_DataFirstPlayedOnStreamValue, hFirstPlayedRow);
+	InsertWidget(m_DataFirstPlayedOnStreamBtn, hFirstPlayedRow);
 
-	//	HyLayoutHandle hRow = m_Details.InsertLayout(HYORIENT_Horizontal);
-	//	m_Details.InsertWidget(m_ReleaseLabel, hRow);
-	//	m_Details.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
-	//	m_Details.InsertWidget(m_ReleaseText);
+	HyLayoutHandle hBeatenRow = InsertLayout(HYORIENT_Horizontal, hDataMain);
+	InsertWidget(m_DataBeatenOnStreamLabel, hBeatenRow);
+	InsertWidget(m_DataBeatenOnStreamValue, hBeatenRow);
+	InsertWidget(m_DataBeatenOnStreamBtn, hBeatenRow);
+	
+	HyLayoutHandle hElapsedPlayedRow = InsertLayout(HYORIENT_Horizontal, hDataMain);
+	InsertWidget(m_DataElapsedPlayTimeResetBtn, hElapsedPlayedRow);
+	InsertWidget(m_DataElapsedPlayTimeHrBckBtn, hElapsedPlayedRow);
+	InsertWidget(m_DataElapsedPlayTimeMinBckBtn, hElapsedPlayedRow);
+	InsertWidget(m_DataElapsedPlayTimeLabel, hElapsedPlayedRow);
+	InsertWidget(m_DataElapsedPlayTimeMinFwdBtn, hElapsedPlayedRow);
+	InsertWidget(m_DataElapsedPlayTimeHrFwdBtn, hElapsedPlayedRow);
 
-	//	m_ReleaseLabel.SetVisible(true);
-	//	m_ReleaseText.SetVisible(true);
-	//}
-	//else
-	//{
-	//	m_ReleaseLabel.SetVisible(false);
-	//	m_ReleaseText.SetVisible(false);
-	//}
-	//if(m_DevText.GetUtf8String().empty() == false)
-	//{
-	//	if(bFirstDetail == false)
-	//		m_Details.InsertSpacer(HYSIZEPOLICY_Fixed, uiSpacingAmt);
-	//	bFirstDetail = false;
-
-	//	HyLayoutHandle hRow = m_Details.InsertLayout(HYORIENT_Horizontal);
-	//	m_Details.InsertWidget(m_DevLabel, hRow);
-	//	m_Details.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
-	//	m_Details.InsertWidget(m_DevText);
-
-	//	m_DevLabel.SetVisible(true);
-	//	m_DevText.SetVisible(true);
-	//}
-	//else
-	//{
-	//	m_DevLabel.SetVisible(false);
-	//	m_DevText.SetVisible(false);
-	//}
-	//if(m_PubText.GetUtf8String().empty() == false)
-	//{
-	//	if(bFirstDetail == false)
-	//		m_Details.InsertSpacer(HYSIZEPOLICY_Fixed, uiSpacingAmt);
-	//	bFirstDetail = false;
-
-	//	HyLayoutHandle hRow = m_Details.InsertLayout(HYORIENT_Horizontal);
-	//	m_Details.InsertWidget(m_PubLabel, hRow);
-	//	m_Details.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
-	//	m_Details.InsertWidget(m_PubText);
-
-	//	m_PubLabel.SetVisible(true);
-	//	m_PubText.SetVisible(true);
-	//}
-	//else
-	//{
-	//	m_PubLabel.SetVisible(false);
-	//	m_PubText.SetVisible(false);
-	//}
-	//m_Details.InsertSpacer();
-
-
-
-
-
-	m_ForwardBtn.SetText(">");
-	InsertWidget(m_ForwardBtn, hMainRow);
-
-	HyLayoutHandle hSubRow = InsertLayout(HYORIENT_Horizontal);
-
-	const int iCheckBoxSpacing = 32;
-	HyLayoutHandle hColumn = InsertLayout(HYORIENT_Vertical, hSubRow);
-	HyLayoutHandle hStatusRow1 = InsertLayout(HYORIENT_Horizontal, hColumn);
-	m_GameBlindCheckBox.SetText("Blind");
-	InsertWidget(m_GameBlindCheckBox, hStatusRow1);
-	InsertSpacer(HYSIZEPOLICY_Fixed, iCheckBoxSpacing, hStatusRow1);
-	m_GameOwnedCheckBox.SetText("Owned");
-	InsertWidget(m_GameOwnedCheckBox, hStatusRow1);
-	InsertSpacer(HYSIZEPOLICY_Fixed, iCheckBoxSpacing, hStatusRow1);
-	m_GameWishlistCheckBox.SetText("Wishlist");
-	InsertWidget(m_GameWishlistCheckBox, hStatusRow1);
-	InsertSpacer(HYSIZEPOLICY_Expanding, 0, hStatusRow1);
-	m_GameFirstPlayedOnStreamLabel.SetText("First Played On Stream");
-	InsertWidget(m_GameFirstPlayedOnStreamLabel, hStatusRow1);
-	InsertWidget(m_GameFirstPlayedOnStreamValue, hStatusRow1);
-	m_GameFirstPlayedOnStreamBtn.SetText("TimeStamp");
-	InsertWidget(m_GameFirstPlayedOnStreamBtn, hStatusRow1);
-
-	HyLayoutHandle hStatusRow2 = InsertLayout(HYORIENT_Horizontal, hColumn);
-	m_GamePlayedCheckBox.SetText("Played");
-	InsertWidget(m_GamePlayedCheckBox, hStatusRow2);
-	InsertSpacer(HYSIZEPOLICY_Fixed, iCheckBoxSpacing, hStatusRow2);
-	m_GameInterestedCheckBox.SetText("Interest");
-	InsertWidget(m_GameInterestedCheckBox, hStatusRow2);
-	InsertSpacer(HYSIZEPOLICY_Fixed, iCheckBoxSpacing, hStatusRow2);
-	m_GameEvergreenCheckBox.SetText("Evergreen");
-	InsertWidget(m_GameEvergreenCheckBox, hStatusRow2);
-	InsertSpacer(HYSIZEPOLICY_Expanding, 0, hStatusRow2);
-	m_GameBeatenOnStreamLabel.SetText("Beaten On Stream");
-	InsertWidget(m_GameBeatenOnStreamLabel, hStatusRow2);
-	InsertWidget(m_GameBeatenOnStreamValue, hStatusRow2);
-	m_GameBeatenOnStreamBtn.SetText("TimeStamp");
-	InsertWidget(m_GameBeatenOnStreamBtn, hStatusRow2);
-
-	HyLayoutHandle hStatusRow3 = InsertLayout(HYORIENT_Horizontal, hColumn);
-	m_GameBeatenCheckBox.SetText("Beaten");
-	InsertWidget(m_GameBeatenCheckBox, hStatusRow3);
-	InsertSpacer(HYSIZEPOLICY_Fixed, iCheckBoxSpacing, hStatusRow3);
-	m_Game100PercentCheckBox.SetText("100%");
-	InsertWidget(m_Game100PercentCheckBox, hStatusRow3);
-	InsertSpacer(HYSIZEPOLICY_Fixed, iCheckBoxSpacing, hStatusRow3);
-	m_GameSpeedrunningCheckBox.SetText("Speedrunning");
-	InsertWidget(m_GameSpeedrunningCheckBox, hStatusRow3);
-	InsertSpacer(HYSIZEPOLICY_Expanding, 0, hStatusRow3);
-	m_GameElapsedPlayTimeResetBtn.SetText("R");
-	InsertWidget(m_GameElapsedPlayTimeResetBtn, hStatusRow3);
-	m_GameElapsedPlayTimeHrBckBtn.SetText("<|");
-	InsertWidget(m_GameElapsedPlayTimeHrBckBtn, hStatusRow3);
-	m_GameElapsedPlayTimeMinBckBtn.SetText("<");
-	InsertWidget(m_GameElapsedPlayTimeMinBckBtn, hStatusRow3);
-	InsertWidget(m_GameElapsedPlayTimeLabel, hStatusRow3);
-	m_GameElapsedPlayTimeMinFwdBtn.SetText(">");
-	InsertWidget(m_GameElapsedPlayTimeMinFwdBtn, hStatusRow3);
-	m_GameElapsedPlayTimeHrFwdBtn.SetText("|>");
-	InsertWidget(m_GameElapsedPlayTimeHrFwdBtn, hStatusRow3);
-
-	InsertWidget(m_NotesLineEdit, hSubRow);
+	InsertWidget(m_DataNotes, hDataMain);
 	InsertSpacer(HYSIZEPOLICY_Expanding, 0);
 }
 
@@ -201,51 +168,46 @@ EditPage::EditPage(HyEntity2d *pParent) :
 {
 }
 
-void EditPage::SetGame(HyTexturedQuad2d &boxartRef, GameStats &gameStats)
+void EditPage::SetGame(HyTexturedQuad2d &boxartRef, glm::vec2 ptBoxartPos, GameStats &gameStats)
 {
-	m_GameInfo = Compositorium::Get()->GetGame(gameStats.GetConsole(), gameStats.GetGameId());
+	m_Info = Compositorium::Get()->GetGame(gameStats.GetConsole(), gameStats.GetGameId());
+
 	m_pBoxartRef = &boxartRef;
+	ChildAppend(*m_pBoxartRef);
+	m_pBoxartRef->pos.Set(ptBoxartPos);
 
-	const glm::mat4 &mtxSceneRef = m_pBoxartRef->GetSceneTransform(0.0f);
-	glm::vec3 vScale(1.0f);
-	glm::quat quatRot;
-	glm::vec3 ptTranslation;
-	glm::vec3 vSkew;
-	glm::vec4 vPerspective;
-	glm::decompose(mtxSceneRef, vScale, quatRot, ptTranslation, vSkew, vPerspective);
-
-	boxartRef.ParentDetach();
-
-	glm::vec2 ptPosStart = ptTranslation;
-	glm::vec2 vScaleStart = vScale;
-	TransformTexture(*m_pBoxartRef, glm::ivec2(1400, 900), glm::vec2(1920 / 2.0f, 1080 / 2));
-	glm::vec2 ptPosDest = m_pBoxartRef->pos.Get();
-	glm::vec2 vScaleDest = m_pBoxartRef->scale.Get();
-
-	m_pBoxartRef->pos.Set(ptPosStart);
-	m_pBoxartRef->scale.Set(vScaleStart);
-	m_pBoxartRef->pos.BezierQuick(ptPosDest, true, 0.64f, 1.0f, HyTween::QuadIn);
-	m_pBoxartRef->scale.Tween(vScaleDest.x, vScaleDest.y, 1.0f); //BezierQuick(vScaleDest, true, 0.64f, 1.0f, HyTween::QuadIn);
+	glm::vec2 ptDest = GetWidgetPos(m_GameBoxart);
+	ptDest += glm::vec2(EDITPAGE_PAGE_WIDTH * 0.5f, EDITPAGE_BOXART_HEIGHT * 0.5f);
+	m_pBoxartRef->pos.BezierQuick(GetWidgetPos(m_GameBoxart), true, 0.64f, 1.0f, HyTween::QuadIn);
+	//m_pBoxartRef->pos.Set(0.0f, 0.0f);
+	//m_pBoxartRef->scale.Tween(vScaleDest.x, vScaleDest.y, 1.0f); //BezierQuick(vScaleDest, true, 0.64f, 1.0f, HyTween::QuadIn);
 	m_pBoxartRef->rot.Tween(8.0f * (HyRand::Boolean() ? -1.0f : 1.0f), 0.5f, HyTween::QuadInOut, 0.0f,
 		[](IHyNode *pThis)
 		{
 			static_cast<HyTexturedQuad2d *>(pThis)->rot.Tween(0.0f, 0.5f, HyTween::QuadInOut);
 		});
 
-	m_GameTitleLabel.SetText(m_GameInfo.GetName());
-	m_GameBlindCheckBox.SetChecked(gameStats.IsStatusFlagSet(STATUS_Blind));
-	m_GameOwnedCheckBox.SetChecked(gameStats.IsStatusFlagSet(STATUS_Owned));
-	m_GameWishlistCheckBox.SetChecked(gameStats.IsStatusFlagSet(STATUS_Wishlist));
-	m_GamePlayedCheckBox.SetChecked(gameStats.IsStatusFlagSet(STATUS_Played));
-	m_GameInterestedCheckBox.SetChecked(gameStats.IsStatusFlagSet(STATUS_Interested));
-	m_GameEvergreenCheckBox.SetChecked(gameStats.IsStatusFlagSet(STATUS_Evergreen));
-	m_GameBeatenCheckBox.SetChecked(gameStats.IsStatusFlagSet(STATUS_Beaten));
-	m_Game100PercentCheckBox.SetChecked(gameStats.IsStatusFlagSet(STATUS_100Percent));
-	m_GameSpeedrunningCheckBox.SetChecked(gameStats.IsStatusFlagSet(STATUS_Speedrunning));
-	m_GameFirstPlayedOnStreamValue.SetText(gameStats.GetFirstPlayedOnStream());
-	m_GameElapsedPlayTimeLabel.SetText(std::to_string(gameStats.GetElapsedPlayTime()));
-	m_GameBeatenOnStreamValue.SetText(gameStats.GetBeatenOnStream());
-	m_NotesLineEdit.SetText(gameStats.GetNotes());
+	m_GameTitle.SetText(m_Info.GetName());
+
+	m_InfoDescription.SetText(m_Info.GetDescription());
+	m_InfoReleasedText.SetText(m_Info.GetRelease());
+	m_InfoGenreText.SetText(m_Info.GetGenre());
+	m_InfoDeveloperText.SetText(m_Info.GetDeveloper());
+	m_InfoPublisherText.SetText(m_Info.GetPublisher());
+
+	m_DataBlindCheckBox.SetChecked(gameStats.IsStatusFlagSet(STATUS_Blind));
+	m_DataOwnedCheckBox.SetChecked(gameStats.IsStatusFlagSet(STATUS_Owned));
+	m_DataWishlistCheckBox.SetChecked(gameStats.IsStatusFlagSet(STATUS_Wishlist));
+	m_DataPlayedCheckBox.SetChecked(gameStats.IsStatusFlagSet(STATUS_Played));
+	m_DataInterestedCheckBox.SetChecked(gameStats.IsStatusFlagSet(STATUS_Interested));
+	m_DataEvergreenCheckBox.SetChecked(gameStats.IsStatusFlagSet(STATUS_Evergreen));
+	m_DataBeatenCheckBox.SetChecked(gameStats.IsStatusFlagSet(STATUS_Beaten));
+	m_Data100PercentCheckBox.SetChecked(gameStats.IsStatusFlagSet(STATUS_100Percent));
+	m_DataSpeedrunningCheckBox.SetChecked(gameStats.IsStatusFlagSet(STATUS_Speedrunning));
+	m_DataFirstPlayedOnStreamValue.SetText(gameStats.GetFirstPlayedOnStream());
+	m_DataElapsedPlayTimeLabel.SetText(std::to_string(gameStats.GetElapsedPlayTime()));
+	m_DataBeatenOnStreamValue.SetText(gameStats.GetBeatenOnStream());
+	m_DataNotes.SetText(gameStats.GetNotes());
 }
 
 HyTexturedQuad2d *EditPage::GetBoxart() const

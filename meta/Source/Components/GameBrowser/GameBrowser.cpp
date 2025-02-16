@@ -176,7 +176,7 @@ void GameBrowser::BrowseAtGame(GameInfo gameInfo)
 	//m_ePageState = PAGE_Browse;
 }
 
-void GameBrowser::SetGame(HyTexturedQuad2d &boxartRef, GameStats &gameStats)
+void GameBrowser::SetGame(HyTexturedQuad2d &boxartRef, glm::vec2 ptBoxartPos, GameStats &gameStats)
 {
 	m_ConsolePage.SetInputAllowed(false);
 	m_BrowsePage.SetInputAllowed(false);
@@ -199,7 +199,7 @@ void GameBrowser::SetGame(HyTexturedQuad2d &boxartRef, GameStats &gameStats)
 			});
 	}
 
-	m_EditPage.SetGame(boxartRef, gameStats);
+	m_EditPage.SetGame(boxartRef, ptBoxartPos, gameStats);
 	m_EditPage.SetVisible(true);
 	m_EditPage.alpha.Tween(1.0f, 0.75f, HyTween::Linear, 0.0f,
 		[](IHyNode *pThis)

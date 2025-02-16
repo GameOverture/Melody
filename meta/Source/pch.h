@@ -151,6 +151,7 @@ class GameInfo
 	std::string					m_sName;
 	std::string					m_sDescription;
 	std::string					m_sRelease;
+	std::string					m_sGenre;
 	std::string					m_sDeveloper;
 	std::string					m_sPublisher;
 	std::vector<std::string>	m_MediaLists[NUM_MEDIATYPES];
@@ -160,6 +161,7 @@ class GameInfo
 		m_sName = jsonObj["name"].GetString();
 		m_sDescription = jsonObj["description"].GetString();
 		m_sRelease = jsonObj["release"].GetString();
+		m_sGenre = jsonObj["genre"].GetString();
 		m_sDeveloper = jsonObj["developer"].GetString();
 		m_sPublisher = jsonObj["publisher"].GetString();
 		for(int iMediaType = 0; iMediaType < NUM_MEDIATYPES; ++iMediaType)
@@ -191,6 +193,7 @@ public:
 	const std::string &GetName() const { return m_sName; }
 	const std::string &GetDescription() const { return m_sDescription; }
 	const std::string &GetRelease() const { return m_sRelease; }
+	const std::string &GetGenre() const { return m_sGenre; }
 	const std::string &GetDeveloper() const { return m_sDeveloper; }
 	const std::string &GetPublisher() const { return m_sPublisher; }
 	const std::vector<std::string> &GetMediaList(MediaType eType) const { return m_MediaLists[eType]; }
