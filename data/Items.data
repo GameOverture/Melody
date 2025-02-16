@@ -1617,7 +1617,7 @@
                             "bankId": 0,
                             "checksum": 684907050,
                             "duration": 0.10000000149011612,
-                            "offsetX": -130,
+                            "offsetX": -265,
                             "offsetY": -211
                         }
                     ],
@@ -1632,35 +1632,35 @@
                             "bankId": 0,
                             "checksum": 684907050,
                             "duration": 0.05000000074505806,
-                            "offsetX": -130,
+                            "offsetX": -265,
                             "offsetY": -211
                         },
                         {
                             "bankId": 0,
                             "checksum": 4289339258,
                             "duration": 0.05000000074505806,
-                            "offsetX": -130,
+                            "offsetX": -265,
                             "offsetY": -211
                         },
                         {
                             "bankId": 0,
                             "checksum": 3317435222,
                             "duration": 0.05000000074505806,
-                            "offsetX": -130,
+                            "offsetX": -265,
                             "offsetY": -211
                         },
                         {
                             "bankId": 0,
                             "checksum": 3166995561,
                             "duration": 0.05000000074505806,
-                            "offsetX": -139,
+                            "offsetX": -265,
                             "offsetY": -211
                         },
                         {
                             "bankId": 0,
                             "checksum": 3295366990,
                             "duration": 0.05000000074505806,
-                            "offsetX": -208,
+                            "offsetX": -265,
                             "offsetY": -211
                         },
                         {

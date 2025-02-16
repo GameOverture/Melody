@@ -4,8 +4,9 @@
 #include "Compositorium.h"
 #include "Melody.h"
 
-#define EDITPAGE_SPINE_WIDTH 25//75
-#define EDITPAGE_PAGE_WIDTH ((GAMEBROWSER_LAYOUT_WIDTH - EDITPAGE_SPINE_WIDTH) / 2)
+#define EDITPAGE_WIDGET_SPACING 5
+#define EDITPAGE_SPINE_WIDTH 75
+#define EDITPAGE_PAGE_WIDTH ((GAMEBROWSER_LAYOUT_WIDTH - EDITPAGE_SPINE_WIDTH - (EDITPAGE_WIDGET_SPACING * 5)) / 2)
 #define EDITPAGE_BOXART_HEIGHT (GAMEBROWSER_LAYOUT_HEIGHT / 3)
 #define EDITPAGE_MEDIA_SIZE 100
 #define EDITPAGE_INFO_HEIGHT 32
@@ -21,15 +22,15 @@ EditPage::EditPage(HyEntity2d *pParent) :
 	m_GameBoxart(HyPanelInit(EDITPAGE_PAGE_WIDTH, EDITPAGE_BOXART_HEIGHT), this),
 	m_GameMedia(HyPanelInit(EDITPAGE_MEDIA_SIZE, EDITPAGE_MEDIA_SIZE), this),
 	m_Info(),
-	m_InfoDescription(HyPanelInit(EDITPAGE_PAGE_WIDTH, GAMEBROWSER_LAYOUT_HEIGHT / 4), "Description", this),
-	m_InfoReleasedLabel(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN, EDITPAGE_INFO_HEIGHT), "Label", this),
-	m_InfoReleasedText(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN, EDITPAGE_INFO_HEIGHT), "CtrlPanel", this),
-	m_InfoGenreLabel(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN, EDITPAGE_INFO_HEIGHT), "Label", this),
-	m_InfoGenreText(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN, EDITPAGE_INFO_HEIGHT), "CtrlPanel", this),
-	m_InfoDeveloperLabel(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN, EDITPAGE_INFO_HEIGHT), "Label", this),
-	m_InfoDeveloperText(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN, EDITPAGE_INFO_HEIGHT), "CtrlPanel", this),
-	m_InfoPublisherLabel(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN, EDITPAGE_INFO_HEIGHT), "Label", this),
-	m_InfoPublisherText(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN, EDITPAGE_INFO_HEIGHT), "CtrlPanel", this),
+	m_InfoDescription(HyPanelInit(EDITPAGE_PAGE_WIDTH - (EDITPAGE_WIDGET_SPACING * 3), GAMEBROWSER_LAYOUT_HEIGHT / 4), "Description", this),
+	m_InfoReleasedLabel(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN - (EDITPAGE_WIDGET_SPACING * 3), EDITPAGE_INFO_HEIGHT), "Label", this),
+	m_InfoReleasedText(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN - (EDITPAGE_WIDGET_SPACING * 3), EDITPAGE_INFO_HEIGHT), "CtrlPanel", this),
+	m_InfoGenreLabel(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN - (EDITPAGE_WIDGET_SPACING * 3), EDITPAGE_INFO_HEIGHT), "Label", this),
+	m_InfoGenreText(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN - (EDITPAGE_WIDGET_SPACING * 3), EDITPAGE_INFO_HEIGHT), "CtrlPanel", this),
+	m_InfoDeveloperLabel(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN - (EDITPAGE_WIDGET_SPACING * 3), EDITPAGE_INFO_HEIGHT), "Label", this),
+	m_InfoDeveloperText(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN - (EDITPAGE_WIDGET_SPACING * 3), EDITPAGE_INFO_HEIGHT), "CtrlPanel", this),
+	m_InfoPublisherLabel(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN - (EDITPAGE_WIDGET_SPACING * 3), EDITPAGE_INFO_HEIGHT), "Label", this),
+	m_InfoPublisherText(HyPanelInit((EDITPAGE_PAGE_WIDTH / 2) - EDITPAGE_CENTER_MARGIN - (EDITPAGE_WIDGET_SPACING * 3), EDITPAGE_INFO_HEIGHT), "CtrlPanel", this),
 	m_DataBlindCheckBox(HyPanelInit(EDITPAGE_CHECKBOX_SIZE, EDITPAGE_CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
 	m_DataOwnedCheckBox(HyPanelInit(EDITPAGE_CHECKBOX_SIZE, EDITPAGE_CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
 	m_DataWishlistCheckBox(HyPanelInit(EDITPAGE_CHECKBOX_SIZE, EDITPAGE_CHECKBOX_SIZE, 1, HyColor::Black), "Description", this),
@@ -51,10 +52,10 @@ EditPage::EditPage(HyEntity2d *pParent) :
 	m_DataBeatenOnStreamLabel(HyPanelInit(200, EDITPAGE_DATA_HEIGHT), "CtrlPanel", this),
 	m_DataBeatenOnStreamValue(HyPanelInit(200, EDITPAGE_DATA_HEIGHT, 1), "MainText", this),
 	m_DataBeatenOnStreamBtn(HyPanelInit(100, EDITPAGE_DATA_HEIGHT, 1), "CtrlPanel", this),
-	m_DataNotes(HyPanelInit(EDITPAGE_PAGE_WIDTH, 200, 1), "CtrlPanel", this)
+	m_DataNotes(HyPanelInit(EDITPAGE_PAGE_WIDTH - (EDITPAGE_WIDGET_SPACING * 3), 200, 1), "CtrlPanel", this)
 {
-	m_RootLayout.SetMargins(GAMEBROWSER_MARGINS, 5);
-	SetDefaultWidgetSpacing(5, true);
+	m_RootLayout.SetMargins(GAMEBROWSER_MARGINS, EDITPAGE_WIDGET_SPACING);
+	SetDefaultWidgetSpacing(EDITPAGE_WIDGET_SPACING, true);
 
 	m_GameTitle.SetTextState(1);
 	m_GameTitle.SetButtonClickedCallback(

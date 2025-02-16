@@ -39,7 +39,7 @@ GameBrowser::GameBrowser(HyEntity2d *pParent /*= nullptr*/) :
 			//SaveFile();
 		});
 
-	m_PixelBook.scale.Set(2.6f, 2.6f);
+	m_PixelBook.scale.Set(2.5f, 2.5f);
 
 	m_ConsolePage.Hide(true);
 	m_ConsolePage.pos.Set(GAMEBROWSER_WIDTH * -0.5f, GAMEBROWSER_HEIGHT * -0.5f);

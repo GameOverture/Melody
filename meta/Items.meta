@@ -716,15 +716,17 @@
         },
         "PixelBook": {
             "CameraPos": [
-                0,
-                0
+                -16.2318058013916,
+                -107.08782958984375
             ],
-            "CameraZoom": 0.5,
+            "CameraZoom": 0.75,
             "UUID": "1d3f16e1-11c2-49c2-b66d-fc01b04e1229",
             "guideHorzArray": [
                 -201
             ],
             "guideVertArray": [
+                -259,
+                260
             ],
             "stateArray": [
                 {

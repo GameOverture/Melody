@@ -6,25 +6,28 @@
 #define BROWSEPAGE_LOAD_COOLDOWN 0.5f
 
 //#define BROWSEPAGE_TOP_SPACER_HEIGHT 25
+#define BROWSEPAGE_WIDGET_SPACING 5
 #define BROWSEPAGE_PAGE_BTN_WIDTH 50
 #define BROWSEPAGE_SPINE_SPACER 75.0f
-#define BROWSEPAGE_BACKBTN_SIZE 100, 100
-#define BROWSEPAGE_GAME_WIDTH ((GAMEBROWSER_LAYOUT_WIDTH - (BROWSEPAGE_PAGE_BTN_WIDTH*2) - BROWSEPAGE_SPINE_SPACER) / (NUM_GAMES_PER_PAGE / 2))
-#define BROWSEPAGE_GAME_HEIGHT ((GAMEBROWSER_LAYOUT_HEIGHT / 2) - 128)
+#define BROWSEPAGE_BACKBTN_SIZE 100
+#define BROWSEPAGE_GAME_TITLE_HEIGHT 42
+#define BROWSEPAGE_GAME_WIDTH ((GAMEBROWSER_LAYOUT_WIDTH - (BROWSEPAGE_PAGE_BTN_WIDTH*2) - BROWSEPAGE_SPINE_SPACER - (BROWSEPAGE_WIDGET_SPACING*7)) / (NUM_GAMES_PER_PAGE / 2))
+#define BROWSEPAGE_GAME_HEIGHT (((GAMEBROWSER_LAYOUT_HEIGHT - (BROWSEPAGE_GAME_TITLE_HEIGHT * 2) - BROWSEPAGE_BACKBTN_SIZE - (BROWSEPAGE_WIDGET_SPACING*6)) / 2))
 
 BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 	HyUiContainer(HYORIENT_Vertical, HyPanelInit(GAMEBROWSER_WIDTH, GAMEBROWSER_HEIGHT), pParent),
 	m_PrevBtn(HyPanelInit(BROWSEPAGE_PAGE_BTN_WIDTH, BROWSEPAGE_GAME_HEIGHT * 2), "MainText"),
 	m_iHoverGameIndex(-1),
 	m_NextBtn(HyPanelInit(BROWSEPAGE_PAGE_BTN_WIDTH, BROWSEPAGE_GAME_HEIGHT * 2), "MainText"),
-	m_BackBtn(HyPanelInit(HYTYPE_Sprite, HyNodePath("Consoles/Console"), BROWSEPAGE_BACKBTN_SIZE), "MainText", this),
+	m_BackBtn(HyPanelInit(HYTYPE_Sprite, HyNodePath("Consoles/Console"), BROWSEPAGE_BACKBTN_SIZE, BROWSEPAGE_BACKBTN_SIZE), "MainText", this),
 	m_eReloadState(RELOADSTATE_Idle)
 {
-	m_RootLayout.SetMargins(GAMEBROWSER_MARGINS, 5);
+	m_RootLayout.SetMargins(GAMEBROWSER_MARGINS, BROWSEPAGE_WIDGET_SPACING);
+	SetDefaultWidgetSpacing(BROWSEPAGE_WIDGET_SPACING, true);
 
 	for(int iGameIndex = 0; iGameIndex < NUM_GAMES_PER_PAGE; ++iGameIndex)
 	{
-		m_GameTitleLabels[iGameIndex].Setup(HyPanelInit(BROWSEPAGE_GAME_WIDTH, 42/*, 2, HyColor(0.0f, 0.0f, 0.0f, 1.0f)*/), "Description");
+		m_GameTitleLabels[iGameIndex].Setup(HyPanelInit(BROWSEPAGE_GAME_WIDTH, BROWSEPAGE_GAME_TITLE_HEIGHT), "Description");
 		m_GameTitleLabels[iGameIndex].SetAsBox();
 		m_GameTitleLabels[iGameIndex].SetTextState(2);
 		m_GameBtns[iGameIndex].Setup(HyPanelInit(BROWSEPAGE_GAME_WIDTH, BROWSEPAGE_GAME_HEIGHT/*, 0, HyColor(0.0f, 0.0f, 0.0f, 0.2f)*/));
@@ -95,7 +98,6 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 	InsertWidget(m_PrevBtn, hBody);
 	HyLayoutHandle hBodyMain = InsertLayout(HYORIENT_Vertical, hBody);
 	HyLayoutHandle hTopRow = InsertLayout(HYORIENT_Horizontal, hBodyMain);
-	InsertSpacer(HYSIZEPOLICY_Fixed, 5, hBodyMain);
 	HyLayoutHandle hBotRow = InsertLayout(HYORIENT_Horizontal, hBodyMain);
 	InsertWidget(m_NextBtn, hBody);
 

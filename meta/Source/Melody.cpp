@@ -209,7 +209,7 @@ Melody::~Melody()
 		if(m_GameBrowser.scale.IsAnimating() == false)
 		{
 			if(m_GameBrowser.scale.X() >= GAMEBROWSE_MAX_SIZE)
-				m_GameBrowser.scale.Tween(GAMEBROWSE_MAX_SIZE - 0.03f, GAMEBROWSE_MAX_SIZE - 0.03f, fScaleDuration, HyTween::QuadInOut);
+				m_GameBrowser.scale.Tween(GAMEBROWSE_MAX_SIZE - 0.02f, GAMEBROWSE_MAX_SIZE - 0.02f, fScaleDuration, HyTween::QuadInOut);
 			else
 				m_GameBrowser.scale.Tween(GAMEBROWSE_MAX_SIZE, GAMEBROWSE_MAX_SIZE, fScaleDuration, HyTween::QuadInOut);
 		}
@@ -218,9 +218,9 @@ Melody::~Melody()
 		if(m_GameBrowser.pos.IsAnimating() == false)
 		{
 			if(m_GameBrowser.pos.Y() >= 0.0f)
-				m_GameBrowser.pos.Tween(0.0f, -10.0f, fPosDuration, HyTween::QuadInOut);
+				m_GameBrowser.pos.Tween(0.0f, -5.0f, fPosDuration, HyTween::QuadInOut);
 			else
-				m_GameBrowser.pos.Tween(0.0f, 10.0f, fPosDuration, HyTween::QuadInOut);
+				m_GameBrowser.pos.Tween(0.0f, 5.0f, fPosDuration, HyTween::QuadInOut);
 		}
 
 		const float fRotDuration = 30.0f;
