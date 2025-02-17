@@ -5,10 +5,13 @@
 #include "Melody.h"
 
 #define EDITPAGE_WIDGET_SPACING 5
-#define EDITPAGE_SPINE_WIDTH 75
+#define EDITPAGE_SPINE_WIDTH 100
 #define EDITPAGE_PAGE_WIDTH ((GAMEBROWSER_LAYOUT_WIDTH - EDITPAGE_SPINE_WIDTH - (EDITPAGE_WIDGET_SPACING * 5)) / 2)
-#define EDITPAGE_BOXART_HEIGHT (GAMEBROWSER_LAYOUT_HEIGHT / 3)
+
+#define EDITPAGE_GAME_TITLE_HEIGHT 64
 #define EDITPAGE_MEDIA_SIZE 100
+#define EDITPAGE_BOXART_HEIGHT (GAMEBROWSER_LAYOUT_HEIGHT - EDITPAGE_GAME_TITLE_HEIGHT - EDITPAGE_MEDIA_SIZE - (EDITPAGE_WIDGET_SPACING * 4))
+
 #define EDITPAGE_INFO_HEIGHT 32
 #define EDITPAGE_CENTER_MARGIN 10
 #define EDITPAGE_CHECKBOX_SIZE 20
@@ -18,7 +21,7 @@
 EditPage::EditPage(HyEntity2d *pParent) :
 	HyUiContainer(HYORIENT_Horizontal, HyPanelInit(GAMEBROWSER_WIDTH, GAMEBROWSER_HEIGHT), pParent),
 	m_pBoxartRef(nullptr),
-	m_GameTitle(HyPanelInit(EDITPAGE_PAGE_WIDTH, 64), "MainText", this),
+	m_GameTitle(HyPanelInit(EDITPAGE_PAGE_WIDTH, EDITPAGE_GAME_TITLE_HEIGHT), "MainText", this),
 	m_GameBoxart(HyPanelInit(EDITPAGE_PAGE_WIDTH, EDITPAGE_BOXART_HEIGHT), this),
 	m_GameMedia(HyPanelInit(EDITPAGE_MEDIA_SIZE, EDITPAGE_MEDIA_SIZE), this),
 	m_Info(),
@@ -177,11 +180,16 @@ void EditPage::SetGame(HyTexturedQuad2d &boxartRef, glm::vec2 ptBoxartPos, GameS
 	ChildAppend(*m_pBoxartRef);
 	m_pBoxartRef->pos.Set(ptBoxartPos);
 
+	glm::vec2 vScaleDest(EDITPAGE_PAGE_WIDTH, EDITPAGE_BOXART_HEIGHT);
+	m_pBoxartRef->scale.SetAll(1.0f);
+	float fScale = std::min(vScaleDest.x / m_pBoxartRef->GetWidth(), vScaleDest.y / m_pBoxartRef->GetHeight());
+	m_pBoxartRef->scale.Tween(fScale, fScale, 1.0f); //BezierQuick(vScaleDest, true, 0.64f, 1.0f, HyTween::QuadIn);
+
 	glm::vec2 ptDest = GetWidgetPos(m_GameBoxart);
 	ptDest += glm::vec2(EDITPAGE_PAGE_WIDTH * 0.5f, EDITPAGE_BOXART_HEIGHT * 0.5f);
-	m_pBoxartRef->pos.BezierQuick(GetWidgetPos(m_GameBoxart), true, 0.64f, 1.0f, HyTween::QuadIn);
-	//m_pBoxartRef->pos.Set(0.0f, 0.0f);
-	//m_pBoxartRef->scale.Tween(vScaleDest.x, vScaleDest.y, 1.0f); //BezierQuick(vScaleDest, true, 0.64f, 1.0f, HyTween::QuadIn);
+	ptDest -= glm::vec2(m_pBoxartRef->GetWidth() * 0.5f, m_pBoxartRef->GetHeight() * 0.5f);
+	m_pBoxartRef->pos.BezierQuick(ptDest, true, 0.64f, 1.0f, HyTween::QuadIn);
+
 	m_pBoxartRef->rot.Tween(8.0f * (HyRand::Boolean() ? -1.0f : 1.0f), 0.5f, HyTween::QuadInOut, 0.0f,
 		[](IHyNode *pThis)
 		{
@@ -191,9 +199,9 @@ void EditPage::SetGame(HyTexturedQuad2d &boxartRef, glm::vec2 ptBoxartPos, GameS
 	m_GameTitle.SetText(m_Info.GetName());
 
 	m_InfoDescription.SetText(m_Info.GetDescription());
-	for(int iDescTextState = m_InfoDescription.GetNumStates() - 3; iDescTextState >= 0; --iDescTextState)
+	for(int iDescTextState = m_InfoDescription.GetNumTextStates() - 1; iDescTextState >= 0; --iDescTextState)
 	{
-		m_InfoDescription.SetState(iDescTextState);
+		m_InfoDescription.SetTextState(iDescTextState);
 		if(m_InfoDescription.GetTextHeight() <= m_InfoDescription.GetHeight())
 			break;
 	}
