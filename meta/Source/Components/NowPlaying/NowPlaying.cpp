@@ -244,16 +244,17 @@ void NowPlaying::ShowGameTime(bool bShow)
 
 			m_GameNameText.SetText(gameObj.GetName());
 
+			std::string sMediaPath = Compositorium::Get()->GetMediaPath(gameObj.GetConsole(), MEDIATYPE_Logos);
 			std::string sBestMatchingLogoFile = Compositorium::Get()->GetBestMedia(gameObj, MEDIATYPE_Logos);
 			m_Logo.Uninit();
 			if(sBestMatchingLogoFile.empty() == false)
-				m_Logo.Init(sBestMatchingLogoFile, HyTextureInfo(), &m_NowPlayingEnt);
+				m_Logo.Init(sMediaPath + sBestMatchingLogoFile, HyTextureInfo(), &m_NowPlayingEnt);
 
 			for(int i = 0; i < m_SlideShowList.size(); ++i)
 				delete m_SlideShowList[i];
 			m_SlideShowList.clear();
 
-			std::string sMediaPath = Compositorium::Get()->GetMediaPath(gameObj.GetConsole(), MEDIATYPE_Boxarts);
+			sMediaPath = Compositorium::Get()->GetMediaPath(gameObj.GetConsole(), MEDIATYPE_Boxarts);
 			std::vector<std::string> boxartsFilePathList = gameObj.GetMediaList(MEDIATYPE_Boxarts);
 			for(int i = 0; i < boxartsFilePathList.size(); ++i)
 			{
