@@ -9,6 +9,9 @@
 
 class GameBrowser : public IComponent
 {
+	HyLineEdit						m_CtrlPanel_MobyGameQuery;
+	HyButton						m_CtrlPanel_MobySearchBtn;
+
 	HyButton						m_CtrlPanel_SetGameBtn;
 	HyButton						m_CtrlPanel_SaveBtn;
 
@@ -30,12 +33,18 @@ class GameBrowser : public IComponent
 		STATE_Consoles,
 		STATE_Browse,
 		STATE_Edit,
+
+		STATE_MobyImport,
+		STATE_MobySelectGame
 	};
 	State							m_eState;
 	
 	ConsolePage						m_ConsolePage;
 	BrowsePage						m_BrowsePage;
 	EditPage						m_EditPage;
+
+	HyJsonDoc						m_MobyResponseDoc;
+	HyRadioDialog					m_MobySelectDlg;
 
 public:
 	GameBrowser(HyEntity2d *pParent = nullptr);
@@ -53,6 +62,8 @@ public:
 	void PrevPage();
 
 	bool IsShowing() const;
+
+	bool TryImportMoby(const std::string &sResponse);
 
 protected:
 	virtual void OnUpdate() override;

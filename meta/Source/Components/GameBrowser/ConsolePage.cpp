@@ -8,7 +8,7 @@
 #define CONSOLEPAGE_WIDGET_SPACING 15
 
 ConsolePage::ConsolePage(HyEntity2d *pParent /*= nullptr*/) :
-	HyUiContainer(HYORIENT_Horizontal, HyPanelInit(GAMEBROWSER_WIDTH, GAMEBROWSER_HEIGHT), pParent),
+	HyUiContainer(HYORIENT_Horizontal, HyUiPanelInit(GAMEBROWSER_WIDTH, GAMEBROWSER_HEIGHT), pParent),
 	m_iHoverIndex(-1)
 {
 	m_RootLayout.SetMargins(GAMEBROWSER_MARGINS, CONSOLEPAGE_WIDGET_SPACING);
@@ -21,7 +21,7 @@ ConsolePage::ConsolePage(HyEntity2d *pParent /*= nullptr*/) :
 		int iNumPerColumn = (consoleList.size() / 2) + 1;
 		int iBtnHeight = (GAMEBROWSER_LAYOUT_HEIGHT - (iNumPerColumn * CONSOLEPAGE_WIDGET_SPACING)) / iNumPerColumn;
 
-		HyButton *pNewBtn = HY_NEW HyButton(HyPanelInit((GAMEBROWSER_LAYOUT_WIDTH - CONSOLEPAGE_SPINE_WIDTH) / 3, iBtnHeight));
+		HyButton *pNewBtn = HY_NEW HyButton(HyUiPanelInit((GAMEBROWSER_LAYOUT_WIDTH - CONSOLEPAGE_SPINE_WIDTH) / 3, iBtnHeight));
 
 		HySprite2d *pNewSprite = HY_NEW HySprite2d(HyNodePath("Consoles/Logo"), this);
 		pNewSprite->SetState(iConsoleIndex);

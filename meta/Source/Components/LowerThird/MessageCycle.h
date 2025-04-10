@@ -42,8 +42,8 @@ class MessageCycle : public IComponent
 
 		Message(bool bLongDur) :
 			m_fDuration(bLongDur ? MSGCYCLE_DURATION_LONG : MSGCYCLE_DURATION_SHORT),
-			m_Message(HyPanelInit(225, 50, 2, bLongDur ? HyColor::DarkGray : HyColor::DarkGreen), HyNodePath("", "CtrlPanel"), nullptr),
-			m_Remove(HyPanelInit(50, 50, 2, HyColor::Red), HyNodePath("", "MainText"), nullptr),
+			m_Message(HyUiPanelInit(225, 50, 2, bLongDur ? HyColor::DarkGray : HyColor::DarkGreen), HyNodePath("", "CtrlPanel"), nullptr),
+			m_Remove(HyUiPanelInit(50, 50, 2, HyColor::Red), HyNodePath("", "MainText"), nullptr),
 			m_hLayout(HY_UNUSED_HANDLE)
 		{
 		}

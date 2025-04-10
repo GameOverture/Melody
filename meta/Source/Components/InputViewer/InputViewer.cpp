@@ -26,7 +26,7 @@ InputViewer::InputViewer(HyEntity2d *pParent /*= nullptr*/) :
 
 	for(int i = 0; i < NUM_INPUTCONTROLLERS; ++i)
 	{
-		m_CtrlPanel_radController[i].Setup(HyPanelInit(20, 20, 2), HyNodePath("", "CtrlPanel"));
+		m_CtrlPanel_radController[i].Setup(HyUiPanelInit(20, 20, 2), HyUiTextInit(HyNodePath("", "CtrlPanel")));
 		m_CtrlPanel_radController[i].SetTag(i);
 		m_BtnGrp.AddButton(m_CtrlPanel_radController[i]);
 	} 

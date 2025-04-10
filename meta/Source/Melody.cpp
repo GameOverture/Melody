@@ -21,11 +21,11 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_Crt(m_VgMusic, m_MessageCycle, m_InputViewer),
 	m_NowPlaying(),
 	m_HeartBeat(),
-	m_PresetStartingBtn(HyPanelInit(64, 32, 2), HyNodePath("", "CtrlPanel")),
-	m_PresetLiveBtn(HyPanelInit(64, 32, 2), HyNodePath("", "CtrlPanel")),
-	m_PresetBrbOnBtn(HyPanelInit(64, 32, 2), HyNodePath("", "CtrlPanel")),
-	m_PresetBrbOffBtn(HyPanelInit(64, 32, 2), HyNodePath("", "CtrlPanel")),
-	m_PresetEndingBtn(HyPanelInit(64, 32, 2), HyNodePath("", "CtrlPanel"))
+	m_PresetStartingBtn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
+	m_PresetLiveBtn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
+	m_PresetBrbOnBtn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
+	m_PresetBrbOffBtn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
+	m_PresetEndingBtn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel")))
 {
 	sm_pThis = this;
 

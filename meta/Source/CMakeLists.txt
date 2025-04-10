@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.11)
 project(Melody)
 
 set(REL_PROJ_PATH "../../")
@@ -216,6 +216,13 @@ else()
 endif()
 
 add_subdirectory("${REL_HARMONY_DIR}/Engine" "HyEngine")
+set(BUILD_CURL_EXE OFF CACHE BOOL "" FORCE)
+set(PICKY_COMPILER OFF CACHE BOOL "" FORCE)
+set(BUILD_LIBCURL_DOCS OFF CACHE BOOL "" FORCE)
+
+add_subdirectory("../../lib/curl-7.76.1" "libcurl")
+set_target_properties("libcurl" PROPERTIES FOLDER "Melody Libs")
+
 
 add_executable(${PROJECT_NAME} WIN32 ${GAME_SRCFILES})
 set_target_properties(${PROJECT_NAME} PROPERTIES
@@ -228,7 +235,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE "$<BUILD_INTERFACE:${GAME_INC
 if(NOT "${CMAKE_SYSTEM_NAME}" STREQUAL "Emscripten")
 	target_precompile_headers(${PROJECT_NAME} PRIVATE "pch.h")
 endif()
-target_link_libraries(${PROJECT_NAME} PUBLIC HyEngine )
+target_link_libraries(${PROJECT_NAME} PUBLIC HyEngine "libcurl" )
 
 
 if(TARGET uninstall)

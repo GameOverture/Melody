@@ -717,6 +717,11 @@
             "EmscriptenCcall": "",
             "OutputName": "Melody",
             "SrcDepends": [
+                {
+                    "Options": "set(BUILD_CURL_EXE OFF CACHE BOOL \"\" FORCE)\nset(PICKY_COMPILER OFF CACHE BOOL \"\" FORCE)\nset(BUILD_LIBCURL_DOCS OFF CACHE BOOL \"\" FORCE)\n",
+                    "ProjectName": "libcurl",
+                    "RelPath": "../../lib/curl-7.76.1"
+                }
             ],
             "UseIcu": false,
             "UseSdl2": false,

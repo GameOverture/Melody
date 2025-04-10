@@ -34,7 +34,7 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 
 	for(int iChannelIndex = 0; iChannelIndex < NUM_MONITORCHANNELS; ++iChannelIndex)
 	{
-		m_CtrlPanel_radChannel[iChannelIndex].Setup(HyPanelInit(15, 20, 2), HyNodePath("", "CtrlPanel"));
+		m_CtrlPanel_radChannel[iChannelIndex].Setup(HyUiPanelInit(15, 20, 2), HyNodePath("", "CtrlPanel"));
 		m_CtrlPanel_radChannel[iChannelIndex].SetTag(iChannelIndex);
 		m_CtrlPanel_radChannel[iChannelIndex].SetCheckedChangedCallback(
 			[this](HyRadioButton *pRadio)

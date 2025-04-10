@@ -3,6 +3,7 @@
 
 #include <fstream>
 #include <commdlg.h>
+#include "curl/curl.h"
 
 Compositorium *Compositorium::sm_pInstance = nullptr;
 
@@ -388,6 +389,134 @@ std::string Compositorium::OpenHtmlFileDlg()
 	}
 
 	return "";
+}
+
+std::string Compositorium::GetSetting(std::string sSettingName)
+{
+	if(HyIO::FileExists(m_sROOT_PATH + "Settings.json") == false)
+		return "";
+
+	std::vector<char> sStatFileContents;
+	HyIO::ReadTextFile(std::string(m_sROOT_PATH + "Settings.json").c_str(), sStatFileContents);
+	if(m_SettingsDoc.Parse(sStatFileContents.data()).HasParseError())
+	{
+		HyError("Compositorium::GetSetting", "Error parsing settings file: " << rapidjson::GetParseErrorFunc(m_SettingsDoc.GetParseError()));
+		HyAssert(m_SettingsDoc.IsObject(), "Compositorium settings file wasn't an object");
+	}
+
+	if(m_SettingsDoc.HasMember(sSettingName.c_str()))
+	{
+		const rapidjson::Value& value = m_SettingsDoc[sSettingName.c_str()];
+		if(value.IsString())
+			return value.GetString();
+		else if(value.IsBool())
+			return value.GetBool() ? "true" : "false";
+		else if(value.IsInt())
+			return std::to_string(value.GetInt());
+		else if(value.IsDouble())
+			return std::to_string(value.GetDouble());
+	}
+
+	HyLogInfo("Compositorium::GetSetting", "Setting not found: " << sSettingName);
+	return "";
+}
+
+void Compositorium::SetSetting(std::string sSettingName, std::string sSettingValue, bool bSaveToDisk)
+{
+	if(m_SettingsDoc.IsObject() == false)
+		m_SettingsDoc.SetObject();
+
+	if(m_SettingsDoc.HasMember(sSettingName.c_str()))
+	{
+		rapidjson::Value& value = m_SettingsDoc[sSettingName.c_str()];
+		if(value.IsString())
+			value.SetString(sSettingValue.c_str(), m_SettingsDoc.GetAllocator());
+		else if(value.IsBool())
+			value.SetBool(sSettingValue == "true");
+		else if(value.IsInt())
+			value.SetInt(std::stoi(sSettingValue));
+		else if(value.IsDouble())
+			value.SetDouble(std::stod(sSettingValue));
+	}
+	else
+	{
+		// Add new setting
+		rapidjson::Value key(sSettingName.c_str(), m_SettingsDoc.GetAllocator());
+		rapidjson::Value value;
+		if(sSettingValue == "true")
+			value.SetBool(true);
+		else if(sSettingValue == "false")
+			value.SetBool(false);
+		else if(std::all_of(sSettingValue.begin(), sSettingValue.end(), ::isdigit))
+			value.SetInt(std::stoi(sSettingValue));
+		else
+			value.SetString(sSettingValue.c_str(), m_SettingsDoc.GetAllocator());
+
+		m_SettingsDoc.AddMember(key, value, m_SettingsDoc.GetAllocator());
+	}
+
+	if(bSaveToDisk)
+		SaveSettings();
+}
+
+void Compositorium::SaveSettings()
+{
+	if(m_SettingsDoc.IsObject() == false)
+		m_SettingsDoc.SetObject();
+
+	// Use a StringBuffer to serialize the JSON data
+	rapidjson::StringBuffer buffer;
+	rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+	m_SettingsDoc.Accept(writer);
+
+	// Write the JSON data to a file
+	std::string sSettingsFile = m_sROOT_PATH + "Settings.json";
+	std::ofstream outputFile(sSettingsFile);
+	outputFile << buffer.GetString() << std::endl;
+	outputFile.close();
+
+	HyLog("Compositorium::SaveSettings - Saved settings to: " << sSettingsFile);
+}
+
+size_t CurlWriteCallback(char *contents, size_t size, size_t nmemb, void *userp)
+{
+	((std::string *)userp)->append((char *)contents, size * nmemb);
+	return size * nmemb;
+}
+
+std::string Compositorium::GetMobyGame(std::string sFuzzyGameTitle)
+{
+	std::string sReadBuffer;
+
+	CURL *pCurl = curl_easy_init();
+	CURLcode eReturnCode = CURLE_OK;
+	long iResponseCode = 0;
+	if(pCurl)
+	{
+		const std::string sApiKey = "moby_S1XZghKzAFxgPwGYtqEXjQ1VUJM";
+		std::string sUrl = "https://api.mobygames.com/v2/games?";
+		sUrl += "include=id,title,moby_url,covers,description,developers,genres,release_date,screenshots,highlights";
+		sUrl += "&fuzzy=true&limit=5&offset=0&title=" + sFuzzyGameTitle;
+		sUrl += "&api_key=" + sApiKey;
+
+		curl_easy_setopt(pCurl, CURLOPT_CUSTOMREQUEST, "GET");
+		curl_easy_setopt(pCurl, CURLOPT_URL, sUrl.c_str());
+		curl_easy_setopt(pCurl, CURLOPT_FOLLOWLOCATION, 1L);
+		curl_easy_setopt(pCurl, CURLOPT_DEFAULT_PROTOCOL, "https");
+		struct curl_slist *headers = NULL;
+		headers = curl_slist_append(headers, "Accept: application/json");
+		curl_easy_setopt(pCurl, CURLOPT_HTTPHEADER, headers);
+		curl_easy_setopt(pCurl, CURLOPT_WRITEFUNCTION, CurlWriteCallback);
+		curl_easy_setopt(pCurl, CURLOPT_WRITEDATA, &sReadBuffer);
+		eReturnCode = curl_easy_perform(pCurl);
+		if(eReturnCode == CURLE_OK)
+			curl_easy_getinfo(pCurl, CURLINFO_RESPONSE_CODE, &iResponseCode);
+		else
+			HyLogError("Failed to fetch game data from MobyGames: " << curl_easy_strerror(eReturnCode));		
+	}
+
+	curl_easy_cleanup(pCurl);
+	return sReadBuffer;
 }
 
 Compositorium::GameConsoleIndex Compositorium::ToIndex(GameConsole eConsole)

@@ -5,7 +5,7 @@
 #include "MessageCycle.h"
 
 CtrlPanel::CtrlPanel(HyEntity2d *pParent /*= nullptr*/) :
-	HyUiContainer(HYORIENT_Vertical, HyPanelInit(), pParent)
+	HyUiContainer(HYORIENT_Vertical, HyUiPanelInit(), pParent)
 {
 	SetSize(HyEngine::Window(1).GetWidth(), HyEngine::Window(1).GetHeight());
 }

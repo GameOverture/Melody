@@ -7,14 +7,29 @@
 
 GameBrowser::GameBrowser(HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_GameBrowser, pParent),
-	m_CtrlPanel_SetGameBtn(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
-	m_CtrlPanel_SaveBtn(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
+	m_CtrlPanel_MobyGameQuery(HyUiPanelInit(200, 32, 2), HyNodePath("", "CtrlPanel")),
+	m_CtrlPanel_MobySearchBtn(HyUiPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
+	m_CtrlPanel_SetGameBtn(HyUiPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
+	m_CtrlPanel_SaveBtn(HyUiPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
 	m_PixelBook("PixelBook", this),
 	m_eState(STATE_Inactive),
 	m_ConsolePage(this),
 	m_BrowsePage(this),
-	m_EditPage(this)
+	m_EditPage(this),
+	m_MobySelectDlg("Importing Game Data", std::vector<std::string>(), HyUiPanelInit(420, 420, 2), HyUiPanelInit(), HyUiTextInit("CtrlPanel"), this)
 {
+	m_CtrlPanel_MobySearchBtn.SetText("Moby");
+	m_CtrlPanel_MobySearchBtn.SetButtonClickedCallback(
+		[this](HyButton *pButton)
+		{
+			std::string sGameName = m_CtrlPanel_MobyGameQuery.GetUtf8String();
+			if(sGameName.empty())
+				return;
+			std::string sResponse = Compositorium::Get()->GetMobyGame(sGameName);
+			if(TryImportMoby(sResponse))
+				m_eState = STATE_MobyImport;
+		});
+
 	m_CtrlPanel_CheckBox.SetText("Game Browser");
 	m_CtrlPanel_CheckBox.SetCheckedChangedCallback(
 		[this](HyCheckBox *pCheckBox)
@@ -49,6 +64,8 @@ GameBrowser::GameBrowser(HyEntity2d *pParent /*= nullptr*/) :
 	
 	m_EditPage.Hide(true);
 	m_EditPage.pos.Set(GAMEBROWSER_WIDTH * -0.5f, GAMEBROWSER_HEIGHT * -0.5f);
+
+	m_MobySelectDlg.Hide(true);
 }
 
 /*virtual*/ GameBrowser::~GameBrowser()
@@ -57,6 +74,10 @@ GameBrowser::GameBrowser(HyEntity2d *pParent /*= nullptr*/) :
 
 /*virtual*/ void GameBrowser::PopulateCtrlPanel(CtrlPanel &ctrlPanel) /*override*/
 {
+	HyLayoutHandle hMobyRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
+	ctrlPanel.InsertWidget(m_CtrlPanel_MobyGameQuery, hMobyRow);
+	ctrlPanel.InsertWidget(m_CtrlPanel_MobySearchBtn, hMobyRow);
+
 	HyLayoutHandle hRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
 	ctrlPanel.InsertWidget(m_CtrlPanel_CheckBox, hRow);
 	ctrlPanel.InsertWidget(m_CtrlPanel_SetGameBtn, hRow);
@@ -227,6 +248,31 @@ bool GameBrowser::IsShowing() const
 	return m_eState > STATE_BookIntro;
 }
 
+bool GameBrowser::TryImportMoby(const std::string &sResponse)
+{
+	// Error check the response
+	m_MobyResponseDoc.SetObject();
+	if(m_MobyResponseDoc.Parse(sResponse.c_str()).HasParseError())
+	{
+		HyLogError("GameBrowser::ImportMoby: Failed to parse JSON response");
+		return false;
+	}
+	HyAssert(m_MobyResponseDoc.IsObject(), "GameBrowser::ImportMoby - wasn't an object");
+	if(m_MobyResponseDoc.HasMember("games") == false)
+	{
+		HyLogError("GameBrowser::ImportMoby: No games found in JSON response");
+		return false;
+	}
+	HyAssert(m_MobyResponseDoc["games"].IsArray(), "GameBrowser::ImportMoby - wasn't an array");
+	if(m_MobyResponseDoc["games"].Size() == 0)
+	{
+		HyLogWarning("GameBrowser::ImportMoby: No games found in JSON response");
+		return false;
+	}
+
+	return true;
+}
+
 /*virtual*/ void GameBrowser::OnUpdate() /*override*/
 {
 	if(m_sHtmlFilePath.empty() == false)
@@ -274,6 +320,25 @@ bool GameBrowser::IsShowing() const
 		break;
 	
 	case STATE_Edit:
+		break;
+
+	case STATE_MobyImport: { // Already error checked 'm_MobyResponseDoc' 
+		HyJsonArray gamesArray = m_MobyResponseDoc["games"].GetArray();
+		std::vector<std::string> sGameNames;
+		for(size_t i = 0; i < gamesArray.Size(); ++i)
+		{
+			HyJsonObj gameObj = gamesArray[i].GetObject();
+			if(gameObj.HasMember("title") == false)
+				continue;
+			sGameNames.push_back(gameObj["title"].GetString());
+		}
+		m_MobySelectDlg.SetRadioList(sGameNames);
+		m_MobySelectDlg.Show();
+
+		m_eState = STATE_MobySelectGame;
+		break; }
+
+	case STATE_MobySelectGame:
 		break;
 	}
 }

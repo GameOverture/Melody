@@ -16,31 +16,31 @@
 
 NowPlaying::NowPlaying(HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_NowPlaying, pParent),
-	m_CtrlPanel_BrowseBtn(HyPanelInit(100, 32, 2), HyNodePath("", "CtrlPanel")),
-	m_CtrlPanel_StopwatchCheckBox(HyPanelInit(25, 25, 2), HyNodePath("", "CtrlPanel")),
-	m_CtrlPanel_StopwatchResetBtn(HyPanelInit(15, 15, 2), HyNodePath("", "CtrlPanel")),
-	m_CtrlPanel_StopwatchHrBck(HyPanelInit(15, 15, 2), HyNodePath("", "CtrlPanel")),
-	m_CtrlPanel_StopwatchMinBck(HyPanelInit(15, 15, 2), HyNodePath("", "CtrlPanel")),
-	m_CtrlPanel_StopwatchStartPause(HyPanelInit(50, 28, 2), HyNodePath("", "CtrlPanel")),
-	m_CtrlPanel_StopwatchMinFwd(HyPanelInit(15, 15, 2), HyNodePath("", "CtrlPanel")),
-	m_CtrlPanel_StopwatchHrFwd(HyPanelInit(15, 15, 2), HyNodePath("", "CtrlPanel")),
+	m_CtrlPanel_BrowseBtn(HyUiPanelInit(100, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
+	m_CtrlPanel_StopwatchCheckBox(HyUiPanelInit(25, 25, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
+	m_CtrlPanel_StopwatchResetBtn(HyUiPanelInit(15, 15, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
+	m_CtrlPanel_StopwatchHrBck(HyUiPanelInit(15, 15, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
+	m_CtrlPanel_StopwatchMinBck(HyUiPanelInit(15, 15, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
+	m_CtrlPanel_StopwatchStartPause(HyUiPanelInit(50, 28, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
+	m_CtrlPanel_StopwatchMinFwd(HyUiPanelInit(15, 15, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
+	m_CtrlPanel_StopwatchHrFwd(HyUiPanelInit(15, 15, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
 	m_InfoEnt(this),
 	m_iSlideShowIndex(0),
 	m_DescriptionArea(&m_InfoEnt),
 	m_DescriptionText("Description", &m_InfoEnt),
-	m_Details(HYORIENT_Vertical, HyPanelInit(NOWPLAYING_DETAILS_WIDTH, NOWPLAYING_DESC_HEIGHT), &m_InfoEnt),
-	m_ReleaseLabel(HyPanelInit(NOWPLAYING_DETAILS_WIDTH, 32), "Label"),
-	m_ReleaseText(HyPanelInit(NOWPLAYING_DETAILS_WIDTH, 45), "CtrlPanel"),
-	m_DevLabel(HyPanelInit(NOWPLAYING_DETAILS_WIDTH, 32), "Label"),
-	m_DevText(HyPanelInit(NOWPLAYING_DETAILS_WIDTH, 45), "CtrlPanel"),
-	m_PubLabel(HyPanelInit(NOWPLAYING_DETAILS_WIDTH, 32), "Label"),
-	m_PubText(HyPanelInit(NOWPLAYING_DETAILS_WIDTH, 45), "CtrlPanel"),
+	m_Details(HYORIENT_Vertical, HyUiPanelInit(NOWPLAYING_DETAILS_WIDTH, NOWPLAYING_DESC_HEIGHT), &m_InfoEnt),
+	m_ReleaseLabel(HyUiPanelInit(NOWPLAYING_DETAILS_WIDTH, 32), HyUiTextInit("Label")),
+	m_ReleaseText(HyUiPanelInit(NOWPLAYING_DETAILS_WIDTH, 45), HyUiTextInit("CtrlPanel")),
+	m_DevLabel(HyUiPanelInit(NOWPLAYING_DETAILS_WIDTH, 32), HyUiTextInit("Label")),
+	m_DevText(HyUiPanelInit(NOWPLAYING_DETAILS_WIDTH, 45), HyUiTextInit("CtrlPanel")),
+	m_PubLabel(HyUiPanelInit(NOWPLAYING_DETAILS_WIDTH, 32), HyUiTextInit("Label")),
+	m_PubText(HyUiPanelInit(NOWPLAYING_DETAILS_WIDTH, 45), HyUiTextInit("CtrlPanel")),
 	m_NowPlayingEnt(this),
 	m_Logo(&m_NowPlayingEnt),
 	m_NowPlayingText("Label", &m_NowPlayingEnt),
 	m_GameNameText("MainText", &m_NowPlayingEnt),
 	m_TimeEnt(this),
-	m_TimeLabel(HyPanelInit(LIVESPLIT_WIDTH * 0.8f, NOWPLAYING_TIMER_HEIGHT, 1, HyColor::Black, HyColor::White), "MainText", HyMargins<float>(5,5,5,15), &m_TimeEnt),
+	m_TimeLabel(HyUiPanelInit(LIVESPLIT_WIDTH * 0.8f, NOWPLAYING_TIMER_HEIGHT, 1, HyColor::Black, HyColor::White), HyUiTextInit("MainText", HyMargins<float>(5,5,5,15)), &m_TimeEnt),
 	m_GameTimeText("MainText", &m_TimeEnt),
 	m_eReloadState(RELOADSTATE_Idle)
 {
@@ -64,16 +64,9 @@ NowPlaying::NowPlaying(HyEntity2d *pParent /*= nullptr*/) :
 			if(sHtmlFilePath.empty() == false)
 			{
 				m_sHtmlFilePath = sHtmlFilePath;
-				
-				m_NowPlayingEnt.SetVisible(true);
-				m_NowPlayingEnt.alpha.Set(1.0f);
-				m_NowPlayingEnt.alpha.Tween(0.0f, 1.0f);
+				Compositorium::Get()->SetSetting("NowPlaying", m_sHtmlFilePath, true);
 
-				m_InfoEnt.SetVisible(true);
-				m_InfoEnt.alpha.Set(1.0f);
-				m_InfoEnt.alpha.Tween(0.0f, 1.0f);
-
-				m_eReloadState = RELOADSTATE_FadingOut;
+				m_eReloadState = RELOADSTATE_Reinit;
 			}
 		});
 
@@ -161,6 +154,11 @@ NowPlaying::NowPlaying(HyEntity2d *pParent /*= nullptr*/) :
 	m_GameTimeText.SetText("Elapsed Game Time:");
 	m_GameTimeText.pos.Set(5, 40);
 	m_GameTimeText.SetAsScaleBox(LIVESPLIT_WIDTH / 2, 55);
+
+	// Load settings 'm_sHtmlFilePath'
+	m_sHtmlFilePath = Compositorium::Get()->GetSetting("NowPlaying");
+	if(m_sHtmlFilePath.empty() == false)
+		m_eReloadState = RELOADSTATE_Reinit;
 }
 
 /*virtual*/ NowPlaying::~NowPlaying()
@@ -225,6 +223,26 @@ void NowPlaying::ShowGameTime(bool bShow)
 	switch(m_eReloadState)
 	{
 	case RELOADSTATE_Idle:
+		break;
+
+	case RELOADSTATE_Reinit:
+		if(m_NowPlayingEnt.IsVisible())
+		{
+			m_NowPlayingEnt.alpha.Set(1.0f);
+			m_NowPlayingEnt.alpha.Tween(0.0f, 1.0f);
+		}
+		else
+			m_NowPlayingEnt.SetVisible(true);
+
+		if(m_InfoEnt.IsVisible())
+		{
+			m_InfoEnt.alpha.Set(1.0f);
+			m_InfoEnt.alpha.Tween(0.0f, 1.0f);
+		}
+		else
+			m_InfoEnt.SetVisible(true);
+
+		m_eReloadState = RELOADSTATE_FadingOut;
 		break;
 
 	case RELOADSTATE_FadingOut:

@@ -15,11 +15,11 @@
 #define BROWSEPAGE_GAME_HEIGHT (((GAMEBROWSER_LAYOUT_HEIGHT - (BROWSEPAGE_GAME_TITLE_HEIGHT * 2) - BROWSEPAGE_BACKBTN_SIZE - (BROWSEPAGE_WIDGET_SPACING*6)) / 2))
 
 BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
-	HyUiContainer(HYORIENT_Vertical, HyPanelInit(GAMEBROWSER_WIDTH, GAMEBROWSER_HEIGHT), pParent),
-	m_PrevBtn(HyPanelInit(BROWSEPAGE_PAGE_BTN_WIDTH, BROWSEPAGE_GAME_HEIGHT * 2), "MainText"),
+	HyUiContainer(HYORIENT_Vertical, HyUiPanelInit(GAMEBROWSER_WIDTH, GAMEBROWSER_HEIGHT), pParent),
+	m_PrevBtn(HyUiPanelInit(BROWSEPAGE_PAGE_BTN_WIDTH, BROWSEPAGE_GAME_HEIGHT * 2), HyUiTextInit("MainText")),
 	m_iHoverGameIndex(-1),
-	m_NextBtn(HyPanelInit(BROWSEPAGE_PAGE_BTN_WIDTH, BROWSEPAGE_GAME_HEIGHT * 2), "MainText"),
-	m_BackBtn(HyPanelInit(HYTYPE_Sprite, HyNodePath("Consoles/Console"), BROWSEPAGE_BACKBTN_SIZE, BROWSEPAGE_BACKBTN_SIZE), "MainText", this),
+	m_NextBtn(HyUiPanelInit(BROWSEPAGE_PAGE_BTN_WIDTH, BROWSEPAGE_GAME_HEIGHT * 2), HyUiTextInit("MainText")),
+	m_BackBtn(HyUiPanelInit(HYTYPE_Sprite, HyNodePath("Consoles/Console"), BROWSEPAGE_BACKBTN_SIZE, BROWSEPAGE_BACKBTN_SIZE), HyUiTextInit("MainText"), this),
 	m_eReloadState(RELOADSTATE_Idle)
 {
 	m_RootLayout.SetMargins(GAMEBROWSER_MARGINS, BROWSEPAGE_WIDGET_SPACING);
@@ -27,10 +27,10 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 
 	for(int iGameIndex = 0; iGameIndex < NUM_GAMES_PER_PAGE; ++iGameIndex)
 	{
-		m_GameTitleLabels[iGameIndex].Setup(HyPanelInit(BROWSEPAGE_GAME_WIDTH, BROWSEPAGE_GAME_TITLE_HEIGHT), "Description");
+		m_GameTitleLabels[iGameIndex].Setup(HyUiPanelInit(BROWSEPAGE_GAME_WIDTH, BROWSEPAGE_GAME_TITLE_HEIGHT), HyUiTextInit("Description"));
 		m_GameTitleLabels[iGameIndex].SetAsBox();
 		m_GameTitleLabels[iGameIndex].SetTextState(2);
-		m_GameBtns[iGameIndex].Setup(HyPanelInit(BROWSEPAGE_GAME_WIDTH, BROWSEPAGE_GAME_HEIGHT/*, 0, HyColor(0.0f, 0.0f, 0.0f, 0.2f)*/));
+		m_GameBtns[iGameIndex].Setup(HyUiPanelInit(BROWSEPAGE_GAME_WIDTH, BROWSEPAGE_GAME_HEIGHT/*, 0, HyColor(0.0f, 0.0f, 0.0f, 0.2f)*/));
 		/*m_GameBtns[iGameIndex].*/ChildAppend(m_GameBoxarts[iGameIndex]);
 
 		m_GameBtns[iGameIndex].SetButtonClickedCallback(
@@ -79,7 +79,7 @@ BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
 
 	for(int i = 0; i < 26; ++i)
 	{
-		m_AlphaJumpBtn[i].Setup(HyPanelInit(32, 32, 2), "MainText");
+		m_AlphaJumpBtn[i].Setup(HyUiPanelInit(32, 32, 2), HyUiTextInit("MainText"));
 		m_AlphaJumpBtn[i].SetTextState(1);
 		m_AlphaJumpBtn[i].SetText(std::string(1, 'A' + i));
 		m_AlphaJumpBtn[i].SetButtonClickedCallback(

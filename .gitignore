@@ -2,6 +2,7 @@ bin/
 build/
 temp/
 art/
+lib/
 curl-8.11.1/
 taglib/
 

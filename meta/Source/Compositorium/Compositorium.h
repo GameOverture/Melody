@@ -37,6 +37,8 @@ class Compositorium
 	HyJsonDoc					m_MetaDocs[NUM_CONSOLES];
 	HyJsonDoc					m_StatDocs[NUM_CONSOLES];
 
+	HyJsonDoc					m_SettingsDoc;
+
 public:
 	Compositorium(std::string sRootPath);
 	virtual ~Compositorium();
@@ -76,6 +78,13 @@ public:
 	std::string GetConsoleMediaPath(GameConsole eConsole, bool bLogo);
 
 	std::string OpenHtmlFileDlg();
+
+	std::string GetSetting(std::string sSettingName);
+	void SetSetting(std::string sSettingName, std::string sSettingValue, bool bSaveToDisk);
+	void SaveSettings();
+
+	// Moby API using curl
+	std::string GetMobyGame(std::string sFuzzyGameTitle);
 
 private:
 	GameConsoleIndex ToIndex(GameConsole eConsole);

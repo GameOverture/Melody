@@ -5,7 +5,7 @@
 IComponent::IComponent(ComponentType eType, HyEntity2d *pParent /*= nullptr*/) :
 	HyEntity2d(pParent),
 	m_eCOMPONENT_TYPE(eType),
-	m_CtrlPanel_CheckBox(HyPanelInit(28, 28, 2), HyNodePath("", "CtrlPanel"))
+	m_CtrlPanel_CheckBox(HyUiPanelInit(28, 28, 2), HyNodePath("", "CtrlPanel"))
 {
 }
 

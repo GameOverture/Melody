@@ -8,11 +8,11 @@ MessageCycle::MessageCycle(Monitor &monitorRef, HyEntity2d *pParent /*= nullptr*
 	m_MonitorRef(monitorRef),
 	m_pCtrlPanel(nullptr),
 	m_fXPos(0.0f),
-	m_CtrlPanel_GrayBg(HyPanelInit(50, 50, 2), this),
-	m_CtrlPanel_LineEdit(HyPanelInit(225, 50, 2, HyColor::Blue), HyNodePath("", "CtrlPanel"), this),
-	m_CtrlPanel_AddBtn(HyPanelInit(50, 50, 2, HyColor::Green), HyNodePath("", "CtrlPanel"), this),
-	m_CtrlPanel_radLong(HyPanelInit(24, 24, 2), HyNodePath("", "CtrlPanel"), this),
-	m_CtrlPanel_radShort(HyPanelInit(24, 24, 2), HyNodePath("", "CtrlPanel"), this),
+	m_CtrlPanel_GrayBg(HyUiPanelInit(50, 50, 2), this),
+	m_CtrlPanel_LineEdit(HyUiPanelInit(225, 50, 2, HyColor::Blue), HyUiTextInit(HyNodePath("", "CtrlPanel")), this),
+	m_CtrlPanel_AddBtn(HyUiPanelInit(50, 50, 2, HyColor::Green), HyUiTextInit(HyNodePath("", "CtrlPanel")), this),
+	m_CtrlPanel_radLong(HyUiPanelInit(24, 24, 2), HyUiTextInit(HyNodePath("", "CtrlPanel")), this),
+	m_CtrlPanel_radShort(HyUiPanelInit(24, 24, 2), HyUiTextInit(HyNodePath("", "CtrlPanel")), this),
 	m_iCurrMsgIndex(0),
 	m_Text("", "MainText", this)
 {

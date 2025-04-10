@@ -42,6 +42,7 @@ class NowPlaying : public IComponent
 	enum ReloadState
 	{
 		RELOADSTATE_Idle,
+		RELOADSTATE_Reinit,
 		RELOADSTATE_FadingOut,
 		RELOADSTATE_Reload,
 	};

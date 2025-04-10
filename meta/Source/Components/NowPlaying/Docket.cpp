@@ -7,9 +7,9 @@
 
 Docket::Docket(HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_Docket, pParent),
-	m_CtrlPanel_AddGameBtn(HyPanelInit(20, 20, 2), HyNodePath("", "CtrlPanel")),
-	m_CtrlPanel_SaveBtn(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
-	m_CtrlPanel_ShowCollection(HyPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel"))
+	m_CtrlPanel_AddGameBtn(HyUiPanelInit(20, 20, 2), HyNodePath("", "CtrlPanel")),
+	m_CtrlPanel_SaveBtn(HyUiPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel")),
+	m_CtrlPanel_ShowCollection(HyUiPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel"))
 {
 	m_CtrlPanel_CheckBox.SetText("Docket");
 	m_CtrlPanel_CheckBox.SetCheckedChangedCallback(
