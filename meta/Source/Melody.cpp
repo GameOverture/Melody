@@ -9,7 +9,7 @@ Melody::Melody(HarmonyInit &initStruct) :
 	HyEngine(initStruct),
 	m_pCamera(HyEngine::Window().CreateCamera2d()),
 	m_pCameraCtrlPanel(HyEngine::Window(1).CreateCamera2d()),
-	m_Compositorium("E:\\Soft\\Game_Overture\\RetroCompositorium\\data"),// "\\\\IronMountain/Documents/RetroCompositorium/"),
+	m_Compositorium("\\\\IronMountain/Documents/RetroCompositorium/"), // "E:\\Soft\\Game_Overture\\RetroCompositorium\\data"),
 	m_ColorKeyBg(),
 	m_CtrlPanel(),
 	m_VgMusic(),
