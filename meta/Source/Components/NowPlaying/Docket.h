@@ -31,6 +31,8 @@ public:
 	virtual void Show(float fDuration) override;
 	virtual void Hide(float fDuration) override;
 
+	void AddGame(std::string sGameId);
+
 	void LoadFile();
 	void SaveFile();
 

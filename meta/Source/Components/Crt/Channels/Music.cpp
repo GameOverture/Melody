@@ -189,7 +189,7 @@ void Music::InitNextTrack(const MusicTrack &musicTrack)
 	m_TrackText.SetText(sSongName);
 	m_ComposerText.SetText(sComposerName);
 
-	GameInfo gameInfo = Compositorium::Get()->GetGame(eConsole, musicTrack.m_sGameId);
+	GameInfo gameInfo = Compositorium::Get()->GetGame(musicTrack.m_sGameId);
 
 	m_TitleText.SetText(gameInfo.GetName());
 

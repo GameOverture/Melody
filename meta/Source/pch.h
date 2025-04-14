@@ -202,7 +202,6 @@ public:
 class GameStats
 {
 	friend class Compositorium;
-	GameConsole		m_eConsole;
 	std::string		m_sGameId;
 
 	uint32			m_uiStatusFlags;
@@ -211,15 +210,15 @@ class GameStats
 	std::string		m_sDateTime_BeatenOnStream;
 	std::string		m_sNotes;
 
-	GameStats(GameConsole eConsole, const std::string &sGameId) : m_eConsole(eConsole), m_sGameId(sGameId)
+	GameStats(const std::string &sGameId) :
+		m_sGameId(sGameId)
 	{
 		m_uiStatusFlags = 0;
 		m_uiStatusFlags |= STATUS_Blind;
 		m_dElapsedPlayTime = 0.0;
 	}
 
-	GameStats(GameConsole eConsole, const std::string &sGameId, const HyJsonObj &jsonObj) : 
-		m_eConsole(eConsole),
+	GameStats(const std::string &sGameId, const HyJsonObj &jsonObj) :
 		m_sGameId(sGameId)
 	{
 		m_uiStatusFlags = jsonObj["StatusFlags"].GetUint();
@@ -229,11 +228,10 @@ class GameStats
 		m_sNotes = jsonObj["Notes"].GetString();
 	}
 public:
-	GameStats() : m_eConsole(CONSOLE_None), m_sGameId(""), m_uiStatusFlags(0), m_dElapsedPlayTime(0.0)
+	GameStats() : m_sGameId(""), m_uiStatusFlags(0), m_dElapsedPlayTime(0.0)
 	{ }
 	GameStats &operator=(const GameStats &copy)
 	{
-		m_eConsole = copy.m_eConsole;
 		m_sGameId = copy.m_sGameId;
 		m_uiStatusFlags = copy.m_uiStatusFlags;
 		m_sDateTime_FirstPlayedOnStream = copy.m_sDateTime_FirstPlayedOnStream;
@@ -243,8 +241,8 @@ public:
 		return *this;
 	}
 
-	bool IsValid() const { return m_eConsole != CONSOLE_None && m_sGameId.empty() == false; }
-	GameConsole GetConsole() const { return m_eConsole; }
+	bool IsValid() const { m_sGameId.empty() == false; }
+	//GameConsole GetConsole() const { return Compositorium::Get()->GetConsoleFromPath(m_sGameId); }
 	const std::string &GetGameId() const { return m_sGameId; }
 	bool IsStatusFlagSet(StatusFlag eFlag) const { return (m_uiStatusFlags & eFlag) != 0; }
 	const std::string &GetFirstPlayedOnStream() const { return m_sDateTime_FirstPlayedOnStream; }

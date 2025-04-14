@@ -287,7 +287,7 @@ bool GameBrowser::TryImportMoby(const std::string &sResponse)
 		sUrlKey.erase(std::remove_if(sUrlKey.begin(), sUrlKey.end(), [](char c) { return std::isspace(c); }), sUrlKey.end()); // Remove whitespace and newline characters
 		sUrlKey.erase(0, 30); // Remove the first portion of the sUrlKey "https://gamefaqs.gamespot.com/"
 
-		GameInfo gameInfo = Compositorium::Get()->GetGame(Compositorium::Get()->GetConsoleFromPath(m_sHtmlFilePath), sUrlKey);
+		GameInfo gameInfo = Compositorium::Get()->GetGame(sUrlKey);
 		GameStats gameStats = Compositorium::Get()->GetGameStats(gameInfo);
 
 		m_BrowsePage.BrowseAtGame(gameInfo);

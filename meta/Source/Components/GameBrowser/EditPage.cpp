@@ -174,7 +174,7 @@ EditPage::EditPage(HyEntity2d *pParent) :
 
 void EditPage::SetGame(HyTexturedQuad2d &boxartRef, glm::vec2 ptBoxartPos, GameStats &gameStats)
 {
-	m_Info = Compositorium::Get()->GetGame(gameStats.GetConsole(), gameStats.GetGameId());
+	m_Info = Compositorium::Get()->GetGame(gameStats.GetGameId());
 
 	m_pBoxartRef = &boxartRef;
 	ChildAppend(*m_pBoxartRef);

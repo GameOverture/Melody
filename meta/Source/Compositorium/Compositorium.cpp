@@ -129,8 +129,10 @@ void Compositorium::GetMusicInfo(MusicTrack musicTrack, GameConsole &eConsoleOut
 	sComposerOut = "";
 }
 
-GameInfo Compositorium::GetGame(GameConsole eConsole, std::string sGameId)
+GameInfo Compositorium::GetGame(std::string sGameId)
 {
+	GameConsole eConsole = GetConsoleFromPath(sGameId);
+
 	HyJsonObj consoleObj = m_MetaDocs[ToIndex(eConsole)].GetObject();
 	if(consoleObj.HasMember(sGameId.c_str()) == false)
 	{
@@ -208,9 +210,9 @@ GameStats Compositorium::GetGameStats(GameInfo gameObj)
 {
 	HyJsonObj consoleObj = m_StatDocs[ToIndex(gameObj.m_eConsole)].GetObject();
 	if(consoleObj.HasMember(gameObj.GetGameId().c_str()) == false)
-		return GameStats(gameObj.GetConsole(), gameObj.GetGameId());
+		return GameStats(gameObj.GetGameId());
 
-	return GameStats(gameObj.GetConsole(), gameObj.GetGameId(), consoleObj[gameObj.GetGameId().c_str()].GetObject());
+	return GameStats(gameObj.GetGameId(), consoleObj[gameObj.GetGameId().c_str()].GetObject());
 }
 
 //std::string Compositorium::GetGameName(GameInfo gameObj)
@@ -327,9 +329,11 @@ std::string Compositorium::GetBestMedia(GameInfo gameObj, MediaType eMediaType)
 GameConsole Compositorium::GetConsoleFromPath(std::string sPath)
 {
 	sPath = HyIO::CleanPath(sPath, "/");
+	HyIO::MakeLowercase(sPath);
 	for(uint32_t i = 0; i < NUM_CONSOLES; ++i)
 	{
-		std::string s = "/" + m_sConsolePaths[i];
+		std::string s = m_sConsolePaths[i];
+		HyIO::MakeLowercase(s);
 		if(sPath.find(s) != std::string::npos)
 			return ToEnum(i);
 	}

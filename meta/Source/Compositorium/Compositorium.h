@@ -51,7 +51,7 @@ public:
 	std::vector<MusicTrack> GetMusicPlayList(uint32_t uiConsoleFlags);
 	void GetMusicInfo(MusicTrack musicTrack, GameConsole &eConsoleOut, std::string &sSongOut, std::string &sComposerOut);
 
-	GameInfo GetGame(GameConsole eConsole, std::string sGameId);
+	GameInfo GetGame(std::string sGameId);
 	GameInfo GetAlphaJumpGame(GameConsole eConsole, std::string sAlphaJumpChar);
 	std::vector<GameInfo> GetNextGames(GameInfo hGame, int iNumGames);
 	std::vector<GameInfo> GetPrevGames(GameInfo hGame, int iNumGames);

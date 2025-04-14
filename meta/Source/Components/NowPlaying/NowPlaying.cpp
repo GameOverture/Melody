@@ -63,9 +63,16 @@ NowPlaying::NowPlaying(HyEntity2d *pParent /*= nullptr*/) :
 			// Display the Open File dialog box
 			if(sHtmlFilePath.empty() == false)
 			{
-				m_sHtmlFilePath = sHtmlFilePath;
-				Compositorium::Get()->SetSetting("NowPlaying", m_sHtmlFilePath, true);
+				// Read the first line of the HTML file which is the URL key
+				std::ifstream infile(sHtmlFilePath, std::ifstream::in | std::ios::binary | std::ios::ate);
+				HyAssert(infile, "HyReadTextFile invalid file: " << sHtmlFilePath);
+				infile.seekg(0, std::ios::beg);
+				std::getline(infile, m_sGameId);
+				infile.close();
+				m_sGameId.erase(std::remove_if(m_sGameId.begin(), m_sGameId.end(), [](char c) { return std::isspace(c); }), m_sGameId.end()); // Remove whitespace and newline characters
+				m_sGameId.erase(0, 30); // Remove the first portion of the sUrlKey "https://gamefaqs.gamespot.com/"
 
+				Compositorium::Get()->SetSetting("NowPlaying", m_sGameId, true);
 				m_eReloadState = RELOADSTATE_Reinit;
 			}
 		});
@@ -155,9 +162,9 @@ NowPlaying::NowPlaying(HyEntity2d *pParent /*= nullptr*/) :
 	m_GameTimeText.pos.Set(5, 40);
 	m_GameTimeText.SetAsScaleBox(LIVESPLIT_WIDTH / 2, 55);
 
-	// Load settings 'm_sHtmlFilePath'
-	m_sHtmlFilePath = Compositorium::Get()->GetSetting("NowPlaying");
-	if(m_sHtmlFilePath.empty() == false)
+	// Load previous settings
+	m_sGameId = Compositorium::Get()->GetSetting("NowPlaying");
+	if(m_sGameId.empty() == false)
 		m_eReloadState = RELOADSTATE_Reinit;
 }
 
@@ -248,17 +255,7 @@ void NowPlaying::ShowGameTime(bool bShow)
 	case RELOADSTATE_FadingOut:
 		if(m_NowPlayingEnt.alpha.IsAnimating() == false && m_InfoEnt.alpha.IsAnimating() == false)
 		{
-			// Read the first line of the HTML file which is the URL key
-			std::string sUrlKey;
-			std::ifstream infile(m_sHtmlFilePath, std::ifstream::in | std::ios::binary | std::ios::ate);
-			HyAssert(infile, "HyReadTextFile invalid file: " << m_sHtmlFilePath);
-			infile.seekg(0, std::ios::beg);
-			std::getline(infile, sUrlKey);
-			infile.close();
-			sUrlKey.erase(std::remove_if(sUrlKey.begin(), sUrlKey.end(), [](char c) { return std::isspace(c); }), sUrlKey.end()); // Remove whitespace and newline characters
-			sUrlKey.erase(0, 30); // Remove the first portion of the sUrlKey "https://gamefaqs.gamespot.com/"
-
-			GameInfo gameObj = Compositorium::Get()->GetGame(Compositorium::Get()->GetConsoleFromPath(m_sHtmlFilePath), sUrlKey);
+			GameInfo gameObj = Compositorium::Get()->GetGame(m_sGameId);
 
 			m_GameNameText.SetText(gameObj.GetName());
 

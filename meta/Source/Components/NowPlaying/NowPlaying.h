@@ -47,7 +47,7 @@ class NowPlaying : public IComponent
 		RELOADSTATE_Reload,
 	};
 	ReloadState						m_eReloadState;
-	std::string						m_sHtmlFilePath;
+	std::string						m_sGameId;
 
 public:
 	NowPlaying(HyEntity2d *pParent = nullptr);
