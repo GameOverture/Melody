@@ -330,10 +330,12 @@ GameConsole Compositorium::GetConsoleFromPath(std::string sPath)
 {
 	sPath = HyIO::CleanPath(sPath, "/");
 	HyIO::MakeLowercase(sPath);
+	sPath = "/" + sPath;
 	for(uint32_t i = 0; i < NUM_CONSOLES; ++i)
 	{
 		std::string s = m_sConsolePaths[i];
 		HyIO::MakeLowercase(s);
+		s = "/" + s;
 		if(sPath.find(s) != std::string::npos)
 			return ToEnum(i);
 	}
