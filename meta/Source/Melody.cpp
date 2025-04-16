@@ -20,10 +20,13 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_InputViewer(),
 	m_Crt(m_VgMusic, m_MessageCycle, m_InputViewer),
 	m_NowPlaying(),
+	m_Docket(m_NowPlaying),
 	m_HeartBeat(),
 	m_PresetStartingBtn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
 	m_PresetLiveBtn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
-	m_PresetBrbOnBtn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
+	m_PresetBrb1Btn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
+	m_PresetBrb5Btn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
+	m_PresetBrb10Btn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
 	m_PresetBrbOffBtn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
 	m_PresetEndingBtn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel")))
 {
@@ -58,22 +61,16 @@ Melody::Melody(HarmonyInit &initStruct) :
 
 	m_CtrlPanel.UseWindowCoordinates(1);
 
-	m_GameBrowser.Load();
-	m_GameBrowser.SetVisible(false);
-	m_GameBrowser.SetDisplayOrder(DISPLAYORDER_GameBrowser);
-	m_GameBrowser.scale.Set(GAMEBROWSE_MAX_SIZE, GAMEBROWSE_MAX_SIZE);
-	m_GameBrowser.PopulateCtrlPanel(m_CtrlPanel);
+	m_Crt.pos.Set(HyEngine::Window(0).GetWidthF(-0.5f), HyEngine::Window(0).GetHeightF(-0.5f));
+	m_Crt.Load();
+	m_Crt.SetVisible(false);
+	m_Crt.PopulateCtrlPanel(m_CtrlPanel);
 	m_CtrlPanel.InsertDividerLine();
 
 	m_VgMusic.Load();
 	m_VgMusic.SetCrtRef(&m_Crt);
 	m_VgMusic.PopulateCtrlPanel(m_CtrlPanel);
 	m_CtrlPanel.InsertDividerLine();
-
-	m_Crt.pos.Set(HyEngine::Window(0).GetWidthF(-0.5f), HyEngine::Window(0).GetHeightF(-0.5f));
-	m_Crt.Load();
-	m_Crt.SetVisible(false);
-	m_Crt.PopulateCtrlPanel(m_CtrlPanel);
 
 	m_Monitor.UseWindowCoordinates();
 	m_Monitor.SetDisplayOrder(DISPLAYORDER_Monitor);
@@ -83,17 +80,17 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_Monitor.PopulateCtrlPanel(m_CtrlPanel);
 	m_CtrlPanel.InsertDividerLine();
 
-	m_Docket.UseWindowCoordinates();
-	m_Docket.SetDisplayOrder(DISPLAYORDER_Docket);
-	m_Docket.Load();
-	m_Docket.SetVisible(false);
-	m_Docket.PopulateCtrlPanel(m_CtrlPanel);
-
 	m_NowPlaying.UseWindowCoordinates();
 	m_NowPlaying.SetDisplayOrder(DISPLAYORDER_NowPlaying);
 	m_NowPlaying.Load();
 	m_NowPlaying.SetVisible(false);
 	m_NowPlaying.PopulateCtrlPanel(m_CtrlPanel);
+
+	m_Docket.UseWindowCoordinates();
+	m_Docket.SetDisplayOrder(DISPLAYORDER_Docket);
+	m_Docket.Load();
+	m_Docket.SetVisible(false);
+	m_Docket.PopulateCtrlPanel(m_CtrlPanel);
 
 	m_LiveSplit.UseWindowCoordinates();
 	m_LiveSplit.SetDisplayOrder(DISPLAYORDER_LiveSplitMask);
@@ -106,12 +103,19 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_InputViewer.Load();
 	m_InputViewer.SetVisible(false);
 	m_InputViewer.PopulateCtrlPanel(m_CtrlPanel);
-	m_CtrlPanel.InsertDividerLine();
 
 	m_HeartBeat.UseWindowCoordinates();
 	m_HeartBeat.Load();
 	m_HeartBeat.SetVisible(false);
 	m_HeartBeat.PopulateCtrlPanel(m_CtrlPanel);
+	m_CtrlPanel.InsertDividerLine();
+
+	m_GameBrowser.Load();
+	m_GameBrowser.SetVisible(false);
+	m_GameBrowser.SetDisplayOrder(DISPLAYORDER_GameBrowser);
+	m_GameBrowser.scale.Set(GAMEBROWSE_MAX_SIZE, GAMEBROWSE_MAX_SIZE);
+	m_GameBrowser.PopulateCtrlPanel(m_CtrlPanel);
+	m_CtrlPanel.InsertDividerLine();
 
 	m_MessageCycle.UseWindowCoordinates();
 	m_MessageCycle.Load();
@@ -141,26 +145,31 @@ Melody::Melody(HarmonyInit &initStruct) :
 			m_MessageCycle.RemoveMessage("Welcome! Stream Starting Soon");
 		}
 	);
-	m_PresetBrbOnBtn.SetText("BRB On");
-	m_PresetBrbOnBtn.SetButtonClickedCallback(
+
+	m_PresetBrb1Btn.SetText("BRB 1");
+	m_PresetBrb1Btn.SetButtonClickedCallback(
 		[this](HyButton *pButton)
 		{
-			m_Crt.GetCtrlPanelCheckBox().SetChecked(true);
-			m_Monitor.GetCtrlPanelCheckBox().SetChecked(true);
-			m_Monitor.SetChannel(MONITORCHANNEL_Brb);
-			m_NowPlaying.ShowGameTime(false);
-			m_MessageCycle.GetCtrlPanelCheckBox().SetChecked(true);
-			m_MessageCycle.AddMessage("BRB 5 Minutes!", false);
-		}
-	);
+			StartBrb(1);
+		});
+	m_PresetBrb5Btn.SetText("BRB 5");
+	m_PresetBrb5Btn.SetButtonClickedCallback(
+		[this](HyButton *pButton)
+		{
+			StartBrb(5);
+		});
+	m_PresetBrb10Btn.SetText("BRB 10");
+	m_PresetBrb10Btn.SetButtonClickedCallback(
+		[this](HyButton *pButton)
+		{
+			StartBrb(10);
+		});
+
 	m_PresetBrbOffBtn.SetText("BRB Off");
 	m_PresetBrbOffBtn.SetButtonClickedCallback(
 		[this](HyButton *pButton)
 		{
-			m_Crt.GetCtrlPanelCheckBox().SetChecked(true);
-			m_Monitor.GetCtrlPanelCheckBox().SetChecked(true);
-			m_Monitor.SetChannel(MONITORCHANNEL_ObsFull);
-			m_MessageCycle.RemoveMessage("BRB 5 Minutes!");
+			ClearBrb();
 		}
 	);
 	m_PresetEndingBtn.SetText("End");
@@ -178,7 +187,9 @@ Melody::Melody(HarmonyInit &initStruct) :
 	);
 
 	HyLayoutHandle hRow = m_CtrlPanel.InsertLayout(HYORIENT_Horizontal);
-	m_CtrlPanel.InsertWidget(m_PresetBrbOnBtn, hRow);
+	m_CtrlPanel.InsertWidget(m_PresetBrb1Btn, hRow);
+	m_CtrlPanel.InsertWidget(m_PresetBrb5Btn, hRow);
+	m_CtrlPanel.InsertWidget(m_PresetBrb10Btn, hRow);
 	m_CtrlPanel.InsertWidget(m_PresetBrbOffBtn, hRow);
 	m_CtrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
 	HyLayoutHandle hRow2 = m_CtrlPanel.InsertLayout(HYORIENT_Horizontal);
@@ -270,6 +281,38 @@ Melody::~Melody()
 			sm_pThis->m_MessageCycle.SetXPosOffset(0.0f);
 		}
 	}
+}
+
+void Melody::StartBrb(int iBrbTime)
+{
+	m_Crt.GetCtrlPanelCheckBox().SetChecked(true);
+	m_Monitor.GetCtrlPanelCheckBox().SetChecked(true);
+	m_Monitor.SetChannel(MONITORCHANNEL_Brb);
+	m_NowPlaying.ShowGameTime(false);
+	m_MessageCycle.GetCtrlPanelCheckBox().SetChecked(true);
+
+	std::string sMsg;
+	if(iBrbTime > 0)
+	{
+		if(iBrbTime == 1)
+			sMsg = "BRB 1 Minute!";
+		else
+			sMsg = "BRB " + std::to_string(iBrbTime) + " Minutes!";
+	}
+	else
+		sMsg = "BRB!";
+	m_MessageCycle.AddMessage(sMsg, false);
+}
+
+void Melody::ClearBrb()
+{
+	m_Crt.GetCtrlPanelCheckBox().SetChecked(true);
+	m_Monitor.GetCtrlPanelCheckBox().SetChecked(true);
+	m_Monitor.SetChannel(MONITORCHANNEL_ObsFull);
+	m_MessageCycle.RemoveMessage("BRB!");
+	m_MessageCycle.RemoveMessage("BRB 1 Minute!");
+	m_MessageCycle.RemoveMessage("BRB 5 Minutes!");
+	m_MessageCycle.RemoveMessage("BRB 10 Minutes!");
 }
 
 void TransformTexture(HyTexturedQuad2d &quadRef, glm::ivec2 vMaxSize, glm::vec2 ptCenter)

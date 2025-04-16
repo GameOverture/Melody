@@ -63,17 +63,17 @@ NowPlaying::NowPlaying(HyEntity2d *pParent /*= nullptr*/) :
 			// Display the Open File dialog box
 			if(sHtmlFilePath.empty() == false)
 			{
+				std::string sGameId;
 				// Read the first line of the HTML file which is the URL key
 				std::ifstream infile(sHtmlFilePath, std::ifstream::in | std::ios::binary | std::ios::ate);
 				HyAssert(infile, "HyReadTextFile invalid file: " << sHtmlFilePath);
 				infile.seekg(0, std::ios::beg);
-				std::getline(infile, m_sGameId);
+				std::getline(infile, sGameId);
 				infile.close();
-				m_sGameId.erase(std::remove_if(m_sGameId.begin(), m_sGameId.end(), [](char c) { return std::isspace(c); }), m_sGameId.end()); // Remove whitespace and newline characters
-				m_sGameId.erase(0, 30); // Remove the first portion of the sUrlKey "https://gamefaqs.gamespot.com/"
+				sGameId.erase(std::remove_if(sGameId.begin(), sGameId.end(), [](char c) { return std::isspace(c); }), sGameId.end()); // Remove whitespace and newline characters
+				sGameId.erase(0, 30); // Remove the first portion of the sUrlKey "https://gamefaqs.gamespot.com/"
 
-				Compositorium::Get()->SetSetting("NowPlaying", m_sGameId, true);
-				m_eReloadState = RELOADSTATE_Reinit;
+				SetGame(sGameId);
 			}
 		});
 
@@ -163,9 +163,7 @@ NowPlaying::NowPlaying(HyEntity2d *pParent /*= nullptr*/) :
 	m_GameTimeText.SetAsScaleBox(LIVESPLIT_WIDTH / 2, 55);
 
 	// Load previous settings
-	m_sGameId = Compositorium::Get()->GetSetting("NowPlaying");
-	if(m_sGameId.empty() == false)
-		m_eReloadState = RELOADSTATE_Reinit;
+	SetGame(Compositorium::Get()->GetSetting("NowPlaying"));
 }
 
 /*virtual*/ NowPlaying::~NowPlaying()
@@ -188,6 +186,17 @@ NowPlaying::NowPlaying(HyEntity2d *pParent /*= nullptr*/) :
 	ctrlPanel.InsertWidget(m_CtrlPanel_StopwatchStartPause, hTimeRow);
 	ctrlPanel.InsertWidget(m_CtrlPanel_StopwatchMinFwd, hTimeRow);
 	ctrlPanel.InsertWidget(m_CtrlPanel_StopwatchHrFwd, hTimeRow);
+}
+
+void NowPlaying::SetGame(const std::string &sGameId)
+{
+	if(sGameId.empty())
+		return;
+
+	m_sGameId = sGameId;
+	m_eReloadState = RELOADSTATE_Reinit;
+
+	Compositorium::Get()->SetSetting("NowPlaying", m_sGameId, true);
 }
 
 void NowPlaying::ShowGameTime(bool bShow)

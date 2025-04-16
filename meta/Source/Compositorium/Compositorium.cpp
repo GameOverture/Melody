@@ -492,18 +492,32 @@ size_t CurlWriteCallback(char *contents, size_t size, size_t nmemb, void *userp)
 
 std::string Compositorium::GetMobyGame(std::string sFuzzyGameTitle)
 {
-	std::string sReadBuffer;
+	if(m_sMobyApiKey.empty())
+	{
+		// read file Moby.txt
+		std::ifstream file(m_sROOT_PATH + "Moby.txt");
+		if(file.is_open())
+		{
+			std::getline(file, m_sMobyApiKey);
+			file.close();
+		}
+		else
+		{
+			HyError("Compositorium::GetMobyGame", "Could not open Moby.txt file");
+			return "";
+		}
+	}
 
+	std::string sReadBuffer;
 	CURL *pCurl = curl_easy_init();
 	CURLcode eReturnCode = CURLE_OK;
 	long iResponseCode = 0;
 	if(pCurl)
 	{
-		const std::string sApiKey = "moby_S1XZghKzAFxgPwGYtqEXjQ1VUJM";
 		std::string sUrl = "https://api.mobygames.com/v2/games?";
 		sUrl += "include=id,title,moby_url,covers,description,developers,genres,release_date,screenshots,highlights";
 		sUrl += "&fuzzy=true&limit=5&offset=0&title=" + sFuzzyGameTitle;
-		sUrl += "&api_key=" + sApiKey;
+		sUrl += "&api_key=" + m_sMobyApiKey;
 
 		curl_easy_setopt(pCurl, CURLOPT_CUSTOMREQUEST, "GET");
 		curl_easy_setopt(pCurl, CURLOPT_URL, sUrl.c_str());

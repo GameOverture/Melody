@@ -55,6 +55,7 @@ public:
 
 	virtual void PopulateCtrlPanel(CtrlPanel &ctrlPanel) override;
 
+	void SetGame(const std::string &sGameId);
 	void ShowGameTime(bool bShow);
 
 	virtual void Show(float fDuration) override;

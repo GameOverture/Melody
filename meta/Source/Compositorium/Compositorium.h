@@ -38,6 +38,8 @@ class Compositorium
 	HyJsonDoc					m_StatDocs[NUM_CONSOLES];
 
 	HyJsonDoc					m_SettingsDoc;
+	
+	std::string					m_sMobyApiKey;
 
 public:
 	Compositorium(std::string sRootPath);

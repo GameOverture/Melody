@@ -4,12 +4,18 @@
 #include "pch.h"
 #include "IComponent.h"
 
+#define NUM_DOCKET_GAMES 6
+
+class NowPlaying;
+
 class Docket : public IComponent
 {
-	HyButton				m_CtrlPanel_AddGameBtn;
-	HyButton				m_CtrlPanel_SaveBtn;
+	NowPlaying &			m_NowPlayingRef;
 
-	HyCheckBox				m_CtrlPanel_ShowCollection;
+	HyTexturedQuad2d		m_Thumbnails[NUM_DOCKET_GAMES];
+	HyButton				m_CtrlPanel_ThumbnailBtn[NUM_DOCKET_GAMES];
+	HyButton				m_CtrlPanel_BrowseBtn[NUM_DOCKET_GAMES];
+	HyButton				m_CtrlPanel_ClearBtn[NUM_DOCKET_GAMES];
 
 	enum ReloadState
 	{
@@ -18,20 +24,19 @@ class Docket : public IComponent
 		RELOADSTATE_Reload,
 	};
 	ReloadState						m_eReloadState;
-	std::string						m_sHtmlFilePath;
-
 	
 	std::vector<GameStats>			m_GameList;
 
 public:
-	Docket(HyEntity2d *pParent = nullptr);
+	Docket(NowPlaying &nowPlayingRef, HyEntity2d *pParent = nullptr);
 	virtual ~Docket();
 
 	virtual void PopulateCtrlPanel(CtrlPanel &ctrlPanel) override;
 	virtual void Show(float fDuration) override;
 	virtual void Hide(float fDuration) override;
 
-	void AddGame(std::string sGameId);
+	void AddGame(uint32 uiIndex, std::string sGameId);
+	void ClearGame(uint32 uiIndex);
 
 	void LoadFile();
 	void SaveFile();

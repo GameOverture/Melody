@@ -46,7 +46,9 @@ class Melody : public HyEngine
 	// Presets
 	HyButton		m_PresetStartingBtn;
 	HyButton		m_PresetLiveBtn;
-	HyButton		m_PresetBrbOnBtn;
+	HyButton		m_PresetBrb1Btn;
+	HyButton		m_PresetBrb5Btn;
+	HyButton		m_PresetBrb10Btn;
 	HyButton		m_PresetBrbOffBtn;
 	HyButton		m_PresetEndingBtn;
 
@@ -60,6 +62,10 @@ public:
 	virtual bool OnUpdate() override;
 
 	static void RefreshCamera();
+
+protected:
+	void StartBrb(int iBrbTime);
+	void ClearBrb();
 };
 
 void TransformTexture(HyTexturedQuad2d &quadRef, glm::ivec2 vMaxSize, glm::vec2 ptCenter);
