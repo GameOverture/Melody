@@ -38,11 +38,10 @@ public:
 	void AddGame(uint32 uiIndex, std::string sGameId);
 	void ClearGame(uint32 uiIndex);
 
-	void LoadFile();
-	void SaveFile();
-
 protected:
 	virtual void OnUpdate() override;
+
+	void SaveDocketSettings();
 };
 
 #endif // Docket_h__

@@ -62,6 +62,31 @@ Docket::Docket(NowPlaying &nowPlayingRef, HyEntity2d *pParent /*= nullptr*/) :
 			else
 				Hide(0.5f);
 		});
+
+	std::string sDocketValue = Compositorium::Get()->GetSetting("Docket");
+	// sDocketValue is ';' delimited with each string laid out for each docket game. 
+	if(sDocketValue.empty() == false)
+	{
+		std::vector<std::string> sDocketValues;
+		std::stringstream ss(sDocketValue);
+		std::string token;
+		while(std::getline(ss, token, ';')) {
+			sDocketValues.push_back(token);
+		}
+
+		for(size_t i = 0; i < sDocketValues.size(); ++i)
+		{
+			if(i < NUM_DOCKET_GAMES)
+			{
+				std::string sGameId = sDocketValues[i];
+				if(sGameId.empty() == false)
+					AddGame(i, sGameId);
+			}
+			else
+				break;
+		}
+		
+	}
 }
 
 /*virtual*/ Docket::~Docket()
@@ -108,49 +133,16 @@ void Docket::AddGame(uint32 uiIndex, std::string sGameId)
 
 	m_CtrlPanel_ThumbnailBtn[uiIndex].Setup(HyUiPanelInit(HYTYPE_TexturedQuad, HyNodePath(sPath.c_str()), 32, 32));
 	m_CtrlPanel_ThumbnailBtn[uiIndex].Load();
+
+	SaveDocketSettings();
 }
 
 void Docket::ClearGame(uint32 uiIndex)
 {
 	m_CtrlPanel_ThumbnailBtn[uiIndex].SetText("");
-}
+	m_CtrlPanel_ThumbnailBtn[uiIndex].Setup(HyUiPanelInit(32, 32, 1));
 
-void Docket::LoadFile()
-{
-	std::string sFilePath = Compositorium::Get()->GetRootPath() + "Docket.txt";
-	std::vector<char> sFileContents;
-	HyIO::ReadTextFile(sFilePath.c_str(), sFileContents);
-	
-	m_GameList.clear();
-	std::string sLine;
-	std::istringstream iss(sFileContents.data());
-	while(std::getline(iss, sLine))
-	{
-		std::istringstream issLine(sLine);
-		std::string sConsole;
-		std::string sGameId;
-		double dElapsedTime;
-		std::getline(issLine, sConsole, ';');
-		std::getline(issLine, sGameId, ';');
-		issLine >> dElapsedTime;
-		//GameStats game;
-		GameConsole eConsole = Compositorium::Get()->GetConsoleFromName(sConsole);
-		//std::string sGameId = 
-		//game.m_sGameId = sGameId;
-		//game.m_dElapsedPlayTime = dElapsedTime;
-		//m_GameList.push_back(game);
-	}
-}
-
-void Docket::SaveFile()
-{
-	std::string sFilePath = Compositorium::Get()->GetRootPath() + "Docket.txt";
-
-	std::string sFileContents;
-	//for(auto &game : m_GameList)
-	//	sFileContents += Compositorium::Get()->GetConsoleName(game.m_eConsole) + ";" + game.m_sGameId + ";" + std::to_string(game.m_dElapsedPlayTime) + "\n";
-
-	HyIO::WriteTextFile(sFilePath.c_str(), sFileContents.c_str());
+	SaveDocketSettings();
 }
 
 /*virtual*/ void Docket::OnUpdate() /*override*/
@@ -166,4 +158,20 @@ void Docket::SaveFile()
 	case RELOADSTATE_Reload:
 		break;
 	}
+}
+
+void Docket::SaveDocketSettings()
+{
+	std::string sDocketValue;
+	for(int i = 0; i < NUM_DOCKET_GAMES; ++i)
+	{
+		std::string sGameId = m_CtrlPanel_ThumbnailBtn[i].GetUtf8String();
+		if(sGameId.empty() == false)
+			sDocketValue += sGameId;
+
+		if(i < NUM_DOCKET_GAMES - 1)
+			sDocketValue += ";";
+	}
+
+	Compositorium::Get()->SetSetting("Docket", sDocketValue, true);
 }
