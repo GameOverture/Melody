@@ -9,7 +9,7 @@ Compositorium *Compositorium::sm_pInstance = nullptr;
 
 Compositorium::Compositorium(std::string sRootPath) :
 	m_sROOT_PATH(HyIO::CleanPath(sRootPath, "/")),
-	m_sConsolePaths{ "NES/", "SNES/", "N64/", "GameCube/", "Wii/", "SMS/", "Genesis/", "SegaCD/", "Saturn/", "Dreamcast/", "PS1/", "PS2/", "Xbox/" },
+	m_sConsolePaths{ "NES/", "SNES/", "N64/", "GameCube/", "Wii/", "SMS/", "Genesis/", "SegaCD/", "Saturn/", "Dreamcast/", "PS1/", "PS2/", "Xbox/", "PC/" },
 	m_sMediaPaths{ "media/boxarts/", "media/logos/", "media/music/", "media/snaps/", "media/titles/" }
 {
 	HyAssert(sm_pInstance == nullptr, "Compositorium::Compositorium() - Only one instance of Compositorium allowed");
@@ -557,6 +557,7 @@ Compositorium::GameConsoleIndex Compositorium::ToIndex(GameConsole eConsole)
 	case CONSOLE_PS1:		return CONSOLEINDEX_PS1;
 	case CONSOLE_PS2:		return CONSOLEINDEX_PS2;
 	case CONSOLE_Xbox:		return CONSOLEINDEX_Xbox;
+	case CONSOLE_PC:		return CONSOLEINDEX_PC;
 	default:
 		HyError("Compositorium::ToIndex() - Invalid GameConsole");
 		break;
@@ -586,6 +587,7 @@ GameConsole Compositorium::ToEnum(GameConsoleIndex eIndex)
 	case CONSOLEINDEX_PS1:			return CONSOLE_PS1;
 	case CONSOLEINDEX_PS2:			return CONSOLE_PS2;
 	case CONSOLEINDEX_Xbox:			return CONSOLE_Xbox;
+	case CONSOLEINDEX_PC:			return CONSOLE_PC;
 	default:
 		HyError("Compositorium::ToEnum() - Invalid GameConsoleIndex");
 		break;

@@ -27,10 +27,11 @@ class Compositorium
 		CONSOLEINDEX_PS2		= 11,
 		CONSOLEINDEX_Xbox		= 12,
 
+		CONSOLEINDEX_PC			= 13,
 		NUM_CONSOLES
 	};
 	static_assert(NUM_CONSOLES < 32, "Compositorium::GameConsoleIndex - Too many consoles, increase all bitmasks to 64bits");
-	static_assert(NUM_CONSOLES - 1 == CONSOLEINDEX_Xbox && CONSOLE_Xbox == 1 << CONSOLEINDEX_Xbox, "Compositorium::GameConsoleIndex - Console enum mismatch");
+	static_assert(NUM_CONSOLES - 1 == CONSOLEINDEX_PC && CONSOLE_PC == 1 << CONSOLEINDEX_PC, "Compositorium::GameConsoleIndex - Console enum mismatch");
 	const std::string			m_sConsolePaths[NUM_CONSOLES];
 	const std::string			m_sMediaPaths[NUM_MEDIATYPES];
 

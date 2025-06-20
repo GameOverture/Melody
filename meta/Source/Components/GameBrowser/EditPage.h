@@ -47,7 +47,7 @@ class EditPage : public HyUiContainer
 	HyLabel				m_DataBeatenOnStreamValue;
 	HyButton			m_DataBeatenOnStreamBtn;
 
-	HyLineEdit			m_DataNotes;
+	HyTextField			m_DataNotes;
 
 	//HyButton			m_SaveBtn;
 	//HyButton			m_ResetBtn;

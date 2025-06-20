@@ -9,7 +9,7 @@
 
 class GameBrowser : public IComponent
 {
-	HyLineEdit						m_CtrlPanel_MobyGameQuery;
+	HyTextField						m_CtrlPanel_MobyGameQuery;
 	HyButton						m_CtrlPanel_MobySearchBtn;
 
 	HyButton						m_CtrlPanel_SetGameBtn;

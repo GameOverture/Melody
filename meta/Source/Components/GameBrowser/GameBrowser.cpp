@@ -270,6 +270,29 @@ bool GameBrowser::TryImportMoby(const std::string &sResponse)
 		return false;
 	}
 
+	std::vector<std::string> sGameList;
+	HyJsonArray gamesArray = m_MobyResponseDoc["games"].GetArray();
+	for(size_t i = 0; i < gamesArray.Size(); ++i)
+	{
+		HyJsonObj gameObj = gamesArray[i].GetObject();
+		if(gameObj.HasMember("game_id") == false || gameObj["game_id"].IsString() == false)
+		{
+			HyLogError("GameBrowser::ImportMoby: No game_id found in JSON response");
+			return false;
+		}
+		std::string sId = gameObj["game_id"].GetString();
+		
+		if(gameObj.HasMember("title") == false || gameObj["title"].IsString() == false)
+		{
+			HyLogError("GameBrowser::ImportMoby: No title found in JSON response");
+			return false;
+		}
+		sGameList.push_back(gameObj["title"].GetString());
+	}
+
+	m_MobySelectDlg.SetRadioList(sGameList);
+	m_MobySelectDlg.Show();
+
 	return true;
 }
 

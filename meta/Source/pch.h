@@ -72,7 +72,9 @@ enum GameConsole
 	CONSOLE_Dreamcast		= 1 << 9,
 	CONSOLE_PS1				= 1 << 10,
 	CONSOLE_PS2				= 1 << 11,
-	CONSOLE_Xbox			= 1 << 12
+	CONSOLE_Xbox			= 1 << 12,
+
+	CONSOLE_PC				= 1 << 13
 };
 
 enum MediaType
@@ -241,7 +243,7 @@ public:
 		return *this;
 	}
 
-	bool IsValid() const { m_sGameId.empty() == false; }
+	bool IsValid() const { return m_sGameId.empty() == false; }
 	//GameConsole GetConsole() const { return Compositorium::Get()->GetConsoleFromPath(m_sGameId); }
 	const std::string &GetGameId() const { return m_sGameId; }
 	bool IsStatusFlagSet(StatusFlag eFlag) const { return (m_uiStatusFlags & eFlag) != 0; }

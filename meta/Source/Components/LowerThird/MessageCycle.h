@@ -20,7 +20,7 @@ class MessageCycle : public IComponent
 	float						m_fXPos;
 
 	HyCheckBox					m_CtrlPanel_GrayBg;
-	HyLineEdit					m_CtrlPanel_LineEdit;
+	HyTextField					m_CtrlPanel_LineEdit;
 	HyButton					m_CtrlPanel_AddBtn;
 
 	HyRadioButton				m_CtrlPanel_radLong;

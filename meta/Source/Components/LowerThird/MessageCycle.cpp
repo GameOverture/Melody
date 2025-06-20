@@ -36,7 +36,7 @@ MessageCycle::MessageCycle(Monitor &monitorRef, HyEntity2d *pParent /*= nullptr*
 				m_GrayBg.SetVisible(false);
 		});
 
-	m_CtrlPanel_LineEdit.SetOnSubmit([this](HyLineEdit *pThis)
+	m_CtrlPanel_LineEdit.SetOnSubmit([this](HyTextField *pThis)
 		{
 			m_CtrlPanel_AddBtn.InvokeButtonClicked();
 		});
