@@ -22,24 +22,24 @@ enum PlayState
 
 class VgMusic : public HyEntity2d
 {
-	HyCheckBox									m_CtrlPanel_LoadCheckBox;
-	HyButton									m_CtrlPanel_PrevBtn;
-	HyButton									m_CtrlPanel_PlayBtn;
-	HyButton									m_CtrlPanel_StopBtn;
-	HyButton									m_btnVolume_Down;
-	HyButton									m_btnVolume_Up;
+	HyCheckBox										m_CtrlPanel_LoadCheckBox;
+	HyButton										m_CtrlPanel_PrevBtn;
+	HyButton										m_CtrlPanel_PlayBtn;
+	HyButton										m_CtrlPanel_StopBtn;
+	HyButton										m_btnVolume_Down;
+	HyButton										m_btnVolume_Up;
 	
-	Crt *										m_pCrtRef;
+	Crt *											m_pCrtRef;
 
-	HyAudio2d									m_AudioTrack;
+	HyAudio2d										m_AudioTrack;
 public:
-	std::vector<MusicTrack>						m_MusicTrackList;
-	int32										m_iCurrTrackIndex;
+	std::vector<MusicTrack>							m_MusicTrackList;
+	int32											m_iCurrTrackIndex;
 
-	PlayState									m_ePlayState;
+	PlayState										m_ePlayState;
 
-	std::function<void(MusicTrack &)>			m_fpOnTrackChange;
-	std::function<void(float)>					m_fpOnFadeOut;
+	std::vector<std::function<void(MusicTrack &)> >	m_fpOnTrackChangeList;
+	std::vector<std::function<void(float)> >		m_fpOnFadeOutList;
 
 public:
 	VgMusic(HyEntity2d *pParent = nullptr);

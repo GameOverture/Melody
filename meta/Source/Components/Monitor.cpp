@@ -2,13 +2,14 @@
 #include "Monitor.h"
 #include "CtrlPanel.h"
 #include "Melody.h"
+#include "VgMusic.h"
 
 #define MONITOR_WIDTH 488
 #define MONITOR_HEIGHT 268
 #define SCREEN_OFFSET_X 33
 #define SCREEN_OFFSET_Y 27
 
-Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
+Monitor::Monitor(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_Brb, pParent),
 	m_iChannelIndex(MONITORCHANNEL_NoSignal),
 	m_fChannelShowTime(0.0f),
@@ -79,6 +80,21 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 
 	m_ElapsedTimeText.pos.Set(SCREEN_OFFSET_X + (MONITOR_WIDTH * 0.5f), SCREEN_OFFSET_Y + 20.0f);
 	m_ElapsedTimeText.SetAlignment(HYALIGN_Center);
+
+	//vgMusicRef.SetOnTrackChangeCallback(
+	//	[this](MusicTrack &musicTrackRef)
+	//	{
+	//		InitNextTrack(musicTrackRef);
+	//	});
+	//vgMusicRef.SetOnFadeOutCallback(
+	//	[this](float fFadeOutDuration)
+	//	{
+	//		FadeOut(fFadeOutDuration);
+	//		m_eLargeState = LARGESTATE_Stopped;
+
+	//		for(int32 i = 0; i < NUM_DANCERS; ++i)
+	//			m_Dancers[i].DeferDance(DANCESTATE_Stop, fFadeOutDuration * 0.5f);
+	//	});
 }
 
 /*virtual*/ Monitor::~Monitor()

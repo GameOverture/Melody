@@ -14,7 +14,7 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_CtrlPanel(),
 	m_VgMusic(),
 	m_GameBrowser(),
-	m_Monitor(),
+	m_Monitor(m_VgMusic),
 	m_LiveSplit(m_Monitor),
 	m_MessageCycle(m_Monitor),
 	m_InputViewer(),
@@ -264,7 +264,7 @@ Melody::~Melody()
 {
 	if(sm_pThis->m_Crt.GetChannel() != CHANNELTYPE_Game)
 	{
-		if(sm_pThis->m_Monitor.IsVisible() || sm_pThis->m_LiveSplit.IsVisible() || sm_pThis->m_NowPlaying.IsVisible())
+		if(sm_pThis->m_LiveSplit.IsVisible() || sm_pThis->m_NowPlaying.IsVisible())
 		{
 			HyEngine::Window().GetCamera2d(0)->pos.Tween(CAMERA_DIVIDER_POS, 1.5f, HyTween::QuadInOut);
 			HyEngine::Window().GetCamera2d(0)->scale.Tween(CAMERA_DIVIDER_SCALE, 1.5f, HyTween::QuadInOut);

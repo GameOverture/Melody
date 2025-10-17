@@ -14,9 +14,7 @@ VgMusic::VgMusic(HyEntity2d *pParent /*= nullptr*/) :
 	m_btnVolume_Down(HyUiPanelInit(64, 32, 2), HyNodePath("", "CtrlPanel"), this),
 	m_btnVolume_Up(HyUiPanelInit(64, 32, 2), HyNodePath("", "CtrlPanel"), this),
 	m_iCurrTrackIndex(-1),
-	m_ePlayState(PLAYSTATE_Stopped),
-	m_fpOnTrackChange(nullptr),
-	m_fpOnFadeOut(nullptr)
+	m_ePlayState(PLAYSTATE_Stopped)
 {
 	m_CtrlPanel_LoadCheckBox.SetText("VgMusic");
 	m_CtrlPanel_LoadCheckBox.SetCheckedChangedCallback(
@@ -92,12 +90,12 @@ void VgMusic::PopulateCtrlPanel(CtrlPanel &ctrlPanel)
 
 void VgMusic::SetOnTrackChangeCallback(std::function<void(MusicTrack &)> fpOnTrackChange)
 {
-	m_fpOnTrackChange = fpOnTrackChange;
+	m_fpOnTrackChangeList.push_back(fpOnTrackChange);
 }
 
 void VgMusic::SetOnFadeOutCallback(std::function<void(float)> fpOnFadeOut)
 {
-	m_fpOnFadeOut = fpOnFadeOut;
+	m_fpOnFadeOutList.push_back(fpOnFadeOut);
 }
 
 PlayState VgMusic::GetPlayState() const
@@ -182,8 +180,8 @@ void VgMusic::Stop()
 			m_AudioTrack.Play();
 			m_AudioTrack.Load();
 
-			if(m_fpOnTrackChange)
-				m_fpOnTrackChange(musicTrack);
+			for(int i = 0; i < m_fpOnTrackChangeList.size(); ++i)
+				m_fpOnTrackChangeList[i](musicTrack);
 
 			m_ePlayState = PLAYSTATE_Starting;
 		}
@@ -204,6 +202,6 @@ void VgMusic::FadeOutTrack(float fFadeOutDuration)
 	m_AudioTrack.volume.Set(1.0f);
 	m_AudioTrack.volume.Tween(0.0f, fFadeOutDuration);
 
-	if(m_fpOnFadeOut)
-		m_fpOnFadeOut(fFadeOutDuration);
+	for(int i = 0; i < m_fpOnFadeOutList.size(); ++i)
+		m_fpOnFadeOutList[i](fFadeOutDuration);
 }

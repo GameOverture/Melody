@@ -3,6 +3,7 @@
 
 #include "pch.h"
 #include "IComponent.h"
+#include "VgMusic.h"
 
 #define SHADOW_ALPHA 0.42f
 
@@ -44,8 +45,11 @@ class Monitor : public IComponent
 	
 	HyText2d			m_ChannelText;
 
+	
+	HyText2d			m_VgMusicInfo;
+
 public:
-	Monitor(HyEntity2d *pParent = nullptr);
+	Monitor(VgMusic &vgMusicRef, HyEntity2d *pParent = nullptr);
 	virtual ~Monitor();
 
 	void SetChannel(MonitorChannel eChannel);

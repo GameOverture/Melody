@@ -8,11 +8,11 @@ MessageCycle::MessageCycle(Monitor &monitorRef, HyEntity2d *pParent /*= nullptr*
 	m_MonitorRef(monitorRef),
 	m_pCtrlPanel(nullptr),
 	m_fXPos(0.0f),
-	m_CtrlPanel_GrayBg(HyUiPanelInit(50, 50, 2), this),
-	m_CtrlPanel_LineEdit(HyUiPanelInit(225, 50, 2, HyColor::Blue), HyUiTextInit(HyNodePath("", "CtrlPanel")), this),
-	m_CtrlPanel_AddBtn(HyUiPanelInit(50, 50, 2, HyColor::Green), HyUiTextInit(HyNodePath("", "CtrlPanel")), this),
+	m_CtrlPanel_LineEdit(HyUiPanelInit(225, 24, 2, HyColor::Blue), HyUiTextInit(HyNodePath("", "CtrlPanel")), this),
+	m_CtrlPanel_AddBtn(HyUiPanelInit(50, 24, 2, HyColor::Green), HyUiTextInit(HyNodePath("", "CtrlPanel")), this),
 	m_CtrlPanel_radLong(HyUiPanelInit(24, 24, 2), HyUiTextInit(HyNodePath("", "CtrlPanel")), this),
 	m_CtrlPanel_radShort(HyUiPanelInit(24, 24, 2), HyUiTextInit(HyNodePath("", "CtrlPanel")), this),
+	m_CtrlPanel_GrayBg(HyUiPanelInit(24, 24, 2), this),
 	m_iCurrMsgIndex(0),
 	m_Text("", "MainText", this)
 {
@@ -26,7 +26,7 @@ MessageCycle::MessageCycle(Monitor &monitorRef, HyEntity2d *pParent /*= nullptr*
 				Hide(0.5f);
 		});
 
-	m_CtrlPanel_GrayBg.SetText("Gray Bar");
+	m_CtrlPanel_GrayBg.SetText("Show Bar");
 	m_CtrlPanel_GrayBg.SetCheckedChangedCallback(
 		[this](HyCheckBox *pCheckBox)
 		{
@@ -130,8 +130,6 @@ void MessageCycle::ClearMessages()
 	ctrlPanel.InsertWidget(m_CtrlPanel_CheckBox, hRow);
 	ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
 
-	ctrlPanel.InsertWidget(m_CtrlPanel_GrayBg);
-
 	hRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
 	ctrlPanel.InsertWidget(m_CtrlPanel_LineEdit, hRow);
 	ctrlPanel.InsertWidget(m_CtrlPanel_AddBtn, hRow);
@@ -141,6 +139,7 @@ void MessageCycle::ClearMessages()
 	ctrlPanel.InsertWidget(m_CtrlPanel_radLong, hRow);
 	ctrlPanel.InsertWidget(m_CtrlPanel_radShort, hRow);
 	ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
+	ctrlPanel.InsertWidget(m_CtrlPanel_GrayBg, hRow);
 
 	ctrlPanel.InsertSpacer();
 }
