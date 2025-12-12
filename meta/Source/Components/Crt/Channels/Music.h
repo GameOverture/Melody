@@ -7,6 +7,7 @@
 #define NUM_DANCERS 6
 
 class VgMusic;
+class NowPlaying;
 
 enum DanceState
 {
@@ -43,6 +44,7 @@ protected:
 class Music : public Channel
 {
 	VgMusic &					m_VgMusicRef;
+	NowPlaying &				m_NowPlayingRef;
 
 	HySprite2d					m_AudioVisualizer;
 	HyTexturedQuad2d			m_Snapshot;
@@ -72,7 +74,7 @@ class Music : public Channel
 	//HyPrimitive2d				m_Debugbox;
 
 public:
-	Music(VgMusic &vgMusicRef, HyEntity2d *pParent = nullptr);
+	Music(VgMusic &vgMusicRef, NowPlaying &nowPlayingRef, HyEntity2d *pParent = nullptr);
 	virtual ~Music();
 
 	void InitNextTrack(const MusicTrack &musicTrack);

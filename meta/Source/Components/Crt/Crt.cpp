@@ -8,10 +8,11 @@
 #define CRT_SHRINK_AMT 0.01f
 #define CRT_SHUTOFF_DUR 0.2f
 
-Crt::Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewerRef, HyEntity2d *pParent /*= nullptr*/) :
+Crt::Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewerRef, NowPlaying &nowPlayingRef, HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_Crt, pParent),
 	m_MsgCycleRef(msgCycleRef),
 	m_InputViewerRef(inputViewerRef),
+	m_NowPlayingRef(nowPlayingRef),
 	m_CtrlPanel_btnGame(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
 	m_CtrlPanel_btnMusic(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
 	m_CtrlPanel_btnStatic(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
@@ -27,7 +28,7 @@ Crt::Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewe
 	m_fVolumeShowTime(0.0f),
 	m_fChannelShowTime(0.0f),
 	m_ChannelStatic(CHANNELTYPE_Static, &m_ChannelStack),
-	m_ChannelMusic(vgMusicRef, &m_ChannelStack),
+	m_ChannelMusic(vgMusicRef, m_NowPlayingRef, &m_ChannelStack),
 	m_ChannelGame(CHANNELTYPE_Game, &m_ChannelStack),
 	m_eChannelState(CRTSTATE_Off),
 	m_fElapsedTime(0.0f)

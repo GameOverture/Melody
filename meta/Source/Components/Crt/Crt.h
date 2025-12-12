@@ -11,6 +11,7 @@
 class Monitor;
 class VgMusic;
 class InputViewer;
+class NowPlaying;
 
 #define NUM_VOLUME_BARS 20
 
@@ -18,6 +19,7 @@ class Crt : public IComponent
 {
 	MessageCycle &			m_MsgCycleRef;
 	InputViewer &			m_InputViewerRef;
+	NowPlaying &			m_NowPlayingRef;
 
 	HyButton				m_CtrlPanel_btnGame;
 	HyButton				m_CtrlPanel_btnMusic;
@@ -62,7 +64,7 @@ class Crt : public IComponent
 	float					m_fElapsedTime;
 
 public:
-	Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewerRef, HyEntity2d *pParent = nullptr);
+	Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewerRef, NowPlaying &nowPlayingRef, HyEntity2d *pParent = nullptr);
 	virtual ~Crt();
 
 	virtual void PopulateCtrlPanel(CtrlPanel &ctrlPanel) override;

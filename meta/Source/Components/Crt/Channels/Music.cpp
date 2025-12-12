@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Music.h"
 #include "VgMusic.h"
+#include "NowPlaying.h"
 #include "Melody.h"
 
 //#include <fileref.h>
@@ -109,9 +110,10 @@ void Dancer::DeferDance(DanceState eDanceState, float fDelay)
 	}
 }
 
-Music::Music(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
+Music::Music(VgMusic &vgMusicRef, NowPlaying &nowPlayingRef, HyEntity2d *pParent /*= nullptr*/) :
 	Channel(CHANNELTYPE_Music, pParent),
 	m_VgMusicRef(vgMusicRef),
+	m_NowPlayingRef(nowPlayingRef),
 	m_AudioVisualizer("VgMusic", "Visualizer", this),
 	m_Snapshot(this),
 	m_Title(this),
@@ -325,6 +327,8 @@ void Music::FadeOut(float fFadeOutTime)
 		m_Title.alpha.Tween(0.0f, fFadeOutTime, HyTween::Linear, 0.0f, [](IHyNode *pThis) { pThis->SetVisible(false); });
 	if(m_BoxArt.IsVisible())
 		m_BoxArt.alpha.Tween(0.0f, fFadeOutTime, HyTween::Linear, 0.0f, [](IHyNode *pThis) { pThis->SetVisible(false); });
+
+	m_NowPlayingRef.Hide(fFadeOutTime * 0.5f);
 }
 
 /*virtual*/ void Music::OnUpdate() /*override*/
@@ -359,6 +363,8 @@ void Music::FadeOut(float fFadeOutTime)
 
 			for(int32 i = 0; i < NUM_DANCERS; ++i)
 				m_Dancers[i].DeferDance(DANCESTATE_Shimmy, 4.0f);
+
+			m_NowPlayingRef.SetGame(m_VgMusicRef.m_MusicTrackList[m_VgMusicRef.m_iCurrTrackIndex].m_sGameId);
 
 			m_eLargeState = LARGESTATE_Intro;
 		}
@@ -402,6 +408,8 @@ void Music::FadeOut(float fFadeOutTime)
 				m_Dancers[i].DanceAlt();
 				m_Dancers[i].DeferDance(DANCESTATE_Dance, VGMUSIC_MAX_SONG_LENGTH * 0.5f);
 			}
+
+			m_NowPlayingRef.Show(0.5f);
 
 			m_eLargeState = LARGESTATE_CycleBoxArt;
 		}

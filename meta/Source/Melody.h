@@ -38,9 +38,9 @@ class Melody : public HyEngine
 	LiveSplit		m_LiveSplit;
 	MessageCycle	m_MessageCycle;
 	InputViewer		m_InputViewer;
-	Crt				m_Crt;
 	NowPlaying		m_NowPlaying;
 	Docket			m_Docket;
+	Crt				m_Crt;
 	HeartBeat		m_HeartBeat;
 
 	// Presets
@@ -56,7 +56,7 @@ class Melody : public HyEngine
 	//HyPrimitive2d	m_DebugRetroCaptureArea;
 
 public:
-	Melody(HarmonyInit &initStruct);
+	Melody(HyInit &initStruct);
 	virtual ~Melody();
 
 	virtual bool OnUpdate() override;

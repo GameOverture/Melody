@@ -3,6 +3,8 @@
 
 #include "HyEngine.h"
 
+#define USE_CURL
+
 #define DISPLAYORDER_DEBUG			9999999
 #define DISPLAYORDER_GameBrowser	999999
 #define DISPLAYORDER_MessageCycle	99999

@@ -3,7 +3,9 @@
 
 #include <fstream>
 #include <commdlg.h>
-#include "curl/curl.h"
+#ifdef USE_CURL
+	#include "curl/curl.h"
+#endif
 
 Compositorium *Compositorium::sm_pInstance = nullptr;
 
@@ -492,6 +494,7 @@ size_t CurlWriteCallback(char *contents, size_t size, size_t nmemb, void *userp)
 
 std::string Compositorium::GetMobyGame(std::string sFuzzyGameTitle)
 {
+#ifdef USE_CURL
 	if(m_sMobyApiKey.empty())
 	{
 		// read file Moby.txt
@@ -537,6 +540,9 @@ std::string Compositorium::GetMobyGame(std::string sFuzzyGameTitle)
 
 	curl_easy_cleanup(pCurl);
 	return sReadBuffer;
+#else
+	return sFuzzyGameTitle;
+#endif
 }
 
 Compositorium::GameConsoleIndex Compositorium::ToIndex(GameConsole eConsole)

@@ -5,11 +5,11 @@
 
 #define GAMEBROWSE_MAX_SIZE 0.95f
 
-Melody::Melody(HarmonyInit &initStruct) :
+Melody::Melody(HyInit &initStruct) :
 	HyEngine(initStruct),
 	m_pCamera(HyEngine::Window().CreateCamera2d()),
 	m_pCameraCtrlPanel(HyEngine::Window(1).CreateCamera2d()),
-	m_Compositorium("E:\\Soft\\Game_Overture\\RetroCompositorium\\data"),// "\\\\IronMountain/Documents/RetroCompositorium/"),
+	m_Compositorium("C:\\Soft\\Game_Overture\\RetroCompositorium"),// "\\\\IronMountain/Documents/RetroCompositorium/"),
 	m_ColorKeyBg(),
 	m_CtrlPanel(),
 	m_VgMusic(),
@@ -18,9 +18,9 @@ Melody::Melody(HarmonyInit &initStruct) :
 	m_LiveSplit(m_Monitor),
 	m_MessageCycle(m_Monitor),
 	m_InputViewer(),
-	m_Crt(m_VgMusic, m_MessageCycle, m_InputViewer),
 	m_NowPlaying(),
 	m_Docket(m_NowPlaying),
+	m_Crt(m_VgMusic, m_MessageCycle, m_InputViewer, m_NowPlaying),
 	m_HeartBeat(),
 	m_PresetStartingBtn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
 	m_PresetLiveBtn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),

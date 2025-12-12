@@ -3,7 +3,7 @@ project(Melody)
 
 set(REL_PROJ_PATH "../../")
 set(REL_DATA_DIR "../../data")
-set(REL_HARMONY_DIR "../../../../../LG/_GameFramework/HarmonyEngine")
+set(REL_HARMONY_DIR "../../../HarmonyEngine")
 set(EXE_OUTPUT_NAME "Melody")
 
 set(GAME_SRCFILES
@@ -40,8 +40,6 @@ set(GAME_SRCFILES
 	"Components/InputViewer/Controllers/StreetFighter.h"
 	"Components/VgMusic.cpp"
 	"Components/VgMusic.h"
-	"_hy_/NewEntity.h"
-	"_hy_/NewEntity.cpp"
 	"Components/Monitor.cpp"
 	"Components/Monitor.h"
 	"Components/HeartBeat.cpp"
@@ -77,7 +75,11 @@ set(GAME_SRCFILES
 	"Components/GameBrowser/GameBrowser.cpp"
 	"Components/GameBrowser/GameBrowser.h"
 	"Components/GameBrowser/ConsolePage.cpp"
-	"Components/GameBrowser/ConsolePage.h")
+	"Components/GameBrowser/ConsolePage.h"
+	"_hy_/hy_Television.h"
+	"_hy_/hy_Television.cpp"
+	"_hy_/hy_MusicPlayer.h"
+	"_hy_/hy_MusicPlayer.cpp")
 
 set(GAME_INCLUDE_DIRS "")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}")
@@ -108,6 +110,7 @@ set(HYBUILD_GLFW ON)
 set(HYBUILD_SDL2 OFF)
 set(HYBUILD_SDL_AUDIO OFF)
 set(HYBUILD_SDL_NET OFF)
+set(HYBUILD_NLOHMANN_JSON OFF)
 option(HYBUILD_DebugEmscripten "Use a Debug build configuration when targeting web browsers" OFF)
 option(HYBUILD_STATIC "Statically link all dependencies into the executable" OFF)
 
@@ -127,8 +130,8 @@ endif()
 if(HYBUILD_SPINE)
 	add_compile_definitions(HY_USE_SPINE)
 endif()
-if(HYBUILD_RAPIDJSON)
-	add_compile_definitions(HY_USE_RAPIDJSON)
+if(HYBUILD_NLOHMANN_JSON)
+	add_compile_definitions(HY_USE_NLOHMANNJSON)
 endif()
 if(HYBUILD_ICU)
 	add_compile_definitions(HY_USE_ICU)
@@ -216,12 +219,12 @@ else()
 endif()
 
 add_subdirectory("${REL_HARMONY_DIR}/Engine" "HyEngine")
-set(BUILD_CURL_EXE OFF CACHE BOOL "" FORCE)
-set(PICKY_COMPILER OFF CACHE BOOL "" FORCE)
-set(BUILD_LIBCURL_DOCS OFF CACHE BOOL "" FORCE)
-
-add_subdirectory("../../lib/curl-7.76.1" "libcurl")
-set_target_properties("libcurl" PROPERTIES FOLDER "Melody Libs")
+option(CURL_USE_LIBPSL "Use libpsl" OFF)
+option(BUILD_CURL_EXE "Build curl executable" OFF)
+option(BUILD_EXAMPLES "Build libcurl examples" OFF)
+option(SHARE_LIB_OBJECT OFF)
+add_subdirectory("../../../../opt/curl-8_13_0" "libcurl_static")
+set_target_properties("libcurl_static" PROPERTIES FOLDER "Melody Libs")
 
 
 add_executable(${PROJECT_NAME} WIN32 ${GAME_SRCFILES})
@@ -235,7 +238,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE "$<BUILD_INTERFACE:${GAME_INC
 if(NOT "${CMAKE_SYSTEM_NAME}" STREQUAL "Emscripten")
 	target_precompile_headers(${PROJECT_NAME} PRIVATE "pch.h")
 endif()
-target_link_libraries(${PROJECT_NAME} PUBLIC HyEngine "libcurl" )
+target_link_libraries(${PROJECT_NAME} PUBLIC HyEngine "libcurl_static" )
 
 
 if(TARGET uninstall)

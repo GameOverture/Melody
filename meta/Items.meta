@@ -3,7 +3,7 @@
     "Audio": {
     },
     "Entities": {
-        "CRT/NewEntity": {
+        "CRT/Television": {
             "CameraPos": [
                 0,
                 0
@@ -16,7 +16,12 @@
                 {
                     "UUID": "4d6fd447-6566-4568-a2ee-2d7a6c8b89a8",
                     "codeName": "m_LK_Released",
-                    "isSelected": false,
+                    "ctor": {
+                    },
+                    "declarationType": "Static",
+                    "isDopeExpanded": true,
+                    "isLocked": false,
+                    "isSelected": true,
                     "itemType": "AtlasFrame",
                     "itemUUID": "cfef32af-c661-4ba1-a9a2-e9f678ab8549",
                     "promotedEntityType": ""
@@ -24,6 +29,11 @@
                 {
                     "UUID": "0a360925-41e6-42ad-a002-95ba92076f8a",
                     "codeName": "m_HK_Pressed",
+                    "ctor": {
+                    },
+                    "declarationType": "Static",
+                    "isDopeExpanded": true,
+                    "isLocked": false,
                     "isSelected": false,
                     "itemType": "AtlasFrame",
                     "itemUUID": "e464eea6-84e8-49bc-a771-aef2e17f8bae",
@@ -33,6 +43,10 @@
             "descShapeList": [
             ],
             "framesPerSecond": 60,
+            "guideHorzArray": [
+            ],
+            "guideVertArray": [
+            ],
             "stateArray": [
                 {
                     "callbacks": [
@@ -57,8 +71,62 @@
                                 "props": {
                                     "Transformation": {
                                         "Position": [
-                                            33.52001953125,
-                                            34.02001953125
+                                            60.52001953125,
+                                            34
+                                        ]
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    "name": ""
+                }
+            ]
+        },
+        "VgMusic/MusicPlayer": {
+            "CameraPos": [
+                0,
+                0
+            ],
+            "CameraZoom": 1,
+            "UUID": "f35ef77d-4b81-439f-bf8f-c3a3ccf108a7",
+            "autoInitialize": true,
+            "codeName": "MusicPlayer",
+            "descChildList": [
+                {
+                    "UUID": "a794656d-feb9-425a-a507-ba5de2c81eaf",
+                    "codeName": "m_NowPlayingSound",
+                    "ctor": {
+                    },
+                    "declarationType": "Static",
+                    "isDopeExpanded": true,
+                    "isLocked": false,
+                    "isSelected": true,
+                    "itemType": "Sprite",
+                    "itemUUID": "0e67c812-452a-4660-9642-cbdb6356357d",
+                    "promotedEntityType": ""
+                }
+            ],
+            "descShapeList": [
+            ],
+            "framesPerSecond": 60,
+            "guideHorzArray": [
+            ],
+            "guideVertArray": [
+            ],
+            "stateArray": [
+                {
+                    "callbacks": [
+                    ],
+                    "keyFrames": {
+                        "a794656d-feb9-425a-a507-ba5de2c81eaf": [
+                            {
+                                "frame": 0,
+                                "props": {
+                                    "Transformation": {
+                                        "Position": [
+                                            250,
+                                            -120
                                         ]
                                     }
                                 }

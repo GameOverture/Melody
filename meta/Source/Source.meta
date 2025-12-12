@@ -332,26 +332,6 @@
             "name": "VgMusic.h"
         },
         {
-            "assetUUID": "3b259488-f1a9-4105-958f-f634d4797533",
-            "bankId": 0,
-            "baseClass": "",
-            "checksum": 913775727,
-            "errors": 0,
-            "filter": "_hy_",
-            "itemType": "Header",
-            "name": "NewEntity.h"
-        },
-        {
-            "assetUUID": "d184ffb2-aedf-4348-9ec6-6b42732d1b0f",
-            "bankId": 0,
-            "baseClass": "",
-            "checksum": 3302156420,
-            "errors": 0,
-            "filter": "_hy_",
-            "itemType": "Source",
-            "name": "NewEntity.cpp"
-        },
-        {
             "assetUUID": "9ebd8206-6380-4ae7-9ef7-f1d9c36c8657",
             "bankId": 0,
             "baseClass": "",
@@ -710,6 +690,46 @@
             "filter": "Components/GameBrowser",
             "itemType": "Header",
             "name": "ConsolePage.h"
+        },
+        {
+            "assetUUID": "8b9ba0e3-f97a-49ea-84e1-1d6286dfb87f",
+            "bankId": 0,
+            "baseClass": "HyEntity2d",
+            "checksum": 3623986450,
+            "errors": 0,
+            "filter": "_hy_",
+            "itemType": "Header",
+            "name": "hy_Television.h"
+        },
+        {
+            "assetUUID": "7d084946-8a64-4357-a43e-32b8a1312534",
+            "bankId": 0,
+            "baseClass": "HyEntity2d",
+            "checksum": 3976071777,
+            "errors": 0,
+            "filter": "_hy_",
+            "itemType": "Source",
+            "name": "hy_Television.cpp"
+        },
+        {
+            "assetUUID": "9521bc12-117a-41bf-81de-45adabe41714",
+            "bankId": 0,
+            "baseClass": "HyEntity2d",
+            "checksum": 2045804103,
+            "errors": 0,
+            "filter": "_hy_",
+            "itemType": "Header",
+            "name": "hy_MusicPlayer.h"
+        },
+        {
+            "assetUUID": "ff796775-bb26-48e8-86bc-34c89df25580",
+            "bankId": 0,
+            "baseClass": "HyEntity2d",
+            "checksum": 976423389,
+            "errors": 0,
+            "filter": "_hy_",
+            "itemType": "Source",
+            "name": "hy_MusicPlayer.cpp"
         }
     ],
     "banks": [
@@ -718,9 +738,9 @@
             "OutputName": "Melody",
             "SrcDepends": [
                 {
-                    "Options": "set(BUILD_CURL_EXE OFF CACHE BOOL \"\" FORCE)\nset(PICKY_COMPILER OFF CACHE BOOL \"\" FORCE)\nset(BUILD_LIBCURL_DOCS OFF CACHE BOOL \"\" FORCE)\n",
-                    "ProjectName": "libcurl",
-                    "RelPath": "../../lib/curl-7.76.1"
+                    "Options": "option(CURL_USE_LIBPSL \"Use libpsl\" OFF)\noption(BUILD_CURL_EXE \"Build curl executable\" OFF)\noption(BUILD_EXAMPLES \"Build libcurl examples\" OFF)\noption(SHARE_LIB_OBJECT OFF)",
+                    "ProjectName": "libcurl_static",
+                    "RelPath": "../../../../opt/curl-8_13_0"
                 }
             ],
             "UseIcu": false,
