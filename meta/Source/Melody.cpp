@@ -1,9 +1,20 @@
 #include "pch.h"
 #include "Melody.h"
 
-/*static*/ Melody *Melody::sm_pThis = nullptr;
+#include "InputViewer.h"
+#include "VgMusic.h"
+#include "GameBrowser.h"
+#include "Monitor.h"
+#include "LiveSplit.h"
+#include "Wheel.h"
+#include "Crt.h"
+#include "NowPlaying.h"
+#include "Docket.h"
+#include "HeartBeat.h"
+#include "MessageCycle.h"
+#include "Code.h"
 
-#define GAMEBROWSE_MAX_SIZE 0.95f
+/*static*/ Melody *Melody::sm_pThis = nullptr;
 
 Melody::Melody(HyInit &initStruct) :
 	HyEngine(initStruct),
@@ -12,16 +23,6 @@ Melody::Melody(HyInit &initStruct) :
 	m_Compositorium("C:\\Soft\\Game_Overture\\RetroCompositorium"),// "\\\\IronMountain/Documents/RetroCompositorium/"),
 	m_ColorKeyBg(),
 	m_CtrlPanel(),
-	m_VgMusic(),
-	m_GameBrowser(),
-	m_Monitor(m_VgMusic),
-	m_LiveSplit(m_Monitor),
-	m_MessageCycle(m_Monitor),
-	m_InputViewer(),
-	m_NowPlaying(),
-	m_Docket(m_NowPlaying),
-	m_Crt(m_VgMusic, m_MessageCycle, m_InputViewer, m_NowPlaying),
-	m_HeartBeat(),
 	m_PresetStartingBtn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
 	m_PresetLiveBtn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
 	m_PresetBrb1Btn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
@@ -61,88 +62,59 @@ Melody::Melody(HyInit &initStruct) :
 
 	m_CtrlPanel.UseWindowCoordinates(1);
 
-	m_Crt.pos.Set(HyEngine::Window(0).GetWidthF(-0.5f), HyEngine::Window(0).GetHeightF(-0.5f));
-	m_Crt.Load();
-	m_Crt.SetVisible(false);
-	m_Crt.PopulateCtrlPanel(m_CtrlPanel);
-	m_CtrlPanel.InsertDividerLine();
+	for(int i = 0; i < NUM_COMPONENTS; ++i)
+		m_pComponents[i] = nullptr;
 
-	m_VgMusic.Load();
-	m_VgMusic.SetCrtRef(&m_Crt);
-	m_VgMusic.PopulateCtrlPanel(m_CtrlPanel);
-	m_CtrlPanel.InsertDividerLine();
+	for(int i = 0; i < NUM_COMPONENTS; ++i)
+	{
+		switch(i)
+		{
+		case COMPONENT_Crt:				m_pComponents[i] = HY_NEW Crt(); break;
+		case COMPONENT_Code:			m_pComponents[i] = HY_NEW Code(); break;
+		case COMPONENT_VgMusic:			m_pComponents[i] = HY_NEW VgMusic(); break;
+		case COMPONENT_Monitor:			m_pComponents[i] = HY_NEW Monitor(); break;
+		case COMPONENT_NowPlaying:		m_pComponents[i] = HY_NEW NowPlaying(); break;
+		case COMPONENT_Docket:			m_pComponents[i] = HY_NEW Docket(); break;
+		case COMPONENT_LiveSplit:		m_pComponents[i] = HY_NEW LiveSplit(); break;
+		case COMPONENT_InputViewer:		m_pComponents[i] = HY_NEW InputViewer(); break;
+		case COMPONENT_HeartBeat:		m_pComponents[i] = HY_NEW HeartBeat(); break;
+		case COMPONENT_GameBrowser:		m_pComponents[i] = HY_NEW GameBrowser(); break;
+		case COMPONENT_Wheel:			m_pComponents[i] = HY_NEW Wheel(WheelInit()); break;
+		case COMPONENT_MessageCycle:	m_pComponents[i] = HY_NEW MessageCycle(); break;
+		default:
+			HyError("Melody::Melody() - Unknown component index:" << i);
+			break;
+		}
+	}
 
-	m_Monitor.UseWindowCoordinates();
-	m_Monitor.SetDisplayOrder(DISPLAYORDER_Monitor);
-	m_Monitor.Load();
-	m_Monitor.SetVisible(false);
-	m_Monitor.pos.Set(-MISC_WIDTH - 100, HyEngine::Window(0).GetHeight() - MISC_HEIGHT);
-	m_Monitor.PopulateCtrlPanel(m_CtrlPanel);
-	m_CtrlPanel.InsertDividerLine();
-
-	m_NowPlaying.UseWindowCoordinates();
-	m_NowPlaying.SetDisplayOrder(DISPLAYORDER_NowPlaying);
-	m_NowPlaying.Load();
-	m_NowPlaying.SetVisible(false);
-	m_NowPlaying.PopulateCtrlPanel(m_CtrlPanel);
-
-	m_Docket.UseWindowCoordinates();
-	m_Docket.SetDisplayOrder(DISPLAYORDER_Docket);
-	m_Docket.Load();
-	m_Docket.SetVisible(false);
-	m_Docket.PopulateCtrlPanel(m_CtrlPanel);
-
-	m_LiveSplit.UseWindowCoordinates();
-	m_LiveSplit.SetDisplayOrder(DISPLAYORDER_LiveSplitMask);
-	m_LiveSplit.Load();
-	m_LiveSplit.SetVisible(false);
-	m_LiveSplit.PopulateCtrlPanel(m_CtrlPanel);
-	m_CtrlPanel.InsertDividerLine();
-
-	m_InputViewer.UseWindowCoordinates();
-	m_InputViewer.Load();
-	m_InputViewer.SetVisible(false);
-	m_InputViewer.PopulateCtrlPanel(m_CtrlPanel);
-
-	m_HeartBeat.UseWindowCoordinates();
-	m_HeartBeat.Load();
-	m_HeartBeat.SetVisible(false);
-	m_HeartBeat.PopulateCtrlPanel(m_CtrlPanel);
-	m_CtrlPanel.InsertDividerLine();
-
-	m_GameBrowser.Load();
-	m_GameBrowser.SetVisible(false);
-	m_GameBrowser.SetDisplayOrder(DISPLAYORDER_GameBrowser);
-	m_GameBrowser.scale.Set(GAMEBROWSE_MAX_SIZE, GAMEBROWSE_MAX_SIZE);
-	m_GameBrowser.PopulateCtrlPanel(m_CtrlPanel);
-	m_CtrlPanel.InsertDividerLine();
-
-	m_MessageCycle.UseWindowCoordinates();
-	m_MessageCycle.Load();
-	m_MessageCycle.SetDisplayOrder(DISPLAYORDER_MessageCycle);
-	m_MessageCycle.PopulateCtrlPanel(m_CtrlPanel);
+	for(int i = 0; i < NUM_COMPONENTS; ++i)
+	{
+		m_pComponents[i]->Load();
+		m_pComponents[i]->SetVisible(false);
+		m_pComponents[i]->PopulateCtrlPanel(m_CtrlPanel);
+	}
 
 	// Presets
 	m_PresetStartingBtn.SetText("Start");
 	m_PresetStartingBtn.SetButtonClickedCallback(
 		[this](HyButton *pButton)
 		{
-			m_Crt.GetCtrlPanelCheckBox().SetChecked(true);
-			m_Monitor.GetCtrlPanelCheckBox().SetChecked(false);
-			m_NowPlaying.GetCtrlPanelCheckBox().SetChecked(false);
-			m_LiveSplit.GetCtrlPanelCheckBox().SetChecked(false);
-			m_MessageCycle.GetCtrlPanelCheckBox().SetChecked(true);
-			m_MessageCycle.AddMessage("Welcome! Stream Starting Soon", false);
+			m_pComponents[COMPONENT_Crt]->GetCtrlPanelCheckBox().SetChecked(true);
+			m_pComponents[COMPONENT_Monitor]->GetCtrlPanelCheckBox().SetChecked(false);
+			m_pComponents[COMPONENT_NowPlaying]->GetCtrlPanelCheckBox().SetChecked(false);
+			m_pComponents[COMPONENT_LiveSplit]->GetCtrlPanelCheckBox().SetChecked(false);
+			m_pComponents[COMPONENT_MessageCycle]->GetCtrlPanelCheckBox().SetChecked(true);
+			static_cast<MessageCycle *>(m_pComponents[COMPONENT_MessageCycle])->AddMessage("Welcome! Stream Starting Soon", false);
 		}
 	);
 	m_PresetLiveBtn.SetText("Live");
 	m_PresetLiveBtn.SetButtonClickedCallback(
 		[this](HyButton *pButton)
 		{
-			m_Crt.GetCtrlPanelCheckBox().SetChecked(true);
-			m_Monitor.GetCtrlPanelCheckBox().SetChecked(true);
-			m_Monitor.SetChannel(MONITORCHANNEL_ObsFull);
-			m_MessageCycle.RemoveMessage("Welcome! Stream Starting Soon");
+			m_pComponents[COMPONENT_Crt]->GetCtrlPanelCheckBox().SetChecked(true);
+			m_pComponents[COMPONENT_Monitor]->GetCtrlPanelCheckBox().SetChecked(true);
+			static_cast<Monitor *>(m_pComponents[COMPONENT_Monitor])->SetChannel(MONITORCHANNEL_ObsFull);
+			static_cast<MessageCycle *>(m_pComponents[COMPONENT_MessageCycle])->RemoveMessage("Welcome! Stream Starting Soon");
 		}
 	);
 
@@ -176,13 +148,13 @@ Melody::Melody(HyInit &initStruct) :
 	m_PresetEndingBtn.SetButtonClickedCallback(
 		[this](HyButton *pButton)
 		{
-			m_Crt.GetCtrlPanelCheckBox().SetChecked(true);
-			m_Monitor.GetCtrlPanelCheckBox().SetChecked(false);
-			m_NowPlaying.GetCtrlPanelCheckBox().SetChecked(false);
-			m_LiveSplit.GetCtrlPanelCheckBox().SetChecked(false);
-			m_MessageCycle.ClearMessages();
-			m_MessageCycle.GetCtrlPanelCheckBox().SetChecked(true);
-			m_MessageCycle.AddMessage("Stream Ending! Thanks for watching", true);
+			m_pComponents[COMPONENT_Crt]->GetCtrlPanelCheckBox().SetChecked(true);
+			m_pComponents[COMPONENT_Monitor]->GetCtrlPanelCheckBox().SetChecked(false);
+			m_pComponents[COMPONENT_NowPlaying]->GetCtrlPanelCheckBox().SetChecked(false);
+			m_pComponents[COMPONENT_LiveSplit]->GetCtrlPanelCheckBox().SetChecked(false);
+			static_cast<MessageCycle *>(m_pComponents[COMPONENT_MessageCycle])->ClearMessages();
+			static_cast<MessageCycle *>(m_pComponents[COMPONENT_MessageCycle])->GetCtrlPanelCheckBox().SetChecked(true);
+			static_cast<MessageCycle *>(m_pComponents[COMPONENT_MessageCycle])->AddMessage("Stream Ending! Thanks for watching", true);
 		}
 	);
 
@@ -210,37 +182,41 @@ Melody::Melody(HyInit &initStruct) :
 
 Melody::~Melody()
 {
+	for(int i = 0; i < NUM_COMPONENTS; ++i)
+		delete m_pComponents[i];
 }
 
 /*virtual*/ bool Melody::OnUpdate() /*override*/
 {
-	if(m_GameBrowser.IsShowing())
+	GameBrowser *pGameBrowser = static_cast<GameBrowser *>(m_pComponents[COMPONENT_GameBrowser]);
+
+	if(pGameBrowser->IsShowing())
 	{
 		const float fScaleDuration = 15.0f;
-		if(m_GameBrowser.scale.IsAnimating() == false)
+		if(pGameBrowser->scale.IsAnimating() == false)
 		{
-			if(m_GameBrowser.scale.X() >= GAMEBROWSE_MAX_SIZE)
-				m_GameBrowser.scale.Tween(GAMEBROWSE_MAX_SIZE - 0.02f, GAMEBROWSE_MAX_SIZE - 0.02f, fScaleDuration, HyTween::QuadInOut);
+			if(pGameBrowser->scale.X() >= GAMEBROWSE_MAX_SIZE)
+				pGameBrowser->scale.Tween(GAMEBROWSE_MAX_SIZE - 0.02f, GAMEBROWSE_MAX_SIZE - 0.02f, fScaleDuration, HyTween::QuadInOut);
 			else
-				m_GameBrowser.scale.Tween(GAMEBROWSE_MAX_SIZE, GAMEBROWSE_MAX_SIZE, fScaleDuration, HyTween::QuadInOut);
+				pGameBrowser->scale.Tween(GAMEBROWSE_MAX_SIZE, GAMEBROWSE_MAX_SIZE, fScaleDuration, HyTween::QuadInOut);
 		}
 
 		const float fPosDuration = 12.0f;
-		if(m_GameBrowser.pos.IsAnimating() == false)
+		if(pGameBrowser->pos.IsAnimating() == false)
 		{
-			if(m_GameBrowser.pos.Y() >= 0.0f)
-				m_GameBrowser.pos.Tween(0.0f, -5.0f, fPosDuration, HyTween::QuadInOut);
+			if(pGameBrowser->pos.Y() >= 0.0f)
+				pGameBrowser->pos.Tween(0.0f, -5.0f, fPosDuration, HyTween::QuadInOut);
 			else
-				m_GameBrowser.pos.Tween(0.0f, 5.0f, fPosDuration, HyTween::QuadInOut);
+				pGameBrowser->pos.Tween(0.0f, 5.0f, fPosDuration, HyTween::QuadInOut);
 		}
 
 		const float fRotDuration = 30.0f;
-		if(m_GameBrowser.rot.IsAnimating() == false)
+		if(pGameBrowser->rot.IsAnimating() == false)
 		{
-			if(m_GameBrowser.rot.Get() >= 0.0f)
-				m_GameBrowser.rot.Tween(-1.0f, fRotDuration);
+			if(pGameBrowser->rot.Get() >= 0.0f)
+				pGameBrowser->rot.Tween(-1.0f, fRotDuration);
 			else
-				m_GameBrowser.rot.Tween(1.0f, fRotDuration);
+				pGameBrowser->rot.Tween(1.0f, fRotDuration);
 		}
 	}
 
@@ -260,17 +236,22 @@ Melody::~Melody()
 	return true;
 }
 
+/*static*/ IComponent *Melody::GetComponent(ComponentType eType)
+{
+	return sm_pThis->m_pComponents[eType];
+}
+
 /*static*/ void Melody::RefreshCamera()
 {
-	if(sm_pThis->m_Crt.GetChannel() != CHANNELTYPE_Game)
+	if(static_cast<Crt *>(sm_pThis->m_pComponents[COMPONENT_Crt])->GetChannel() != CHANNELTYPE_Game)
 	{
-		if(sm_pThis->m_LiveSplit.IsVisible() || sm_pThis->m_NowPlaying.IsVisible())
+		if(sm_pThis->m_pComponents[COMPONENT_LiveSplit]->IsVisible() || static_cast<NowPlaying *>(sm_pThis->m_pComponents[COMPONENT_NowPlaying])->IsVisible())
 		{
 			HyEngine::Window().GetCamera2d(0)->pos.Tween(CAMERA_DIVIDER_POS, 1.5f, HyTween::QuadInOut);
 			HyEngine::Window().GetCamera2d(0)->scale.Tween(CAMERA_DIVIDER_SCALE, 1.5f, HyTween::QuadInOut);
 			HyEngine::Window().GetCamera2d(0)->SetTag(CAMTAG_Divider);
 
-			sm_pThis->m_MessageCycle.SetXPosOffset(MESSAGECYCLE_POS_X);
+			static_cast<MessageCycle *>(sm_pThis->m_pComponents[COMPONENT_MessageCycle])->SetXPosOffset(MESSAGECYCLE_POS_X);
 		}
 		else
 		{
@@ -278,18 +259,18 @@ Melody::~Melody()
 			HyEngine::Window().GetCamera2d(0)->scale.Tween(CAMERA_CENTER_SCALE, 1.5f, HyTween::QuadInOut);
 			HyEngine::Window().GetCamera2d(0)->SetTag(CAMTAG_Center);
 
-			sm_pThis->m_MessageCycle.SetXPosOffset(0.0f);
+			static_cast<MessageCycle *>(sm_pThis->m_pComponents[COMPONENT_MessageCycle])->SetXPosOffset(0.0f);
 		}
 	}
 }
 
 void Melody::StartBrb(int iBrbTime)
 {
-	m_Crt.GetCtrlPanelCheckBox().SetChecked(true);
-	m_Monitor.GetCtrlPanelCheckBox().SetChecked(true);
-	m_Monitor.SetChannel(MONITORCHANNEL_Brb);
-	m_NowPlaying.ShowGameTime(false);
-	m_MessageCycle.GetCtrlPanelCheckBox().SetChecked(true);
+	m_pComponents[COMPONENT_Crt]->GetCtrlPanelCheckBox().SetChecked(true);
+	m_pComponents[COMPONENT_Monitor]->GetCtrlPanelCheckBox().SetChecked(true);
+	static_cast<Monitor *>(m_pComponents[COMPONENT_Monitor])->SetChannel(MONITORCHANNEL_Brb);
+	static_cast<NowPlaying *>(m_pComponents[COMPONENT_NowPlaying])->ShowGameTime(false);
+	m_pComponents[COMPONENT_MessageCycle]->GetCtrlPanelCheckBox().SetChecked(true);
 
 	std::string sMsg;
 	if(iBrbTime > 0)
@@ -301,18 +282,18 @@ void Melody::StartBrb(int iBrbTime)
 	}
 	else
 		sMsg = "BRB!";
-	m_MessageCycle.AddMessage(sMsg, false);
+	static_cast<MessageCycle *>(m_pComponents[COMPONENT_MessageCycle])->AddMessage(sMsg, false);
 }
 
 void Melody::ClearBrb()
 {
-	m_Crt.GetCtrlPanelCheckBox().SetChecked(true);
-	m_Monitor.GetCtrlPanelCheckBox().SetChecked(true);
-	m_Monitor.SetChannel(MONITORCHANNEL_ObsFull);
-	m_MessageCycle.RemoveMessage("BRB!");
-	m_MessageCycle.RemoveMessage("BRB 1 Minute!");
-	m_MessageCycle.RemoveMessage("BRB 5 Minutes!");
-	m_MessageCycle.RemoveMessage("BRB 10 Minutes!");
+	m_pComponents[COMPONENT_Crt]->GetCtrlPanelCheckBox().SetChecked(true);
+	m_pComponents[COMPONENT_Monitor]->GetCtrlPanelCheckBox().SetChecked(true);
+	static_cast<Monitor *>(m_pComponents[COMPONENT_Monitor])->SetChannel(MONITORCHANNEL_ObsFull);
+	static_cast<MessageCycle *>(m_pComponents[COMPONENT_MessageCycle])->RemoveMessage("BRB!");
+	static_cast<MessageCycle *>(m_pComponents[COMPONENT_MessageCycle])->RemoveMessage("BRB 1 Minute!");
+	static_cast<MessageCycle *>(m_pComponents[COMPONENT_MessageCycle])->RemoveMessage("BRB 5 Minutes!");
+	static_cast<MessageCycle *>(m_pComponents[COMPONENT_MessageCycle])->RemoveMessage("BRB 10 Minutes!");
 }
 
 void TransformTexture(HyTexturedQuad2d &quadRef, glm::ivec2 vMaxSize, glm::vec2 ptCenter)

@@ -217,7 +217,7 @@
             "baseClass": "",
             "checksum": 394584903,
             "errors": 0,
-            "filter": "Components/LowerThird",
+            "filter": "Components/Code",
             "itemType": "Source",
             "name": "MessageCycle.cpp"
         },
@@ -227,7 +227,7 @@
             "baseClass": "",
             "checksum": 2888347898,
             "errors": 0,
-            "filter": "Components/LowerThird",
+            "filter": "Components/Code",
             "itemType": "Header",
             "name": "MessageCycle.h"
         },
@@ -517,9 +517,9 @@
             "baseClass": "HyEntity2d",
             "checksum": 848074516,
             "errors": 0,
-            "filter": "Components/LowerThird",
+            "filter": "Components/Code",
             "itemType": "Source",
-            "name": "LowerThird.cpp"
+            "name": "Code.cpp"
         },
         {
             "assetUUID": "753942cd-eb44-41d4-af46-bafce91e1802",
@@ -527,9 +527,9 @@
             "baseClass": "HyEntity2d",
             "checksum": 3616656993,
             "errors": 0,
-            "filter": "Components/LowerThird",
+            "filter": "Components/Code",
             "itemType": "Header",
-            "name": "LowerThird.h"
+            "name": "Code.h"
         },
         {
             "assetUUID": "d47a6492-7611-4c7c-aa23-60bdbac9ea01",
@@ -730,6 +730,26 @@
             "filter": "_hy_",
             "itemType": "Source",
             "name": "hy_MusicPlayer.cpp"
+        },
+        {
+            "assetUUID": "b72bcb1b-c323-4df8-984c-ff6b791c9998",
+            "bankId": 0,
+            "baseClass": "IHyNetworkClass",
+            "checksum": 1176344824,
+            "errors": 0,
+            "filter": "Twitch",
+            "itemType": "Source",
+            "name": "EventSub.cpp"
+        },
+        {
+            "assetUUID": "6fa715f4-17d7-4694-aae9-9ea6c54d8efd",
+            "bankId": 0,
+            "baseClass": "IHyNetworkClass",
+            "checksum": 1700986388,
+            "errors": 0,
+            "filter": "Twitch",
+            "itemType": "Header",
+            "name": "EventSub.h"
         }
     ],
     "banks": [

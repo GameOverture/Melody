@@ -43,9 +43,6 @@ protected:
 
 class Music : public Channel
 {
-	VgMusic &					m_VgMusicRef;
-	NowPlaying &				m_NowPlayingRef;
-
 	HySprite2d					m_AudioVisualizer;
 	HyTexturedQuad2d			m_Snapshot;
 	HyTexturedQuad2d			m_Title;
@@ -74,9 +71,10 @@ class Music : public Channel
 	//HyPrimitive2d				m_Debugbox;
 
 public:
-	Music(VgMusic &vgMusicRef, NowPlaying &nowPlayingRef, HyEntity2d *pParent = nullptr);
+	Music(HyEntity2d *pParent = nullptr);
 	virtual ~Music();
-
+	
+	void RegisterWithVgMusic();
 	void InitNextTrack(const MusicTrack &musicTrack);
 
 	void ShowVisualizer(float fFadeInTime);

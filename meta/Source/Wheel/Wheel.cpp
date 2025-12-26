@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Wheel.h"
+#include "CtrlPanel.h"
 
 #define fSAFETY_MARGIN 1.0f // The fSAFETY_MARGIN is to ensure the ticker clicks over when calculating near miss
 #define fMAX_FLINGBACK_DUR 2.5f
@@ -111,6 +112,8 @@ Wheel::Wheel(const WheelInit &initStructRef, HyEntity2d *pParent /*= nullptr*/) 
 	m_fTickerPos(0.0f),
 	m_fTickerNotchPercentage(1.0f)
 {
+	m_CtrlPanel_CheckBox.SetText("Wheel");
+
 	m_Base.Init(initStructRef.base.m_sPrefix.c_str(), initStructRef.base.m_sName.c_str(), this);
 	ChildAppend(m_SpinEnt);
 	ChildAppend(m_Ticker);
@@ -349,6 +352,15 @@ void Wheel::Slam()
 		return;
 
 	m_bSlammed = true;
+}
+
+/*virtual*/ void Wheel::PopulateCtrlPanel(CtrlPanel &ctrlPanel) /*override*/
+{
+	HyLayoutHandle hRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
+	ctrlPanel.InsertWidget(m_CtrlPanel_CheckBox, hRow);
+	ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
+
+	ctrlPanel.InsertDividerLine();
 }
 
 /*virtual*/ void Wheel::OnUpdate() /*override*/

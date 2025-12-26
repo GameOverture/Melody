@@ -10,8 +10,6 @@ class NowPlaying;
 
 class Docket : public IComponent
 {
-	NowPlaying &			m_NowPlayingRef;
-
 	HyTexturedQuad2d		m_Thumbnails[NUM_DOCKET_GAMES];
 	HyButton				m_CtrlPanel_ThumbnailBtn[NUM_DOCKET_GAMES];
 	HyButton				m_CtrlPanel_BrowseBtn[NUM_DOCKET_GAMES];
@@ -28,7 +26,7 @@ class Docket : public IComponent
 	std::vector<GameStats>			m_GameList;
 
 public:
-	Docket(NowPlaying &nowPlayingRef, HyEntity2d *pParent = nullptr);
+	Docket(HyEntity2d *pParent = nullptr);
 	virtual ~Docket();
 
 	virtual void PopulateCtrlPanel(CtrlPanel &ctrlPanel) override;

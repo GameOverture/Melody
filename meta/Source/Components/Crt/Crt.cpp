@@ -8,11 +8,8 @@
 #define CRT_SHRINK_AMT 0.01f
 #define CRT_SHUTOFF_DUR 0.2f
 
-Crt::Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewerRef, NowPlaying &nowPlayingRef, HyEntity2d *pParent /*= nullptr*/) :
+Crt::Crt(HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_Crt, pParent),
-	m_MsgCycleRef(msgCycleRef),
-	m_InputViewerRef(inputViewerRef),
-	m_NowPlayingRef(nowPlayingRef),
 	m_CtrlPanel_btnGame(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
 	m_CtrlPanel_btnMusic(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
 	m_CtrlPanel_btnStatic(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
@@ -28,7 +25,7 @@ Crt::Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewe
 	m_fVolumeShowTime(0.0f),
 	m_fChannelShowTime(0.0f),
 	m_ChannelStatic(CHANNELTYPE_Static, &m_ChannelStack),
-	m_ChannelMusic(vgMusicRef, m_NowPlayingRef, &m_ChannelStack),
+	m_ChannelMusic(&m_ChannelStack),
 	m_ChannelGame(CHANNELTYPE_Game, &m_ChannelStack),
 	m_eChannelState(CRTSTATE_Off),
 	m_fElapsedTime(0.0f)
@@ -117,6 +114,8 @@ Crt::Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewe
 	m_ChannelText.SetVisible(false);
 
 	m_Stencil.AddMask(m_Screen);
+
+	pos.Set(HyEngine::Window(0).GetWidthF(-0.5f), HyEngine::Window(0).GetHeightF(-0.5f));
 }
 
 /*virtual*/ Crt::~Crt()
@@ -125,6 +124,8 @@ Crt::Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewe
 
 /*virtual*/ void Crt::PopulateCtrlPanel(CtrlPanel &ctrlPanel) /*override*/
 {
+	m_ChannelMusic.RegisterWithVgMusic();
+
 	HyLayoutHandle hRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
 	ctrlPanel.InsertWidget(m_CtrlPanel_CheckBox, hRow);
 	ctrlPanel.InsertWidget(m_CtrlPanel_btnGame, hRow);
@@ -293,8 +294,9 @@ void Crt::SetVolume(float fVolume)
 			m_Screen.SetVisible(false);
 			m_ScreenOverlay.SetVisible(false);
 
-			m_InputViewerRef.RetroIntro();
-			m_MsgCycleRef.SetXPosOffset(MESSAGECYCLE_GAMEPOS_X);
+			InputViewer *pInputViewer = static_cast<InputViewer *>(Melody::GetComponent(COMPONENT_InputViewer));
+			pInputViewer->RetroIntro();
+			static_cast<MessageCycle *>(Melody::GetComponent(COMPONENT_MessageCycle))->SetXPosOffset(MESSAGECYCLE_GAMEPOS_X);
 		}
 		else
 		{
@@ -303,7 +305,8 @@ void Crt::SetVolume(float fVolume)
 
 			Melody::RefreshCamera();
 
-			m_InputViewerRef.RetroOutro();
+			InputViewer *pInputViewer = static_cast<InputViewer *>(Melody::GetComponent(COMPONENT_InputViewer));
+			pInputViewer->RetroOutro();
 		}
 
 		for(int i = 0; i < NUM_CHANNELTYPE; ++i)

@@ -82,6 +82,8 @@ InputViewer::InputViewer(HyEntity2d *pParent /*= nullptr*/) :
 	}
 
 	m_Controllers[INPUTCONTROLLER_NES]->pos.SetY(RETRO_HIDEPOS_Y);
+
+	UseWindowCoordinates();
 }
 
 /*virtual*/ InputViewer::~InputViewer()
@@ -99,7 +101,8 @@ InputViewer::InputViewer(HyEntity2d *pParent /*= nullptr*/) :
 	hRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
 	for(int i = 0; i < NUM_INPUTCONTROLLERS; ++i)
 		ctrlPanel.InsertWidget(m_CtrlPanel_radController[i], hRow);
-	//ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
+	
+	ctrlPanel.InsertDividerLine();
 }
 
 /*virtual*/ void InputViewer::Show(float fDuration) /*override*/

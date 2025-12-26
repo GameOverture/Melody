@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "Melody.h"
 #include "Docket.h"
 #include "CtrlPanel.h"
 #include "Compositorium.h"
@@ -6,19 +7,13 @@
 
 #include <fstream>
 
-Docket::Docket(NowPlaying &nowPlayingRef, HyEntity2d *pParent /*= nullptr*/) :
-	IComponent(COMPONENT_Docket, pParent),
-	m_NowPlayingRef(nowPlayingRef)
+Docket::Docket(HyEntity2d *pParent /*= nullptr*/) :
+	IComponent(COMPONENT_Docket, pParent)
 {
 	for(int i = 0; i < NUM_DOCKET_GAMES; ++i)
 	{
 		m_CtrlPanel_ThumbnailBtn[i].Setup(HyUiPanelInit(32, 32, 1), HyUiTextInit());
 		m_CtrlPanel_ThumbnailBtn[i].SetTag(i);
-		m_CtrlPanel_ThumbnailBtn[i].SetButtonClickedCallback(
-			[this](HyButton *pButton)
-			{
-				m_NowPlayingRef.SetGame(pButton->GetUtf8String());
-			});
 
 		m_CtrlPanel_BrowseBtn[i].Setup(HyUiPanelInit(16, 16, 1), HyUiTextInit("CtrlPanel"));
 		m_CtrlPanel_BrowseBtn[i].SetText("+");
@@ -87,6 +82,9 @@ Docket::Docket(NowPlaying &nowPlayingRef, HyEntity2d *pParent /*= nullptr*/) :
 		}
 		
 	}
+
+	UseWindowCoordinates();
+	SetDisplayOrder(DISPLAYORDER_Docket);
 }
 
 /*virtual*/ Docket::~Docket()
@@ -95,6 +93,15 @@ Docket::Docket(NowPlaying &nowPlayingRef, HyEntity2d *pParent /*= nullptr*/) :
 
 /*virtual*/ void Docket::PopulateCtrlPanel(CtrlPanel &ctrlPanel) /*override*/
 {
+	for(int i = 0; i < NUM_DOCKET_GAMES; ++i)
+	{
+		m_CtrlPanel_ThumbnailBtn[i].SetButtonClickedCallback(
+			[this](HyButton *pButton)
+			{
+				static_cast<NowPlaying *>(Melody::GetComponent(COMPONENT_NowPlaying))->SetGame(pButton->GetUtf8String());
+			});
+	}
+
 	HyLayoutHandle hRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
 	ctrlPanel.InsertWidget(m_CtrlPanel_CheckBox, hRow);
 	ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);

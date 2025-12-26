@@ -66,6 +66,9 @@ GameBrowser::GameBrowser(HyEntity2d *pParent /*= nullptr*/) :
 	m_EditPage.pos.Set(GAMEBROWSER_WIDTH * -0.5f, GAMEBROWSER_HEIGHT * -0.5f);
 
 	m_MobySelectDlg.Hide(true);
+
+	SetDisplayOrder(DISPLAYORDER_GameBrowser);
+	scale.Set(GAMEBROWSE_MAX_SIZE, GAMEBROWSE_MAX_SIZE);
 }
 
 /*virtual*/ GameBrowser::~GameBrowser()

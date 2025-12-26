@@ -164,6 +164,9 @@ NowPlaying::NowPlaying(HyEntity2d *pParent /*= nullptr*/) :
 
 	// Load previous settings
 	SetGame(Compositorium::Get()->GetSetting("NowPlaying"));
+
+	UseWindowCoordinates();
+	SetDisplayOrder(DISPLAYORDER_NowPlaying);
 }
 
 /*virtual*/ NowPlaying::~NowPlaying()

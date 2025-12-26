@@ -12,6 +12,11 @@ TwitchApi::TwitchApi(HyEntity2d *pParent /*= nullptr*/) :
 {
 }
 
+void TwitchApi::StartEventSub()
+{
+	
+}
+
 /*virtual*/ void TwitchApi::OnUpdate() /*override*/
 {
 }

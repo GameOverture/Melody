@@ -1,11 +1,11 @@
 #include "pch.h"
+#include "Melody.h"
 #include "MessageCycle.h"
 #include "Monitor.h"
 #include "CtrlPanel.h"
 
-MessageCycle::MessageCycle(Monitor &monitorRef, HyEntity2d *pParent /*= nullptr*/) :
+MessageCycle::MessageCycle(HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_MessageCycle, pParent),
-	m_MonitorRef(monitorRef),
 	m_pCtrlPanel(nullptr),
 	m_fXPos(0.0f),
 	m_CtrlPanel_LineEdit(HyUiPanelInit(225, 24, 2, HyColor::Blue), HyUiTextInit(HyNodePath("", "CtrlPanel")), this),
@@ -59,8 +59,10 @@ MessageCycle::MessageCycle(Monitor &monitorRef, HyEntity2d *pParent /*= nullptr*
 
 	m_Text.SetAlignment(HYALIGN_Center);
 	
+	UseWindowCoordinates();
 	SetXPosOffset(0.0f);
 	pos.Set(m_fXPos, MSGCYCLE_HIDE_YPOS);
+
 }
 
 /*virtual*/ MessageCycle::~MessageCycle()
@@ -217,7 +219,7 @@ void MessageCycle::OnNextMsg()
 	m_iCurrMsgIndex = (m_iCurrMsgIndex + 1) % m_MessageList.size();
 	m_Text.SetText(m_MessageList[m_iCurrMsgIndex]->GetMsg());
 
-	if(m_MonitorRef.IsBrb())
+	if(static_cast<Monitor *>(Melody::GetComponent(COMPONENT_Monitor))->IsBrb())
 		m_Timer.InitStart(MSGCYCLE_DURATION_SHORT);
 	else
 		m_Timer.InitStart(m_MessageList[m_iCurrMsgIndex]->GetDuration());

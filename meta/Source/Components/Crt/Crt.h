@@ -17,10 +17,6 @@ class NowPlaying;
 
 class Crt : public IComponent
 {
-	MessageCycle &			m_MsgCycleRef;
-	InputViewer &			m_InputViewerRef;
-	NowPlaying &			m_NowPlayingRef;
-
 	HyButton				m_CtrlPanel_btnGame;
 	HyButton				m_CtrlPanel_btnMusic;
 	HyButton				m_CtrlPanel_btnStatic;
@@ -64,7 +60,7 @@ class Crt : public IComponent
 	float					m_fElapsedTime;
 
 public:
-	Crt(VgMusic &vgMusicRef, MessageCycle &msgCycleRef, InputViewer &inputViewerRef, NowPlaying &nowPlayingRef, HyEntity2d *pParent = nullptr);
+	Crt(HyEntity2d *pParent = nullptr);
 	virtual ~Crt();
 
 	virtual void PopulateCtrlPanel(CtrlPanel &ctrlPanel) override;

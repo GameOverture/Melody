@@ -49,7 +49,7 @@ class Monitor : public IComponent
 	HyText2d			m_VgMusicInfo;
 
 public:
-	Monitor(VgMusic &vgMusicRef, HyEntity2d *pParent = nullptr);
+	Monitor(HyEntity2d *pParent = nullptr);
 	virtual ~Monitor();
 
 	void SetChannel(MonitorChannel eChannel);

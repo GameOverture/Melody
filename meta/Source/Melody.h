@@ -2,21 +2,10 @@
 #define Melody_h__
 
 #include "pch.h"
-#include "CtrlPanel.h"
 #include "Compositorium.h"
-#include "InputViewer.h"
-#include "VgMusic.h"
-#include "GameBrowser.h"
-#include "Monitor.h"
-#include "LiveSplit.h"
-#include "Wheel.h"
-#include "Crt.h"
-#include "NowPlaying.h"
-#include "Docket.h"
-#include "HeartBeat.h"
-#include "MessageCycle.h"
+#include "CtrlPanel.h"
 
-class IScene;
+class IComponent;
 
 class Melody : public HyEngine
 {
@@ -26,22 +15,10 @@ class Melody : public HyEngine
 	HyCamera2d *	m_pCameraCtrlPanel;
 
 	Compositorium	m_Compositorium;
-
 	HyPrimitive2d	m_ColorKeyBg;
 
 	CtrlPanel		m_CtrlPanel;
-
-	// Components
-	VgMusic			m_VgMusic;
-	GameBrowser		m_GameBrowser;
-	Monitor			m_Monitor;
-	LiveSplit		m_LiveSplit;
-	MessageCycle	m_MessageCycle;
-	InputViewer		m_InputViewer;
-	NowPlaying		m_NowPlaying;
-	Docket			m_Docket;
-	Crt				m_Crt;
-	HeartBeat		m_HeartBeat;
+	IComponent *	m_pComponents[NUM_COMPONENTS];
 
 	// Presets
 	HyButton		m_PresetStartingBtn;
@@ -61,6 +38,7 @@ public:
 
 	virtual bool OnUpdate() override;
 
+	static IComponent *GetComponent(ComponentType eType);
 	static void RefreshCamera();
 
 protected:

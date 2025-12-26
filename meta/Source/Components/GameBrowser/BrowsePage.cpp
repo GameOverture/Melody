@@ -2,6 +2,7 @@
 #include "BrowsePage.h"
 #include "Compositorium.h"
 #include "Melody.h"
+#include "GameBrowser.h"
 
 #define BROWSEPAGE_LOAD_COOLDOWN 0.5f
 

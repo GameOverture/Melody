@@ -9,8 +9,8 @@
 #define SCREEN_OFFSET_X 33
 #define SCREEN_OFFSET_Y 27
 
-Monitor::Monitor(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
-	IComponent(COMPONENT_Brb, pParent),
+Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
+	IComponent(COMPONENT_Monitor, pParent),
 	m_iChannelIndex(MONITORCHANNEL_NoSignal),
 	m_fChannelShowTime(0.0f),
 	m_eMonitorState(MONITORSTATE_Idle),
@@ -95,6 +95,10 @@ Monitor::Monitor(VgMusic &vgMusicRef, HyEntity2d *pParent /*= nullptr*/) :
 	//		for(int32 i = 0; i < NUM_DANCERS; ++i)
 	//			m_Dancers[i].DeferDance(DANCESTATE_Stop, fFadeOutDuration * 0.5f);
 	//	});
+
+	UseWindowCoordinates();
+	SetDisplayOrder(DISPLAYORDER_Monitor);
+	pos.Set(-MISC_WIDTH - 100, HyEngine::Window(0).GetHeight() - MISC_HEIGHT);
 }
 
 /*virtual*/ Monitor::~Monitor()

@@ -131,6 +131,8 @@ public:
 
 	void Slam();
 
+	virtual void PopulateCtrlPanel(CtrlPanel &ctrlPanel) override;
+
 protected:
 	virtual void OnUpdate() override;
 

@@ -14,7 +14,6 @@ class Monitor;
 
 class MessageCycle : public IComponent
 {
-	Monitor &					m_MonitorRef;
 	CtrlPanel *					m_pCtrlPanel;
 
 	float						m_fXPos;
@@ -61,7 +60,7 @@ class MessageCycle : public IComponent
 	std::vector<Message *> m_DeleteList;
 
 public:
-	MessageCycle(Monitor &monitorRef, HyEntity2d *pParent = nullptr);
+	MessageCycle(HyEntity2d *pParent = nullptr);
 	virtual ~MessageCycle();
 
 	void SetXPosOffset(float fXPos);

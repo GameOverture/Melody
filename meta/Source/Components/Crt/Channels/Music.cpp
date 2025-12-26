@@ -110,26 +110,14 @@ void Dancer::DeferDance(DanceState eDanceState, float fDelay)
 	}
 }
 
-Music::Music(VgMusic &vgMusicRef, NowPlaying &nowPlayingRef, HyEntity2d *pParent /*= nullptr*/) :
+Music::Music(HyEntity2d *pParent /*= nullptr*/) :
 	Channel(CHANNELTYPE_Music, pParent),
-	m_VgMusicRef(vgMusicRef),
-	m_NowPlayingRef(nowPlayingRef),
 	m_AudioVisualizer("VgMusic", "Visualizer", this),
 	m_Snapshot(this),
 	m_Title(this),
 	m_BoxArt(this),
 	m_eLargeState(LARGESTATE_Stopped)
 {
-	m_VgMusicRef.SetOnTrackChangeCallback([this](MusicTrack &musicTrackRef) { InitNextTrack(musicTrackRef); });
-	m_VgMusicRef.SetOnFadeOutCallback([this](float fFadeOutDuration)
-		{
-			FadeOut(fFadeOutDuration);
-			m_eLargeState = LARGESTATE_Stopped;
-
-			for(int32 i = 0; i < NUM_DANCERS; ++i)
-				m_Dancers[i].DeferDance(DANCESTATE_Stop, fFadeOutDuration * 0.5f);
-		});
-
 	m_AudioVisualizer.SetVisible(false);
 
 	m_NowPlayingSound.SetVisible(false);
@@ -180,6 +168,24 @@ Music::Music(VgMusic &vgMusicRef, NowPlaying &nowPlayingRef, HyEntity2d *pParent
 
 /*virtual*/ Music::~Music()
 {
+}
+
+void Music::RegisterWithVgMusic()
+{
+	static_cast<VgMusic *>(Melody::GetComponent(COMPONENT_VgMusic))->SetOnTrackChangeCallback(
+		[this](MusicTrack &musicTrackRef)
+		{
+			InitNextTrack(musicTrackRef);
+		});
+	static_cast<VgMusic *>(Melody::GetComponent(COMPONENT_VgMusic))->SetOnFadeOutCallback(
+		[this](float fFadeOutDuration)
+		{
+			FadeOut(fFadeOutDuration);
+			m_eLargeState = LARGESTATE_Stopped;
+
+			for(int32 i = 0; i < NUM_DANCERS; ++i)
+				m_Dancers[i].DeferDance(DANCESTATE_Stop, fFadeOutDuration * 0.5f);
+		});
 }
 
 void Music::InitNextTrack(const MusicTrack &musicTrack)
@@ -328,7 +334,7 @@ void Music::FadeOut(float fFadeOutTime)
 	if(m_BoxArt.IsVisible())
 		m_BoxArt.alpha.Tween(0.0f, fFadeOutTime, HyTween::Linear, 0.0f, [](IHyNode *pThis) { pThis->SetVisible(false); });
 
-	m_NowPlayingRef.Hide(fFadeOutTime * 0.5f);
+	Melody::GetComponent(COMPONENT_NowPlaying)->Hide(fFadeOutTime * 0.5f);
 }
 
 /*virtual*/ void Music::OnUpdate() /*override*/
@@ -354,24 +360,26 @@ void Music::FadeOut(float fFadeOutTime)
 	//		m_Dancers[i].Shimmy();
 	//}
 
+	VgMusic *pVgMusic = static_cast<VgMusic *>(Melody::GetComponent(COMPONENT_VgMusic));
+
 	switch(m_eLargeState)
 	{
 	case LARGESTATE_Stopped:
-		if(m_VgMusicRef.GetPlayState() == PLAYSTATE_Playing)
+		if(pVgMusic->GetPlayState() == PLAYSTATE_Playing)
 		{
 			ShowVisualizer(0.5f);
 
 			for(int32 i = 0; i < NUM_DANCERS; ++i)
 				m_Dancers[i].DeferDance(DANCESTATE_Shimmy, 4.0f);
 
-			m_NowPlayingRef.SetGame(m_VgMusicRef.m_MusicTrackList[m_VgMusicRef.m_iCurrTrackIndex].m_sGameId);
+			static_cast<NowPlaying *>(Melody::GetComponent(COMPONENT_NowPlaying))->SetGame(pVgMusic->m_MusicTrackList[pVgMusic->m_iCurrTrackIndex].m_sGameId);
 
 			m_eLargeState = LARGESTATE_Intro;
 		}
 		break;
 
 	case LARGESTATE_Intro:
-		if(m_VgMusicRef.GetElapsedPlayTime() >= LARGE_INTRO_TIME - 5.0f)
+		if(pVgMusic->GetElapsedPlayTime() >= LARGE_INTRO_TIME - 5.0f)
 		{
 			for(int32 i = 0; i < NUM_DANCERS; ++i)
 			{
@@ -380,7 +388,7 @@ void Music::FadeOut(float fFadeOutTime)
 			}
 		}
 
-		if(m_VgMusicRef.GetElapsedPlayTime() >= LARGE_INTRO_TIME)
+		if(pVgMusic->GetElapsedPlayTime() >= LARGE_INTRO_TIME)
 		{
 			ShowIntroTitle(0.5f);
 
@@ -389,7 +397,7 @@ void Music::FadeOut(float fFadeOutTime)
 		break;
 
 	case LARGESTATE_IntroTitle:
-		if(m_VgMusicRef.GetElapsedPlayTime() >= (LARGE_INTRO_TIME + LARGE_INTROSNAPSHOT_TIME))
+		if(pVgMusic->GetElapsedPlayTime() >= (LARGE_INTRO_TIME + LARGE_INTROSNAPSHOT_TIME))
 		{
 			ShowNowPlaying(0.5f);
 			m_eLargeState = LARGESTATE_NowPlaying;
@@ -397,7 +405,7 @@ void Music::FadeOut(float fFadeOutTime)
 		break;
 
 	case LARGESTATE_NowPlaying:
-		if(m_VgMusicRef.GetElapsedPlayTime() >= (LARGE_INTRONOWPLAYING_TIME + LARGE_INTRO_TIME + LARGE_INTROSNAPSHOT_TIME))
+		if(pVgMusic->GetElapsedPlayTime() >= (LARGE_INTRONOWPLAYING_TIME + LARGE_INTRO_TIME + LARGE_INTROSNAPSHOT_TIME))
 		{
 			CycleBoxArt(0.5f);
 			m_LargeCycleTimer.InitStart(LARGE_CYCLE_DUR);
@@ -409,7 +417,7 @@ void Music::FadeOut(float fFadeOutTime)
 				m_Dancers[i].DeferDance(DANCESTATE_Dance, VGMUSIC_MAX_SONG_LENGTH * 0.5f);
 			}
 
-			m_NowPlayingRef.Show(0.5f);
+			Melody::GetComponent(COMPONENT_NowPlaying)->Show(0.5f);
 
 			m_eLargeState = LARGESTATE_CycleBoxArt;
 		}

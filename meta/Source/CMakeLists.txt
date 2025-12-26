@@ -28,8 +28,8 @@ set(GAME_SRCFILES
 	"Scenes/Break.h"
 	"Components/Crt/Crt.cpp"
 	"Components/Crt/Crt.h"
-	"Components/LowerThird/MessageCycle.cpp"
-	"Components/LowerThird/MessageCycle.h"
+	"Components/Code/MessageCycle.cpp"
+	"Components/Code/MessageCycle.h"
 	"CtrlPanel.cpp"
 	"CtrlPanel.h"
 	"Components/Crt/Channels/Channel.cpp"
@@ -58,8 +58,8 @@ set(GAME_SRCFILES
 	"Twitch/TwitchApi.h"
 	"Components/NowPlaying/NowPlaying.cpp"
 	"Components/NowPlaying/NowPlaying.h"
-	"Components/LowerThird/LowerThird.cpp"
-	"Components/LowerThird/LowerThird.h"
+	"Components/Code/Code.cpp"
+	"Components/Code/Code.h"
 	"Compositorium/Compositorium.cpp"
 	"Compositorium/Compositorium.h"
 	"Components/InputViewer/Controllers/SerialPort.cpp"
@@ -79,17 +79,19 @@ set(GAME_SRCFILES
 	"_hy_/hy_Television.h"
 	"_hy_/hy_Television.cpp"
 	"_hy_/hy_MusicPlayer.h"
-	"_hy_/hy_MusicPlayer.cpp")
+	"_hy_/hy_MusicPlayer.cpp"
+	"Twitch/EventSub.cpp"
+	"Twitch/EventSub.h")
 
 set(GAME_INCLUDE_DIRS "")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components")
+list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Code")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/Crt/Channels")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/GameBrowser")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/InputViewer")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/InputViewer/Controllers")
-list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/LowerThird")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Components/NowPlaying")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Compositorium")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Scenes")

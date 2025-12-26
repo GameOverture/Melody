@@ -20,16 +20,13 @@ enum PlayState
 	PLAYSTATE_FadeOutToStop
 };
 
-class VgMusic : public HyEntity2d
+class VgMusic : public IComponent
 {
-	HyCheckBox										m_CtrlPanel_LoadCheckBox;
 	HyButton										m_CtrlPanel_PrevBtn;
 	HyButton										m_CtrlPanel_PlayBtn;
 	HyButton										m_CtrlPanel_StopBtn;
 	HyButton										m_btnVolume_Down;
 	HyButton										m_btnVolume_Up;
-	
-	Crt *											m_pCrtRef;
 
 	HyAudio2d										m_AudioTrack;
 public:
@@ -45,8 +42,7 @@ public:
 	VgMusic(HyEntity2d *pParent = nullptr);
 	virtual ~VgMusic();
 
-	void SetCrtRef(Crt *pCrtRef);
-	void PopulateCtrlPanel(CtrlPanel &ctrlPanel);
+	virtual void PopulateCtrlPanel(CtrlPanel &ctrlPanel) override;
 
 	void SetOnTrackChangeCallback(std::function<void(MusicTrack &)> fpOnTrackChange);
 	void SetOnFadeOutCallback(std::function<void(float)> fpOnFadeOut);

@@ -10,22 +10,30 @@
         "Type": 1
     },
     "DataPath": "./data/",
+    "Gravity2d": [
+        0,
+        -10
+    ],
     "MetaPath": "./meta/",
+    "NumInputMaps": 1,
+    "PixelsPerMeter": 50,
+    "ShowCursor": true,
     "SourcePath": "meta/Source/",
     "Title": "Melody",
     "UpdatesPerSec": 60,
     "UseConsole": true,
+    "VSync": 1,
     "WindowInfo": [
         {
-            "LocationX": 420,
-            "LocationY": 40,
+            "LocationX": 1920,
+            "LocationY": 0,
             "Name": "Melody",
             "ResolutionX": 1920,
             "ResolutionY": 1080,
             "Type": 0
         },
         {
-            "LocationX": 0,
+            "LocationX": 3530,
             "LocationY": 40,
             "Name": "Control Panel",
             "ResolutionX": 300,

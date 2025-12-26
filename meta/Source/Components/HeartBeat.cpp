@@ -15,6 +15,7 @@ HeartBeat::HeartBeat(HyEntity2d *pParent /*= nullptr*/) :
 				Hide(0.5f);
 		});
 
+	UseWindowCoordinates();
 	//if(SimpleBLE::Adapter::bluetooth_enabled() == false)
 	//{
 	//	HyLogWarning("Bluetooth is not enabled");

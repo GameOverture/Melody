@@ -1,23 +1,22 @@
 #include "pch.h"
+#include "Melody.h"
 #include "Compositorium.h"
 #include "VgMusic.h"
 #include "CtrlPanel.h"
 #include "Crt.h"
 
 VgMusic::VgMusic(HyEntity2d *pParent /*= nullptr*/) :
-	HyEntity2d(pParent),
-	m_CtrlPanel_LoadCheckBox(HyUiPanelInit(32, 32, 2), HyNodePath("", "CtrlPanel"), this),
+	IComponent(COMPONENT_VgMusic, pParent),
 	m_CtrlPanel_PrevBtn(HyUiPanelInit(42, 32, 2), HyNodePath("", "MainText"), this),
 	m_CtrlPanel_PlayBtn(HyUiPanelInit(42, 32, 2), HyNodePath("", "MainText"), this),
 	m_CtrlPanel_StopBtn(HyUiPanelInit(64, 32, 2), HyNodePath("", "CtrlPanel"), this),
-	m_pCrtRef(nullptr),
 	m_btnVolume_Down(HyUiPanelInit(64, 32, 2), HyNodePath("", "CtrlPanel"), this),
 	m_btnVolume_Up(HyUiPanelInit(64, 32, 2), HyNodePath("", "CtrlPanel"), this),
 	m_iCurrTrackIndex(-1),
 	m_ePlayState(PLAYSTATE_Stopped)
 {
-	m_CtrlPanel_LoadCheckBox.SetText("VgMusic");
-	m_CtrlPanel_LoadCheckBox.SetCheckedChangedCallback(
+	m_CtrlPanel_CheckBox.SetText("VgMusic");
+	m_CtrlPanel_CheckBox.SetCheckedChangedCallback(
 		[this](HyCheckBox *pThis)
 		{
 			if(pThis->IsChecked() && m_MusicTrackList.empty())
@@ -53,7 +52,7 @@ VgMusic::VgMusic(HyEntity2d *pParent /*= nullptr*/) :
 	m_btnVolume_Down.SetButtonClickedCallback([this](HyButton *pThis)
 		{
 			HyEngine::Audio().SetGlobalVolume(HyMath::Clamp(HyEngine::Audio().GetGlobalVolume() - 0.05f, 0.0f, 1.0f));
-			m_pCrtRef->SetVolume(HyEngine::Audio().GetGlobalVolume());
+			static_cast<Crt *>(Melody::GetComponent(COMPONENT_Crt))->SetVolume(HyEngine::Audio().GetGlobalVolume());
 		});
 
 	m_btnVolume_Up.SetAsBox(HYALIGN_Center);
@@ -61,7 +60,7 @@ VgMusic::VgMusic(HyEntity2d *pParent /*= nullptr*/) :
 	m_btnVolume_Up.SetButtonClickedCallback([this](HyButton *pThis)
 		{
 			HyEngine::Audio().SetGlobalVolume(HyMath::Clamp(HyEngine::Audio().GetGlobalVolume() + 0.05f, 0.0f, 1.0f));
-			m_pCrtRef->SetVolume(HyEngine::Audio().GetGlobalVolume());
+			static_cast<Crt *>(Melody::GetComponent(COMPONENT_Crt))->SetVolume(HyEngine::Audio().GetGlobalVolume());
 		});
 }
 
@@ -69,15 +68,10 @@ VgMusic::VgMusic(HyEntity2d *pParent /*= nullptr*/) :
 {
 }
 
-void VgMusic::SetCrtRef(Crt *pCrtRef)
-{
-	m_pCrtRef = pCrtRef;
-}
-
-void VgMusic::PopulateCtrlPanel(CtrlPanel &ctrlPanel)
+/*virtual*/ void VgMusic::PopulateCtrlPanel(CtrlPanel &ctrlPanel) /*override*/
 {
 	HyLayoutHandle hCurRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
-	ctrlPanel.InsertWidget(m_CtrlPanel_LoadCheckBox, hCurRow);
+	ctrlPanel.InsertWidget(m_CtrlPanel_CheckBox, hCurRow);
 	ctrlPanel.InsertWidget(m_CtrlPanel_PrevBtn, hCurRow);
 	ctrlPanel.InsertWidget(m_CtrlPanel_PlayBtn, hCurRow);
 	ctrlPanel.InsertWidget(m_CtrlPanel_StopBtn, hCurRow);
@@ -86,6 +80,8 @@ void VgMusic::PopulateCtrlPanel(CtrlPanel &ctrlPanel)
 	HyLayoutHandle hVolumeRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
 	ctrlPanel.InsertWidget(m_btnVolume_Down, hVolumeRow);
 	ctrlPanel.InsertWidget(m_btnVolume_Up, hVolumeRow);
+
+	ctrlPanel.InsertDividerLine();
 }
 
 void VgMusic::SetOnTrackChangeCallback(std::function<void(MusicTrack &)> fpOnTrackChange)

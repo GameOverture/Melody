@@ -4,9 +4,8 @@
 #include "CtrlPanel.h"
 #include "Melody.h"
 
-LiveSplit::LiveSplit(Monitor &monitorRef, HyEntity2d *pParent /*= nullptr*/) :
+LiveSplit::LiveSplit(HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_LiveSplit, pParent),
-	m_MonitorRef(monitorRef),
 	m_LiveSplitMask(this)
 {
 	m_CtrlPanel_CheckBox.SetText("LiveSplit");
@@ -23,6 +22,9 @@ LiveSplit::LiveSplit(Monitor &monitorRef, HyEntity2d *pParent /*= nullptr*/) :
 	m_LiveSplitMask.SetAsBox(MISC_WIDTH + DIVIDER_WIDTH, LIVESPLIT_HEIGHT + 20);// HyEngine::Window(0).GetHeight());
 	m_LiveSplitMask.SetTint(HyColor::Orange);
 	m_LiveSplitMask.alpha.Set(0.0f);
+
+	UseWindowCoordinates();
+	SetDisplayOrder(DISPLAYORDER_LiveSplitMask);
 }
 
 /*virtual*/ LiveSplit::~LiveSplit()
@@ -43,7 +45,7 @@ LiveSplit::LiveSplit(Monitor &monitorRef, HyEntity2d *pParent /*= nullptr*/) :
 	m_LiveSplitMask.alpha.Set(0.0f);
 	m_LiveSplitMask.alpha.Tween(1.0f, 1.0f);
 
-	m_MonitorRef.GetShadow().alpha.Tween(0.0f, 0.5f);
+	static_cast<Monitor *>(Melody::GetComponent(COMPONENT_Monitor))->GetShadow().alpha.Tween(0.0f, 0.5f);
 
 	Melody::RefreshCamera();
 }
@@ -57,7 +59,7 @@ LiveSplit::LiveSplit(Monitor &monitorRef, HyEntity2d *pParent /*= nullptr*/) :
 			Melody::RefreshCamera();
 		});
 
-	m_MonitorRef.GetShadow().alpha.Tween(SHADOW_ALPHA, 1.0f);
+	static_cast<Monitor *>(Melody::GetComponent(COMPONENT_Monitor))->GetShadow().alpha.Tween(SHADOW_ALPHA, 1.0f);
 }
 
 /*virtual*/ void LiveSplit::OnUpdate() /*override*/
