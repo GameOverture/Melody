@@ -48,10 +48,13 @@ class Monitor : public IComponent
 	
 	HyText2d			m_VgMusicInfo;
 
+	bool				m_bPositionUpperLeft;
+
 public:
 	Monitor(HyEntity2d *pParent = nullptr);
 	virtual ~Monitor();
 
+	MonitorChannel GetChannel() const;
 	void SetChannel(MonitorChannel eChannel);
 
 	HySprite2d &GetShadow();
@@ -60,6 +63,8 @@ public:
 
 	virtual void Show(float fDuration) override;
 	virtual void Hide(float fDuration) override;
+
+	void SetPositionMode(bool bUpperLeft); // False is middle left (for code layout)
 
 	bool IsBrb() const;
 

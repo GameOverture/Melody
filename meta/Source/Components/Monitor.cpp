@@ -21,7 +21,8 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 	m_Frame("Monitor", "Frame", this),
 	m_NoSignal(this),
 	m_ObsMask(this),
-	m_ElapsedTimeText("", "MainText", this)
+	m_ElapsedTimeText("", "MainText", this),
+	m_bPositionUpperLeft(true)
 {
 	m_CtrlPanel_CheckBox.SetText("Monitor");
 	m_CtrlPanel_CheckBox.SetCheckedChangedCallback(
@@ -98,11 +99,16 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 
 	UseWindowCoordinates();
 	SetDisplayOrder(DISPLAYORDER_Monitor);
-	pos.Set(-MISC_WIDTH - 100, HyEngine::Window(0).GetHeight() - MISC_HEIGHT);
+	pos.Set(-MISC_WIDTH - 100, HyEngine::Window(0).GetHeight() - MONITOR_HEIGHT_OFFSET_CRT);
 }
 
 /*virtual*/ Monitor::~Monitor()
 {
+}
+
+MonitorChannel Monitor::GetChannel() const
+{
+	return static_cast<MonitorChannel>(m_iChannelIndex);
 }
 
 void Monitor::SetChannel(MonitorChannel eChannel)
@@ -134,8 +140,8 @@ HySprite2d &Monitor::GetShadow()
 	scale.Set(0.5f, 0.5f);
 	scale.Tween(1.0f, 1.0f, fDuration * 2.0f, HyTween::QuadIn);
 	rot.Set(-20.0f);
-	rot.Tween(0.0f, fDuration * 2.0f, HyTween::BounceOut);
-	pos.Tween(0.0f, pos.GetY(), fDuration * 2.0f, HyTween::QuadInOut, 0.0f, 
+	rot.Tween(m_bPositionUpperLeft ? 0.0f : -90.0f, fDuration * 2.0f, HyTween::BounceOut);
+	pos.Tween(3.0f, pos.GetAnimFloat(1).GetAnimDestination(), fDuration * 2.0f, HyTween::QuadInOut, 0.0f, 
 		[this](IHyNode *pThis)
 		{
 			for(int iChn = 0; iChn < NUM_MONITORCHANNELS; ++iChn)
@@ -155,12 +161,36 @@ HySprite2d &Monitor::GetShadow()
 	OnChannelChange(MONITORCHANNEL_NoSignal);
 	//IComponent::Hide(fDuration);
 	rot.Tween(25.0f, fDuration, HyTween::QuadInOut);
-	pos.Tween(-MISC_WIDTH - 100, static_cast<int>(pos.GetY()), fDuration, HyTween::QuadInOut, 0.0f,
+	pos.Tween(-MISC_WIDTH - 100, static_cast<int>(pos.GetAnimFloat(1).GetAnimDestination()), fDuration, HyTween::QuadInOut, 0.0f,
 		[this](IHyNode *pThis)
 		{
 			pThis->SetVisible(false);
 			Melody::RefreshCamera();
 		});
+}
+
+void Monitor::SetPositionMode(bool bUpperLeft) // False is middle left (for code layout)
+{
+	if(m_bPositionUpperLeft == bUpperLeft)
+		return;
+
+	m_bPositionUpperLeft = bUpperLeft;
+	if(m_bPositionUpperLeft)
+	{
+		if(GetChannel() == MONITORCHANNEL_ObsFull)
+			OnChannelChange(MONITORCHANNEL_NoSignal);
+		pos.Tween(pos.GetAnimFloat(0).GetAnimDestination(), HyEngine::Window(0).GetHeightF() - MONITOR_HEIGHT_OFFSET_CRT, 1.0f, HyTween::QuadInOut);
+		rot.Tween(0.0f, 1.0f, HyTween::QuadInOut);
+		m_Shadow.alpha.Tween(SHADOW_ALPHA, 0.5f);
+	}
+	else
+	{
+		if(GetChannel() == MONITORCHANNEL_ObsFull)
+			OnChannelChange(MONITORCHANNEL_NoSignal);
+		pos.Tween(pos.GetAnimFloat(0).GetAnimDestination(), HyEngine::Window(0).GetHeightF() - MONITOR_HEIGHT_OFFSET_CODE, 1.0f, HyTween::QuadInOut);
+		rot.Tween(-90.0f, 1.0f, HyTween::QuadInOut);
+		m_Shadow.alpha.Tween(0.0f, 0.5f);
+	}
 }
 
 bool Monitor::IsBrb() const
@@ -215,10 +245,12 @@ bool Monitor::IsBrb() const
 		{
 		case MONITORCHANNEL_NoSignal:
 			m_ChannelText.SetText("NO SIGNAL");
+			m_fChannelShowTime = 0.0f;
 			m_ObsMask.SetVisible(false);
 			break;
 		case MONITORCHANNEL_ObsFull:
 			m_ChannelText.SetText("CAMS");
+			m_fChannelShowTime = 2.0f;
 			m_ObsMask.SetVisible(true);
 			m_ObsMask.pos.Set(SCREEN_OFFSET_X, SCREEN_OFFSET_Y);
 			m_ObsMask.SetAsBox(MONITOR_WIDTH, MONITOR_HEIGHT);
@@ -248,6 +280,7 @@ bool Monitor::IsBrb() const
 			m_ElapsedTime.Start();
 
 			m_ChannelText.SetText("BRB");
+			m_fChannelShowTime = 2.0f;
 			break;
 
 		default:
@@ -257,7 +290,6 @@ bool Monitor::IsBrb() const
 
 		// Channel actually changing now
 		m_ChannelText.SetVisible(true);
-		m_fChannelShowTime = 2.0f;
 
 		m_fElapsedTime = 0.0f;
 		m_eMonitorState = MONITORSTATE_PostChangeChannel;
@@ -277,8 +309,6 @@ void Monitor::OnChannelChange(int iChannelIndex)
 {
 	iChannelIndex %= NUM_MONITORCHANNELS;
 	iChannelIndex = fabs(iChannelIndex);
-	if(m_iChannelIndex == iChannelIndex)
-		return;
 
 	m_iChannelIndex = iChannelIndex;
 	m_NoSignal.SetVisible(m_iChannelIndex == MONITORCHANNEL_NoSignal);

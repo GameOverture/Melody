@@ -6,7 +6,8 @@
 
 class Code : public IComponent
 {
-	HyPrimitive2d			m_Background;
+	//HyPrimitive2d			m_CameraBg;
+	HyPrimitive2d			m_LowerThirdBg;
 
 public:
 	Code(HyEntity2d *pParent = nullptr);

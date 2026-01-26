@@ -262,6 +262,8 @@ Melody::~Melody()
 			static_cast<MessageCycle *>(sm_pThis->m_pComponents[COMPONENT_MessageCycle])->SetXPosOffset(0.0f);
 		}
 	}
+
+	static_cast<Monitor *>(sm_pThis->m_pComponents[COMPONENT_Monitor])->SetPositionMode(sm_pThis->m_pComponents[COMPONENT_Code]->IsVisible() == false);
 }
 
 void Melody::StartBrb(int iBrbTime)
@@ -287,7 +289,7 @@ void Melody::StartBrb(int iBrbTime)
 
 void Melody::ClearBrb()
 {
-	m_pComponents[COMPONENT_Crt]->GetCtrlPanelCheckBox().SetChecked(true);
+	//m_pComponents[COMPONENT_Crt]->GetCtrlPanelCheckBox().SetChecked(true);
 	m_pComponents[COMPONENT_Monitor]->GetCtrlPanelCheckBox().SetChecked(true);
 	static_cast<Monitor *>(m_pComponents[COMPONENT_Monitor])->SetChannel(MONITORCHANNEL_ObsFull);
 	static_cast<MessageCycle *>(m_pComponents[COMPONENT_MessageCycle])->RemoveMessage("BRB!");

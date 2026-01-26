@@ -40,9 +40,17 @@ Crt::Crt(HyEntity2d *pParent /*= nullptr*/) :
 		[this](HyCheckBox *pCheckBox)
 		{
 			if(pCheckBox->IsChecked())
+			{
+				if(Melody::GetComponent(COMPONENT_Code)->IsVisible())
+					Melody::GetComponent(COMPONENT_Code)->Hide(0.5f);
 				Show(0.5f);
+			}
 			else
+			{
+				if(Melody::GetComponent(COMPONENT_Code)->IsVisible() == false)
+					Melody::GetComponent(COMPONENT_Code)->Show(0.5f);
 				Hide(0.5f);
+			}
 		});
 
 	m_CtrlPanel_btnGame.SetText("Gam");
@@ -116,6 +124,7 @@ Crt::Crt(HyEntity2d *pParent /*= nullptr*/) :
 	m_Stencil.AddMask(m_Screen);
 
 	pos.Set(HyEngine::Window(0).GetWidthF(-0.5f), HyEngine::Window(0).GetHeightF(-0.5f));
+	SetChannel(CHANNELTYPE_Static);
 }
 
 /*virtual*/ Crt::~Crt()
@@ -136,15 +145,17 @@ Crt::Crt(HyEntity2d *pParent /*= nullptr*/) :
 
 /*virtual*/ void Crt::Show(float fDuration) /*override*/
 {
+	m_CtrlPanel_CheckBox.SetChecked(true);
 	alpha.Set(0.0f);
 	alpha.Tween(1.0f, fDuration, HyTween::Linear, 0.0f, [this](IHyNode *pThis) { TogglePower(true); });
 	SetVisible(true);
+	Melody::RefreshCamera();
 }
 
 /*virtual*/ void Crt::Hide(float fDuration) /*override*/
 {
 	TogglePower(false);
-	alpha.Tween(0.0f, fDuration, HyTween::Linear, CRT_SHUTOFF_DUR + 1.0f, [this](IHyNode *pThis) { pThis->SetVisible(false); });
+	alpha.Tween(0.0f, fDuration, HyTween::Linear, CRT_SHUTOFF_DUR + 1.0f, [this](IHyNode *pThis) { pThis->SetVisible(false); m_CtrlPanel_CheckBox.SetChecked(false); Melody::RefreshCamera(); });
 }
 
 bool Crt::IsPowerOn() const
@@ -160,7 +171,6 @@ void Crt::TogglePower(bool bPowerOn)
 		{
 			m_ChannelStack.SetVisible(true);
 			m_ChannelStack.scale.Tween(1.0f, CRT_SHRINK_AMT, 0.2f, HyTween::Linear, 0.0f, [](IHyNode *pThis) { static_cast<HyEntity2d *>(pThis)->scale.Tween(1.0f, 1.0f, 0.4f, HyTween::BounceOut); });
-			SetChannel(CHANNELTYPE_Static);
 		}
 	}
 	else

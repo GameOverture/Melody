@@ -2,7 +2,7 @@
     "$fileVersion": 17,
     "BuildPath": "./build/",
     "ConsoleInfo": {
-        "LocationX": 512,
+        "LocationX": 2000,
         "LocationY": 256,
         "Name": "Harmony Log Console",
         "ResolutionX": 64,

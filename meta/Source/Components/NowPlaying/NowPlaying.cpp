@@ -209,21 +209,12 @@ void NowPlaying::ShowGameTime(bool bShow)
 
 /*virtual*/ void NowPlaying::Show(float fDuration) /*override*/
 {
-	alpha.Set(0.0f);
-	alpha.Tween(1.0f, fDuration);
-	SetVisible(true);
-
-	Melody::RefreshCamera();
+	IComponent::Show(fDuration);
 }
 
 /*virtual*/ void NowPlaying::Hide(float fDuration) /*override*/
 {
-	alpha.Tween(0.0f, fDuration, HyTween::Linear, 0.0f,
-		[this](IHyNode *pThis)
-		{
-			pThis->SetVisible(false);
-			Melody::RefreshCamera();
-		});
+	IComponent::Hide(fDuration);
 }
 
 /*virtual*/ void NowPlaying::OnUpdate() /*override*/

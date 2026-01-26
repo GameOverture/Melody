@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "IComponent.h"
 #include "CtrlPanel.h"
+#include "Melody.h"
 
 IComponent::IComponent(ComponentType eType, HyEntity2d *pParent /*= nullptr*/) :
 	HyEntity2d(pParent),
@@ -25,14 +26,16 @@ ComponentType IComponent::GetComponentType() const
 
 /*virtual*/ void IComponent::Show(float fDuration)
 {
+	m_CtrlPanel_CheckBox.SetChecked(true);
 	alpha.Set(0.0f);
 	alpha.Tween(1.0f, fDuration);
 	SetVisible(true);
+	Melody::RefreshCamera();
 }
 
 /*virtual*/ void IComponent::Hide(float fDuration)
 {
-	alpha.Tween(0.0f, fDuration, HyTween::Linear, 0.0f, [this](IHyNode *pThis) { pThis->SetVisible(false); });
+	alpha.Tween(0.0f, fDuration, HyTween::Linear, 0.0f, [this](IHyNode *pThis) { pThis->SetVisible(false); m_CtrlPanel_CheckBox.SetChecked(false); Melody::RefreshCamera(); });
 }
 
 /*virtual*/ void IComponent::OnUpdate() /*override*/
