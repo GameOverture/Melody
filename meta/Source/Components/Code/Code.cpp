@@ -15,8 +15,8 @@ Code::Code(HyEntity2d *pParent /*= nullptr*/) :
 		{
 			if(pCheckBox->IsChecked())
 			{
-				if(static_cast<Crt *>(Melody::GetComponent(COMPONENT_Crt))->IsPowerOn())
-					static_cast<Crt *>(Melody::GetComponent(COMPONENT_Crt))->Hide(0.5f);
+				if(Melody::GetComponent(COMPONENT_Crt)->IsVisible())
+					Melody::GetComponent(COMPONENT_Crt)->Hide(0.5f);
 				if(Melody::GetComponent(COMPONENT_NowPlaying)->IsVisible())
 					Melody::GetComponent(COMPONENT_NowPlaying)->Hide(0.5f);
 
@@ -24,8 +24,8 @@ Code::Code(HyEntity2d *pParent /*= nullptr*/) :
 			}
 			else
 			{
-				if(static_cast<Crt *>(Melody::GetComponent(COMPONENT_Crt))->IsPowerOn() == false)
-					static_cast<Crt *>(Melody::GetComponent(COMPONENT_Crt))->Show(0.5f);
+				if(Melody::GetComponent(COMPONENT_Crt)->IsVisible() == false)
+					Melody::GetComponent(COMPONENT_Crt)->Show(0.5f);
 				Hide(0.5f);
 			}
 		});

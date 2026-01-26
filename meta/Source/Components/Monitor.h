@@ -49,13 +49,14 @@ class Monitor : public IComponent
 	HyText2d			m_VgMusicInfo;
 
 	bool				m_bPositionUpperLeft;
+	float				m_fDeferChannelChange;
 
 public:
 	Monitor(HyEntity2d *pParent = nullptr);
 	virtual ~Monitor();
 
 	MonitorChannel GetChannel() const;
-	void SetChannel(MonitorChannel eChannel);
+	void SetChannel(MonitorChannel eChannel, float fDeferAmt);
 
 	HySprite2d &GetShadow();
 

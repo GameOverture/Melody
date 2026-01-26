@@ -62,6 +62,7 @@ enum CameraTag
 #define CAMERA_GAME_SCALE 0.67f, 0.67f
 
 #define MESSAGECYCLE_POS_X 240.0f
+#define MESSAGECYCLE_CODE_XPOS 140.0f
 #define MESSAGECYCLE_GAMEPOS_X 325.0f
 
 enum GameConsole

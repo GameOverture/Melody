@@ -335,7 +335,7 @@ void Music::FadeOut(float fFadeOutTime)
 	if(m_BoxArt.IsVisible())
 		m_BoxArt.alpha.Tween(0.0f, fFadeOutTime, HyTween::Linear, 0.0f, [](IHyNode *pThis) { pThis->SetVisible(false); });
 
-	if(static_cast<Crt *>(Melody::GetComponent(COMPONENT_Crt))->IsPowerOn())
+	if(static_cast<Crt *>(Melody::GetComponent(COMPONENT_Crt))->IsPowerOn() && static_cast<Crt *>(Melody::GetComponent(COMPONENT_Crt))->GetChannel() != CHANNELTYPE_Game)
 		Melody::GetComponent(COMPONENT_NowPlaying)->Hide(fFadeOutTime * 0.5f);
 }
 
@@ -374,7 +374,8 @@ void Music::FadeOut(float fFadeOutTime)
 			for(int32 i = 0; i < NUM_DANCERS; ++i)
 				m_Dancers[i].DeferDance(DANCESTATE_Shimmy, 4.0f);
 
-			static_cast<NowPlaying *>(Melody::GetComponent(COMPONENT_NowPlaying))->SetGame(pVgMusic->m_MusicTrackList[pVgMusic->m_iCurrTrackIndex].m_sGameId);
+			if(false == (Melody::GetComponent(COMPONENT_Crt)->IsVisible() && static_cast<Crt *>(Melody::GetComponent(COMPONENT_Crt))->GetChannel() == CHANNELTYPE_Game))
+				static_cast<NowPlaying *>(Melody::GetComponent(COMPONENT_NowPlaying))->SetGame(pVgMusic->m_MusicTrackList[pVgMusic->m_iCurrTrackIndex].m_sGameId);
 
 			m_eLargeState = LARGESTATE_Intro;
 		}
@@ -419,7 +420,7 @@ void Music::FadeOut(float fFadeOutTime)
 				m_Dancers[i].DeferDance(DANCESTATE_Dance, VGMUSIC_MAX_SONG_LENGTH * 0.5f);
 			}
 
-			if(static_cast<Crt *>(Melody::GetComponent(COMPONENT_Crt))->IsPowerOn())
+			if(static_cast<Crt *>(Melody::GetComponent(COMPONENT_Crt))->IsPowerOn() && static_cast<Crt *>(Melody::GetComponent(COMPONENT_Crt))->GetChannel() != CHANNELTYPE_Game)
 				Melody::GetComponent(COMPONENT_NowPlaying)->Show(0.5f);
 
 			m_eLargeState = LARGESTATE_CycleBoxArt;

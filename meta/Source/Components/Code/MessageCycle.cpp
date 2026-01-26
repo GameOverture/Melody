@@ -63,6 +63,7 @@ MessageCycle::MessageCycle(HyEntity2d *pParent /*= nullptr*/) :
 	SetXPosOffset(0.0f);
 	pos.Set(m_fXPos, MSGCYCLE_HIDE_YPOS);
 
+	SetDisplayOrder(DISPLAYORDER_MessageCycle);
 }
 
 /*virtual*/ MessageCycle::~MessageCycle()

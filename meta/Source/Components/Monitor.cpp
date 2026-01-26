@@ -22,7 +22,8 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 	m_NoSignal(this),
 	m_ObsMask(this),
 	m_ElapsedTimeText("", "MainText", this),
-	m_bPositionUpperLeft(true)
+	m_bPositionUpperLeft(true),
+	m_fDeferChannelChange(0.0f)
 {
 	m_CtrlPanel_CheckBox.SetText("Monitor");
 	m_CtrlPanel_CheckBox.SetCheckedChangedCallback(
@@ -38,8 +39,8 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 	{
 		m_CtrlPanel_radChannel[iChannelIndex].Setup(HyUiPanelInit(15, 20, 2), HyNodePath("", "CtrlPanel"));
 		m_CtrlPanel_radChannel[iChannelIndex].SetTag(iChannelIndex);
-		m_CtrlPanel_radChannel[iChannelIndex].SetCheckedChangedCallback(
-			[this](HyRadioButton *pRadio)
+		m_CtrlPanel_radChannel[iChannelIndex].SetButtonClickedCallback(
+			[this](HyButton *pRadio)
 			{
 				OnChannelChange(pRadio->GetTag());
 			});
@@ -111,9 +112,40 @@ MonitorChannel Monitor::GetChannel() const
 	return static_cast<MonitorChannel>(m_iChannelIndex);
 }
 
-void Monitor::SetChannel(MonitorChannel eChannel)
+void Monitor::SetChannel(MonitorChannel eChannel, float fDeferAmt)
 {
-	m_CtrlPanel_radChannel[eChannel].SetChecked(true);
+	if(fDeferAmt == 0.0f)
+	{
+		if(m_fDeferChannelChange != 0.0f)
+		{
+			// Persist the deferred channel change
+			float fPrevDefer = m_fDeferChannelChange;
+			MonitorChannel ePrevChannel = GetChannel();
+
+			// Make the requested change occur instantly
+			m_fDeferChannelChange = 0.0f;
+			OnChannelChange(eChannel);
+			OnUpdate();
+			OnUpdate();
+
+			// Allow the previous deferred change to occur now
+			m_fDeferChannelChange = fPrevDefer;
+			OnChannelChange(ePrevChannel);
+		}
+		else
+		{
+			// Ensure a 0.0f happens intantly to not affect future defer requests
+			m_fDeferChannelChange = 0.0f;
+			OnChannelChange(eChannel);
+			OnUpdate();
+			OnUpdate();
+		}
+	}
+	else
+	{
+		m_fDeferChannelChange = fDeferAmt;
+		OnChannelChange(eChannel);
+	}
 }
 
 HySprite2d &Monitor::GetShadow()
@@ -177,18 +209,20 @@ void Monitor::SetPositionMode(bool bUpperLeft) // False is middle left (for code
 	m_bPositionUpperLeft = bUpperLeft;
 	if(m_bPositionUpperLeft)
 	{
-		if(GetChannel() == MONITORCHANNEL_ObsFull)
-			OnChannelChange(MONITORCHANNEL_NoSignal);
-		pos.Tween(pos.GetAnimFloat(0).GetAnimDestination(), HyEngine::Window(0).GetHeightF() - MONITOR_HEIGHT_OFFSET_CRT, 1.0f, HyTween::QuadInOut);
-		rot.Tween(0.0f, 1.0f, HyTween::QuadInOut);
+		SetChannel(MONITORCHANNEL_NoSignal, 0.0f);
+
+		const float fDuration = 1.0f;
+		pos.Tween(pos.GetAnimFloat(0).GetAnimDestination(), HyEngine::Window(0).GetHeightF() - MONITOR_HEIGHT_OFFSET_CRT, fDuration, HyTween::QuadInOut);
+		rot.Tween(0.0f, fDuration, HyTween::QuadInOut);
 		m_Shadow.alpha.Tween(SHADOW_ALPHA, 0.5f);
 	}
 	else
 	{
-		if(GetChannel() == MONITORCHANNEL_ObsFull)
-			OnChannelChange(MONITORCHANNEL_NoSignal);
-		pos.Tween(pos.GetAnimFloat(0).GetAnimDestination(), HyEngine::Window(0).GetHeightF() - MONITOR_HEIGHT_OFFSET_CODE, 1.0f, HyTween::QuadInOut);
-		rot.Tween(-90.0f, 1.0f, HyTween::QuadInOut);
+		SetChannel(MONITORCHANNEL_NoSignal, 0.0f);
+
+		const float fDuration = 1.0f;
+		pos.Tween(pos.GetAnimFloat(0).GetAnimDestination(), HyEngine::Window(0).GetHeightF() - MONITOR_HEIGHT_OFFSET_CODE, fDuration, HyTween::QuadInOut);
+		rot.Tween(-90.0f, fDuration, HyTween::QuadInOut);
 		m_Shadow.alpha.Tween(0.0f, 0.5f);
 	}
 }
@@ -219,6 +253,14 @@ bool Monitor::IsBrb() const
 		break;
 
 	case MONITORSTATE_PreChangeChannel:
+		if(m_fDeferChannelChange > 0.0f)
+		{
+			m_fDeferChannelChange -= HyEngine::DeltaTime();
+			if(m_fDeferChannelChange > 0.0f)
+				break;
+			m_fDeferChannelChange = 0.0f;
+		}
+
 		switch(m_iChannelIndex)
 		{
 		case MONITORCHANNEL_NoSignal:
@@ -307,6 +349,9 @@ bool Monitor::IsBrb() const
 
 void Monitor::OnChannelChange(int iChannelIndex)
 {
+	for(int i = 0; i < NUM_MONITORCHANNELS; ++i)
+		m_CtrlPanel_radChannel[i].SetChecked(iChannelIndex == i);
+
 	iChannelIndex %= NUM_MONITORCHANNELS;
 	iChannelIndex = fabs(iChannelIndex);
 

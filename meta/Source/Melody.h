@@ -22,11 +22,12 @@ class Melody : public HyEngine
 
 	// Presets
 	HyButton		m_PresetStartingBtn;
-	HyButton		m_PresetLiveBtn;
+	HyButton		m_PresetLiveCrtBtn;
+	HyButton		m_PresetLiveCodeBtn;
 	HyButton		m_PresetBrb1Btn;
 	HyButton		m_PresetBrb5Btn;
 	HyButton		m_PresetBrb10Btn;
-	HyButton		m_PresetBrbOffBtn;
+	HyButton		m_PresetBrbXBtn;
 	HyButton		m_PresetEndingBtn;
 
 	// Debug

@@ -24,11 +24,12 @@ Melody::Melody(HyInit &initStruct) :
 	m_ColorKeyBg(),
 	m_CtrlPanel(),
 	m_PresetStartingBtn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
-	m_PresetLiveBtn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
+	m_PresetLiveCrtBtn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
+	m_PresetLiveCodeBtn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
 	m_PresetBrb1Btn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
 	m_PresetBrb5Btn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
 	m_PresetBrb10Btn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
-	m_PresetBrbOffBtn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
+	m_PresetBrbXBtn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
 	m_PresetEndingBtn(HyUiPanelInit(64, 32, 2), HyUiTextInit(HyNodePath("", "CtrlPanel")))
 {
 	sm_pThis = this;
@@ -107,14 +108,20 @@ Melody::Melody(HyInit &initStruct) :
 			static_cast<MessageCycle *>(m_pComponents[COMPONENT_MessageCycle])->AddMessage("Welcome! Stream Starting Soon", false);
 		}
 	);
-	m_PresetLiveBtn.SetText("Live");
-	m_PresetLiveBtn.SetButtonClickedCallback(
+	m_PresetLiveCrtBtn.SetText("Live-Crt");
+	m_PresetLiveCrtBtn.SetButtonClickedCallback(
 		[this](HyButton *pButton)
 		{
-			m_pComponents[COMPONENT_Crt]->GetCtrlPanelCheckBox().SetChecked(true);
-			m_pComponents[COMPONENT_Monitor]->GetCtrlPanelCheckBox().SetChecked(true);
-			static_cast<Monitor *>(m_pComponents[COMPONENT_Monitor])->SetChannel(MONITORCHANNEL_ObsFull);
-			static_cast<MessageCycle *>(m_pComponents[COMPONENT_MessageCycle])->RemoveMessage("Welcome! Stream Starting Soon");
+			m_pComponents[COMPONENT_Crt]->GetCtrlPanelCheckBox().SetChecked(true);			
+			ClearBrb();
+		}
+	);
+	m_PresetLiveCodeBtn.SetText("Live-Code");
+	m_PresetLiveCodeBtn.SetButtonClickedCallback(
+		[this](HyButton *pButton)
+		{
+			m_pComponents[COMPONENT_Code]->GetCtrlPanelCheckBox().SetChecked(true);
+			ClearBrb();
 		}
 	);
 
@@ -137,11 +144,11 @@ Melody::Melody(HyInit &initStruct) :
 			StartBrb(10);
 		});
 
-	m_PresetBrbOffBtn.SetText("BRB Off");
-	m_PresetBrbOffBtn.SetButtonClickedCallback(
+	m_PresetBrbXBtn.SetText("BRB X");
+	m_PresetBrbXBtn.SetButtonClickedCallback(
 		[this](HyButton *pButton)
 		{
-			ClearBrb();
+			StartBrb(0);
 		}
 	);
 	m_PresetEndingBtn.SetText("End");
@@ -162,11 +169,12 @@ Melody::Melody(HyInit &initStruct) :
 	m_CtrlPanel.InsertWidget(m_PresetBrb1Btn, hRow);
 	m_CtrlPanel.InsertWidget(m_PresetBrb5Btn, hRow);
 	m_CtrlPanel.InsertWidget(m_PresetBrb10Btn, hRow);
-	m_CtrlPanel.InsertWidget(m_PresetBrbOffBtn, hRow);
+	m_CtrlPanel.InsertWidget(m_PresetBrbXBtn, hRow);
 	m_CtrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
 	HyLayoutHandle hRow2 = m_CtrlPanel.InsertLayout(HYORIENT_Horizontal);
 	m_CtrlPanel.InsertWidget(m_PresetStartingBtn, hRow2);
-	m_CtrlPanel.InsertWidget(m_PresetLiveBtn, hRow2);
+	m_CtrlPanel.InsertWidget(m_PresetLiveCrtBtn, hRow2);
+	m_CtrlPanel.InsertWidget(m_PresetLiveCodeBtn, hRow2);
 	m_CtrlPanel.InsertWidget(m_PresetEndingBtn, hRow2);
 	m_CtrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow2);
 
@@ -259,7 +267,10 @@ Melody::~Melody()
 			HyEngine::Window().GetCamera2d(0)->scale.Tween(CAMERA_CENTER_SCALE, 1.5f, HyTween::QuadInOut);
 			HyEngine::Window().GetCamera2d(0)->SetTag(CAMTAG_Center);
 
-			static_cast<MessageCycle *>(sm_pThis->m_pComponents[COMPONENT_MessageCycle])->SetXPosOffset(0.0f);
+			if(sm_pThis->m_pComponents[COMPONENT_Code]->IsVisible())
+				static_cast<MessageCycle *>(sm_pThis->m_pComponents[COMPONENT_MessageCycle])->SetXPosOffset(MESSAGECYCLE_CODE_XPOS);
+			else
+				static_cast<MessageCycle *>(sm_pThis->m_pComponents[COMPONENT_MessageCycle])->SetXPosOffset(0.0f);
 		}
 	}
 
@@ -270,7 +281,7 @@ void Melody::StartBrb(int iBrbTime)
 {
 	m_pComponents[COMPONENT_Crt]->GetCtrlPanelCheckBox().SetChecked(true);
 	m_pComponents[COMPONENT_Monitor]->GetCtrlPanelCheckBox().SetChecked(true);
-	static_cast<Monitor *>(m_pComponents[COMPONENT_Monitor])->SetChannel(MONITORCHANNEL_Brb);
+	static_cast<Monitor *>(m_pComponents[COMPONENT_Monitor])->SetChannel(MONITORCHANNEL_Brb, 2.0f);
 	static_cast<NowPlaying *>(m_pComponents[COMPONENT_NowPlaying])->ShowGameTime(false);
 	m_pComponents[COMPONENT_MessageCycle]->GetCtrlPanelCheckBox().SetChecked(true);
 
@@ -289,9 +300,9 @@ void Melody::StartBrb(int iBrbTime)
 
 void Melody::ClearBrb()
 {
-	//m_pComponents[COMPONENT_Crt]->GetCtrlPanelCheckBox().SetChecked(true);
 	m_pComponents[COMPONENT_Monitor]->GetCtrlPanelCheckBox().SetChecked(true);
-	static_cast<Monitor *>(m_pComponents[COMPONENT_Monitor])->SetChannel(MONITORCHANNEL_ObsFull);
+	static_cast<Monitor *>(m_pComponents[COMPONENT_Monitor])->SetChannel(MONITORCHANNEL_ObsFull, 2.0f);
+	static_cast<MessageCycle *>(m_pComponents[COMPONENT_MessageCycle])->RemoveMessage("Welcome! Stream Starting Soon");
 	static_cast<MessageCycle *>(m_pComponents[COMPONENT_MessageCycle])->RemoveMessage("BRB!");
 	static_cast<MessageCycle *>(m_pComponents[COMPONENT_MessageCycle])->RemoveMessage("BRB 1 Minute!");
 	static_cast<MessageCycle *>(m_pComponents[COMPONENT_MessageCycle])->RemoveMessage("BRB 5 Minutes!");
