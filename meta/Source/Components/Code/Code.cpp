@@ -30,7 +30,7 @@ Code::Code(HyEntity2d *pParent /*= nullptr*/) :
 			}
 		});
 
-	m_LowerThirdBg.SetAsBox(SCREEN_WIDTH, LOWERTHIRD_HEIGHT);
+	m_LowerThirdBg.SetAsBox(0, SCREEN_WIDTH, LOWERTHIRD_HEIGHT, 0.0f);
 	m_LowerThirdBg.SetTint(HyColor(31, 31, 31));
 	m_LowerThirdBg.SetDisplayOrder(DISPLAYORDER_LowerThird);
 

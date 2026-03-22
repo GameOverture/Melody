@@ -3,7 +3,7 @@
 
 #include "pch.h"
 
-class ConsolePage : public HyUiContainer
+class ConsolePage : public HyGui
 {
 	std::vector<HyButton *>		m_LogoBtnList;
 	std::vector<HySprite2d *>	m_LogoSpriteList;

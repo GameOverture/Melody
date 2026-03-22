@@ -19,7 +19,7 @@
 #define EDITPAGE_DATA_HEIGHT 50
 
 EditPage::EditPage(HyEntity2d *pParent) :
-	HyUiContainer(HYORIENT_Horizontal, HyUiPanelInit(GAMEBROWSER_WIDTH, GAMEBROWSER_HEIGHT), pParent),
+	HyGui(HYORIENT_Horizontal, HyUiPanelInit(GAMEBROWSER_WIDTH, GAMEBROWSER_HEIGHT), pParent),
 	m_pBoxartRef(nullptr),
 	m_GameTitle(HyUiPanelInit(EDITPAGE_PAGE_WIDTH, EDITPAGE_GAME_TITLE_HEIGHT), HyUiTextInit("MainText"), this),
 	m_GameBoxart(HyUiPanelInit(EDITPAGE_PAGE_WIDTH, EDITPAGE_BOXART_HEIGHT), this),

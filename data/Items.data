@@ -3,18 +3,6 @@
     "Audio": {
     },
     "Entities": {
-        "CRT/Television": {
-            "stateArray": [
-                {
-                }
-            ]
-        },
-        "VgMusic/MusicPlayer": {
-            "stateArray": [
-                {
-                }
-            ]
-        }
     },
     "Entities2d": {
     },

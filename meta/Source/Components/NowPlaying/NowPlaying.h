@@ -21,7 +21,7 @@ class NowPlaying : public IComponent
 	HyTimer							m_SlideShowTimer;
 	HyPrimitive2d					m_DescriptionArea;
 	HyText2d						m_DescriptionText;
-	HyUiContainer					m_Details;
+	HyGui							m_Details;
 	HyLabel							m_ReleaseLabel;
 	HyLabel							m_ReleaseText;
 	HyLabel							m_DevLabel;

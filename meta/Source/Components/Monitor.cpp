@@ -6,8 +6,8 @@
 
 #define MONITOR_WIDTH 488
 #define MONITOR_HEIGHT 268
-#define SCREEN_OFFSET_X 33
-#define SCREEN_OFFSET_Y 27
+#define SCREEN_OFFSET_X 33 + (MONITOR_WIDTH / 2)
+#define SCREEN_OFFSET_Y 27 + (MONITOR_HEIGHT / 2)
 
 Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_Monitor, pParent),
@@ -57,7 +57,7 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 	m_ChannelText.SetText("NULL");
 	m_ChannelText.SetAlignment(HYALIGN_Right);
 
-	m_ChannelText.pos.Set(SCREEN_OFFSET_X + MONITOR_WIDTH - 25, SCREEN_OFFSET_Y + 225);
+	m_ChannelText.pos.Set(33 + MONITOR_WIDTH - 25, 27 + 225);
 	m_ChannelText.scale.Set(0.5f, 0.5f);
 	m_ChannelText.SetVisible(false);
 
@@ -69,18 +69,18 @@ Monitor::Monitor(HyEntity2d *pParent /*= nullptr*/) :
 	m_ObsMask.SetVisible(false);
 
 	m_Background.pos.Set(SCREEN_OFFSET_X, SCREEN_OFFSET_Y);
-	m_Background.SetAsBox(MONITOR_WIDTH, MONITOR_HEIGHT);
+	m_Background.SetAsBox(0, MONITOR_WIDTH, MONITOR_HEIGHT, 0.0f);
 	m_Background.SetTint(HyColor::DarkGray);
 
 	m_Brb.SetVisible(false);
 	m_Brb.scale.Set(0.5f, 0.5f);
-	m_Brb.pos.Set(SCREEN_OFFSET_X + (MONITOR_WIDTH * 0.5f), SCREEN_OFFSET_Y + (MONITOR_HEIGHT * 0.5f));
+	m_Brb.pos.Set(33 + (MONITOR_WIDTH * 0.5f), 27 + (MONITOR_HEIGHT * 0.5f));
 
 	m_NoSignal.pos.Set(SCREEN_OFFSET_X, SCREEN_OFFSET_Y);
-	m_NoSignal.SetAsBox(MONITOR_WIDTH, MONITOR_HEIGHT);
+	m_NoSignal.SetAsBox(0, MONITOR_WIDTH, MONITOR_HEIGHT, 0.0f);
 	m_NoSignal.SetTint(HyColor::Black);
 
-	m_ElapsedTimeText.pos.Set(SCREEN_OFFSET_X + (MONITOR_WIDTH * 0.5f), SCREEN_OFFSET_Y + 20.0f);
+	m_ElapsedTimeText.pos.Set(33 + (MONITOR_WIDTH * 0.5f), 27 + 20.0f);
 	m_ElapsedTimeText.SetAlignment(HYALIGN_Center);
 
 	//vgMusicRef.SetOnTrackChangeCallback(
@@ -295,7 +295,7 @@ bool Monitor::IsBrb() const
 			m_fChannelShowTime = 2.0f;
 			m_ObsMask.SetVisible(true);
 			m_ObsMask.pos.Set(SCREEN_OFFSET_X, SCREEN_OFFSET_Y);
-			m_ObsMask.SetAsBox(MONITOR_WIDTH, MONITOR_HEIGHT);
+			m_ObsMask.SetAsBox(0, MONITOR_WIDTH, MONITOR_HEIGHT, 0.0f);
 			break;
 
 		//case MONITORCHANNEL_ObsPartial: {

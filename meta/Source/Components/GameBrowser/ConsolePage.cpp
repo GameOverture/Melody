@@ -8,7 +8,7 @@
 #define CONSOLEPAGE_WIDGET_SPACING 15
 
 ConsolePage::ConsolePage(HyEntity2d *pParent /*= nullptr*/) :
-	HyUiContainer(HYORIENT_Horizontal, HyUiPanelInit(GAMEBROWSER_WIDTH, GAMEBROWSER_HEIGHT), pParent),
+	HyGui(HYORIENT_Horizontal, HyUiPanelInit(GAMEBROWSER_WIDTH, GAMEBROWSER_HEIGHT), pParent),
 	m_iHoverIndex(-1)
 {
 	m_RootLayout.SetMargins(GAMEBROWSER_MARGINS, CONSOLEPAGE_WIDGET_SPACING);

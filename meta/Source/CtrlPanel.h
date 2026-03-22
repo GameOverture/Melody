@@ -3,7 +3,7 @@
 
 #include "pch.h"
 
-class CtrlPanel : public HyUiContainer
+class CtrlPanel : public HyGui
 {
 	std::vector<HyDividerLine *>	m_DividerLineList;
 

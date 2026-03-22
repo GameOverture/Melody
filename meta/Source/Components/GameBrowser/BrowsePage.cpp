@@ -16,7 +16,7 @@
 #define BROWSEPAGE_GAME_HEIGHT (((GAMEBROWSER_LAYOUT_HEIGHT - (BROWSEPAGE_GAME_TITLE_HEIGHT * 2) - BROWSEPAGE_BACKBTN_SIZE - (BROWSEPAGE_WIDGET_SPACING*6)) / 2))
 
 BrowsePage::BrowsePage(HyEntity2d *pParent /*= nullptr*/) :
-	HyUiContainer(HYORIENT_Vertical, HyUiPanelInit(GAMEBROWSER_WIDTH, GAMEBROWSER_HEIGHT), pParent),
+	HyGui(HYORIENT_Vertical, HyUiPanelInit(GAMEBROWSER_WIDTH, GAMEBROWSER_HEIGHT), pParent),
 	m_PrevBtn(HyUiPanelInit(BROWSEPAGE_PAGE_BTN_WIDTH, BROWSEPAGE_GAME_HEIGHT * 2), HyUiTextInit("MainText")),
 	m_iHoverGameIndex(-1),
 	m_NextBtn(HyUiPanelInit(BROWSEPAGE_PAGE_BTN_WIDTH, BROWSEPAGE_GAME_HEIGHT * 2), HyUiTextInit("MainText")),
@@ -178,7 +178,7 @@ void BrowsePage::OnContainerUpdate() /*override*/
 	case RELOADSTATE_TryLoad:
 		if(m_ReloadCooldownTimer.IsExpired())
 		{
-			m_BackBtn.SetState(Compositorium::Get()->GetConsoleIndex(m_QueuedGamesArray[0].GetConsole()));
+			m_BackBtn.panel.SetState(Compositorium::Get()->GetConsoleIndex(m_QueuedGamesArray[0].GetConsole()));
 
 			for(int i = 0; i < NUM_GAMES_PER_PAGE; ++i)
 			{

@@ -48,15 +48,14 @@ class Dpad : public HyEntity2d
 			m_EndPoint(this)
 		{
 			HyAssert(ptStart != ptEnd, "GatePath::GatePath() - eStart == eEnd");
-			m_Path.SetAsLineSegment(ptStart, ptEnd);
-			m_Path.SetTint(color);
-			m_Path.SetLineThickness(fRadius - 4.0f);
+			m_Path.SetAsLineSegment(0, ptStart, ptEnd, fRadius - 4.0f);
+			m_Path.SetLayerColor(0, color);
 
-			m_StartPoint.SetAsCircle(ptStart, fRadius);
-			m_StartPoint.SetTint(color);
+			m_StartPoint.SetAsCircle(0, ptStart, fRadius, 0.0f);
+			m_StartPoint.SetLayerColor(0, color);
 
-			m_EndPoint.SetAsCircle(ptEnd, fRadius);
-			m_EndPoint.SetTint(color);
+			m_EndPoint.SetAsCircle(0, ptEnd, fRadius, 0.0f);
+			m_EndPoint.SetLayerColor(0, color);
 
 			alpha.Tween(0.0f, 0.1f, HyTween::Linear, 0.25f);
 			SetDisplayOrder(DISPLAYORDER_GatePath);

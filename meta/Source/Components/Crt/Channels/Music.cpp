@@ -127,18 +127,21 @@ Music::Music(HyEntity2d *pParent /*= nullptr*/) :
 
 	m_TitleText.SetVisible(false);
 	m_TitleText.SetAlignment(HYALIGN_Right);
-	m_TitleText.pos.Set(0.0f, 80.0f);
 	m_TitleText.SetAsScaleBox(CRT_SCREEN_WIDTH, 50.0f);
+	m_TitleText.pos.Set(m_TitleText.GetTextBoxDimensions(0.5f));
+	m_TitleText.pos.Offset(0.0f, 80.0f);
 
 	m_TrackText.SetVisible(false);
 	m_TrackText.SetAlignment(HYALIGN_Right);
-	m_TrackText.pos.Set(0.0f, 30.0f);
 	m_TrackText.SetAsScaleBox(CRT_SCREEN_WIDTH, 50.0f);
+	m_TrackText.pos.Set(m_TrackText.GetTextBoxDimensions(0.5f));
+	m_TrackText.pos.Offset(0.0f, 30.0f);
 
 	m_ComposerText.SetVisible(false);
 	m_ComposerText.SetAlignment(HYALIGN_Right);
-	m_ComposerText.pos.Set(0.0f, 5.0f);
 	m_ComposerText.SetAsScaleBox(CRT_SCREEN_WIDTH, 50.0f);
+	m_ComposerText.pos.Set(m_ComposerText.GetTextBoxDimensions(0.5f));
+	m_ComposerText.pos.Offset(0.0f, 5.0f);
 
 	m_Snapshot.SetVisible(false);
 	m_Title.SetVisible(false);
@@ -147,7 +150,7 @@ Music::Music(HyEntity2d *pParent /*= nullptr*/) :
 	for(int32 i = 0; i < NUM_DANCERS; ++i)
 	{
 		ChildAppend(m_Dancers[i]);
-		m_Dancers[i].GetLeaf().SetState(i);
+		m_Dancers[i].GetFusedNode().SetState(i);
 		m_Dancers[i].Stop();
 	}
 	m_Dancers[0].pos.Set(130.0f, 25.0f);

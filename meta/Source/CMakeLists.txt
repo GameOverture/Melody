@@ -76,10 +76,6 @@ set(GAME_SRCFILES
 	"Components/GameBrowser/GameBrowser.h"
 	"Components/GameBrowser/ConsolePage.cpp"
 	"Components/GameBrowser/ConsolePage.h"
-	"_hy_/hy_Television.h"
-	"_hy_/hy_Television.cpp"
-	"_hy_/hy_MusicPlayer.h"
-	"_hy_/hy_MusicPlayer.cpp"
 	"Twitch/EventSub.cpp"
 	"Twitch/EventSub.h")
 
@@ -97,7 +93,6 @@ list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Compositorium")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Scenes")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Twitch")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/Wheel")
-list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/_hy_")
 
 #################################################################################################
 # ^ ^ ^ USER CONFIG ABOVE ^ ^ ^

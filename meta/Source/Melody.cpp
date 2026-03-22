@@ -56,8 +56,8 @@ Melody::Melody(HyInit &initStruct) :
 	m_ColorKeyBg.UseWindowCoordinates();
 	m_ColorKeyBg.SetDisplayOrder(-999999);
 	m_ColorKeyBg.SetTint(HyColor::Orange);
-	m_ColorKeyBg.SetAsBox(1920.0f, 1080.0f);
-	m_ColorKeyBg.pos.Set(0.0f, 0.0f);
+	m_ColorKeyBg.SetAsBox(0, 1920.0f, 1080.0f, 0.0f);
+	m_ColorKeyBg.pos.Set(m_ColorKeyBg.GetWidth(0.5f), m_ColorKeyBg.GetHeight(0.5f));
 	//m_ColorKeyBg.SetAsBox(312.0f, 139.0f);	// Fight stick camera
 	//m_ColorKeyBg.pos.Set(804.0f, 0.0f);		// Fight stick camera
 
@@ -321,5 +321,5 @@ void TransformTexture(HyTexturedQuad2d &quadRef, glm::ivec2 vMaxSize, glm::vec2 
 
 	// Find center of desired position, then offset by half the width and height of the texture
 	quadRef.pos.Set(ptCenter);
-	quadRef.pos.Offset(quadRef.GetWidth(quadRef.scale.GetX()) * -0.5f, quadRef.GetHeight(quadRef.scale.GetY()) * -0.5f);
+	//quadRef.pos.Offset(quadRef.GetWidth(quadRef.scale.GetX()) * -0.5f, quadRef.GetHeight(quadRef.scale.GetY()) * -0.5f);
 }

@@ -19,9 +19,10 @@ LiveSplit::LiveSplit(HyEntity2d *pParent /*= nullptr*/) :
 		});
 
 	m_LiveSplitMask.UseWindowCoordinates();
-	m_LiveSplitMask.SetAsBox(MISC_WIDTH + DIVIDER_WIDTH, LIVESPLIT_HEIGHT + 20);// HyEngine::Window(0).GetHeight());
+	m_LiveSplitMask.SetAsBox(0, MISC_WIDTH + DIVIDER_WIDTH, LIVESPLIT_HEIGHT + 20, 0.0f);
 	m_LiveSplitMask.SetTint(HyColor::Orange);
 	m_LiveSplitMask.alpha.Set(0.0f);
+	m_LiveSplitMask.pos.Offset(m_LiveSplitMask.GetWidth(0.5f), m_LiveSplitMask.GetHeight(0.5f));
 
 	UseWindowCoordinates();
 	SetDisplayOrder(DISPLAYORDER_LiveSplitMask);

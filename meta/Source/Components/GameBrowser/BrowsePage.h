@@ -7,7 +7,7 @@
 
 #define NUM_GAMES_PER_PAGE	8
 
-class BrowsePage : public HyUiContainer
+class BrowsePage : public HyGui
 {
 	HyButton				m_PrevBtn;
 	GameInfo				m_hPrevGame;

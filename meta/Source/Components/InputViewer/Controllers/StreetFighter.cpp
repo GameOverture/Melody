@@ -17,12 +17,12 @@ StreetFighter::StreetFighter(HyEntity2d *pParent /*= nullptr*/) :
 	m_AssignOverlayText("", "MainText", this),
 	m_fpAssignControllerFunc(nullptr)
 {
-	m_DriveImpact.SetAsBox(75.0f, 200.0f);
+	m_DriveImpact.SetAsBox(0, 75.0f, 200.0f, 0.0f);
 	m_DriveImpact.SetTint(HyColor::Red);
 	m_DriveImpact.pos.Set(305.0f, -100.0f);
 	m_DriveImpact.SetVisible(false);
 
-	m_DriveParry.SetAsBox(75.0f, 200.0f);
+	m_DriveParry.SetAsBox(0, 75.0f, 200.0f, 0.0f);
 	m_DriveParry.SetTint(HyColor::Green);
 	m_DriveParry.pos.Set(205.0f, -100.0f);
 	m_DriveParry.SetVisible(false);
@@ -51,7 +51,7 @@ StreetFighter::StreetFighter(HyEntity2d *pParent /*= nullptr*/) :
 	m_ButtonHK.SetTint(HyColor(128, 128, 128));
 
 	b2AABB sceneAabb = GetSceneAABB();
-	m_AssignOverlayBG.SetAsBox(sceneAabb.upperBound.x - sceneAabb.lowerBound.x, sceneAabb.upperBound.y - sceneAabb.lowerBound.y);
+	m_AssignOverlayBG.SetAsBox(0, sceneAabb.upperBound.x - sceneAabb.lowerBound.x, sceneAabb.upperBound.y - sceneAabb.lowerBound.y, 0.0f);
 	m_AssignOverlayBG.pos.Offset(-105.0f, -120.0f);
 	m_AssignOverlayBG.SetVisible(false);
 	m_AssignOverlayText.SetVisible(false);

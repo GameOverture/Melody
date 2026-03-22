@@ -34,7 +34,7 @@ class Crt : public IComponent
 	HyText2d				m_VcrTimeMins;
 
 	HyText2d				m_VolumeText;
-	HyPrimitive2d			m_VolumeBar[NUM_VOLUME_BARS];
+	HyPrimitive2d			m_VolumeBars;
 	float					m_fVolumeShowTime;
 
 	HyText2d				m_ChannelText;

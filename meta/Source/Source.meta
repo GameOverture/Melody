@@ -692,46 +692,6 @@
             "name": "ConsolePage.h"
         },
         {
-            "assetUUID": "8b9ba0e3-f97a-49ea-84e1-1d6286dfb87f",
-            "bankId": 0,
-            "baseClass": "HyEntity2d",
-            "checksum": 3623986450,
-            "errors": 0,
-            "filter": "_hy_",
-            "itemType": "Header",
-            "name": "hy_Television.h"
-        },
-        {
-            "assetUUID": "7d084946-8a64-4357-a43e-32b8a1312534",
-            "bankId": 0,
-            "baseClass": "HyEntity2d",
-            "checksum": 3976071777,
-            "errors": 0,
-            "filter": "_hy_",
-            "itemType": "Source",
-            "name": "hy_Television.cpp"
-        },
-        {
-            "assetUUID": "9521bc12-117a-41bf-81de-45adabe41714",
-            "bankId": 0,
-            "baseClass": "HyEntity2d",
-            "checksum": 2045804103,
-            "errors": 0,
-            "filter": "_hy_",
-            "itemType": "Header",
-            "name": "hy_MusicPlayer.h"
-        },
-        {
-            "assetUUID": "ff796775-bb26-48e8-86bc-34c89df25580",
-            "bankId": 0,
-            "baseClass": "HyEntity2d",
-            "checksum": 976423389,
-            "errors": 0,
-            "filter": "_hy_",
-            "itemType": "Source",
-            "name": "hy_MusicPlayer.cpp"
-        },
-        {
             "assetUUID": "b72bcb1b-c323-4df8-984c-ff6b791c9998",
             "bankId": 0,
             "baseClass": "IHyNetworkClass",

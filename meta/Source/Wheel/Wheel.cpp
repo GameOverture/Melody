@@ -34,8 +34,8 @@ Wheel::SpinEnt::SpinEnt(const WheelInit &initStructRef) :
 		ChildAppend(*pNewWedge);
 		pNewWedge->rot.Set(fRotationOffset);
 
-		pNewWedge->GetLeaf().SetState(initStructRef.pWedgeWeightTable->GetEntryByIndex(i)->m_iType);
-		pNewWedge->GetLeaf().SetAnimPause(true);
+		pNewWedge->GetFusedNode().SetState(initStructRef.pWedgeWeightTable->GetEntryByIndex(i)->m_iType);
+		pNewWedge->GetFusedNode().SetAnimPause(true);
 
 		if(initStructRef.wedgeDecal.IsUsed())
 		{
@@ -208,7 +208,7 @@ std::vector<HyText2d *> Wheel::SetTextOnWedge(uint32 uiWedgeIndex, std::string s
 
 	std::vector<HyText2d *> newTextList;
 
-	float fPosY = m_SpinEnt.m_WedgeList[uiWedgeIndex]->GetLeaf().GetFrameHeight() - fEdgeMargin;
+	float fPosY = m_SpinEnt.m_WedgeList[uiWedgeIndex]->GetFusedNode().GetFrameHeight() - fEdgeMargin;
 	float fScale = 1.0f;
 
 	uint32 uiNumTexts = bVerticalText ? static_cast<uint32>(sText.size()) : 1;
@@ -547,7 +547,7 @@ void Wheel::Slam()
 			m_fTickerPos += fSpinOffset;
 			if(m_fTickerPos > m_fTickerNotchHalfWidthDegs)
 			{
-				m_Ticker.GetLeaf().rot.Set(0.0f);
+				m_Ticker.GetFusedNode().rot.Set(0.0f);
 
 				m_fTickerPos = 0.0f;
 				m_eTickerState = TICKERSTATE_Idle;
@@ -559,9 +559,9 @@ void Wheel::Slam()
 					GetSndBank()->Play(m_iSndID_Ticker);
 #endif
 
-				if(m_Ticker.GetLeaf().rot.Get() < m_fTickerTiltAmtDeg * 0.5f)
-					m_Ticker.GetLeaf().rot.Set(m_fTickerTiltAmtDeg * 0.5f);
-				m_Ticker.GetLeaf().rot.Tween(0.0f, 0.25f, HyTween::BounceOut);
+				if(m_Ticker.GetFusedNode().rot.Get() < m_fTickerTiltAmtDeg * 0.5f)
+					m_Ticker.GetFusedNode().rot.Set(m_fTickerTiltAmtDeg * 0.5f);
+				m_Ticker.GetFusedNode().rot.Tween(0.0f, 0.25f, HyTween::BounceOut);
 
 				m_fTickerPos = 0.0f;
 				m_eTickerState = TICKERSTATE_Idle;
@@ -572,11 +572,11 @@ void Wheel::Slam()
 			else
 			{
 				if(m_fTickerPos >= 0.0f)
-					m_Ticker.GetLeaf().rot.Set((m_fTickerTiltAmtDeg * 0.8f) * (1.0f - (m_fTickerPos / m_fTickerNotchHalfWidthDegs)));
+					m_Ticker.GetFusedNode().rot.Set((m_fTickerTiltAmtDeg * 0.8f) * (1.0f - (m_fTickerPos / m_fTickerNotchHalfWidthDegs)));
 				else if(m_fTickerPos >= -m_fTickerNotchHalfWidthDegs)
-					m_Ticker.GetLeaf().rot.Set((m_fTickerTiltAmtDeg * 0.8f) + ((m_fTickerTiltAmtDeg * 0.1f) * (abs(m_fTickerPos) / m_fTickerNotchHalfWidthDegs)));
+					m_Ticker.GetFusedNode().rot.Set((m_fTickerTiltAmtDeg * 0.8f) + ((m_fTickerTiltAmtDeg * 0.1f) * (abs(m_fTickerPos) / m_fTickerNotchHalfWidthDegs)));
 				else if(m_fTickerPos >= -(m_fTickerLengthDeg + m_fTickerNotchHalfWidthDegs))
-					m_Ticker.GetLeaf().rot.Set((m_fTickerTiltAmtDeg * 0.9f) + ((m_fTickerTiltAmtDeg * 0.1f) * (abs(m_fTickerPos + m_fTickerNotchHalfWidthDegs) / m_fTickerLengthDeg)));
+					m_Ticker.GetFusedNode().rot.Set((m_fTickerTiltAmtDeg * 0.9f) + ((m_fTickerTiltAmtDeg * 0.1f) * (abs(m_fTickerPos + m_fTickerNotchHalfWidthDegs) / m_fTickerLengthDeg)));
 			}
 		}
 		break; }
@@ -588,7 +588,7 @@ void Wheel::Slam()
 			m_fTickerPos += fSpinOffset;
 			if(m_fTickerPos < -m_fTickerNotchHalfWidthDegs)
 			{
-				m_Ticker.GetLeaf().rot.Set(0.0f);
+				m_Ticker.GetFusedNode().rot.Set(0.0f);
 
 				m_fTickerPos = 0.0f;
 				m_eTickerState = TICKERSTATE_Idle;
@@ -600,9 +600,9 @@ void Wheel::Slam()
 					GetSndBank()->Play(m_iSndID_Ticker);
 #endif
 
-				if(m_Ticker.GetLeaf().rot.Get() > m_fTickerTiltAmtDeg * -0.5f)
-					m_Ticker.GetLeaf().rot.Set(m_fTickerTiltAmtDeg * -0.5f);
-				m_Ticker.GetLeaf().rot.Tween(0.0f, 0.25f, HyTween::BounceOut);
+				if(m_Ticker.GetFusedNode().rot.Get() > m_fTickerTiltAmtDeg * -0.5f)
+					m_Ticker.GetFusedNode().rot.Set(m_fTickerTiltAmtDeg * -0.5f);
+				m_Ticker.GetFusedNode().rot.Tween(0.0f, 0.25f, HyTween::BounceOut);
 
 				m_fTickerPos = 0.0f;
 				m_eTickerState = TICKERSTATE_Idle;
@@ -613,11 +613,11 @@ void Wheel::Slam()
 			else
 			{
 				if(m_fTickerPos <= 0.0f)
-					m_Ticker.GetLeaf().rot.Set((-m_fTickerTiltAmtDeg * 0.8f) * (1.0f - (abs(m_fTickerPos) / m_fTickerNotchHalfWidthDegs)));
+					m_Ticker.GetFusedNode().rot.Set((-m_fTickerTiltAmtDeg * 0.8f) * (1.0f - (abs(m_fTickerPos) / m_fTickerNotchHalfWidthDegs)));
 				else if(m_fTickerPos <= m_fTickerNotchHalfWidthDegs)
-					m_Ticker.GetLeaf().rot.Set((-m_fTickerTiltAmtDeg * 0.8f) + ((-m_fTickerTiltAmtDeg * 0.1f) * (m_fTickerPos / m_fTickerNotchHalfWidthDegs)));
+					m_Ticker.GetFusedNode().rot.Set((-m_fTickerTiltAmtDeg * 0.8f) + ((-m_fTickerTiltAmtDeg * 0.1f) * (m_fTickerPos / m_fTickerNotchHalfWidthDegs)));
 				else if(m_fTickerPos <= (m_fTickerLengthDeg + m_fTickerNotchHalfWidthDegs))
-					m_Ticker.GetLeaf().rot.Set((-m_fTickerTiltAmtDeg * 0.9f) + ((-m_fTickerTiltAmtDeg * 0.1f) * ((m_fTickerPos - m_fTickerNotchHalfWidthDegs) / m_fTickerLengthDeg)));
+					m_Ticker.GetFusedNode().rot.Set((-m_fTickerTiltAmtDeg * 0.9f) + ((-m_fTickerTiltAmtDeg * 0.1f) * ((m_fTickerPos - m_fTickerNotchHalfWidthDegs) / m_fTickerLengthDeg)));
 			}
 		}
 		break; }

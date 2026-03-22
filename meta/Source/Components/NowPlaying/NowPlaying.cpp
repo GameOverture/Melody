@@ -84,10 +84,10 @@ NowPlaying::NowPlaying(HyEntity2d *pParent /*= nullptr*/) :
 			if(pButton->IsChecked())
 			{
 				m_TimeEnt.SetVisible(true);
-				m_TimeEnt.pos.Tween(0, 0, 1.25f, HyTween::QuadOut);
+				m_TimeEnt.pos.Tween(m_TimeLabel.GetWidth(0.5f), m_TimeLabel.GetHeight(0.5f), 1.25f, HyTween::QuadOut);
 			}
 			else
-				m_TimeEnt.pos.Tween(0, -150, 1.25f, HyTween::QuadOut, 0.0f, [](IHyNode *pThis) { pThis->SetVisible(false); });
+				m_TimeEnt.pos.Tween(m_TimeLabel.GetWidth(0.5f), -150.0f, 1.25f, HyTween::QuadOut, 0.0f, [](IHyNode *pThis) { pThis->SetVisible(false); });
 		});
 	m_CtrlPanel_StopwatchResetBtn.SetText("0");
 	m_CtrlPanel_StopwatchResetBtn.SetButtonClickedCallback(
@@ -156,11 +156,11 @@ NowPlaying::NowPlaying(HyEntity2d *pParent /*= nullptr*/) :
 	m_PubText.SetAlignment(HYALIGN_Left);
 	m_PubText.SetAsBox(true, true);
 
-	m_TimeEnt.SetVisible(false);
-	m_TimeEnt.pos.Set(0, -150);
 	m_GameTimeText.SetText("Elapsed Game Time:");
 	m_GameTimeText.pos.Set(5, 40);
 	m_GameTimeText.SetAsScaleBox(LIVESPLIT_WIDTH / 2, 55);
+	m_TimeEnt.SetVisible(false);
+	m_TimeEnt.pos.Set(m_TimeLabel.GetWidth(0.5f), -150.0f);
 
 	// Load previous settings
 	SetGame(Compositorium::Get()->GetSetting("NowPlaying"));
@@ -298,17 +298,17 @@ void NowPlaying::ShowGameTime(bool bShow)
 			m_PubText.SetText(gameObj.GetPublisher());
 
 			m_Details.ClearItems();
-			bool bFirstDetail = true;
+			//bool bFirstDetail = true;
 			uint32 uiSpacingAmt = 0;
 			if(m_ReleaseText.GetUtf8String().empty() == false)
 			{
-				if(bFirstDetail == false)
-					m_Details.InsertSpacer(HYSIZEPOLICY_Fixed, uiSpacingAmt);
-				bFirstDetail = false;
+				//if(bFirstDetail == false)
+				//	m_Details.InsertSpacer(HYSIZEPOLICY_Fixed, uiSpacingAmt);
+				//bFirstDetail = false;
 				
 				HyLayoutHandle hRow = m_Details.InsertLayout(HYORIENT_Horizontal);
 				m_Details.InsertWidget(m_ReleaseLabel, hRow);
-				m_Details.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
+				//m_Details.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
 				m_Details.InsertWidget(m_ReleaseText);
 
 				m_ReleaseLabel.SetVisible(true);
@@ -321,13 +321,13 @@ void NowPlaying::ShowGameTime(bool bShow)
 			}
 			if(m_DevText.GetUtf8String().empty() == false)
 			{
-				if(bFirstDetail == false)
-					m_Details.InsertSpacer(HYSIZEPOLICY_Fixed, uiSpacingAmt);
-				bFirstDetail = false;
+				//if(bFirstDetail == false)
+				//	m_Details.InsertSpacer(HYSIZEPOLICY_Fixed, uiSpacingAmt);
+				//bFirstDetail = false;
 
 				HyLayoutHandle hRow = m_Details.InsertLayout(HYORIENT_Horizontal);
 				m_Details.InsertWidget(m_DevLabel, hRow);
-				m_Details.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
+				//m_Details.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
 				m_Details.InsertWidget(m_DevText);
 
 				m_DevLabel.SetVisible(true);
@@ -340,13 +340,13 @@ void NowPlaying::ShowGameTime(bool bShow)
 			}
 			if(m_PubText.GetUtf8String().empty() == false)
 			{
-				if(bFirstDetail == false)
-					m_Details.InsertSpacer(HYSIZEPOLICY_Fixed, uiSpacingAmt);
-				bFirstDetail = false;
+				//if(bFirstDetail == false)
+				//	m_Details.InsertSpacer(HYSIZEPOLICY_Fixed, uiSpacingAmt);
+				//bFirstDetail = false;
 
 				HyLayoutHandle hRow = m_Details.InsertLayout(HYORIENT_Horizontal);
 				m_Details.InsertWidget(m_PubLabel, hRow);
-				m_Details.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
+				//m_Details.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
 				m_Details.InsertWidget(m_PubText);
 
 				m_PubLabel.SetVisible(true);
@@ -375,7 +375,8 @@ void NowPlaying::ShowGameTime(bool bShow)
 					glm::ivec2((LIVESPLIT_WIDTH / 3) * 2, NOWPLAYING_HEIGHT),
 					glm::vec2(LIVESPLIT_WIDTH / 2 + ((LIVESPLIT_WIDTH / 3) / 2), LIVESPLIT_HEIGHT));
 
-				m_NowPlayingText.pos.Set(m_Logo.pos.GetX() - (LIVESPLIT_WIDTH / 3) + NOWPLAYING_BOUNCE_AMT, LIVESPLIT_HEIGHT - (NOWPLAYING_HEIGHT * 0.5f));
+				m_NowPlayingText.pos.Set(m_Logo.pos);
+				m_NowPlayingText.pos.Offset(-(LIVESPLIT_WIDTH / 3.0f), 0.0f);
 				m_GameNameText.SetVisible(false);
 			}
 			else
@@ -416,25 +417,27 @@ void NowPlaying::ShowGameTime(bool bShow)
 			}
 			if(m_DescriptionText.GetHeight() > NOWPLAYING_DESC_HEIGHT)
 			{
-				m_DescriptionArea.SetAsBox(LIVESPLIT_WIDTH, NOWPLAYING_DESC_HEIGHT + m_DescriptionText.GetLineBreakHeight());
-				m_DescriptionArea.pos.Set(0, NOWPLAYING_TIMER_HEIGHT);
+				m_DescriptionArea.SetAsBox(0, LIVESPLIT_WIDTH, NOWPLAYING_DESC_HEIGHT + m_DescriptionText.GetLineBreakHeight(), 0.0f);
+				m_DescriptionArea.pos.Set(0.0f + m_DescriptionArea.GetWidth(0.5f), NOWPLAYING_TIMER_HEIGHT + m_DescriptionArea.GetHeight(0.5f));
 				
 				m_DescriptionText.SetScissor(HyRect(0.0f, -m_DescriptionArea.GetHeight() + m_DescriptionText.GetLineBreakHeight(), NOWPLAYING_DESC_WIDTH, m_DescriptionArea.GetHeight()));
 			}
 			else
 			{
-				float fDetailsHeight = m_Details.GetSize().y - m_PubText.pos.GetY();
+				float fDetailsHeight = m_Details.GetHeight() - m_PubText.pos.GetY();
 				float fDescender = fabs(m_DescriptionText.GetLineDescender());
 				if(m_DescriptionText.GetHeight() + fDescender < fDetailsHeight)
 				{
-					m_DescriptionArea.SetAsBox(LIVESPLIT_WIDTH, fDetailsHeight);
+					m_DescriptionArea.SetAsBox(0, LIVESPLIT_WIDTH, fDetailsHeight, 0.0f);
 					m_DescriptionArea.pos.Set(0.0f, m_DescriptionText.pos.GetY() - fDetailsHeight + m_DescriptionText.GetLineBreakHeight());
 				}
 				else
 				{
-					m_DescriptionArea.SetAsBox(LIVESPLIT_WIDTH, m_DescriptionText.GetHeight() + fDescender);
+					m_DescriptionArea.SetAsBox(0, LIVESPLIT_WIDTH, m_DescriptionText.GetHeight() + fDescender, 0.0f);
 					m_DescriptionArea.pos.Set(0.0f, m_DescriptionText.pos.GetY() - m_DescriptionText.GetHeight() + m_DescriptionText.GetLineBreakHeight() - fDescender);
 				}
+
+				m_DescriptionArea.pos.Offset(m_DescriptionArea.GetWidth(0.5f), m_DescriptionArea.GetHeight(0.5f));
 
 				m_DescriptionText.ClearScissor(true);
 			}

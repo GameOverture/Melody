@@ -53,7 +53,7 @@ MessageCycle::MessageCycle(HyEntity2d *pParent /*= nullptr*/) :
 	m_CtrlPanel_radLong.SetChecked(true);
 
 	m_GrayBg.UseWindowCoordinates();
-	m_GrayBg.SetAsBox(1920, 208);
+	m_GrayBg.SetAsBox(0, 1920, 208, 0.0f);
 	m_GrayBg.SetTint(HyColor(0x1F1F1F));
 	m_GrayBg.SetVisible(false);
 

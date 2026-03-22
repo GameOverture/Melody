@@ -3,7 +3,7 @@
 
 #include "pch.h"
 
-class EditPage : public HyUiContainer
+class EditPage : public HyGui
 {
 	HyTexturedQuad2d *	m_pBoxartRef;
 

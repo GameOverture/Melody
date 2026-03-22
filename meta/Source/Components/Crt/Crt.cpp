@@ -106,14 +106,13 @@ Crt::Crt(HyEntity2d *pParent /*= nullptr*/) :
 	m_VolumeText.SetVisible(false);
 	for(int i = 0; i < NUM_VOLUME_BARS; ++i)
 	{
-		m_VolumeBar[i].SetVisible(false);
-		m_VolumeBar[i].SetTint(HyColor::Green);
-		m_VolumeBar[i].SetAsBox(24.0f, 48.0f);
-		m_VolumeBar[i].pos.Set(iScreenX + 100 + (i * 32), iScreenY + 100);
-		m_VolumeBar[i].SetDisplayOrder(DISPLAYORDER_CrtVolume);
-		
-		ChildAppend(m_VolumeBar[i]);
+		m_VolumeBars.SetLayerVisible(i, false);
+		m_VolumeBars.SetLayerColor(i, HyColor::Green);
+		m_VolumeBars.SetAsBox(i, 24.0f, 48.0f, 0.0f);
+		m_VolumeBars.SetLayerOffset(i, iScreenX + 100 + (i * 32), iScreenY + 100);
+		m_VolumeBars.SetDisplayOrder(DISPLAYORDER_CrtVolume);
 	}
+	ChildAppend(m_VolumeBars);
 
 	m_ChannelText.Init("CRT", "Volume", this);
 	m_ChannelText.SetText("CH 01");
@@ -215,11 +214,11 @@ void Crt::SetVolume(float fVolume)
 	{
 		if(fVolume >= 0.05f)
 		{
-			m_VolumeBar[i].SetVisible(true);
+			m_VolumeBars.SetLayerVisible(i, true);
 			fVolume -= 0.05f;
 		}
 		else
-			m_VolumeBar[i].SetVisible(false);
+			m_VolumeBars.SetLayerVisible(i, false);
 	}
 
 	m_fVolumeShowTime = 2.0f;
@@ -260,7 +259,7 @@ void Crt::SetVolume(float fVolume)
 			m_fVolumeShowTime = 0.0f;
 			m_VolumeText.SetVisible(false);
 			for(int i = 0; i < NUM_VOLUME_BARS; ++i)
-				m_VolumeBar[i].SetVisible(false);
+				m_VolumeBars.SetLayerVisible(i, false);
 		}
 	}
 
