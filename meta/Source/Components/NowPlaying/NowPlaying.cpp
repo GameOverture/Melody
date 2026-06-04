@@ -376,7 +376,8 @@ void NowPlaying::ShowGameTime(bool bShow)
 					glm::vec2(LIVESPLIT_WIDTH / 2 + ((LIVESPLIT_WIDTH / 3) / 2), LIVESPLIT_HEIGHT));
 
 				m_NowPlayingText.pos.Set(m_Logo.pos);
-				m_NowPlayingText.pos.Offset(-(LIVESPLIT_WIDTH / 3.0f), 0.0f);
+				m_NowPlayingText.pos.Offset(-m_NowPlayingText.GetWidth(0.5f), 0.0f);
+				m_NowPlayingText.pos.Offset(-((m_Logo.GetWidth() * m_Logo.scale.X()) * 0.5f), 0.0f);
 				m_GameNameText.SetVisible(false);
 			}
 			else
@@ -395,8 +396,10 @@ void NowPlaying::ShowGameTime(bool bShow)
 					m_GameNameText.pos.Set((LIVESPLIT_WIDTH - fUsedWidth) * 0.5f, static_cast<float>(LIVESPLIT_HEIGHT));
 					m_GameNameText.pos.Offset(m_NowPlayingText.GetWidth() + NOWPLAYING_BOUNCE_AMT, -15.0f);
 				}
+				m_GameNameText.pos.Offset(m_GameNameText.GetWidth(0.5f), 0.0f);
 				const int iPadding = 10;
-				m_NowPlayingText.pos.Set(m_GameNameText.pos.GetX() - (LIVESPLIT_WIDTH / 3) + NOWPLAYING_BOUNCE_AMT - iPadding, LIVESPLIT_HEIGHT - (NOWPLAYING_HEIGHT * 0.5f));
+				m_NowPlayingText.pos.Set(m_GameNameText.pos.GetX() - m_GameNameText.GetWidth(0.5f), LIVESPLIT_HEIGHT - (NOWPLAYING_HEIGHT * 0.5f));
+				m_NowPlayingText.pos.Offset(-m_NowPlayingText.GetWidth(0.5f), 0.0f);
 			}
 
 			for(int i = 0; i < m_SlideShowList.size(); ++i)
