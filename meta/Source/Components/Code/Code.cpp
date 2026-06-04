@@ -33,6 +33,7 @@ Code::Code(HyEntity2d *pParent /*= nullptr*/) :
 	m_LowerThirdBg.SetAsBox(0, SCREEN_WIDTH, LOWERTHIRD_HEIGHT, 0.0f);
 	m_LowerThirdBg.SetTint(HyColor(31, 31, 31));
 	m_LowerThirdBg.SetDisplayOrder(DISPLAYORDER_LowerThird);
+	m_LowerThirdBg.pos.Set(m_LowerThirdBg.GetWidth(0.5f), m_LowerThirdBg.GetHeight(0.5f));
 
 	//m_CameraBg.SetAsBox(314, 515);
 	//m_CameraBg.SetTint(HyColor(31, 31, 31));
