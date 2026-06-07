@@ -1590,10 +1590,10 @@
                     "frames": [
                         {
                             "bankId": 0,
-                            "checksum": 37165363,
+                            "checksum": 3683005363,
                             "duration": 0.03333333507180214,
                             "offsetX": 2,
-                            "offsetY": 0
+                            "offsetY": 1
                         }
                     ],
                     "loop": false,
