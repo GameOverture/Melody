@@ -2,6 +2,7 @@
 #include "InputViewer.h"
 #include "CtrlPanel.h"
 #include "StreetFighter.h"
+#include "GuiltyGear.h"
 #include "NES.h"
 #include "StarCitizen.h"
 
@@ -31,6 +32,7 @@ InputViewer::InputViewer(HyEntity2d *pParent /*= nullptr*/) :
 		m_BtnGrp.AddButton(m_CtrlPanel_radController[i]);
 	} 
 	m_CtrlPanel_radController[INPUTCONTROLLER_StreetFighter].SetChecked(true);
+	m_CtrlPanel_radController[INPUTCONTROLLER_GuiltyGear].SetText("GG");
 	m_CtrlPanel_radController[INPUTCONTROLLER_StarCitizen].SetText("SC");
 	m_CtrlPanel_radController[INPUTCONTROLLER_NES].SetText("NES");
 	m_CtrlPanel_radController[INPUTCONTROLLER_StreetFighter].SetText("SF");
@@ -66,6 +68,10 @@ InputViewer::InputViewer(HyEntity2d *pParent /*= nullptr*/) :
 		{
 		case INPUTCONTROLLER_StreetFighter:
 			m_Controllers[i] = HY_NEW StreetFighter(this);
+			break;
+
+		case INPUTCONTROLLER_GuiltyGear:
+			m_Controllers[i] = HY_NEW GuiltyGear(this);
 			break;
 
 		case INPUTCONTROLLER_NES:

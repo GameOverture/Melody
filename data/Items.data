@@ -1280,6 +1280,115 @@
                 }
             ]
         },
+        "InputViewer/GuiltyGear/Buttons": {
+            "stateArray": [
+                {
+                    "bounce": false,
+                    "duration": 0.03333333507180214,
+                    "frames": [
+                        {
+                            "bankId": 0,
+                            "checksum": 22526862,
+                            "duration": 0.03333333507180214,
+                            "offsetX": -34,
+                            "offsetY": -34
+                        }
+                    ],
+                    "loop": false,
+                    "reverse": false
+                },
+                {
+                    "bounce": false,
+                    "duration": 0.03333333507180214,
+                    "frames": [
+                        {
+                            "bankId": 0,
+                            "checksum": 403389042,
+                            "duration": 0.03333333507180214,
+                            "offsetX": -34,
+                            "offsetY": -34
+                        }
+                    ],
+                    "loop": false,
+                    "reverse": false
+                },
+                {
+                    "bounce": false,
+                    "duration": 0.03333333507180214,
+                    "frames": [
+                        {
+                            "bankId": 0,
+                            "checksum": 3050763064,
+                            "duration": 0.03333333507180214,
+                            "offsetX": -34,
+                            "offsetY": -34
+                        }
+                    ],
+                    "loop": false,
+                    "reverse": false
+                },
+                {
+                    "bounce": false,
+                    "duration": 0.03333333507180214,
+                    "frames": [
+                        {
+                            "bankId": 0,
+                            "checksum": 1409012966,
+                            "duration": 0.03333333507180214,
+                            "offsetX": -34,
+                            "offsetY": -34
+                        }
+                    ],
+                    "loop": false,
+                    "reverse": false
+                },
+                {
+                    "bounce": false,
+                    "duration": 0.03333333507180214,
+                    "frames": [
+                        {
+                            "bankId": 0,
+                            "checksum": 2078240998,
+                            "duration": 0.03333333507180214,
+                            "offsetX": -34,
+                            "offsetY": -33
+                        }
+                    ],
+                    "loop": false,
+                    "reverse": false
+                },
+                {
+                    "bounce": false,
+                    "duration": 0.03333333507180214,
+                    "frames": [
+                        {
+                            "bankId": 0,
+                            "checksum": 4153240181,
+                            "duration": 0.03333333507180214,
+                            "offsetX": -34,
+                            "offsetY": -34
+                        }
+                    ],
+                    "loop": false,
+                    "reverse": false
+                },
+                {
+                    "bounce": false,
+                    "duration": 0.03333333507180214,
+                    "frames": [
+                        {
+                            "bankId": 0,
+                            "checksum": 2081101747,
+                            "duration": 0.03333333507180214,
+                            "offsetX": -34,
+                            "offsetY": -35
+                        }
+                    ],
+                    "loop": false,
+                    "reverse": false
+                }
+            ]
+        },
         "InputViewer/NES/Buttons": {
             "stateArray": [
                 {

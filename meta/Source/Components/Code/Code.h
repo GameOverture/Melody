@@ -7,6 +7,7 @@
 class Code : public IComponent
 {
 	//HyPrimitive2d			m_CameraBg;
+	HyCheckBox				m_CtrlPanel_LowerThird;
 	HyPrimitive2d			m_LowerThirdBg;
 
 public:

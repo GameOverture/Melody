@@ -77,7 +77,9 @@ set(GAME_SRCFILES
 	"Components/GameBrowser/ConsolePage.cpp"
 	"Components/GameBrowser/ConsolePage.h"
 	"Twitch/EventSub.cpp"
-	"Twitch/EventSub.h")
+	"Twitch/EventSub.h"
+	"Components/InputViewer/Controllers/GuiltyGear.cpp"
+	"Components/InputViewer/Controllers/GuiltyGear.h")
 
 set(GAME_INCLUDE_DIRS "")
 list(APPEND GAME_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}")

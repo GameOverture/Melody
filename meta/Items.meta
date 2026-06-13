@@ -457,6 +457,62 @@
                 }
             ]
         },
+        "InputViewer/GuiltyGear/Buttons": {
+            "CameraPos": [
+                0,
+                0
+            ],
+            "CameraZoom": 1,
+            "UUID": "0a23a608-2b82-4b62-85f2-e7db6cecf920",
+            "guideHorzArray": [
+            ],
+            "guideVertArray": [
+            ],
+            "stateArray": [
+                {
+                    "assetUUIDs": [
+                        "77dd6d09-e6df-49dd-95c2-24aedd885e56"
+                    ],
+                    "name": ""
+                },
+                {
+                    "assetUUIDs": [
+                        "d28e3618-b2ac-42f6-920d-15974b9cef03"
+                    ],
+                    "name": ""
+                },
+                {
+                    "assetUUIDs": [
+                        "ecc501e9-8f81-4664-b441-fb66de1c0992"
+                    ],
+                    "name": ""
+                },
+                {
+                    "assetUUIDs": [
+                        "bab4a23b-cd1f-4499-b80b-2da519952692"
+                    ],
+                    "name": ""
+                },
+                {
+                    "assetUUIDs": [
+                        "11154ba3-b372-403c-af96-41a5f06f0e56"
+                    ],
+                    "name": ""
+                },
+                {
+                    "assetUUIDs": [
+                        "ef6bf6c0-7338-496c-95cf-f3f6b7721339"
+                    ],
+                    "name": ""
+                },
+                {
+                    "assetUUIDs": [
+                        "fe0ffa6f-c577-4513-97ed-2152cc2b2252"
+                    ],
+                    "name": ""
+                }
+            ]
+        },
         "InputViewer/NES/Buttons": {
             "CameraPos": [
                 0,

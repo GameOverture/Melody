@@ -710,6 +710,26 @@
             "filter": "Twitch",
             "itemType": "Header",
             "name": "EventSub.h"
+        },
+        {
+            "assetUUID": "f4f8f936-81e3-46d7-8433-f9cadee6c244",
+            "bankId": 0,
+            "baseClass": "IController",
+            "checksum": 3854275005,
+            "errors": 0,
+            "filter": "Components/InputViewer/Controllers",
+            "itemType": "Source",
+            "name": "GuiltyGear.cpp"
+        },
+        {
+            "assetUUID": "c08a99ef-ecb1-4de4-99ce-4f84aa982403",
+            "bankId": 0,
+            "baseClass": "IController",
+            "checksum": 3062358272,
+            "errors": 0,
+            "filter": "Components/InputViewer/Controllers",
+            "itemType": "Header",
+            "name": "GuiltyGear.h"
         }
     ],
     "banks": [

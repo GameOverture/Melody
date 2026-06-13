@@ -6,7 +6,7 @@
 
 Code::Code(HyEntity2d *pParent /*= nullptr*/) :
 	IComponent(COMPONENT_Code, pParent),
-	//m_CameraBg(this),
+	m_CtrlPanel_LowerThird(HyUiPanelInit(25, 25, 2), HyUiTextInit(HyNodePath("", "CtrlPanel"))),
 	m_LowerThirdBg(this)
 {
 	m_CtrlPanel_CheckBox.SetText("Code");
@@ -30,6 +30,16 @@ Code::Code(HyEntity2d *pParent /*= nullptr*/) :
 			}
 		});
 
+	m_CtrlPanel_LowerThird.SetText("Lower Third");
+	m_CtrlPanel_LowerThird.SetButtonClickedCallback(
+		[this](HyButton *pButton)
+		{
+			if(m_CtrlPanel_LowerThird.IsChecked())
+				m_LowerThirdBg.alpha.Tween(0.0f, 0.5f, HyTween::Linear);
+			else
+				m_LowerThirdBg.alpha.Tween(1.0f, 0.5f, HyTween::Linear);
+		});
+
 	m_LowerThirdBg.SetAsBox(0, SCREEN_WIDTH, LOWERTHIRD_HEIGHT, 0.0f);
 	m_LowerThirdBg.SetTint(HyColor(31, 31, 31));
 	m_LowerThirdBg.SetDisplayOrder(DISPLAYORDER_LowerThird);
@@ -50,6 +60,7 @@ Code::Code(HyEntity2d *pParent /*= nullptr*/) :
 {
 	HyLayoutHandle hRow = ctrlPanel.InsertLayout(HYORIENT_Horizontal);
 	ctrlPanel.InsertWidget(m_CtrlPanel_CheckBox, hRow);
+	ctrlPanel.InsertWidget(m_CtrlPanel_LowerThird, hRow);
 	ctrlPanel.InsertSpacer(HYSIZEPOLICY_Expanding, 0, hRow);
 
 	ctrlPanel.InsertDividerLine();

@@ -118,6 +118,7 @@ enum InputAction
 enum InputController
 {
 	INPUTCONTROLLER_StreetFighter = 0,
+	INPUTCONTROLLER_GuiltyGear,
 	INPUTCONTROLLER_NES,
 	INPUTCONTROLLER_StarCitizen,
 

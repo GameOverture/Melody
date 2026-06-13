@@ -19,12 +19,12 @@ StreetFighter::StreetFighter(HyEntity2d *pParent /*= nullptr*/) :
 {
 	m_DriveImpact.SetAsBox(0, 75.0f, 200.0f, 0.0f);
 	m_DriveImpact.SetTint(HyColor::Red);
-	m_DriveImpact.pos.Set(305.0f, -100.0f);
+	m_DriveImpact.pos.Set(342.0f, 0.0f);
 	m_DriveImpact.SetVisible(false);
 
 	m_DriveParry.SetAsBox(0, 75.0f, 200.0f, 0.0f);
 	m_DriveParry.SetTint(HyColor::Green);
-	m_DriveParry.pos.Set(205.0f, -100.0f);
+	m_DriveParry.pos.Set(242.0f, 0.0f);
 	m_DriveParry.SetVisible(false);
 
 	m_ButtonLP.pos.Set(142.0f, 50.0f);
