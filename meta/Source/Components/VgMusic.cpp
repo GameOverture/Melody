@@ -20,7 +20,7 @@ VgMusic::VgMusic(HyEntity2d *pParent /*= nullptr*/) :
 		[this](HyCheckBox *pThis)
 		{
 			if(pThis->IsChecked() && m_MusicTrackList.empty())
-				m_MusicTrackList = Compositorium::Get()->GetMusicPlayList(CONSOLE_NES | CONSOLE_SNES | CONSOLE_Genesis | CONSOLE_N64 | CONSOLE_Dreamcast);
+				m_MusicTrackList = Compositorium::Get()->GetMusicPlayList(CONSOLE_NES | CONSOLE_SNES | CONSOLE_Genesis | CONSOLE_N64 | CONSOLE_Dreamcast | CONSOLE_PS1 | CONSOLE_PS2);
 		});
 
 	m_CtrlPanel_PrevBtn.SetAsBox(HYALIGN_Center);

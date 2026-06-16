@@ -388,17 +388,17 @@ void NowPlaying::ShowGameTime(bool bShow)
 				if(m_GameNameText.GetWidth() > (LIVESPLIT_WIDTH - (m_NowPlayingText.GetWidth() + NOWPLAYING_BOUNCE_AMT)))
 				{
 					m_GameNameText.SetAsScaleBox(LIVESPLIT_WIDTH - (m_NowPlayingText.GetWidth() + NOWPLAYING_BOUNCE_AMT), NOWPLAYING_HEIGHT);
-					m_GameNameText.pos.Set(m_NowPlayingText.GetWidth() + NOWPLAYING_BOUNCE_AMT, LIVESPLIT_HEIGHT - (NOWPLAYING_HEIGHT * 0.5f));
+					m_GameNameText.pos.Set(m_NowPlayingText.GetWidth() + NOWPLAYING_BOUNCE_AMT, static_cast<float>(LIVESPLIT_HEIGHT));// - (NOWPLAYING_HEIGHT * 0.5f));
 				}
 				else
 				{
 					float fUsedWidth = (m_NowPlayingText.GetWidth() + NOWPLAYING_BOUNCE_AMT) + m_GameNameText.GetWidth();
 					m_GameNameText.pos.Set((LIVESPLIT_WIDTH - fUsedWidth) * 0.5f, static_cast<float>(LIVESPLIT_HEIGHT));
-					m_GameNameText.pos.Offset(m_NowPlayingText.GetWidth() + NOWPLAYING_BOUNCE_AMT, -15.0f);
+					m_GameNameText.pos.Offset(m_NowPlayingText.GetWidth() + NOWPLAYING_BOUNCE_AMT, 0.0f);
 				}
 				m_GameNameText.pos.Offset(m_GameNameText.GetWidth(0.5f), 0.0f);
 				const int iPadding = 10;
-				m_NowPlayingText.pos.Set(m_GameNameText.pos.GetX() - m_GameNameText.GetWidth(0.5f), LIVESPLIT_HEIGHT - (NOWPLAYING_HEIGHT * 0.5f));
+				m_NowPlayingText.pos.Set(m_GameNameText.pos.GetX() - m_GameNameText.GetWidth(0.5f), static_cast<float>(LIVESPLIT_HEIGHT));
 				m_NowPlayingText.pos.Offset(-m_NowPlayingText.GetWidth(0.5f), 0.0f);
 			}
 
