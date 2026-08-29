@@ -1,5 +1,5 @@
 {
-    "$fileVersion": 17,
+    "$fileVersion": 18,
     "banks": [
         {
             "bankId": 0,
@@ -1051,7 +1051,7 @@
                         }
                     ],
                     "height": 4096,
-                    "textureInfo": 262144,
+                    "textureInfo": 537133056,
                     "width": 4096
                 },
                 {
@@ -1527,13 +1527,12 @@
                         }
                     ],
                     "height": 2048,
-                    "textureInfo": 262147,
+                    "textureInfo": 537133059,
                     "width": 4096
                 }
             ]
         }
     ],
     "tileSets": [
-        17
     ]
 }

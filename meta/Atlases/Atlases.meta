@@ -1,5 +1,5 @@
 {
-    "$fileVersion": 17,
+    "$fileVersion": 18,
     "assets": [
         {
             "assetUUID": "e0306643-b171-41f6-829f-6e23840c649d",
@@ -16,7 +16,7 @@
             "name": "frame_00_delay-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 480,
             "x": 2164,
             "y": 2084
@@ -36,7 +36,7 @@
             "name": "frame_01_delay-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 480,
             "x": 2638,
             "y": 1755
@@ -56,7 +56,7 @@
             "name": "frame_02_delay-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 480,
             "x": 0,
             "y": 1816
@@ -76,7 +76,7 @@
             "name": "frame_03_delay-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 480,
             "x": 1198,
             "y": 2084
@@ -96,7 +96,7 @@
             "name": "frame_04_delay-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 480,
             "x": 1189,
             "y": 1811
@@ -116,7 +116,7 @@
             "name": "frame_05_delay-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 480,
             "x": 3130,
             "y": 1982
@@ -136,7 +136,7 @@
             "name": "frame_06_delay-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 480,
             "x": 2155,
             "y": 1811
@@ -156,7 +156,7 @@
             "name": "frame_07_delay-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 480,
             "x": 2647,
             "y": 2028
@@ -176,7 +176,7 @@
             "name": "frame_08_delay-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 480,
             "x": 1672,
             "y": 1811
@@ -196,7 +196,7 @@
             "name": "frame_09_delay-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 480,
             "x": 483,
             "y": 1911
@@ -216,7 +216,7 @@
             "name": "frame_10_delay-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 480,
             "x": 3613,
             "y": 1944
@@ -236,7 +236,7 @@
             "name": "frame_11_delay-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 480,
             "x": 1681,
             "y": 2084
@@ -256,7 +256,7 @@
             "name": "frame_00_delay-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 1191,
             "y": 1083
@@ -276,7 +276,7 @@
             "name": "frame_01_delay-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 3593,
             "y": 1338
@@ -296,7 +296,7 @@
             "name": "frame_02_delay-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 1581,
             "y": 1447
@@ -316,7 +316,7 @@
             "name": "frame_03_delay-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 3090,
             "y": 1391
@@ -336,7 +336,7 @@
             "name": "frame_04_delay-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 688,
             "y": 1083
@@ -356,7 +356,7 @@
             "name": "frame_05_delay-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 2084,
             "y": 1447
@@ -376,7 +376,7 @@
             "name": "frame_06_delay-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 1694,
             "y": 1083
@@ -396,7 +396,7 @@
             "name": "frame_07_delay-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 1078,
             "y": 1447
@@ -416,7 +416,7 @@
             "name": "frame_08_delay-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 2700,
             "y": 1027
@@ -436,7 +436,7 @@
             "name": "frame_09_delay-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 185,
             "y": 1083
@@ -456,7 +456,7 @@
             "name": "frame_10_delay-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 2197,
             "y": 1027
@@ -476,7 +476,7 @@
             "name": "frame_11_delay-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 2587,
             "y": 1391
@@ -496,7 +496,7 @@
             "name": "CrtNob",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 71,
             "x": 992,
             "y": 1847
@@ -516,7 +516,7 @@
             "name": "dancer7_00",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 36,
             "x": 3280,
             "y": 897
@@ -536,7 +536,7 @@
             "name": "dancer7_01",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 41,
             "x": 3272,
             "y": 803
@@ -556,7 +556,7 @@
             "name": "dancer7_02",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 27,
             "x": 3270,
             "y": 1084
@@ -576,7 +576,7 @@
             "name": "dancer7_03",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 40,
             "x": 142,
             "y": 1083
@@ -596,7 +596,7 @@
             "name": "dancer7_04",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 43,
             "x": 3266,
             "y": 991
@@ -616,7 +616,7 @@
             "name": "dancer7_05",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 30,
             "x": 3325,
             "y": 605
@@ -636,7 +636,7 @@
             "name": "dancer7_06",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 41,
             "x": 3228,
             "y": 800
@@ -656,7 +656,7 @@
             "name": "dancer7_07",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 36,
             "x": 3241,
             "y": 897
@@ -676,7 +676,7 @@
             "name": "dancer7_08",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 41,
             "x": 3228,
             "y": 800
@@ -696,7 +696,7 @@
             "name": "dancer7_09",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 33,
             "x": 60,
             "y": 1083
@@ -716,7 +716,7 @@
             "name": "dancer7_10",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 41,
             "x": 3319,
             "y": 897
@@ -736,7 +736,7 @@
             "name": "dancer6_00",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 30,
             "x": 63,
             "y": 1176
@@ -756,7 +756,7 @@
             "name": "dancer6_01",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 34,
             "x": 1032,
             "y": 1758
@@ -776,7 +776,7 @@
             "name": "dancer6_02",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 38,
             "x": 1066,
             "y": 1847
@@ -796,7 +796,7 @@
             "name": "dancer6_03",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 38,
             "x": 3273,
             "y": 1268
@@ -816,7 +816,7 @@
             "name": "dancer6_04",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 28,
             "x": 145,
             "y": 1359
@@ -836,7 +836,7 @@
             "name": "dancer6_05",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 27,
             "x": 3300,
             "y": 1084
@@ -856,7 +856,7 @@
             "name": "dancer6_06",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 34,
             "x": 1152,
             "y": 1987
@@ -876,7 +876,7 @@
             "name": "dancer6_07",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 26,
             "x": 1037,
             "y": 2019
@@ -896,7 +896,7 @@
             "name": "dancer6_08",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 35,
             "x": 966,
             "y": 1935
@@ -916,7 +916,7 @@
             "name": "dancer6_09",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 43,
             "x": 1143,
             "y": 1900
@@ -936,7 +936,7 @@
             "name": "dancer6_10",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 29,
             "x": 64,
             "y": 1539
@@ -956,7 +956,7 @@
             "name": "dancer5_00",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 34,
             "x": 1039,
             "y": 2101
@@ -976,7 +976,7 @@
             "name": "dancer5_01",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 30,
             "x": 1006,
             "y": 2105
@@ -996,7 +996,7 @@
             "name": "dancer5_02",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 28,
             "x": 1135,
             "y": 2152
@@ -1016,7 +1016,7 @@
             "name": "dancer5_03",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 32,
             "x": 1004,
             "y": 1935
@@ -1036,7 +1036,7 @@
             "name": "dancer5_04",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 34,
             "x": 966,
             "y": 2022
@@ -1056,7 +1056,7 @@
             "name": "dancer5_05",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 25,
             "x": 1066,
             "y": 2019
@@ -1076,7 +1076,7 @@
             "name": "dancer5_06",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 29,
             "x": 974,
             "y": 2105
@@ -1096,7 +1096,7 @@
             "name": "dancer5_07",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 29,
             "x": 1166,
             "y": 2149
@@ -1116,7 +1116,7 @@
             "name": "dancer5_08",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 32,
             "x": 1039,
             "y": 1935
@@ -1136,7 +1136,7 @@
             "name": "dancer5_09",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 34,
             "x": 1115,
             "y": 1987
@@ -1156,7 +1156,7 @@
             "name": "dancer5_10",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 25,
             "x": 1115,
             "y": 2070
@@ -1176,7 +1176,7 @@
             "name": "dancer4_00",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 44,
             "x": 3316,
             "y": 803
@@ -1196,7 +1196,7 @@
             "name": "dancer4_01",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 52,
             "x": 9,
             "y": 1539
@@ -1216,7 +1216,7 @@
             "name": "dancer4_02",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 47,
             "x": 3203,
             "y": 1303
@@ -1236,7 +1236,7 @@
             "name": "dancer4_03",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 33,
             "x": 96,
             "y": 1083
@@ -1256,7 +1256,7 @@
             "name": "dancer4_04",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 37,
             "x": 3203,
             "y": 1120
@@ -1276,7 +1276,7 @@
             "name": "dancer4_05",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 46,
             "x": 3314,
             "y": 1268
@@ -1296,7 +1296,7 @@
             "name": "dancer4_06",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 36,
             "x": 1032,
             "y": 1669
@@ -1316,7 +1316,7 @@
             "name": "dancer4_07",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 30,
             "x": 3330,
             "y": 1084
@@ -1336,7 +1336,7 @@
             "name": "dancer4_08",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 25,
             "x": 96,
             "y": 1176
@@ -1356,7 +1356,7 @@
             "name": "dancer4_09",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 31,
             "x": 26,
             "y": 1083
@@ -1376,7 +1376,7 @@
             "name": "dancer4_10",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 43,
             "x": 3203,
             "y": 1027
@@ -1396,7 +1396,7 @@
             "name": "dancer3_00",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 29,
             "x": 26,
             "y": 1448
@@ -1416,7 +1416,7 @@
             "name": "dancer3_01",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 31,
             "x": 1143,
             "y": 2070
@@ -1436,7 +1436,7 @@
             "name": "dancer3_02",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 35,
             "x": 20,
             "y": 1358
@@ -1456,7 +1456,7 @@
             "name": "dancer3_03",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 38,
             "x": 1074,
             "y": 1935
@@ -1476,7 +1476,7 @@
             "name": "dancer3_04",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 35,
             "x": 58,
             "y": 1359
@@ -1496,7 +1496,7 @@
             "name": "dancer3_05",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 30,
             "x": 1156,
             "y": 1811
@@ -1516,7 +1516,7 @@
             "name": "dancer3_06",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 36,
             "x": 1076,
             "y": 2101
@@ -1536,7 +1536,7 @@
             "name": "dancer3_07",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 35,
             "x": 58,
             "y": 1449
@@ -1556,7 +1556,7 @@
             "name": "dancer3_08",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 31,
             "x": 1003,
             "y": 2022
@@ -1576,7 +1576,7 @@
             "name": "dancer3_09",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 25,
             "x": 1115,
             "y": 1899
@@ -1596,7 +1596,7 @@
             "name": "dancer3_10",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 33,
             "x": 22,
             "y": 1267
@@ -1616,7 +1616,7 @@
             "name": "dancer2_00",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 48,
             "x": 3312,
             "y": 991
@@ -1636,7 +1636,7 @@
             "name": "dancer2_01",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 49,
             "x": 11,
             "y": 1176
@@ -1656,7 +1656,7 @@
             "name": "dancer2_02",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 49,
             "x": 980,
             "y": 1758
@@ -1676,7 +1676,7 @@
             "name": "dancer2_03",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 46,
             "x": 96,
             "y": 1359
@@ -1696,7 +1696,7 @@
             "name": "dancer2_04",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 41,
             "x": 141,
             "y": 1268
@@ -1716,7 +1716,7 @@
             "name": "dancer2_05",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 48,
             "x": 3312,
             "y": 991
@@ -1736,7 +1736,7 @@
             "name": "dancer2_06",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 49,
             "x": 3311,
             "y": 1177
@@ -1756,7 +1756,7 @@
             "name": "dancer2_07",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 49,
             "x": 980,
             "y": 1669
@@ -1776,7 +1776,7 @@
             "name": "dancer2_08",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 46,
             "x": 1107,
             "y": 1811
@@ -1796,7 +1796,7 @@
             "name": "dancer2_09",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 41,
             "x": 141,
             "y": 1268
@@ -1816,7 +1816,7 @@
             "name": "dancer1_00",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 58,
             "x": 3302,
             "y": 706
@@ -1836,7 +1836,7 @@
             "name": "dancer1_01",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 42,
             "x": 3266,
             "y": 1177
@@ -1856,7 +1856,7 @@
             "name": "dancer1_02",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 35,
             "x": 58,
             "y": 1268
@@ -1876,7 +1876,7 @@
             "name": "dancer1_03",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 33,
             "x": 149,
             "y": 1176
@@ -1896,7 +1896,7 @@
             "name": "dancer1_04",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 35,
             "x": 96,
             "y": 1268
@@ -1916,7 +1916,7 @@
             "name": "dancer1_05",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 42,
             "x": 3203,
             "y": 1212
@@ -1936,7 +1936,7 @@
             "name": "dancer1_06",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 55,
             "x": 3244,
             "y": 706
@@ -1956,7 +1956,7 @@
             "name": "SimonKneeling",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 16,
             "x": 3224,
             "y": 706
@@ -1976,7 +1976,7 @@
             "name": "NES - Castlevania - Boss5",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 39,
             "x": 3551,
             "y": 1338
@@ -1996,7 +1996,7 @@
             "name": "NES - Castlevania - Boss1",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 30,
             "x": 3224,
             "y": 991
@@ -2016,7 +2016,7 @@
             "name": "HK_Pressed",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 67,
             "x": 1911,
             "y": 1052
@@ -2036,7 +2036,7 @@
             "name": "HK_Released",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 67,
             "x": 1981,
             "y": 1052
@@ -2056,7 +2056,7 @@
             "name": "HP_Pressed",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 67,
             "x": 1631,
             "y": 1026
@@ -2076,7 +2076,7 @@
             "name": "HP_Released",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 67,
             "x": 3985,
             "y": 1025
@@ -2096,7 +2096,7 @@
             "name": "JoyStick",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 50,
             "x": 898,
             "y": 837
@@ -2116,7 +2116,7 @@
             "name": "JoystickGate",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 181,
             "x": 1134,
             "y": 1000
@@ -2136,7 +2136,7 @@
             "name": "LK_Pressed",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 67,
             "x": 89,
             "y": 898
@@ -2156,7 +2156,7 @@
             "name": "LK_Released",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 67,
             "x": 1771,
             "y": 1026
@@ -2176,7 +2176,7 @@
             "name": "LP_Pressed",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 67,
             "x": 19,
             "y": 898
@@ -2196,7 +2196,7 @@
             "name": "LP_Released",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 67,
             "x": 1841,
             "y": 1026
@@ -2216,7 +2216,7 @@
             "name": "MK_Pressed",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 67,
             "x": 3985,
             "y": 954
@@ -2236,7 +2236,7 @@
             "name": "MK_Released",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 67,
             "x": 778,
             "y": 994
@@ -2256,7 +2256,7 @@
             "name": "MP_Pressed",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 67,
             "x": 1701,
             "y": 1026
@@ -2276,7 +2276,7 @@
             "name": "MP_Released",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 67,
             "x": 3597,
             "y": 999
@@ -2296,7 +2296,7 @@
             "name": "KrankyKongPlay-00",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 593,
             "y": 3090
@@ -2316,7 +2316,7 @@
             "name": "KrankyKongPlay-01",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 321,
             "y": 2842
@@ -2336,7 +2336,7 @@
             "name": "KrankyKongPlay-02",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 1772,
             "y": 2790
@@ -2356,7 +2356,7 @@
             "name": "KrankyKongPlay-03",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 1772,
             "y": 3038
@@ -2376,7 +2376,7 @@
             "name": "KrankyKongPlay-04",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 976,
             "y": 2792
@@ -2396,7 +2396,7 @@
             "name": "KrankyKongPlay-05",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 1374,
             "y": 2792
@@ -2416,7 +2416,7 @@
             "name": "KrankyKongPlay-06",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 1379,
             "y": 3040
@@ -2436,7 +2436,7 @@
             "name": "KrankyKongPlay-07",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 986,
             "y": 3040
@@ -2456,7 +2456,7 @@
             "name": "KrankyKongPlay-08",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 3703,
             "y": 3133
@@ -2476,7 +2476,7 @@
             "name": "KrankyKongPlay-09",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 205,
             "y": 3161
@@ -2496,7 +2496,7 @@
             "name": "KrankyKongPlay-10",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 3315,
             "y": 3167
@@ -2516,7 +2516,7 @@
             "name": "NowPlayingSound-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 3607,
             "y": 1702
@@ -2536,7 +2536,7 @@
             "name": "NowPlayingSound-1",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 491,
             "y": 1669
@@ -2556,7 +2556,7 @@
             "name": "NowPlayingSound-2",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 0,
             "y": 1669
@@ -2576,7 +2576,7 @@
             "name": "KrankyKongDJ-00",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 0,
             "y": 2089
@@ -2596,7 +2596,7 @@
             "name": "KrankyKongDJ-01",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 0,
             "y": 2307
@@ -2616,7 +2616,7 @@
             "name": "KrankyKongDJ-02",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 2665,
             "y": 2301
@@ -2636,7 +2636,7 @@
             "name": "KrankyKongDJ-03",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 3619,
             "y": 2217
@@ -2656,7 +2656,7 @@
             "name": "KrankyKongDJ-04",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 478,
             "y": 2184
@@ -2676,7 +2676,7 @@
             "name": "KrankyKongDJ-05",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 2205,
             "y": 2576
@@ -2696,7 +2696,7 @@
             "name": "KrankyKongDJ-06",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 1261,
             "y": 2578
@@ -2716,7 +2716,7 @@
             "name": "KrankyKongDJ-07",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 472,
             "y": 2628
@@ -2736,7 +2736,7 @@
             "name": "KrankyKongDJ-08",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 0,
             "y": 2527
@@ -2756,7 +2756,7 @@
             "name": "KrankyKongDJ-09",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 1733,
             "y": 2576
@@ -2776,7 +2776,7 @@
             "name": "KrankyKongDJ-10",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 3623,
             "y": 2439
@@ -2796,7 +2796,7 @@
             "name": "KrankyKongDJ-11",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 3150,
             "y": 2477
@@ -2816,7 +2816,7 @@
             "name": "KrankyKongDJ-12",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 2677,
             "y": 2523
@@ -2836,7 +2836,7 @@
             "name": "KrankyKongDJ-13",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 1238,
             "y": 2357
@@ -2856,7 +2856,7 @@
             "name": "KrankyKongDJ-14",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 477,
             "y": 2409
@@ -2876,7 +2876,7 @@
             "name": "KrankyKongDJ-15",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 3142,
             "y": 2255
@@ -2896,7 +2896,7 @@
             "name": "KrankyKongDJ-16",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 1711,
             "y": 2357
@@ -2916,7 +2916,7 @@
             "name": "KrankyKongDJ-17",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 2188,
             "y": 2357
@@ -2936,7 +2936,7 @@
             "name": "KrankyKongDJ-18",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 3121,
             "y": 1755
@@ -2956,7 +2956,7 @@
             "name": "KrankyKongDJ-19",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 96,
             "y": 1447
@@ -2976,7 +2976,7 @@
             "name": "KrankyKongDJ-20",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 587,
             "y": 1447
@@ -2996,7 +2996,7 @@
             "name": "4189c491-d783-4f24-add0-265f4c3e6ba5-0",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 2491,
             "y": 2791
@@ -3016,7 +3016,7 @@
             "name": "4189c491-d783-4f24-add0-265f4c3e6ba5-1",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 2170,
             "y": 2791
@@ -3036,7 +3036,7 @@
             "name": "4189c491-d783-4f24-add0-265f4c3e6ba5-2",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 2812,
             "y": 2741
@@ -3056,7 +3056,7 @@
             "name": "4189c491-d783-4f24-add0-265f4c3e6ba5-3",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 3775,
             "y": 2658
@@ -3076,7 +3076,7 @@
             "name": "4189c491-d783-4f24-add0-265f4c3e6ba5-4",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 0,
             "y": 2743
@@ -3096,7 +3096,7 @@
             "name": "4189c491-d783-4f24-add0-265f4c3e6ba5-5",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 3133,
             "y": 2741
@@ -3116,7 +3116,7 @@
             "name": "4189c491-d783-4f24-add0-265f4c3e6ba5-6",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 3454,
             "y": 2696
@@ -3136,7 +3136,7 @@
             "name": "4189c491-d783-4f24-add0-265f4c3e6ba5-7",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 500,
             "x": 2994,
             "y": 3167
@@ -3156,7 +3156,7 @@
             "name": "Volume",
             "subAtlasType": "Text",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 1024,
             "x": 2197,
             "y": 0
@@ -3176,7 +3176,7 @@
             "name": "VCR",
             "subAtlasType": "Text",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 98,
             "x": 3224,
             "y": 605
@@ -3196,7 +3196,7 @@
             "name": "CrtScreenOverlay",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 852,
             "x": 2674,
             "y": 3209
@@ -3216,7 +3216,7 @@
             "name": "A",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 48,
             "x": 1002,
             "y": 837
@@ -3236,7 +3236,7 @@
             "name": "B",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 48,
             "x": 951,
             "y": 837
@@ -3256,7 +3256,7 @@
             "name": "NESbuttonless",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 380,
             "x": 898,
             "y": 684
@@ -3276,7 +3276,7 @@
             "name": "Select",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 45,
             "x": 3773,
             "y": 425
@@ -3296,7 +3296,7 @@
             "name": "Start",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 46,
             "x": 3724,
             "y": 425
@@ -3316,7 +3316,7 @@
             "name": "JoyStick",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 32,
             "x": 4058,
             "y": 0
@@ -3336,7 +3336,7 @@
             "name": "CrtScreen",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 855,
             "x": 3224,
             "y": 0
@@ -3356,7 +3356,7 @@
             "name": "NowPlaying",
             "subAtlasType": "Text",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 895,
             "x": 0,
             "y": 0
@@ -3376,7 +3376,7 @@
             "name": "Retro",
             "subAtlasType": "",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 2194,
             "x": 0,
             "y": 0
@@ -3396,7 +3396,7 @@
             "name": "Description",
             "subAtlasType": "Text",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 681,
             "x": 898,
             "y": 0
@@ -3416,7 +3416,7 @@
             "name": "MainText",
             "subAtlasType": "Text",
             "textureIndex": 0,
-            "textureInfo": 262144,
+            "textureInfo": 537133056,
             "width": 730,
             "x": 3363,
             "y": 605
@@ -3436,7 +3436,7 @@
             "name": "console",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 345,
             "x": 3008,
             "y": 944
@@ -3456,7 +3456,7 @@
             "name": "console_logo",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 139,
             "x": 2740,
             "y": 1022
@@ -3476,7 +3476,7 @@
             "name": "console",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 265,
             "x": 0,
             "y": 988
@@ -3496,7 +3496,7 @@
             "name": "console_logo",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 347,
             "x": 2658,
             "y": 940
@@ -3516,7 +3516,7 @@
             "name": "console",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 296,
             "x": 3686,
             "y": 954
@@ -3536,7 +3536,7 @@
             "name": "console_logo",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 348,
             "x": 1582,
             "y": 938
@@ -3556,7 +3556,7 @@
             "name": "console",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 277,
             "x": 1281,
             "y": 684
@@ -3576,7 +3576,7 @@
             "name": "console_logo",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 111,
             "x": 2880,
             "y": 1022
@@ -3596,7 +3596,7 @@
             "name": "console",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 178,
             "x": 2567,
             "y": 1022
@@ -3616,7 +3616,7 @@
             "name": "console_logo",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 254,
             "x": 268,
             "y": 994
@@ -3636,7 +3636,7 @@
             "name": "console",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 361,
             "x": 1218,
             "y": 837
@@ -3656,7 +3656,7 @@
             "name": "console_logo",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 355,
             "x": 3738,
             "y": 887
@@ -3676,7 +3676,7 @@
             "name": "console",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 192,
             "x": 2641,
             "y": 701
@@ -3696,7 +3696,7 @@
             "name": "console_logo",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 326,
             "x": 1933,
             "y": 952
@@ -3716,7 +3716,7 @@
             "name": "console",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 250,
             "x": 525,
             "y": 994
@@ -3736,7 +3736,7 @@
             "name": "console_logo",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 353,
             "x": 862,
             "y": 898
@@ -3756,7 +3756,7 @@
             "name": "console",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 302,
             "x": 2262,
             "y": 952
@@ -3776,7 +3776,7 @@
             "name": "console_logo",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 355,
             "x": 510,
             "y": 898
@@ -3796,7 +3796,7 @@
             "name": "console",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 269,
             "x": 862,
             "y": 950
@@ -3816,7 +3816,7 @@
             "name": "console_logo",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 348,
             "x": 159,
             "y": 898
@@ -3836,7 +3836,7 @@
             "name": "console",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 133,
             "x": 1958,
             "y": 769
@@ -3856,7 +3856,7 @@
             "name": "console_logo",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 238,
             "x": 3356,
             "y": 999
@@ -3876,7 +3876,7 @@
             "name": "console",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 373,
             "x": 1582,
             "y": 769
@@ -3896,7 +3896,7 @@
             "name": "console_logo",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 134,
             "x": 1494,
             "y": 1026
@@ -3916,7 +3916,7 @@
             "name": "console",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 178,
             "x": 1318,
             "y": 1000
@@ -3936,7 +3936,7 @@
             "name": "console_logo",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 327,
             "x": 3356,
             "y": 944
@@ -3956,7 +3956,7 @@
             "name": "CtrlPanel",
             "subAtlasType": "Text",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 215,
             "x": 2641,
             "y": 483
@@ -3976,7 +3976,7 @@
             "name": "Frame_01",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 260,
             "x": 3724,
             "y": 0
@@ -3996,7 +3996,7 @@
             "name": "Frame_02",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 260,
             "x": 2378,
             "y": 483
@@ -4016,7 +4016,7 @@
             "name": "Frame_03",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 260,
             "x": 2115,
             "y": 483
@@ -4036,7 +4036,7 @@
             "name": "Frame_04",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 278,
             "x": 3291,
             "y": 462
@@ -4056,7 +4056,7 @@
             "name": "Frame_05",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 417,
             "x": 2871,
             "y": 466
@@ -4076,7 +4076,7 @@
             "name": "Frame_06",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 530,
             "x": 2658,
             "y": 0
@@ -4096,7 +4096,7 @@
             "name": "Frame_07",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 530,
             "x": 3563,
             "y": 462
@@ -4116,7 +4116,7 @@
             "name": "Frame_08",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 530,
             "x": 3191,
             "y": 0
@@ -4136,7 +4136,7 @@
             "name": "Frame_09",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 530,
             "x": 1582,
             "y": 313
@@ -4156,7 +4156,7 @@
             "name": "Frame_10",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 530,
             "x": 2125,
             "y": 0
@@ -4176,7 +4176,7 @@
             "name": "Monitor",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 544,
             "x": 1582,
             "y": 0
@@ -4196,7 +4196,7 @@
             "name": "D_Pressed",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 68,
             "x": 2567,
             "y": 952
@@ -4216,7 +4216,7 @@
             "name": "DA_Pressed",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 68,
             "x": 3987,
             "y": 215
@@ -4236,7 +4236,7 @@
             "name": "FD_Pressed",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 68,
             "x": 3987,
             "y": 0
@@ -4256,7 +4256,7 @@
             "name": "HS_Pressed",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 68,
             "x": 3987,
             "y": 73
@@ -4276,7 +4276,7 @@
             "name": "K_Pressed",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 68,
             "x": 3987,
             "y": 144
@@ -4296,7 +4296,7 @@
             "name": "P_Pressed",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 68,
             "x": 3987,
             "y": 357
@@ -4316,7 +4316,7 @@
             "name": "S_Pressed",
             "subAtlasType": "",
             "textureIndex": 1,
-            "textureInfo": 262147,
+            "textureInfo": 537133059,
             "width": 68,
             "x": 3987,
             "y": 286
