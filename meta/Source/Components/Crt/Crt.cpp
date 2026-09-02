@@ -86,7 +86,7 @@ Crt::Crt(HyEntity2d *pParent /*= nullptr*/) :
 	m_Static.SetVisible(false);
 
 	m_ChannelStack.pos.Set(iScreenX, iScreenY);
-	m_ChannelStack.scale_pivot.Set(CRT_SCREEN_WIDTH * 0.5f, CRT_SCREEN_HEIGHT * 0.5f);
+	m_ChannelStack.scale_pivot = {CRT_SCREEN_WIDTH * 0.5f, CRT_SCREEN_HEIGHT * 0.5f};
 	m_ChannelStack.scale.Set(CRT_SHRINK_AMT, CRT_SHRINK_AMT);
 	m_ChannelStack.SetVisible(false);
 	m_ChannelStack.SetStencil(&m_Stencil);

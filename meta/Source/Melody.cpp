@@ -36,6 +36,8 @@ Melody::Melody(HyInit &initStruct) :
 
 	m_pCameraCtrlPanel->pos.Set(0.0f, 2000.0f);
 
+	HyEngine::Diagnostics().Init(HyNodePath("", "CtrlPanel"), 0);
+
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_LK, HYPAD_A);
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_MK, HYPAD_B);
 	//FIGHTSTICK_HK, // On Axis 'HYPADAXIS_TriggerRight'
@@ -50,6 +52,9 @@ Melody::Melody(HyInit &initStruct) :
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_Right, HYPAD_DpadRight);
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_DriveImpact, HYPAD_LeftBumper);
 	HyEngine::Input().MapGamePadBtn(FIGHTSTICK_Parry, HYPAD_LeftThumbStick);
+
+	HyEngine::Input().MapBtn(INPUT_PerfMetrics, HYKEY_F5);
+	HyEngine::Input().MapBtn(INPUT_ToggleVsync, HYKEY_F6);
 
 	HyEngine::Input().SetControllerBackgroundInput(true);
 
@@ -226,6 +231,22 @@ Melody::~Melody()
 			else
 				pGameBrowser->rot.Tween(1.0f, fRotDuration);
 		}
+	}
+
+	if(HyEngine::Input().IsActionReleased(INPUT_PerfMetrics))
+	{
+		if(HyEngine::Diagnostics().GetShowFlags() == 0)
+			HyEngine::Diagnostics().Show(HYDIAG_FRAMERATE | HYDIAG_GRAPH);
+		else
+			HyEngine::Diagnostics().Show(0);
+	}
+
+	if(HyEngine::Input().IsActionReleased(INPUT_ToggleVsync))
+	{
+		if(HyEngine::GetRenderer().GetVSync(1) == 0)
+			HyEngine::GetRenderer().SetVSync(1, 1);
+		else
+			HyEngine::GetRenderer().SetVSync(0, 1);
 	}
 
 	//if(HyEngine::Input().IsActionReleased(INPUT_GlobalVolumeDown))

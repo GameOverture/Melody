@@ -111,7 +111,7 @@ public:
 
 	uint32 GetCurrentIndex();
 
-	HyAnimFloat &GetRotation();
+	HyAnimVec1 &GetRotation();
 
 	const WeightTable *GetWeightTable();
 	int GetWedgeValue(uint32 uiWedgeIndex);

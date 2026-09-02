@@ -273,7 +273,7 @@ uint32 Wheel::GetCurrentIndex()
 	return m_uiCurIndex;
 }
 
-HyAnimFloat &Wheel::GetRotation()
+HyAnimVec1 &Wheel::GetRotation()
 {
 	return m_SpinEnt.rot;
 }

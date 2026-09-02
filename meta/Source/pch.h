@@ -112,7 +112,10 @@ enum InputAction
 	FIGHTSTICK_Left,
 	FIGHTSTICK_Right,
 	FIGHTSTICK_DriveImpact,
-	FIGHTSTICK_Parry
+	FIGHTSTICK_Parry,
+
+	INPUT_PerfMetrics,
+	INPUT_ToggleVsync
 };
 
 enum InputController

@@ -18,11 +18,10 @@
     "NumInputMaps": 1,
     "PixelsPerMeter": 50,
     "ShowCursor": true,
-    "SourcePath": "meta/Source/",
+    "SourcePath": "./Source/",
     "Title": "Melody",
-    "UpdatesPerSec": 60,
+    "UpdatesPerSec": 0,
     "UseConsole": true,
-    "VSync": 1,
     "WindowInfo": [
         {
             "LocationX": 1920,
@@ -30,7 +29,8 @@
             "Name": "Melody",
             "ResolutionX": 1920,
             "ResolutionY": 1080,
-            "Type": 0
+            "Type": 0,
+            "VSync": 0
         },
         {
             "LocationX": 3530,
@@ -38,7 +38,8 @@
             "Name": "Control Panel",
             "ResolutionX": 300,
             "ResolutionY": 1080,
-            "Type": 0
+            "Type": 0,
+            "VSync": 0
         }
     ]
 }

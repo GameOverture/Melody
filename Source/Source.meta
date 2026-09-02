@@ -1,0 +1,62 @@
+{
+    "$fileVersion": 18,
+    "assets": [
+        {
+            "assetUUID": "adfb05dd-a889-401b-80ac-df83d403c968",
+            "bankId": 0,
+            "baseClass": "",
+            "checksum": 2142379858,
+            "errors": 0,
+            "filter": "",
+            "itemType": "Source",
+            "name": "main.cpp"
+        },
+        {
+            "assetUUID": "87bd2aff-4131-47d0-b006-18de72256555",
+            "bankId": 0,
+            "baseClass": "",
+            "checksum": 415839713,
+            "errors": 0,
+            "filter": "",
+            "itemType": "Header",
+            "name": "pch.h"
+        },
+        {
+            "assetUUID": "a7b9299f-de25-4999-a1a4-608b2b1bb8de",
+            "bankId": 0,
+            "baseClass": "",
+            "checksum": 960282857,
+            "errors": 0,
+            "filter": "",
+            "itemType": "Source",
+            "name": "Melody.cpp"
+        },
+        {
+            "assetUUID": "bc40e49a-9814-413c-82ff-29ac8fd1aadd",
+            "bankId": 0,
+            "baseClass": "",
+            "checksum": 874313009,
+            "errors": 0,
+            "filter": "",
+            "itemType": "Header",
+            "name": "Melody.h"
+        }
+    ],
+    "banks": [
+        {
+            "EmscriptenCcall": "",
+            "OutputName": "Melody",
+            "SrcDepends": [
+            ],
+            "UseIcu": false,
+            "UseNlohmannJson": false,
+            "UseSdl2": false,
+            "UseSdlAudio": false,
+            "UseSdlNet": false,
+            "UseSpine": false,
+            "bankId": 0,
+            "bankName": "Default"
+        }
+    ],
+    "nextBankId": 1
+}
