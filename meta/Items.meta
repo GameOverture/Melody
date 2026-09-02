@@ -1,5 +1,5 @@
 {
-    "$fileVersion": 18,
+    "$fileVersion": 19,
     "Audio": {
     },
     "Entities": {
@@ -988,10 +988,10 @@
         },
         "MainText": {
             "CameraPos": [
-                -113,
-                -111
+                -0.9412798881530762,
+                164.94630432128906
             ],
-            "CameraZoom": 1,
+            "CameraZoom": 0.5,
             "UUID": "58595296-c5db-4f52-9091-98fb0cb2030e",
             "assetUUID": "3973d981-5aa7-4252-9e46-deff934d06ba",
             "availableGlyphs": {
