@@ -186,7 +186,7 @@ void BrowsePage::OnContainerUpdate() /*override*/
 				m_GameBoxarts[i].Uninit();
 				m_GameBoxarts[i].SetVisible(false);
 				if(sBestMatchingLogoFile.empty() == false)
-					m_GameBoxarts[i].Init(Compositorium::Get()->GetMediaPath(m_QueuedGamesArray[i].GetConsole(), MEDIATYPE_Boxarts) + sBestMatchingLogoFile, HyTextureInfo(), &m_GameBtns[i]);
+					m_GameBoxarts[i].Init(Compositorium::Get()->GetMediaPath(m_QueuedGamesArray[i].GetConsole(), MEDIATYPE_Boxarts) + sBestMatchingLogoFile, HyImageInfo(), HyTextureInfo(), &m_GameBtns[i]);
 			}
 
 			m_ReloadCooldownTimer.InitStart(BROWSEPAGE_LOAD_COOLDOWN);

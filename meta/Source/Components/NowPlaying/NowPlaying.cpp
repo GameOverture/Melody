@@ -266,7 +266,7 @@ void NowPlaying::ShowGameTime(bool bShow)
 			std::string sBestMatchingLogoFile = Compositorium::Get()->GetBestMedia(gameObj, MEDIATYPE_Logos);
 			m_Logo.Uninit();
 			if(sBestMatchingLogoFile.empty() == false)
-				m_Logo.Init(sMediaPath + sBestMatchingLogoFile, HyTextureInfo(), &m_NowPlayingEnt);
+				m_Logo.Init(sMediaPath + sBestMatchingLogoFile, HyImageInfo(), HyTextureInfo(), &m_NowPlayingEnt);
 
 			for(int i = 0; i < m_SlideShowList.size(); ++i)
 				delete m_SlideShowList[i];
@@ -276,14 +276,14 @@ void NowPlaying::ShowGameTime(bool bShow)
 			std::vector<std::string> boxartsFilePathList = gameObj.GetMediaList(MEDIATYPE_Boxarts);
 			for(int i = 0; i < boxartsFilePathList.size(); ++i)
 			{
-				HyTexturedQuad2d *pNewBoxArt = HY_NEW HyTexturedQuad2d(sMediaPath + boxartsFilePathList[i], HyTextureInfo(), &m_InfoEnt);
+				HyTexturedQuad2d *pNewBoxArt = HY_NEW HyTexturedQuad2d(sMediaPath + boxartsFilePathList[i], HyImageInfo(), HyTextureInfo(), &m_InfoEnt);
 				m_SlideShowList.push_back(pNewBoxArt);
 			}
 			sMediaPath = Compositorium::Get()->GetMediaPath(gameObj.GetConsole(), MEDIATYPE_Titles);
 			std::vector<std::string> titleartsFilePathList = gameObj.GetMediaList(MEDIATYPE_Titles);
 			for(int i = 0; i < titleartsFilePathList.size(); ++i)
 			{
-				HyTexturedQuad2d *pNewTitleArt = HY_NEW HyTexturedQuad2d(sMediaPath + titleartsFilePathList[i], HyTextureInfo(), &m_InfoEnt);
+				HyTexturedQuad2d *pNewTitleArt = HY_NEW HyTexturedQuad2d(sMediaPath + titleartsFilePathList[i], HyImageInfo(), HyTextureInfo(), &m_InfoEnt);
 				m_SlideShowList.push_back(pNewTitleArt);
 			}
 			HyRand::Shuffle(m_SlideShowList);

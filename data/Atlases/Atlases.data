@@ -1,5 +1,5 @@
 {
-    "$fileVersion": 19,
+    "$fileVersion": 20,
     "banks": [
         {
             "bankId": 0,
@@ -1051,7 +1051,8 @@
                         }
                     ],
                     "height": 4096,
-                    "textureInfo": 537133056,
+                    "imageInfo": 1152939096793153536,
+                    "textureInfo": 1311232,
                     "width": 4096
                 },
                 {
@@ -1527,7 +1528,8 @@
                         }
                     ],
                     "height": 2048,
-                    "textureInfo": 537133059,
+                    "imageInfo": 1152930300700131328,
+                    "textureInfo": 51642880,
                     "width": 4096
                 }
             ]
